@@ -22,7 +22,6 @@ make test
 ├── agents/           Shared and generated agent definitions
 ├── docs/             Plans, passoffs, and reference material
 ├── scripts/          Project maintenance scripts
-├── specs/            Optional project specs and evidence
 ├── AGENTS.md         Cross-agent project instructions
 ├── CUSTOMIZE.md      Scaffold tailoring guide
 ├── Makefile          Validation and strip targets
