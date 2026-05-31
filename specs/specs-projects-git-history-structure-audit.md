@@ -1,0 +1,919 @@
+# Projects Git History And Structure Audit
+
+History window: `2026-02-08` through `2026-05-08T16:55:29`.
+
+This audit records Git roots, remotes, dirty state, root governance files, passoff coverage, `.github` coverage, top changed directories/files, and recent commit history. It is evidence for the `scaffolding` framework requirements.
+
+## Summary Table
+
+| Repo | Commits | Dirty | Instructions | Passoffs | .github | Remote |
+|---|---:|---:|---|---:|---:|---|
+| `average-intelligence` | 38 | 7 | CLAUDE.md, README.md | 7 | 0 | origin	https://github.com/klappe-pm/average-intelligence.git (fetch) |
+| `average-intelligence/website` | 10 | 9 | none | 0 | 0 | none |
+| `claude-automation` | 9 | 0 | CLAUDE.md | 6 | 0 | origin	https://github.com/klappe-pm/claude-automation.git (fetch) |
+| `claude-config` | 94 | 27 | AGENTS.md, CLAUDE.md, GEMINI.md, PROJECT_INDEX.json, PROJECT_INDEX.md, README.md, WARP.md | 27 | 0 | origin	https://github.com/klappe-pm/claude-config.git (fetch) |
+| `legal/google/Legal/TBI Vault` | 41 | 32 | README.md, WARP.md | 0 | 1 | origin	https://github.com/klappe-pm/tbi-discovery.git (fetch) |
+| `money-manager` | 1 | 16 | none | 0 | 1 | origin	https://github.com/klappe-pm/power-prompts.git (fetch) |
+| `obsidian-vaults/LLM` | 122 | 1 | none | 0 | 1 | origin	https://github.com/klappe-pm/LLM.git (fetch) |
+| `obsidian-vaults/LLM/Agent Defintions` | 3 | 2 | PROJECT_INDEX.json, PROJECT_INDEX.md, README.md | 0 | 0 | origin	https://github.com/klappe-pm/AGENTS.git (fetch) |
+| `scaffolding/github-config` | 1 | 0 | README.md | 0 | 0 | origin	git@github.com:klappe-pm/configurations.git (fetch) |
+| `skills-main` | 112 | 77 | AGENTS.md, CLAUDE.md, GEMINI.md, PROJECT_INDEX.json, PROJECT_INDEX.md, README.md, WARP.md | 14 | 0 | origin	https://github.com/klappe-pm/SKILLS.git (fetch) |
+| `z-archive/Lattice Lock` | 1 | 0 | CONTRIBUTING.md, PROJECT_INDEX.md, README.md | 0 | 20 | origin	https://github.com/klappe-pm/_lattice_lock_framework.git (fetch) |
+| `z-archive/spreadsheet-functions/Extremely Detailed Spreadsheet Functions` | 1 | 670 | README.md | 0 | 0 | origin	https://github.com/klappe-pm/Extremely-Detailed-Spreadsheet-Functions.git (fetch) |
+| `z-archive/Voice Memo Export Automation (VMEA)` | 45 | 2 | README.md | 0 | 1 | origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (fetch) |
+| `z-archive/Voice Memo Export Automation (VMEA)/Apple-Voice-Memo-Export-to-Markdown` | 35 | 1 | README.md | 0 | 1 | origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (fetch) |
+| `z-archive/Voice Memo Export Automation (VMEA)/Apple-Voice-Memo-Export-to-Markdown/Apple-Voice-Memo-Export-to-Markdown` | 39 | 0 | README.md | 0 | 1 | origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (fetch) |
+| `z-archive/Voice Memo Export Automation (VMEA)/git-masterclass` | 1 | 0 | README.md | 0 | 0 | origin	https://github.com/klappe-pm/git-masterclass.git (fetch) |
+
+## Repo Details
+
+### `average-intelligence`
+
+- Absolute path: `/Users/kevinlappe/Projects/average-intelligence`
+- Branch: `main`
+- Dirty entries: 7
+- Commits since `2026-02-08`: 38
+- Remotes: origin	https://github.com/klappe-pm/average-intelligence.git (fetch); origin	https://github.com/klappe-pm/average-intelligence.git (push)
+- Root instruction/index files: CLAUDE.md, README.md
+- Passoff files: 7; latest: `docs/passoffs/2026-05-04-13:17-passoff-file.md`
+- `.github` files: 0; none
+- Change counts: {'A': 55, 'M': 34, 'D': 1}
+- Top changed directories:
+  - `docs`: 38
+  - `content`: 25
+  - `brand`: 11
+  - `scripts`: 6
+  - `CLAUDE.md`: 4
+  - `README.md`: 2
+  - `LICENSE`: 2
+  - `.claude`: 1
+  - `.gitignore`: 1
+- Top changed files:
+  - `docs/specs/README.md`: 7
+  - `brand/README.md`: 5
+  - `content/website/medium-form/2026-05-03-how-to-tell-when-ai-is-guessing.md`: 4
+  - `CLAUDE.md`: 4
+  - `scripts/README.md`: 3
+  - `docs/specs/website-handoff-spec.md`: 3
+  - `brand/voice.md`: 3
+  - `docs/strategy/README.md`: 3
+  - `docs/specs/initial-scaffold-spec.md`: 3
+  - `content/podcast/seasons/season-01/README.md`: 2
+  - `scripts/lint-anthropomorphism.py`: 2
+  - `docs/specs/podcast-launch-spec.md`: 2
+- Recent commits:
+  - a807fdd 2026-05-04 chore(claude): add permissions allowlist for ship-flow + read-only MCP (#34)
+  - 3ce4878 2026-05-04 docs(passoff): 2026-05-04 13:17 — Episodes 2–5 scaffolds (continuation) (#33)
+  - f1e452b 2026-05-04 content(podcast): scaffold Episodes 2–5 prep materials (#32)
+  - c6f0d9f 2026-05-04 feat(scripts): extend anthropomorphism lint to brand/ and add pronoun lint (#30)
+  - 01625e5 2026-05-04 docs(passoff): 2026-05-04 13:03 — Episode 1 prep + lint extensions (#31)
+  - cef08eb 2026-05-04 content(podcast): scaffold Season 1 + Episode 1 prep materials (#29)
+  - 1b64dd1 2026-05-04 docs(passoff): 2026-05-04 12:39 — four PRs from stale-passoff drift (#28)
+  - c10a1d0 2026-05-04 feat(ci): lint content/ against the anthropomorphism rule (#27)
+  - 5379a7f 2026-05-04 docs(podcast): lock Season 1 topic arc (#26)
+  - 5baed81 2026-05-04 docs(ops): add cross-repo tokens.json wiring runbook (#25)
+  - f457424 2026-05-04 docs(brand): switch editorial default from first-person plural to third person (#24)
+  - 2c17421 2026-05-04 docs(passoff): 2026-05-04 11:44 — three PRs + brand top-three audit (#23)
+  - 69f9612 2026-05-04 feat(brand): add tokens.json as canonical cross-repo token export (#22)
+  - aade7b4 2026-05-04 fix(content): rename frontmatter field revised → updated (#20)
+  - b49d38a 2026-05-04 docs(brand): codify output-verb / mental-state-verb anthropomorphism rule (#21)
+  - aa5032b 2026-05-03 content(website): editorial pass on first essay; flip to scheduled (#17)
+  - 23d9167 2026-05-03 docs(passoff): 2026-05-03 14:45 — 15-PR foundation + first essay (#16)
+  - 9556795 2026-05-03 docs(hygiene): brand foundation review — flagged host decisions (#18)
+  - 4b3963c 2026-05-03 docs(passoff): 2026-05-03 16:31 — essay edits + brand-review PRs (#19)
+  - 585c220 2026-05-03 content(website): first essay — how to tell when AI is guessing (#15)
+  - a428f04 2026-05-03 docs(passoff): 2026-05-03 14:36 — 13-PR session, foundation complete (#14)
+  - aa5980a 2026-05-03 docs(spec): add membership-prelaunch-spec.md (#13)
+  - bc06eb6 2026-05-03 docs(spec): add podcast-launch-spec.md (#12)
+  - 2d72149 2026-05-03 docs(spec): add website-handoff-spec.md (#11)
+  - e2769ae 2026-05-03 docs(strategy): add audience-needs.md (draft v1) (#10)
+- Dirty entries sample:
+  - `M docs/README.md`
+  - ` M docs/specs/README.md`
+  - `?? "Average Intelligence_ Main Product Documents.pdf"`
+  - `?? Average_Intelligence_Strategy.pdf`
+  - `?? docs/design/`
+  - `?? docs/specs/design-system-spec.md`
+  - `?? website/`
+
+### `average-intelligence/website`
+
+- Absolute path: `/Users/kevinlappe/Projects/average-intelligence/website`
+- Branch: `main`
+- Dirty entries: 9
+- Commits since `2026-02-08`: 10
+- Remotes: none
+- Root instruction/index files: none
+- Passoff files: 0; latest: none
+- `.github` files: 0; none
+- Change counts: {'M': 30, 'A': 122}
+- Top changed directories:
+  - `src`: 115
+  - `convex`: 17
+  - `index.html`: 3
+  - `package.json`: 2
+  - `pnpm-lock.yaml`: 2
+  - `.gitignore`: 1
+  - `.ignore`: 1
+  - `.prettierignore`: 1
+  - `components.json`: 1
+  - `convex.json`: 1
+  - `eslint.config.mjs`: 1
+  - `pnpm-workspace.yaml`: 1
+  - `prettier.config.js`: 1
+  - `public`: 1
+  - `tsconfig.app.json`: 1
+- Top changed files:
+  - `src/App.tsx`: 5
+  - `src/components/navbar.tsx`: 4
+  - `src/components/footer.tsx`: 3
+  - `convex/_generated/api.d.ts`: 3
+  - `src/pages/index/_components/podcast-preview.tsx`: 3
+  - `src/pages/index/_components/hero.tsx`: 3
+  - `index.html`: 3
+  - `src/index.css`: 3
+  - `src/pages/Index.tsx`: 3
+  - `src/pages/about/page.tsx`: 2
+  - `convex/episodes.ts`: 2
+  - `convex/articles.ts`: 2
+- Recent commits:
+  - f938dba 2026-03-15 Manual checkpoint 1773612439361
+  - 197c7a3 2026-03-15 Manual checkpoint 1773612198187
+  - 3deaa7c 2026-03-15 Manual checkpoint 1773610957722
+  - aea80cc 2026-03-15 Manual checkpoint 1773610679711
+  - 01b735d 2026-03-15 Manual checkpoint 1773535902541
+  - 5c0d106 2026-03-15 Manual checkpoint 1773533766485
+  - 12e90c8 2026-03-15 Manual checkpoint 1773533088105
+  - 529251e 2026-03-14 Manual checkpoint 1773532471263
+  - 5736585 2026-03-14 Manual checkpoint 1773526361694
+  - 6b6a458 2026-03-14 Initial commit
+- Dirty entries sample:
+  - `M index.html`
+  - ` M src/components/footer.tsx`
+  - ` M src/pages/index/_components/articles-preview.tsx`
+  - ` M src/pages/index/_components/hero.tsx`
+  - ` M src/pages/index/_components/mission-section.tsx`
+  - ` M src/pages/index/_components/podcast-preview.tsx`
+  - `?? average_intelligence_revised_market_strategy.docx`
+  - `?? average_intelligence_strategy.docx`
+  - `?? disk_diagnostic.sh`
+
+### `claude-automation`
+
+- Absolute path: `/Users/kevinlappe/Projects/claude-automation`
+- Branch: `main`
+- Dirty entries: 0
+- Commits since `2026-02-08`: 9
+- Remotes: origin	https://github.com/klappe-pm/claude-automation.git (fetch); origin	https://github.com/klappe-pm/claude-automation.git (push)
+- Root instruction/index files: CLAUDE.md
+- Passoff files: 6; latest: `docs/passoffs/2026-05-04-00:08-passoff-file.md`
+- `.github` files: 0; none
+- Change counts: {'A': 8, 'M': 2}
+- Top changed directories:
+  - `docs`: 7
+  - `CLAUDE.md`: 3
+- Top changed files:
+  - `CLAUDE.md`: 3
+  - `docs/passoffs/2026-05-04-00:08-passoff-file.md`: 1
+  - `docs/passoffs/2026-05-03-21:17-passoff-file.md`: 1
+  - `docs/passoffs/2026-05-03-17:57-passoff-file.md`: 1
+  - `docs/passoffs/2026-05-03-17:27-passoff-file.md`: 1
+  - `docs/passoffs/2026-05-03-16:51-passoff-file.md`: 1
+  - `docs/passoffs/2026-05-03-14:48-passoff-file.md`: 1
+  - `docs/specs/claude-automation-buildout-spec.md`: 1
+- Recent commits:
+  - 66f4e6a 2026-05-04 docs(passoff): 2026-05-04 00:08 backlog clearance (#7)
+  - ee551d7 2026-05-04 docs(passoff): 2026-05-03 21:17 checkpoint, no substantive delta (#6)
+  - c7cf891 2026-05-03 docs(passoff): 2026-05-03 17:57 audit cleanup complete, 6 PRs merged (#5)
+  - ad376c5 2026-05-03 docs(passoff): 2026-05-03 17:27 cleanup - merged 4 PRs, pruned 6 branches (#4)
+  - 54b10df 2026-05-03 docs(passoff): 2026-05-03 16:51 audit, PR26 unblock, real personas (#3)
+  - 4931107 2026-05-03 docs(passoff): 2026-05-03 14:48 buildout items 1 3 5-11 across 3 repos (#2)
+  - 445b808 2026-05-03 docs(spec): add claude automation buildout spec v1.2.0 (#1)
+  - a9c2494 2026-05-03 docs(config): add session-start pull instruction
+  - 9ddfd5d 2026-05-03 chore(config): add shared claude-config bootstrap
+
+### `claude-config`
+
+- Absolute path: `/Users/kevinlappe/Projects/claude-config`
+- Branch: `refactor/drop-generated-timestamp`
+- Dirty entries: 27
+- Commits since `2026-02-08`: 94
+- Remotes: origin	https://github.com/klappe-pm/claude-config.git (fetch); origin	https://github.com/klappe-pm/claude-config.git (push)
+- Root instruction/index files: AGENTS.md, CLAUDE.md, GEMINI.md, PROJECT_INDEX.json, PROJECT_INDEX.md, README.md, WARP.md
+- Passoff files: 27; latest: `docs/passoffs/2026-05-04-13:26-passoff-file.md`
+- `.github` files: 0; none
+- Change counts: {'M': 244, 'A': 3701, 'R': 57, 'D': 2644}
+- Top changed directories:
+  - `agents`: 5344
+  - `skills`: 629
+  - `commands`: 242
+  - `session-data`: 109
+  - `docs`: 87
+  - `personas`: 34
+  - `tests`: 32
+  - `scripts`: 31
+  - `core`: 19
+  - `.gitignore`: 15
+  - `settings.json`: 12
+  - `PROJECT_INDEX.json`: 7
+  - `PROJECT_INDEX.md`: 7
+  - `specs`: 7
+  - `schemas`: 7
+- Top changed files:
+  - `.gitignore`: 15
+  - `settings.json`: 12
+  - `PROJECT_INDEX.json`: 7
+  - `PROJECT_INDEX.md`: 7
+  - `core/skill-catalog.json`: 6
+  - `commands/pass.md`: 6
+  - `commands/resume.md`: 6
+  - `CLAUDE.md`: 5
+  - `scripts/validate-command.py`: 4
+  - `commands/analyze-transcripts.md`: 4
+  - `commands/archive-stale.md`: 4
+  - `commands/branch-review.md`: 4
+- Recent commits:
+  - 5900c8a 2026-05-06 Merge main and update local project paths from Documents/ to Projects/
+  - 3a0bc88 2026-05-06 fix(validators): strip YAML scalar quotes in frontmatter parser (#64)
+  - dd1a748 2026-05-06 chore(settings): remove gh-pr-merge from permissions.deny (#66)
+  - ba167ab 2026-05-06 fix(validators): align CMD-007 section list with command-quality-spec (#65)
+  - b82a695 2026-05-06 chore(index): refresh PROJECT_INDEX and skill-catalog (#62)
+  - f0e7874 2026-05-06 fix(session-data): re-capture PRD baseline after v1.5.0 single-folder spec (#61)1
+  - 8c274fd 2026-05-05 refactor(build): drop wall-clock `generated` field from index artifacts
+  - a12019d 2026-05-05 chore(index): refresh PROJECT_INDEX and skill-catalog
+  - bcd7c90 2026-05-05 feat(session-data): add projects catalog and v1.5.0 single-folder spec (#60)
+  - 25b5447 2026-05-05 refactor(commands): make normalizer date-aware and resweep frontmatter (#59)
+  - 39bc801 2026-05-05 chore(settings): add permissions.deny for hard-constraint policy gates (#57)
+  - 0d28da3 2026-05-05 chore(tests): use repo-relative paths so tests run from any clone (#58)
+  - f945022 2026-05-04 docs(passoff): 2026-05-04 13:26 no-op resume; oauth-scope blocker (#56)
+  - d4e8813 2026-05-04 fix(pass-lock): auto-reclaim stale lock when holder pid is dead (#55)
+  - c307ab1 2026-05-04 docs(passoff): 2026-05-04 12:55 triage Happy permission-prompt issue (#54)
+  - 0cb22f2 2026-05-04 docs(problems): triage Happy-wrapper permission-prompt hypothesis (#53)
+  - c6ae85b 2026-05-04 docs(session-data): document problems/ folder and log workflow scope blocker (#52)
+  - 73dc5d9 2026-05-04 fix(passoff-manifest): close A7 SHA-bleed bug + ship A6 legacy mode (#51)
+  - 4575675 2026-05-03 chore(quality): clear validation drift and broken refs (#50)
+  - db99822 2026-05-03 docs(passoff): 2026-05-03 18:55 /pass v2.1.0 + W3-B/C/D shipped (81/127) (#49)
+  - 65f5eea 2026-05-03 feat(session-data): ship W3-B prompt stub generator + 5 handlers (#48)
+  - 12b93e7 2026-05-03 feat(session-data): ship W3-C tag normalizer + 4 handlers (#47)
+  - 56f5a9c 2026-05-03 feat(session-data): ship W3-D raw artifact indexer + 4 handlers (#46)
+  - 38de90b 2026-05-03 feat(pass): v2.1.0 multi-session arbitration (A+B+C)
+  - 6764a21 2026-05-03 feat(session-data): ship W2-A Claude Code /wrap + 9 handlers (#45)
+- Dirty entries sample:
+  - `?? session-data/dashboards/cost-overview.md`
+  - `?? session-data/dashboards/github-activity.md`
+  - `?? session-data/dashboards/model-performance.md`
+  - `?? session-data/dashboards/project-effort.md`
+  - `?? session-data/dashboards/prompt-usage.md`
+  - `?? session-data/dashboards/session-efficiency.md`
+  - `?? session-data/dashboards/skill-usage.md`
+  - `?? session-data/dashboards/tool-usage.md`
+  - `?? session-data/passoffs/2026-05-04-2120-passoff-file.md`
+  - `?? session-data/scripts/_runner_handlers/int.py`
+  - `?? session-data/scripts/_runner_handlers/w3a.py`
+  - `?? session-data/scripts/_runner_handlers/w4a.py`
+  - `?? session-data/scripts/_runner_handlers/w4b.py`
+  - `?? session-data/scripts/_runner_handlers/w4c.py`
+  - `?? session-data/scripts/_runner_handlers/w4d.py`
+  - `?? session-data/scripts/_runner_handlers/w5a.py`
+  - `?? session-data/scripts/_runner_handlers/w5b.py`
+  - `?? session-data/scripts/_runner_handlers/w5c.py`
+  - `?? session-data/scripts/_runner_handlers/w5d.py`
+  - `?? session-data/scripts/cost-calculator.py`
+
+### `legal/google/Legal/TBI Vault`
+
+- Absolute path: `/Users/kevinlappe/Projects/legal/google/Legal/TBI Vault`
+- Branch: `main`
+- Dirty entries: 32
+- Commits since `2026-02-08`: 41
+- Remotes: origin	https://github.com/klappe-pm/tbi-discovery.git (fetch); origin	https://github.com/klappe-pm/tbi-discovery.git (push)
+- Root instruction/index files: README.md, WARP.md
+- Passoff files: 0; latest: none
+- `.github` files: 1; .github/workflows/python-app.yml
+- Change counts: {'R': 66, 'M': 288, 'A': 17437, 'D': 8782}
+- Top changed directories:
+  - `.venv`: 16572
+  - `SKILLS`: 4723
+  - `Kevin Lappe vs Northwestern Mutual Insurance Company - Files`: 3498
+  - `.smart-env`: 1016
+  - `00-START-HERE-CLAUDE`: 117
+  - `.obsidian`: 106
+  - `artifacts`: 99
+  - `"Kevin Lappe vs Northwestern Mutual Insurance Company - Files`: 85
+  - `z-ref`: 84
+  - `runtime`: 74
+  - `.trash`: 55
+  - `Project Details`: 24
+  - `0-Inbox`: 22
+  - `"z-ref`: 17
+  - `Question Playbooks`: 10
+- Top changed files:
+  - `.obsidian/workspace.json`: 8
+  - `.smart-env/event_logs/event_logs.ajson`: 8
+  - `runtime/memory/case-state.json`: 7
+  - `runtime/memory/chain-state.json`: 6
+  - `artifacts/chain-lappe-discovery-v4/exhibits/exhibit_index.json`: 5
+  - `artifacts/chain-lappe-discovery-v4/exhibits/exhibit_index.md`: 5
+  - `artifacts/chain-lappe-discovery-v4/ledgers/financial_damages_summary.json`: 5
+  - `artifacts/chain-lappe-discovery-v4/packets/review_packet.json`: 5
+  - `artifacts/chain-lappe-discovery-v4/validation/sync_report.json`: 5
+  - `runtime/chain_runner.py`: 5
+  - `README.md`: 5
+  - `runtime/memory/artifact-index.md`: 4
+- Recent commits:
+  - 4b6f45b 2026-04-06 Update artifacts, runtime scripts, and archive priority fixes
+  - b95d4c2 2026-04-05 Fix local discovery pipeline and regenerate outputs
+  - bd51357 2026-04-05 Sync all chain configuration files with chain-manifest.yaml v2.0.0
+  - 4e5bd5a 2026-04-05 Add evidence repository indexes and inbox updates
+  - be8f723 2026-04-05 Enhance all evidence playbooks with comprehensive skill integration
+  - a734a26 2026-04-05 Remove superseded YAML schema files, update references to canonical schemas/Evidence_Domain_Schema.md
+  - f9dd0c0 2026-04-05 Merge branch 'main' of https://github.com/klappe-pm/tbi-discovery
+  - a92274c 2026-04-05 Update project files and clean up ignored files from tracking
+  - 39c4dfb 2026-04-05 Create python-app.yml
+  - 670f33d 2026-04-04 Merge pull request #6 from klappe-pm/devin/1775349731-priority-fixes
+  - c40053d 2026-04-04 Add .gitignore, reorganize Question Playbooks, add extract_content script
+  - 7e57872 2026-04-04 Fix path references in URGENT PROJECT FIXES documentation
+  - 3a4cf07 2026-04-04 Update project structure and reorganize files
+  - a57e4d9 2026-04-05 Add priority fix plan and phased LLM instruction files
+  - eb0c356 2026-04-04 Apply runtime reset/init overhaul, instruction-context pre-ingestion, and full pipeline output updates
+  - 36b6db7 2026-04-04 Merge remote-tracking branch 'origin/main'
+  - 1b2540b 2026-04-04 Complete discovery pipeline execution (28/28 actions)
+  - 6d979cb 2026-04-04 Initialize chain runner state with full 28-action pipeline queue
+  - aaaeb15 2026-04-04 Merge pull request #5 from klappe-pm/devin/1775344895-followup-fixes
+  - c113d1b 2026-04-04 Fix stale state on non-resume re-runs and deduplicate merged table cells
+  - 944fe8f 2026-04-04 Merge pull request #4 from klappe-pm/devin/1775343814-fix-review-issues
+  - 934f7e2 2026-04-04 Fix 3 Devin Review issues: --state default, init_state guard, docx table extraction
+  - c714903 2026-04-04 Merge pull request #3 from klappe-pm/devin/1775343435-execution-script
+  - 661a83e 2026-04-04 Add run_discovery.py — terminal execution script for the full pipeline
+  - cd7e065 2026-04-04 Merge pull request #2 from klappe-pm/devin/1775343259-initiation-instructions
+- Dirty entries sample:
+  - `M .obsidian/.DS_Store`
+  - ` M .trash/.DS_Store`
+  - ` M 0-Inbox/.DS_Store`
+  - ` M 00-START-HERE-CLAUDE/.DS_Store`
+  - ` M "Kevin Lappe vs Northwestern Mutual Insurance Company - Files/.DS_Store"`
+  - ` M "Kevin Lappe vs Northwestern Mutual Insurance Company - Files/Records/.DS_Store"`
+  - ` M "Kevin Lappe vs Northwestern Mutual Insurance Company - Files/Records/Medical and Mental Health Records/.DS_Store"`
+  - ` M SKILLS/.DS_Store`
+  - ` M artifacts/.DS_Store`
+  - ` M artifacts/chain-lappe-discovery-v4/.DS_Store`
+  - ` M artifacts/chain-lappe-discovery-v4/drafts/doc-001.md`
+  - ` M artifacts/chain-lappe-discovery-v4/drafts/doc-002.md`
+  - ` M artifacts/chain-lappe-discovery-v4/drafts/doc-003.md`
+  - ` M artifacts/chain-lappe-discovery-v4/drafts/doc-004.md`
+  - ` M artifacts/chain-lappe-discovery-v4/drafts/doc-005.md`
+  - ` M artifacts/chain-lappe-discovery-v4/drafts/doc-006.md`
+  - ` M artifacts/chain-lappe-discovery-v4/exhibits/exhibit_index.json`
+  - ` M artifacts/chain-lappe-discovery-v4/exhibits/exhibit_index.md`
+  - ` M artifacts/chain-lappe-discovery-v4/ledgers/financial_damages_summary.json`
+  - ` M artifacts/chain-lappe-discovery-v4/packets/review_packet.json`
+
+### `money-manager`
+
+- Absolute path: `/Users/kevinlappe/Projects/money-manager`
+- Branch: `main`
+- Dirty entries: 16
+- Commits since `2026-02-08`: 1
+- Remotes: origin	https://github.com/klappe-pm/power-prompts.git (fetch); origin	https://github.com/klappe-pm/power-prompts.git (push)
+- Root instruction/index files: none
+- Passoff files: 0; latest: none
+- `.github` files: 1; .github/workflows/integration-tests.yml
+- Change counts: {'A': 11, 'D': 81, 'M': 1}
+- Top changed directories:
+  - `Model Orchestrator`: 54
+  - `Google Apps Script`: 16
+  - `Deployment`: 6
+  - `Getting Started`: 3
+  - `Model and Agent Instructions`: 2
+  - `gitignore`: 2
+  - `Agents`: 1
+  - `Benchmark-Suite-Delivery-Report.md`: 1
+  - `CLAUDE.md`: 1
+  - `Documentation-Update-Report-2025-10-05.md`: 1
+  - `LICENSE`: 1
+  - `README.md`: 1
+  - `Track-M-Integration-Tests-Completion-Report.md`: 1
+  - `Track-N-Benchmark-Suite-Completion.md`: 1
+  - `WARP.md`: 1
+- Top changed files:
+  - `Agents/Comprehensive Financial Intelligence System Architecture.md`: 1
+  - `Benchmark-Suite-Delivery-Report.md`: 1
+  - `CLAUDE.md`: 1
+  - `Deployment/deployment-pipeline.sh`: 1
+  - `Deployment/production-config.yaml`: 1
+  - `Deployment/production-runbook.md`: 1
+  - `Deployment/setup-local-models-parallel.sh`: 1
+  - `Deployment/validate-agent.py`: 1
+  - `Deployment/validation-framework.py`: 1
+  - `Documentation-Update-Report-2025-10-05.md`: 1
+  - `Getting Started/Interactive Onboarding Guide.md`: 1
+  - `Getting Started/Project Initiation File - Newport Beach Family Financial Intelligence System.md`: 1
+- Recent commits:
+  - 3571926 2026-02-17 Update and reorganize project files
+- Dirty entries sample:
+  - `D "Agents/Comprehensive Financial Intelligence System Architecture.md"`
+  - ` D Deployment/deployment-pipeline.sh`
+  - ` D Deployment/production-config.yaml`
+  - ` D Deployment/production-runbook.md`
+  - ` D Deployment/setup-local-models-parallel.sh`
+  - ` D Deployment/validate-agent.py`
+  - ` D Deployment/validation-framework.py`
+  - ` D "Getting Started/Interactive Onboarding Guide.md"`
+  - ` D "Getting Started/Project Initiation File - Newport Beach Family Financial Intelligence System.md"`
+  - ` D "Getting Started/Troubleshooting Guide.md"`
+  - ` D "Getting Started/Tutorial 1- Basic Model Selection.md"`
+  - ` D "Getting Started/USING-MULTIPLE-LOCAL-MODELS.md"`
+  - ` D "Model and Agent Instructions/Master File Synchronization & Deconfliction Report.md"`
+  - ` D "Model and Agent Instructions/Model Selection Protocol for Newport Beach Family Financial Intelligence System.md"`
+  - `?? docs/`
+  - `?? scripts/`
+
+### `obsidian-vaults/LLM`
+
+- Absolute path: `/Users/kevinlappe/Projects/obsidian-vaults/LLM`
+- Branch: `main`
+- Dirty entries: 1
+- Commits since `2026-02-08`: 122
+- Remotes: origin	https://github.com/klappe-pm/LLM.git (fetch); origin	https://github.com/klappe-pm/LLM.git (push)
+- Root instruction/index files: none
+- Passoff files: 0; latest: none
+- `.github` files: 1; .github/workflows/lattice-lock.yml
+- Change counts: {'M': 62176, 'A': 9980, 'D': 1953, 'R': 4361}
+- Top changed directories:
+  - `Glossary`: 58093
+  - `_backups`: 13770
+  - `AGENTS`: 874
+  - `.obsidian`: 398
+  - `.trash`: 155
+  - `_work`: 113
+  - `inbox`: 54
+  - `Scripts`: 26
+  - `Inbox`: 24
+  - `"Glossary`: 21
+  - `TaskNotes`: 18
+  - `scripts`: 15
+  - `PROMPTS`: 12
+  - `src`: 11
+  - `Untitled.md`: 10
+- Top changed files:
+  - `.obsidian/workspace.json`: 103
+  - `Glossary/Base model.md`: 28
+  - `Glossary/pretrained LLM.md`: 28
+  - `Glossary/AGI.md`: 25
+  - `Glossary/Knowledge Representation.md`: 25
+  - `Glossary/Loss function.md`: 25
+  - `Glossary/OpenAI.md`: 25
+  - `Glossary/Alignment.md`: 24
+  - `Glossary/LLaMA.md`: 24
+  - `Glossary/Machine Translation.md`: 24
+  - `Glossary/RAG.md`: 24
+  - `Glossary/Training Compute Optimal Lms.md`: 24
+- Recent commits:
+  - 5c783aba1 2026-03-03 LLM-Vault Backup: 2026-03-03 12:46:01 - 1 - M .obsidian/workspace.json
+  - 787a32ff2 2026-03-02 LLM-Vault Backup: 2026-03-02 19:35:10 - 5 - M .obsidian/graph.json .obsidian/workspace.json Glossary/Self correction.md _backups/glossary_pre_migration_half1_20260217_151900/Tokenization.md, A Untitled 4.md
+  - ca7db1e55 2026-02-28 LLM-Vault Backup: 2026-02-28 16:02:40 - 3 - M .obsidian/workspace.json Glossary/MLOps.md Glossary/enforcing left to right autoregressive generation.md
+  - 5b347e805 2026-02-28 LLM-Vault Backup: 2026-02-28 15:52:37 - 2 - M .obsidian/workspace.json Untitled 3.md
+  - 3bfbac2a5 2026-02-28 LLM-Vault Backup: 2026-02-28 15:42:34 - 3 - M .obsidian/workspace.json Untitled 2.md, A Untitled 3.md
+  - bf35d7298 2026-02-26 LLM-Vault Backup: 2026-02-26 13:08:52 - 3 - M .obsidian/workspace.json Untitled.md, A Untitled 2.md
+  - 02865c675 2026-02-25 LLM-Vault Backup: 2026-02-25 15:16:11 - 2 - M .obsidian/core-plugins.json .obsidian/workspace.json
+  - 63320addf 2026-02-25 LLM-Vault Backup: 2026-02-25 15:06:06 - 3 - M .obsidian/workspace.json PROMPTS/Create Obsidian.md SKILLS.md, A Untitled.md
+  - f5a52eee9 2026-02-25 LLM-Vault Backup: 2026-02-25 08:36:00 - 3 - M .obsidian/workspace.json, A Glossary/Raw text (1).md Glossary/Resnet (1).md
+  - f181425d9 2026-02-25 LLM-Vault Backup: 2026-02-25 08:25:56 - 3361 - Too many files to list
+  - 68fb01f88 2026-02-21 LLM-Vault Backup: 2026-02-21 14:34:49 - 4 - M .obsidian/workspace.json, A _work/ghostlinks_create.txt _work/ghostlinks_relink.txt _work/ghostlinks_remove.txt
+  - 0c34838f7 2026-02-21 LLM-Vault Backup: 2026-02-21 14:24:45 - 2 - M .obsidian/workspace.json MIGRATION_HALF1_GEMINI.md
+  - a5b2f95d0 2026-02-21 LLM-Vault Backup: 2026-02-21 13:19:13 - 876 - Too many files to list
+  - d488c4d1e 2026-02-21 LLM-Vault Backup: 2026-02-21 13:09:09 - 3 - M .obsidian/workspace.json Glossary/C=AM.md, A Untitled 2.md
+  - a6e6d5309 2026-02-21 LLM-Vault Backup: 2026-02-21 12:59:18 - 4 - M .obsidian/workspace.json Glossary/CAP Theorem.md Glossary/saliency maps.md, R Glossary/C=AM.md
+  - 81f1529dc 2026-02-21 LLM-Vault Backup: 2026-02-21 12:49:15 - 225 - Too many files to list
+  - fbf9e1867 2026-02-21 LLM-Vault Backup: 2026-02-21 12:35:50 - 2882 - Too many files to list
+  - 2ad2acfd2 2026-02-21 LLM-Vault Backup: 2026-02-21 12:25:45 - 3 - A .claude/worktrees/focused-mclean _work/CLAUDE_CODE_REPAIR_TASK.md, M .obsidian/workspace.json
+  - b9c0fbdd8 2026-02-21 LLM-Vault Backup: 2026-02-21 12:15:42 - 8 - M .gitignore .obsidian/community-plugins.json .obsidian/workspace.json, A .obsidian/plugins/smart-connections/data.json .obsidian/plugins/smart-connections/main.js .obsidian/plugins/smart-connections/manifest.json .obsidian/plugins/smart-connections/styles.css repair_glossary.py
+  - c5d953f42 2026-02-21 LLM-Vault Backup: 2026-02-21 12:05:37 - 3329 - Too many files to list
+  - 4a57ecfeb 2026-02-21 LLM-Vault Backup: 2026-02-21 11:55:33 - 3 - M .obsidian/workspace.json Glossary/Academic Labs.md, A Untitled 3.md
+  - 8c19e30ad 2026-02-19 LLM-Vault Backup: 2026-02-19 18:09:59 - 2 - M .obsidian/workspace.json Glossary/4 bit integers.md
+  - 438dd41d4 2026-02-19 LLM-Vault Backup: 2026-02-19 16:43:39 - 4 - M .obsidian/graph.json .obsidian/workspace.json Glossary/3D Convolution.md Glossary/user perceived responsiveness.md
+  - 9fced6a77 2026-02-18 LLM-Vault Backup: 2026-02-18 19:36:54 - 3 - M .obsidian/workspace.json Untitled 1.md, A Untitled 2.md
+  - 80f627f00 2026-02-18 LLM-Vault Backup: 2026-02-18 18:28:55 - 2 - M .obsidian/workspace.json, A Untitled 1.md
+- Dirty entries sample:
+  - `ERROR: fatal: not a git repository: /Users/kevinlappe/Documents/LLM/.git/worktrees/focused-mclean`
+
+### `obsidian-vaults/LLM/Agent Defintions`
+
+- Absolute path: `/Users/kevinlappe/Projects/obsidian-vaults/LLM/Agent Defintions`
+- Branch: `main`
+- Dirty entries: 2
+- Commits since `2026-02-08`: 3
+- Remotes: origin	https://github.com/klappe-pm/AGENTS.git (fetch); origin	https://github.com/klappe-pm/AGENTS.git (push)
+- Root instruction/index files: PROJECT_INDEX.json, PROJECT_INDEX.md, README.md
+- Passoff files: 0; latest: none
+- `.github` files: 0; none
+- Change counts: {'A': 838}
+- Top changed directories:
+  - `agent_definitions`: 777
+  - `agents_config`: 13
+  - `templates_agents`: 9
+  - `agent_diagrams`: 6
+  - `agent_workflows`: 4
+  - `README.md`: 2
+  - `.gitignore`: 1
+  - `.gitignore.suggestion`: 1
+  - `AGENT_LINTING_PROMPT.md`: 1
+  - `Agent System & Model Orchestrator Glossary.md`: 1
+  - `EXTENDING.md`: 1
+  - `Extending the Agent Sync System.md`: 1
+  - `Index - Lattice Lock Framework Agents.md`: 1
+  - `Makefile`: 1
+  - `Metrics Calibration & Cost Estimation.md`: 1
+- Top changed files:
+  - `README.md`: 2
+  - `.gitignore`: 1
+  - `.gitignore.suggestion`: 1
+  - `AGENT_LINTING_PROMPT.md`: 1
+  - `Agent System & Model Orchestrator Glossary.md`: 1
+  - `EXTENDING.md`: 1
+  - `Extending the Agent Sync System.md`: 1
+  - `Index - Lattice Lock Framework Agents.md`: 1
+  - `Makefile`: 1
+  - `Metrics Calibration & Cost Estimation.md`: 1
+  - `PROJECT_INDEX.json`: 1
+  - `PROJECT_INDEX.md`: 1
+- Recent commits:
+  - a5985b3 2026-03-04 Merge remote LICENSE file, keep comprehensive README
+  - 741b18b 2026-03-04 Initial commit: Agent definitions and sync system
+  - 89f7e43 2026-03-04 Initial commit
+- Dirty entries sample:
+  - `?? .obsidian/`
+  - `?? "Guide to AI agent definition files across every major platform.md"`
+
+### `scaffolding/github-config`
+
+- Absolute path: `/Users/kevinlappe/Projects/scaffolding/github-config`
+- Branch: `main`
+- Dirty entries: 0
+- Commits since `2026-02-08`: 1
+- Remotes: origin	git@github.com:klappe-pm/configurations.git (fetch); origin	git@github.com:klappe-pm/configurations.git (push)
+- Root instruction/index files: README.md
+- Passoff files: 0; latest: none
+- `.github` files: 0; none
+- Change counts: {'A': 1}
+- Top changed directories:
+  - `configuration_modules`: 1
+- Top changed files:
+  - `configuration_modules/github-auth/.keep`: 1
+- Recent commits:
+  - eecb3b5 2026-02-17 Add configuration_modules
+
+### `skills-main`
+
+- Absolute path: `/Users/kevinlappe/Projects/skills-main`
+- Branch: `main`
+- Dirty entries: 77
+- Commits since `2026-02-08`: 112
+- Remotes: origin	https://github.com/klappe-pm/SKILLS.git (fetch); origin	https://github.com/klappe-pm/SKILLS.git (push)
+- Root instruction/index files: AGENTS.md, CLAUDE.md, GEMINI.md, PROJECT_INDEX.json, PROJECT_INDEX.md, README.md, WARP.md
+- Passoff files: 14; latest: `docs/passoffs/2026-04-27-14:36-passoff-file.md`
+- `.github` files: 0; none
+- Change counts: {'M': 693, 'A': 5447, 'D': 4691, 'R': 1079}
+- Top changed directories:
+  - `SKILLS Cookbook`: 8820
+  - `skills`: 639
+  - `skills-v2`: 544
+  - `global`: 266
+  - `docs`: 122
+  - `tests`: 102
+  - `obsidian`: 96
+  - `canvas-design`: 84
+  - `domain`: 75
+  - `_archive`: 65
+  - `docx`: 64
+  - `pptx`: 60
+  - `xlsx`: 59
+  - `scripts`: 56
+  - `.obsidian`: 41
+- Top changed files:
+  - `PROJECT_INDEX.md`: 16
+  - `PROJECT_INDEX.json`: 15
+  - `tests/traces/cdr-test-chain-0003-0000-0000-000000000003.json`: 15
+  - `tests/traces/cr-test-chain-0002-0000-0000-000000000002.json`: 15
+  - `tests/traces/fc-test-chain-0001-0000-0000-000000000001.json`: 15
+  - `CLAUDE.md`: 14
+  - `README.md`: 14
+  - `.obsidian/workspace.json`: 14
+  - `scripts/validate_skills.py`: 11
+  - `WARP.md`: 11
+  - `tests/traces/im-test-chain-1000-0000-0000-000000001000.json`: 10
+  - `tests/traces/sc-test-chain-2000-0000-0000-000000002000.json`: 10
+- Recent commits:
+  - 68da6f3 2026-04-28 chore(validator): allow validate_skills.py to scan paths outside REPO_ROOT (#24)
+  - 0cb8f0e 2026-04-27 docs(spec+plan): tag taxonomy contract — design + 16-task TDD plan (#23)
+  - cda6767 2026-04-27 docs(passoff): 2026-04-27 10:41 add worktree discipline and commands ref (#22)
+  - 0ff0315 2026-04-27 Merge pull request #21 from klappe-pm/chore/passoff-2026-04-27-1012
+  - f0d573a 2026-04-27 Merge pull request #19 from klappe-pm/devin/1777309066-fix-pr18-devin-review
+  - af5b75f 2026-04-27 chore(passoff): refine 2026-04-27 10:12 passoff for discovered state
+  - 199fa79 2026-04-27 Merge pull request #20 from klappe-pm/chore/passoff-2026-04-27-1012
+  - eed4422 2026-04-27 chore(passoff): 2026-04-27 10:12 record SKILLSET lock-state edit
+  - de5ed3d 2026-04-27 chore(passoff): record PR URL in 2026-04-27-09:57-passoff-file.md
+  - 1990eb5 2026-04-27 fix: address Devin Review findings from PR #18
+  - a4539d1 2026-04-27 Merge pull request #18 from klappe-pm/docs/lock-skillset-package-decisions
+  - a665601 2026-04-26 docs(portable-config): lock SKILLSET package decisions in plan doc
+  - f2013bc 2026-04-26 Merge pull request #17 from klappe-pm/passoff/2026-04-26-1609
+  - eb6c435 2026-04-26 chore(passoff): record PR URL in 2026-04-26-16:09-passoff-file.md
+  - aaddd6e 2026-04-26 docs(passoff): 2026-04-26 16:09 lock SKILLSET package design decisions
+  - 71ba5c4 2026-04-26 Merge pull request #16 from klappe-pm/passoff/2026-04-26-0947
+  - 6e5188f 2026-04-26 docs(portable-config): define SKILLSET package plan
+  - c054670 2026-04-26 chore(passoff): record PR URL in 2026-04-26-09:47-passoff-file.md
+  - 48ebd84 2026-04-26 docs(passoff): 2026-04-26 09:47 reconcile section names to canonical
+  - 113add6 2026-04-24 Merge pull request #15 from klappe-pm/chore/passoff-1558-state-correction
+  - 5881035 2026-04-24 chore(passoff): record PR URL in 2026-04-24-15:58-passoff-file.md
+  - 6bab9bf 2026-04-24 Merge pull request #14 from klappe-pm/passoff/2026-04-24-1557
+  - b94db6d 2026-04-24 chore(passoff): record PR URL in 2026-04-24-15:57-passoff-file.md
+  - 21f9766 2026-04-24 docs(passoff): 2026-04-24 15:57 propagate /pass command to all instruction surfaces
+  - 2506891 2026-04-24 chore(gitignore): exclude obsidian per-machine editor state
+- Dirty entries sample:
+  - `M GETTING_STARTED.md`
+  - ` M core/skill-catalog.json`
+  - ` M core/skillsets.json`
+  - ` M docs/governance/passoff-workflow.md`
+  - ` M scripts/create_skill.py`
+  - `?? Untitled.md`
+  - `?? docs/plans/mtbi-litigation-discovery-build.md`
+  - `?? financial-skills-v3.zip`
+  - `?? scripts/patch_skillsets_mtbi.py`
+  - `?? scripts/scaffold_mtbi_litigation.sh`
+  - `?? scripts/write_tier1_evals.sh`
+  - `?? skills/appellate-record-designation/`
+  - `?? skills/authentication-and-foundation-planning/`
+  - `?? skills/bates-numbering/`
+  - `?? skills/before-after-contrast/`
+  - `?? skills/case-caption-and-citation-formatting/`
+  - `?? skills/ccp-998-offer-strategy/`
+  - `?? skills/chain-of-custody-documentation/`
+  - `?? skills/closing-argument-themes/`
+  - `?? skills/complaint-amendment-tracking/`
+
+### `z-archive/Lattice Lock`
+
+- Absolute path: `/Users/kevinlappe/Projects/z-archive/Lattice Lock`
+- Branch: `main`
+- Dirty entries: 0
+- Commits since `2026-02-08`: 1
+- Remotes: origin	https://github.com/klappe-pm/_lattice_lock_framework.git (fetch); origin	https://github.com/klappe-pm/_lattice_lock_framework.git (push); ssh-origin	git@github.com:klappe-pm/_lattice_lock_framework.git (fetch); ssh-origin	git@github.com:klappe-pm/_lattice_lock_framework.git (push)
+- Root instruction/index files: CONTRIBUTING.md, PROJECT_INDEX.md, README.md
+- Passoff files: 0; latest: none
+- `.github` files: 20; .github/.DS_Store, .github/actions/gauntlet/action.yml, .github/actions/sheriff/action.yml, .github/CODEOWNERS, .github/dependabot.yml, .github/labels.md, .github/naming_standards.md, .github/pull_request_template.md, .github/workflows/check-untracked.yml, .github/workflows/ci.yml, .github/workflows/deploy-gcp.yml, .github/workflows/docker-publish.yml
+- Change counts: {'M': 1}
+- Top changed directories:
+  - `README.md`: 1
+- Top changed files:
+  - `README.md`: 1
+- Recent commits:
+  - 4dc3a62 2026-02-17 Update README.md
+
+### `z-archive/spreadsheet-functions/Extremely Detailed Spreadsheet Functions`
+
+- Absolute path: `/Users/kevinlappe/Projects/z-archive/spreadsheet-functions/Extremely Detailed Spreadsheet Functions`
+- Branch: `main`
+- Dirty entries: 670
+- Commits since `2026-02-08`: 1
+- Remotes: origin	https://github.com/klappe-pm/Extremely-Detailed-Spreadsheet-Functions.git (fetch); origin	https://github.com/klappe-pm/Extremely-Detailed-Spreadsheet-Functions.git (push)
+- Root instruction/index files: README.md
+- Passoff files: 0; latest: none
+- `.github` files: 0; none
+- Change counts: none
+- Top changed directories:
+  - none
+- Top changed files:
+  - none
+- Recent commits:
+  - ERROR: fatal: your current branch 'main' does not have any commits yet
+- Dirty entries sample:
+  - `A  .gitignore`
+  - `AM .obsidian/app.json`
+  - `AM .obsidian/appearance.json`
+  - `AD .obsidian/command-palette.json`
+  - `AM .obsidian/community-plugins.json`
+  - `AM .obsidian/core-plugins.json`
+  - `AM .obsidian/daily-notes.json`
+  - `AM .obsidian/graph.json`
+  - `AM .obsidian/hotkeys.json`
+  - `AD .obsidian/plugins/calendar/data.json`
+  - `AD .obsidian/plugins/calendar/main.js`
+  - `AD .obsidian/plugins/calendar/manifest.json`
+  - `AD .obsidian/plugins/darlal-switcher-plus/data.json`
+  - `AD .obsidian/plugins/darlal-switcher-plus/main.js`
+  - `AD .obsidian/plugins/darlal-switcher-plus/manifest.json`
+  - `AD .obsidian/plugins/darlal-switcher-plus/styles.css`
+  - `AM .obsidian/plugins/dataview/data.json`
+  - `AM .obsidian/plugins/dataview/main.js`
+  - `A  .obsidian/plugins/dataview/manifest.json`
+  - `A  .obsidian/plugins/dataview/styles.css`
+
+### `z-archive/Voice Memo Export Automation (VMEA)`
+
+- Absolute path: `/Users/kevinlappe/Projects/z-archive/Voice Memo Export Automation (VMEA)`
+- Branch: `main`
+- Dirty entries: 2
+- Commits since `2026-02-08`: 45
+- Remotes: origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (fetch); origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (push)
+- Root instruction/index files: README.md
+- Passoff files: 0; latest: none
+- `.github` files: 1; .github/workflows/pylint.yml
+- Change counts: {'M': 126, 'D': 2, 'A': 44}
+- Top changed directories:
+  - `src`: 82
+  - `tests`: 29
+  - `docs`: 28
+  - `README.md`: 12
+  - `pyproject.toml`: 6
+  - `config.example.toml`: 5
+  - `Apple-Voice-Memo-Export-to-Markdown`: 4
+  - `.github`: 3
+  - `.gitignore`: 2
+  - `LICENSE`: 1
+- Top changed files:
+  - `src/vmea/cli.py`: 22
+  - `README.md`: 12
+  - `src/vmea/writer.py`: 12
+  - `src/vmea/config.py`: 12
+  - `src/vmea/parser.py`: 9
+  - `src/vmea/cleanup.py`: 8
+  - `tests/test_writer.py`: 8
+  - `tests/test_cleanup.py`: 6
+  - `pyproject.toml`: 6
+  - `config.example.toml`: 5
+  - `src/vmea/state.py`: 5
+  - `Apple-Voice-Memo-Export-to-Markdown`: 4
+- Recent commits:
+  - d964845 2026-03-04 feat: add three-tier transcripts, summary generation, and fix test bugs
+  - bef4c22 2026-03-04 feat: add detailed progress indicators for cascade LLM processing
+  - 5eeec6a 2026-03-04 feat: add VMEA Open shortcut integration for direct Voice Memos playback
+  - 33469c9 2026-03-04 fix: use file:// link to VoiceMemos.app (voicememos:// scheme doesn't exist)
+  - f5acbbd 2026-03-04 feat: use voicememos:// URL scheme to open Voice Memos app
+  - 23912ef 2026-03-04 fix: improve audio link display and add LLM processing visibility
+  - 8a6f190 2026-03-04 fix: ignore nested repo directory
+  - 3d8bee5 2026-03-04 feat: add ffmpeg dependency check to vmea init
+  - fc2071a 2026-03-04 fix: remove accidentally added nested git repo
+  - 027c160 2026-03-04 docs: add inline instructions for Ollama host URL prompt
+  - 201e37d 2026-03-04 feat: mandatory cascade mode with Whisper-first pipeline
+  - b8f42ee 2026-03-03 Remove audio folder prompts - use app-link mode by default
+  - 56b8acb 2026-03-03 Remove audio folder prompts - use app-link mode by default
+  - 15272bc 2026-03-03 Merge pull request #5 from klappe-pm/alert-autofix-2
+  - cc3f6f3 2026-03-03 Potential fix for code scanning alert no. 2: Workflow does not contain permissions
+  - 634acb3 2026-03-03 Merge pull request #4 from klappe-pm/devin/1772575608-restructure-docs
+  - fed24db 2026-03-03 Merge branch 'main' into devin/1772575608-restructure-docs
+  - 0c7e18d 2026-03-03 Restructure docs: simplify README, add dedicated guide files, update diagrams
+  - 2e82697 2026-03-03 Revise README for improved clarity and structure
+  - 28d4a8f 2026-03-03 Merge pull request #3 from klappe-pm/devin/1772574980-fix-all-issues
+  - 3b0ba07 2026-03-03 Fix all identified code quality issues
+  - 7ac2b3f 2026-03-03 Remove unused type: ignore comment from transcribe.py
+  - a5c24d2 2026-03-03 Fix all ruff linting and mypy type errors
+  - b874225 2026-03-03 Add Pylint workflow for Python code analysis
+  - 43dc6a5 2026-03-03 Merge pull request #2 from klappe-pm/feature/cascade-llm-cleanup-and-external-instructions
+- Dirty entries sample:
+  - `?? .obsidian/`
+  - `?? git-masterclass/`
+
+### `z-archive/Voice Memo Export Automation (VMEA)/Apple-Voice-Memo-Export-to-Markdown`
+
+- Absolute path: `/Users/kevinlappe/Projects/z-archive/Voice Memo Export Automation (VMEA)/Apple-Voice-Memo-Export-to-Markdown`
+- Branch: `main`
+- Dirty entries: 1
+- Commits since `2026-02-08`: 35
+- Remotes: origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (fetch); origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (push)
+- Root instruction/index files: README.md
+- Passoff files: 0; latest: none
+- `.github` files: 1; .github/workflows/pylint.yml
+- Change counts: {'M': 99, 'A': 42}
+- Top changed directories:
+  - `src`: 68
+  - `tests`: 26
+  - `docs`: 20
+  - `README.md`: 11
+  - `pyproject.toml`: 6
+  - `config.example.toml`: 5
+  - `.github`: 3
+  - `.gitignore`: 1
+  - `LICENSE`: 1
+- Top changed files:
+  - `src/vmea/cli.py`: 16
+  - `src/vmea/config.py`: 12
+  - `README.md`: 11
+  - `src/vmea/parser.py`: 8
+  - `src/vmea/writer.py`: 7
+  - `tests/test_writer.py`: 7
+  - `pyproject.toml`: 6
+  - `src/vmea/cleanup.py`: 6
+  - `config.example.toml`: 5
+  - `src/vmea/state.py`: 5
+  - `tests/test_cleanup.py`: 5
+  - `src/vmea/transcribe.py`: 4
+- Recent commits:
+  - 201e37d 2026-03-04 feat: mandatory cascade mode with Whisper-first pipeline
+  - b8f42ee 2026-03-03 Remove audio folder prompts - use app-link mode by default
+  - 56b8acb 2026-03-03 Remove audio folder prompts - use app-link mode by default
+  - 15272bc 2026-03-03 Merge pull request #5 from klappe-pm/alert-autofix-2
+  - cc3f6f3 2026-03-03 Potential fix for code scanning alert no. 2: Workflow does not contain permissions
+  - 634acb3 2026-03-03 Merge pull request #4 from klappe-pm/devin/1772575608-restructure-docs
+  - fed24db 2026-03-03 Merge branch 'main' into devin/1772575608-restructure-docs
+  - 0c7e18d 2026-03-03 Restructure docs: simplify README, add dedicated guide files, update diagrams
+  - 2e82697 2026-03-03 Revise README for improved clarity and structure
+  - 28d4a8f 2026-03-03 Merge pull request #3 from klappe-pm/devin/1772574980-fix-all-issues
+  - 3b0ba07 2026-03-03 Fix all identified code quality issues
+  - 7ac2b3f 2026-03-03 Remove unused type: ignore comment from transcribe.py
+  - a5c24d2 2026-03-03 Fix all ruff linting and mypy type errors
+  - b874225 2026-03-03 Add Pylint workflow for Python code analysis
+  - 43dc6a5 2026-03-03 Merge pull request #2 from klappe-pm/feature/cascade-llm-cleanup-and-external-instructions
+  - acdd882 2026-03-03 docs: Move architecture diagrams to dedicated docs files
+  - ff6e62a 2026-03-03 Merge pull request #1 from klappe-pm/feature/cascade-llm-cleanup-and-external-instructions
+  - 00d5071 2026-03-03 docs: Add comprehensive documentation and getting started guide
+  - e38707d 2026-03-03 feat: Add cascade LLM cleanup and externalize prompt instructions
+  - f07282e 2026-03-03 fix: Default to app-link mode (no audio file copy), improve LLM cleanup
+  - fbb5c32 2026-03-03 docs: Add summary, move diagrams to bottom, apply consistent color scheme
+  - 4b25db8 2026-03-03 docs: Rewrite README with Mermaid diagrams and comprehensive documentation
+  - 2493791 2026-03-03 feat: Add Whisper transcription, app-link mode, and new filename format
+  - 47a7108 2026-03-02 Add config tests and fix save_config TOML serialization
+  - d76d2ad 2026-03-02 Fix enum serialization bug and update Voice Memos discovery paths
+- Dirty entries sample:
+  - `?? Apple-Voice-Memo-Export-to-Markdown/`
+
+### `z-archive/Voice Memo Export Automation (VMEA)/Apple-Voice-Memo-Export-to-Markdown/Apple-Voice-Memo-Export-to-Markdown`
+
+- Absolute path: `/Users/kevinlappe/Projects/z-archive/Voice Memo Export Automation (VMEA)/Apple-Voice-Memo-Export-to-Markdown/Apple-Voice-Memo-Export-to-Markdown`
+- Branch: `main`
+- Dirty entries: 0
+- Commits since `2026-02-08`: 39
+- Remotes: origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (fetch); origin	https://github.com/klappe-pm/Apple-Voice-Memo-Export-to-Markdown.git (push)
+- Root instruction/index files: README.md
+- Passoff files: 0; latest: none
+- `.github` files: 1; .github/workflows/pylint.yml
+- Change counts: {'M': 102, 'D': 2, 'A': 44}
+- Top changed directories:
+  - `src`: 70
+  - `tests`: 26
+  - `docs`: 20
+  - `README.md`: 11
+  - `pyproject.toml`: 6
+  - `config.example.toml`: 5
+  - `Apple-Voice-Memo-Export-to-Markdown`: 4
+  - `.github`: 3
+  - `.gitignore`: 2
+  - `LICENSE`: 1
+- Top changed files:
+  - `src/vmea/cli.py`: 18
+  - `src/vmea/config.py`: 12
+  - `README.md`: 11
+  - `src/vmea/parser.py`: 8
+  - `src/vmea/writer.py`: 7
+  - `tests/test_writer.py`: 7
+  - `pyproject.toml`: 6
+  - `src/vmea/cleanup.py`: 6
+  - `config.example.toml`: 5
+  - `src/vmea/state.py`: 5
+  - `tests/test_cleanup.py`: 5
+  - `Apple-Voice-Memo-Export-to-Markdown`: 4
+- Recent commits:
+  - 8a6f190 2026-03-04 fix: ignore nested repo directory
+  - 3d8bee5 2026-03-04 feat: add ffmpeg dependency check to vmea init
+  - fc2071a 2026-03-04 fix: remove accidentally added nested git repo
+  - 027c160 2026-03-04 docs: add inline instructions for Ollama host URL prompt
+  - 201e37d 2026-03-04 feat: mandatory cascade mode with Whisper-first pipeline
+  - b8f42ee 2026-03-03 Remove audio folder prompts - use app-link mode by default
+  - 56b8acb 2026-03-03 Remove audio folder prompts - use app-link mode by default
+  - 15272bc 2026-03-03 Merge pull request #5 from klappe-pm/alert-autofix-2
+  - cc3f6f3 2026-03-03 Potential fix for code scanning alert no. 2: Workflow does not contain permissions
+  - 634acb3 2026-03-03 Merge pull request #4 from klappe-pm/devin/1772575608-restructure-docs
+  - fed24db 2026-03-03 Merge branch 'main' into devin/1772575608-restructure-docs
+  - 0c7e18d 2026-03-03 Restructure docs: simplify README, add dedicated guide files, update diagrams
+  - 2e82697 2026-03-03 Revise README for improved clarity and structure
+  - 28d4a8f 2026-03-03 Merge pull request #3 from klappe-pm/devin/1772574980-fix-all-issues
+  - 3b0ba07 2026-03-03 Fix all identified code quality issues
+  - 7ac2b3f 2026-03-03 Remove unused type: ignore comment from transcribe.py
+  - a5c24d2 2026-03-03 Fix all ruff linting and mypy type errors
+  - b874225 2026-03-03 Add Pylint workflow for Python code analysis
+  - 43dc6a5 2026-03-03 Merge pull request #2 from klappe-pm/feature/cascade-llm-cleanup-and-external-instructions
+  - acdd882 2026-03-03 docs: Move architecture diagrams to dedicated docs files
+  - ff6e62a 2026-03-03 Merge pull request #1 from klappe-pm/feature/cascade-llm-cleanup-and-external-instructions
+  - 00d5071 2026-03-03 docs: Add comprehensive documentation and getting started guide
+  - e38707d 2026-03-03 feat: Add cascade LLM cleanup and externalize prompt instructions
+  - f07282e 2026-03-03 fix: Default to app-link mode (no audio file copy), improve LLM cleanup
+  - fbb5c32 2026-03-03 docs: Add summary, move diagrams to bottom, apply consistent color scheme
+
+### `z-archive/Voice Memo Export Automation (VMEA)/git-masterclass`
+
+- Absolute path: `/Users/kevinlappe/Projects/z-archive/Voice Memo Export Automation (VMEA)/git-masterclass`
+- Branch: `main`
+- Dirty entries: 0
+- Commits since `2026-02-08`: 1
+- Remotes: origin	https://github.com/klappe-pm/git-masterclass.git (fetch); origin	https://github.com/klappe-pm/git-masterclass.git (push)
+- Root instruction/index files: README.md
+- Passoff files: 0; latest: none
+- `.github` files: 0; none
+- Change counts: {'A': 2}
+- Top changed directories:
+  - `LICENSE`: 1
+  - `README.md`: 1
+- Top changed files:
+  - `LICENSE`: 1
+  - `README.md`: 1
+- Recent commits:
+  - 2bd0a6a 2026-03-04 Initial commit

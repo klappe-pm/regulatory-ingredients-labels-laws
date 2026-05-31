@@ -1,0 +1,38 @@
+name: Regulatory Ingredients Labels Laws
+slug: regulatory-ingredients-labels-laws
+workspace_root: /Users/kevinlappe/Projects
+project_root: /tmp/scaffold-stage.gU3cuK/regulatory-ingredients-labels-laws
+github_repo: https://github.com/klappe-pm/regulatory-ingredients-labels-laws
+purpose: Project scaffold generated from /Users/kevinlappe/.claude/scaffolds/code-project.
+
+status:
+  parent_git_initialized: true
+  implementation_started: false
+  audit_baseline_locked: false
+
+canonical_documents:
+  - README.md
+  - AGENTS.md
+  - CUSTOMIZE.md
+  - project.yml
+
+naming_rule:
+  project_owned_files_start_with_containing_folder_name: true
+  root_project_documents_start_with_project_slug: true
+  exceptions:
+    - .gitignore
+    - .env.example
+    - .gitkeep
+    - project.yml
+    - .github required files
+    - SKILL.md
+    - __init__.py
+    - ecosystem-required package files
+    - installed console command names
+
+nested_repositories: []
+
+audit_baseline:
+  folder_purpose_audit:
+  git_history_audit:
+  history_since:
