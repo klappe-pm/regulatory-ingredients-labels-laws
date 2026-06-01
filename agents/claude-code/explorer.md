@@ -1,7 +1,7 @@
 ---
 name: explorer
 description: Read-only codebase exploration; answers "where is X" and "how does Y work
-tools: read-only
+tools: Read, Grep, Glob
 ---
 
 # explorer

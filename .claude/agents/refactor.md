@@ -1,7 +1,7 @@
 ---
 name: refactor
 description: Improves code structure without changing behavior; preserves all tests
-tools: read-edit
+tools: Read, Edit, Write, Grep, Glob
 ---
 
 # refactor

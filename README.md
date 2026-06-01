@@ -22,7 +22,7 @@ make test
 ├── agents/           Shared and generated agent definitions
 ├── docs/             Plans, passoffs, and reference material
 ├── scripts/          Project maintenance scripts
-├── AGENTS.md         Cross-agent project instructions
+├── CLAUDE.md         Claude Code project instructions
 ├── Makefile          Validation and strip targets
 └── project.yml       Project identity manifest
 ```

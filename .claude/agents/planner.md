@@ -1,7 +1,7 @@
 ---
 name: planner
 description: Plans implementation strategy before code is written
-tools: read-only
+tools: Read, Grep, Glob
 ---
 
 # planner

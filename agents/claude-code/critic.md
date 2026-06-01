@@ -1,7 +1,7 @@
 ---
 name: critic
 description: Read-only critique of plans, designs, specs, or proposals
-tools: read-only
+tools: Read, Grep, Glob
 ---
 
 # critic

@@ -7,7 +7,7 @@ help:
 	@printf 'targets: doctor audit audit-strict rebuild-agents test strip-agents strip-hooks strip-specs strip-warp strip-gemini\n'
 
 doctor:
-	@test -f "$(ROOT)/AGENTS.md"
+	@test -f "$(ROOT)/CLAUDE.md"
 	@test -f "$(ROOT)/project.yml"
 	@test -x "$(ROOT)/scripts/build-agents.py"
 	@test -d "$(ROOT)/docs/passoffs"

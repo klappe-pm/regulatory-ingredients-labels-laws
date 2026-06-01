@@ -1,7 +1,7 @@
 ---
 name: debugger
 description: Root-cause analysis for bugs, crashes, and unexpected behavior
-tools: read-edit
+tools: Read, Edit, Write, Grep, Glob
 ---
 
 # debugger
