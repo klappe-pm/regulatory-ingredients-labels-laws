@@ -13,7 +13,6 @@ status:
 canonical_documents:
   - README.md
   - AGENTS.md
-  - CUSTOMIZE.md
   - project.yml
 
 naming_rule:

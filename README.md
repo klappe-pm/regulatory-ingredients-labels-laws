@@ -23,7 +23,6 @@ make test
 ├── docs/             Plans, passoffs, and reference material
 ├── scripts/          Project maintenance scripts
 ├── AGENTS.md         Cross-agent project instructions
-├── CUSTOMIZE.md      Scaffold tailoring guide
 ├── Makefile          Validation and strip targets
 └── project.yml       Project identity manifest
 ```
