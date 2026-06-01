@@ -1,4 +1,4 @@
-# Scaffolding Documentation Index
+# docs-README
 
 This directory separates active project documents from reference and legacy
 material.

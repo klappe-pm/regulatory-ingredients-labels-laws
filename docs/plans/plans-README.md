@@ -1,4 +1,4 @@
-# Plans
+# plans-README
 
 Implementation plans derived from `specs/specs-project-scaffold-framework-spec.md`
 belong here.
