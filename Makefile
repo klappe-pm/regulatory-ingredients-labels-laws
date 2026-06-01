@@ -1,10 +1,18 @@
 ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 PYTHON ?= python3
 
-.PHONY: help doctor audit audit-strict rebuild-agents test strip-agents strip-hooks strip-specs strip-warp strip-gemini
+.PHONY: help doctor audit audit-strict rebuild-agents test strip-agents strip-hooks strip-specs
+
+AUDIT_DOCS := \
+	"$(ROOT)/docs/docs-README.md" \
+	"$(ROOT)/docs/plans" \
+	"$(ROOT)/docs/reference/reference-README.md" \
+	"$(ROOT)/docs/reference/mcp.md" \
+	"$(ROOT)/docs/reference/environment/environment-README.md" \
+	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
 
 help:
-	@printf 'targets: doctor audit audit-strict rebuild-agents test strip-agents strip-hooks strip-specs strip-warp strip-gemini\n'
+	@printf 'targets: doctor audit audit-strict rebuild-agents test strip-agents strip-hooks strip-specs\n'
 
 doctor:
 	@test -f "$(ROOT)/CLAUDE.md"
@@ -14,13 +22,13 @@ doctor:
 	@printf 'doctor: passed\n'
 
 audit:
-	@$(PYTHON) "$(ROOT)/scripts/audit-markdown.py" --root "$(ROOT)" "$(ROOT)/rules"
+	@$(PYTHON) "$(ROOT)/scripts/audit-markdown.py" --root "$(ROOT)" $(AUDIT_DOCS)
 
 audit-strict:
-	@$(PYTHON) "$(ROOT)/scripts/audit-markdown.py" --root "$(ROOT)" "$(ROOT)/rules" --strict-frontmatter --strict-h1 --strict-links --strict-headers
+	@$(PYTHON) "$(ROOT)/scripts/audit-markdown.py" --root "$(ROOT)" $(AUDIT_DOCS) --strict-frontmatter --strict-h1 --strict-links --strict-headers
 
 rebuild-agents:
-	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents"
+	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents" --tools claude-code
 
 test: doctor audit-strict
 	@printf 'test: passed\n'
@@ -36,11 +44,3 @@ strip-hooks:
 strip-specs:
 	@rm -rf "$(ROOT)/specs"
 	@printf 'strip-specs: removed scaffold specs\n'
-
-strip-warp:
-	@rm -f "$(ROOT)/WARP.md"
-	@printf 'strip-warp: removed Warp instructions\n'
-
-strip-gemini:
-	@rm -f "$(ROOT)/GEMINI.md"
-	@printf 'strip-gemini: removed Gemini instructions\n'

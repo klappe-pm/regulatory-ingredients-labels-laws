@@ -1,9 +1,9 @@
 name: Regulatory Ingredients Labels Laws
 slug: regulatory-ingredients-labels-laws
 workspace_root: /Users/kevinlappe/Projects
-project_root: /tmp/scaffold-stage.gU3cuK/regulatory-ingredients-labels-laws
+project_root: /Users/kevinlappe/Projects/regulatory-ingredients-labels-laws
 github_repo: https://github.com/klappe-pm/regulatory-ingredients-labels-laws
-purpose: Project scaffold generated from /Users/kevinlappe/.claude/scaffolds/code-project.
+purpose: Reference and tooling for regulatory ingredient and product-label laws.
 
 status:
   parent_git_initialized: true

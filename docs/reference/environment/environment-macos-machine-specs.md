@@ -1,4 +1,4 @@
-# macOS Machine Specifications
+# environment-macos-machine-specs
 
 ## System Context
 This machine is a MacBook Pro (2023, Mac15,7) running macOS 15.6.1 (Sequoia). Use these specifications when making recommendations about software installation, performance optimization, or system compatibility.
