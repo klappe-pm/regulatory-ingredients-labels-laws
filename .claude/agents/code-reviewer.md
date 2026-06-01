@@ -1,7 +1,7 @@
 ---
 name: code-reviewer
 description: Reviews code changes for correctness, clarity, and adherence to project standards
-tools: read-only
+tools: Read, Grep, Glob
 ---
 
 # code-reviewer

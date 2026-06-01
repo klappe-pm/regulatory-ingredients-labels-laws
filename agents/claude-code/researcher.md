@@ -1,7 +1,7 @@
 ---
 name: researcher
 description: Surveys prior art, documentation, and design literature on a given topic
-tools: read-web
+tools: Read, Grep, Glob, WebFetch, WebSearch
 ---
 
 # researcher

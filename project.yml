@@ -12,7 +12,7 @@ status:
 
 canonical_documents:
   - README.md
-  - AGENTS.md
+  - CLAUDE.md
   - project.yml
 
 naming_rule:

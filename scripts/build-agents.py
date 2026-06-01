@@ -19,6 +19,16 @@ TARGETS = {
 
 FRONTMATTER = re.compile(r"\A---\n(.*?)\n---\n(.*)", re.DOTALL)
 
+# Claude Code's agents-spec requires `tools` to be an explicit list of real
+# tool names, not a semantic tier. Map the shared `agent-tools` tier to a
+# spec-valid Claude tool list. Other targets (codex/gemini/cursor) keep the
+# raw tier value, which their own ecosystems accept.
+CLAUDE_TOOL_TIERS = {
+    "read-only": "Read, Grep, Glob",
+    "read-edit": "Read, Edit, Write, Grep, Glob",
+    "read-web": "Read, Grep, Glob, WebFetch, WebSearch",
+}
+
 
 def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
     match = FRONTMATTER.match(text)
@@ -52,11 +62,12 @@ def parse_shared(path: pathlib.Path) -> dict[str, Any]:
 
 
 def emit_claude_md(agent: dict[str, Any]) -> str:
+    tools = CLAUDE_TOOL_TIERS.get(agent["tools"], agent["tools"])
     return (
         "---\n"
         f"name: {agent['name']}\n"
         f"description: {agent['role']}\n"
-        f"tools: {agent['tools']}\n"
+        f"tools: {tools}\n"
         "---\n\n"
         f"{agent['body']}\n"
     )

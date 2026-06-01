@@ -1,7 +1,7 @@
 ---
 name: doc-writer
 description: Authors technical documentation that serves the reader's question
-tools: read-edit
+tools: Read, Edit, Write, Grep, Glob
 ---
 
 # doc-writer

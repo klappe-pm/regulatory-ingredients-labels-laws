@@ -1,7 +1,7 @@
 ---
 name: test-writer
 description: Authors tests for new code or untested existing code
-tools: read-edit
+tools: Read, Edit, Write, Grep, Glob
 ---
 
 # test-writer
