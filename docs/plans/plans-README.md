@@ -1,6 +1,7 @@
 # plans-README
 
-Implementation plans derived from `specs/specs-project-scaffold-framework-spec.md`
+Implementation plans derived from the canonical scaffold spec at
+`/Users/kevinlappe/Projects/harness/scaffolding/project-routing-spec.md`
 belong here.
 
 Rules:

@@ -19,3 +19,11 @@ augment, but do not replace, the user-scope policy in
 - Run the project verification command before claiming work is complete.
 - Plan-backed commit, push, PR creation, and merge are authorized when
   verification, required checks, and merge criteria pass.
+
+## Project Layout
+
+Project layout and agent routing follow the canonical scaffold spec:
+`/Users/kevinlappe/Projects/harness/scaffolding/project-routing-spec.md`.
+This project applies the Records and Source-Corpus overlay: raw source
+material lives under `sources/`; derived summaries and reports live under
+`docs/`.

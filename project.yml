@@ -5,6 +5,10 @@ project_root: /Users/kevinlappe/Projects/regulatory-ingredients-labels-laws
 github_repo: https://github.com/klappe-pm/regulatory-ingredients-labels-laws
 purpose: Reference and tooling for regulatory ingredient and product-label laws.
 
+scaffold-overlays:
+  - records-and-source-corpus
+canonical-scaffold: /Users/kevinlappe/Projects/harness/scaffolding/project-routing-spec.md
+
 status:
   parent_git_initialized: true
   implementation_started: false
