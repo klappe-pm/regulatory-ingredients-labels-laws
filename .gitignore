@@ -15,4 +15,4 @@ build/
 .next/
 .claude/settings.local.json
 docs/passoffs/*.tmp
-_local/
+_*/
