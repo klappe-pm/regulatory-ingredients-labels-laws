@@ -4,7 +4,6 @@ PYTHON ?= python3
 .PHONY: help doctor audit audit-strict rebuild-agents test strip-agents strip-hooks strip-specs
 
 AUDIT_DOCS := \
-	"$(ROOT)/docs/docs-README.md" \
 	"$(ROOT)/docs/plans" \
 	"$(ROOT)/docs/reference/reference-README.md" \
 	"$(ROOT)/docs/reference/mcp.md" \
