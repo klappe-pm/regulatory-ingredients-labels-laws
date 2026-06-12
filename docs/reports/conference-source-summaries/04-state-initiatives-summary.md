@@ -30,7 +30,7 @@ A central backdrop is the collapse of public trust in the food industry. The dec
 ## Key Points
 
 - Trajectory of activity. In 2023, only three bills were filed in two states (California and New Jersey), producing one new law. By 2025-2026, over 140 bills were filed in 42 states, with new laws enacted in 13 states. The presenter says the volume exceeded predictions.
-- California led. California Assembly Bill 418 (2023) was the first to pass. It bans products containing any of four ingredients starting in 2027. (The four, widely known as the "California Food Safety Act" set, are brominated vegetable oil, potassium bromate, propylparaben, and Red Dye No. 3; the deck does not list them by name on this slide but references them elsewhere.)
+- California led. California Assembly Bill 418 (2023) was the first to pass. It bans products containing any of four ingredients starting in 2027. The California compliance session identifies those four as brominated vegetable oil, potassium bromate, propylparaben, and Red Dye No. 3.
 - Over 100 ingredient targets across all bills. Named targets include: all synthetic colors (FD&C dyes), potassium bromate, titanium dioxide, sweeteners including aspartame, propylparaben, BHA and BHT, vanillin, high fructose corn syrup, seed oils including soy and safflower, brominated flour, diacetyl, trans fats, brominated vegetable oil (BVO), and carrageenan.
 - Bills fall into five categories: school food restrictions, state GRAS reporting, ultraprocessed food (UPF) definitions, statewide bans and labeling, and label warnings.
 - School foods. New laws in Iowa, Nebraska, and Tennessee; proposed bills cover most or all FD&C colors, and potassium bromate and propylparaben are frequently named. School nutritionists have become active. The presenter notes it is politically hard for lawmakers to look unsympathetic to children's health, so these bills are difficult to stop.
@@ -40,7 +40,7 @@ A central backdrop is the collapse of public trust in the food industry. The dec
 - Labeling legislation. Texas litigation has slowed some label bills, but they keep reappearing. California's "Non-UPF" plan is advancing.
 - Focus bill — California AB 2244 (introduced February 2026). Creates a voluntary state certification program with a "Non-Ultraprocessed Certified" seal, using a UPF definition tied to prior California law. Large retailers would have to make good-faith efforts to clearly identify certified items. California legislators intend it as a trend-setting model they hope becomes a national standard.
 - Looking ahead. FISC says it has largely succeeded in stopping "misguided" bills so far, but expects the issues to return in 2027, with the first year after an election being a window for aggressive action. Continued federal inaction is expected to fuel state activity.
-- Industry response. FISC coordinates in-committee and virtual testimony, written comments, local lobbyists, media support, sponsored research, state coalitions, and grassroots tools. Coalition letters (e.g., opposing New York GRAS reporting bills A1556/S1239 and SB 69) are signed by groups including American Beverage, the Consumer Brands Association, FMI, and IDFA.
+- Industry response. FISC coordinates in-committee and virtual testimony, written comments, local lobbyists, media support, sponsored research, state coalitions, grassroots activation, and coordination with allies.
 
 ## What It Means For A Beverage Business
 
