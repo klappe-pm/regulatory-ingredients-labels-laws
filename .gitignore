@@ -16,3 +16,5 @@ build/
 .claude/settings.local.json
 docs/passoffs/*.tmp
 _*/
+# Raw download bundles; source PDFs are extracted and tracked individually
+*.zip

@@ -62,27 +62,36 @@ drifted from the current canonical scaffold:
   point at the canonical spec; `docs/docs-README.md` is deleted but uncommitted
   and still referenced by the `Makefile` audit allowlist.
 
-## Deliverable 1 — Conference Summary (Done)
+## Deliverable 1 — Conference Summaries and Briefing (Done)
 
-- Output: `../reports/food-label-conference-2026-summary.md`.
-- Method: nine parallel extraction agents, one per PDF (177 pages total),
-  each returning a structured digest; synthesised into one themed summary.
-- Shape: the one-sentence takeaway (2026 is a convergence year), the five
-  forces reshaping the label, the MAHA driver, the state patchwork (California
-  as template), the legal mechanics (preemption carve-out, Prop 65), claims
-  defensibility, beverage-specific flags, and an eight-step analyst playbook.
+Audience re-scoped (2026-06-11) to a non-regulatory consumer packaged goods
+beverage team (Talking Rain, non-alcoholic), educating rather than briefing a
+compliance analyst. The earlier compliance-analyst summary and deck were
+removed in favour of the audience-correct set below.
+
+- Per-session summaries: `../reports/conference-source-summaries/` (nine files,
+  one per session), each plain-language with jargon defined and a
+  beverage-implications section.
+- Synthesis briefing: `../reports/food-label-conference-2026-beverage-briefing.md`,
+  connecting all nine sessions into one business document — the federal-vs-state
+  collision, the five label changes, California first (AB 418, Prop 65), why
+  beverages are targeted, the claims/marketing lesson, AI, and a seven-step
+  action list. US federal plus California lens.
+- Method: nine parallel extraction agents, one per PDF (177 pages total), each
+  writing its summary and returning a digest; synthesised into the briefing.
 
 ## Deliverable 2 — Presentation (Done)
 
-- Source: `../reports/food-label-conference-2026-deck.md` (Marp markdown).
-- Built artifacts: `food-label-conference-2026-deck.pdf` and
-  `food-label-conference-2026-deck.pptx` (editable), rendered via
+- Source: `../reports/food-label-conference-2026-beverage-deck.md` (Marp markdown).
+- Built artifacts: `food-label-conference-2026-beverage-deck.pdf` and
+  `food-label-conference-2026-beverage-deck.pptx`, rendered via
   `@marp-team/marp-cli`.
-- Design: ~22 slides for a 20-minute slot, Duarte Sparkline arc (current
-  reality vs. better future), one idea per slide, titles state the takeaway,
-  speaker notes in HTML comments. Big Idea: "readiness, not prediction."
-- Re-render command:
-  `npx @marp-team/marp-cli docs/reports/food-label-conference-2026-deck.md --pdf --pptx --allow-local-files`.
+- Design: clean and minimal by request — Helvetica Neue, default theme, no
+  custom colors, no italics, one idea per slide, plain markdown that copies into
+  any theme. 18 slides for the non-regulatory beverage audience.
+- Re-render (two separate calls; combining `--pdf --pptx` is rejected):
+  `npx @marp-team/marp-cli docs/reports/food-label-conference-2026-beverage-deck.md -o docs/reports/food-label-conference-2026-beverage-deck.pdf --allow-local-files`
+  then the same with `-o ...beverage-deck.pptx`.
 
 ## Deliverable 3 — Automate Regulatory Updates
 
