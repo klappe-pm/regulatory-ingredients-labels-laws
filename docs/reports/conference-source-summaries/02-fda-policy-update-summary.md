@@ -30,9 +30,9 @@ FDA frames its job two ways: empower consumers to spot healthier choices quickly
 
 ## Key Points
 
-- The 2025-2030 Dietary Guidelines for Americans are out, organized around real, whole foods (vegetables and fruits, whole grains, protein, dairy, and healthy fats). These guidelines drive what counts as "healthy" and shape future labeling rules.
+- The 2025-2030 Dietary Guidelines for Americans are the nutrition backdrop for the deck, with the cover emphasizing vegetables and fruits, whole grains, protein, dairy, and healthy fats. These guidelines inform what counts as "healthy" and shape future labeling rules.
 - FDA's 2026 Human Foods Program priorities sit in three buckets: nutrition, food chemical safety, and microbiological food safety.
-- Ultra-processed foods (UPFs): a growing body of research links UPFs to negative health outcomes, and addressing them is central to MAHA. FDA and USDA are jointly developing a single uniform definition of "ultra-processed." There is no agreed definition yet; one is coming, and it will determine which products get labeled or scrutinized.
+- Ultra-processed foods (UPFs): a growing body of research links UPFs to negative health outcomes, and addressing them is central to MAHA. FDA and USDA are jointly developing a single uniform definition of "ultra-processed." There is no agreed definition yet; once issued, it will determine which products get labeled or scrutinized.
 - Front-of-package (FOP) nutrition labeling: FDA is moving toward a standardized front-label box showing saturated fat, sodium, and added sugars, each rated Low, Medium, or High. This puts a simplified at-a-glance nutrition judgment on the front of the package, not just the detailed Nutrition Facts panel on the back.
 - Allergen labeling: FDA held a public meeting on food allergen thresholds (the amount of an allergen that actually triggers a reaction) in February 2026, and issued a January 2026 request for information on gluten labeling and preventing gluten cross-contact in packaged foods.
 - Standards of Identity (SOI): FDA is reviewing its portfolio of 250-plus product definitions. In July 2025 it moved to revoke or propose revoking 52 outdated standards, and in August 2025 proposed updating the 60-plus-year-old standard for pasteurized orange juice.
@@ -43,9 +43,9 @@ FDA frames its job two ways: empower consumers to spot healthier choices quickly
 
 ## What It Means For A Beverage Business
 
-- Front-of-package labeling is the most direct hit. A standardized FOP box rating added sugars and sodium as Low/Med/High would appear on sparkling-beverage packaging. Zero-sugar and zero-sodium sparkling water would likely earn favorable "Low" ratings, which is a marketing advantage; any sweetened or sodium-containing line could draw a "Med" or "High" flag on the front of the can or bottle.
+- Front-of-package labeling is the most direct hit if finalized. A standardized FOP box rating added sugars and sodium as Low/Med/High would appear on sparkling-beverage packaging. Zero-sugar and zero-sodium sparkling water would likely earn favorable "Low" ratings, which is a marketing advantage; any sweetened or sodium-containing line could draw a "Med" or "High" flag on the front of the can or bottle.
 - The added-sugars reduction strategy and the updated "healthy" claim define which products can carry positive nutrition messaging. Unsweetened sparkling lines are well positioned to qualify; sweetened variants may not.
-- Caffeine labeling guidance matters for any caffeinated or energy-positioned sparkling product. Expect clearer required disclosures.
+- Caffeine labeling guidance matters for any caffeinated or energy-positioned sparkling product. Expect clearer disclosure expectations as FDA develops guidance.
 - Artificial color elimination is a formulation issue. Any synthetic dye used for flavor variants is now on a clock; switching to natural-source colors affects shade, stability, and cost. The "no artificial colors" enforcement discretion is also a clean marketing opening for products that are already dye-free.
 - The GRAS loophole closure and post-market chemical reassessments (BHT, ADA, and others to come) raise scrutiny on novel sweeteners, flavor systems, preservatives, and processing aids. Ingredient and supplier choices that relied on self-certified GRAS status may need stronger safety documentation.
 - The ultra-processed-food definition is a watch item. Depending on how FDA and USDA draw the line, sweetened and heavily formulated beverages could fall inside the UPF category, with labeling or reformulation pressure to follow. The definition does not exist yet, so the move now is to track it, not react.
@@ -59,7 +59,7 @@ FDA frames its job two ways: empower consumers to spot healthier choices quickly
 | MAHA | "Make America Healthy Again" — the administration's push to cut diet-related disease by reshaping the food supply. |
 | Dietary Guidelines for Americans | The federal 2025-2030 nutrition guidance that defines a healthy diet and underpins labeling rules. |
 | UPF (ultra-processed food) | Heavily formulated, industrially processed food; FDA and USDA are still writing one official definition. |
-| FOP (front-of-package) labeling | A simplified nutrition box on the front of a package rating saturated fat, sodium, and added sugars as Low, Medium, or High. |
+| FOP (front-of-package) labeling | A proposed simplified nutrition box on the front of a package rating saturated fat, sodium, and added sugars as Low, Medium, or High. |
 | Allergen threshold | The amount of an allergen that actually triggers a reaction, used to set labeling rules. |
 | Standards of Identity (SOI) | FDA's legal recipe definitions for what a food must contain to use a given name (e.g., "orange juice"). |
 | "Healthy" claim | The FDA-defined rule for when a product may label itself "healthy." |

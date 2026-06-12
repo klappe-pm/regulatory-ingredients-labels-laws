@@ -78,7 +78,7 @@ Get organized enough to move fast when any of them lands.
 - GRAS overhaul: the "decide it is safe yourself" path is closing.
 - Synthetic dyes: six petroleum colors phasing out by end of 2026.
 - Ultra-processed food: an official definition is being written.
-- Front-of-package box: a Low / Medium / High nutrition rating.
+- Proposed front-of-package box: a Low / Medium / High nutrition rating.
 - The new "Healthy" rule: vitamins no longer rescue an unhealthy product.
 
 ---
@@ -94,10 +94,10 @@ Get organized enough to move fast when any of them lands.
 
 # Front-Of-Package Labeling
 
-- A new front-label box rates Saturated Fat, Sodium, and Added Sugars.
+- The proposed front-label box rates Saturated Fat, Sodium, and Added Sugars.
 - Each gets a Low, Medium, or High mark.
-- Added sugar is the most likely "High" on a sweetened drink.
-- It reshapes the front panel, so plan one coordinated redesign.
+- Added sugar would be the most likely "High" on a sweetened drink.
+- If finalized, it reshapes the front panel, so plan one coordinated redesign.
 
 ---
 
@@ -124,7 +124,7 @@ Get organized enough to move fast when any of them lands.
 
 - Added sugar is the most politically charged nutrient of 2026.
 - Sugar alternatives are the next labeling battleground.
-- SNAP rules in 23 states block sweetened and energy drinks.
+- SNAP waivers in 23 states restrict soda, sweetened drinks, energy drinks, or similar categories.
 - Some wording is broad enough to catch zero-sugar lines.
 - Color and preservative swaps hit drinks directly.
 
@@ -133,7 +133,7 @@ Get organized enough to move fast when any of them lands.
 # The Upside For A Clean Line
 
 - Zero-sugar and dye-free is where the rules are heading.
-- A good front-of-package rating can be a brand asset.
+- If finalized, a good front-of-package rating can be a brand asset.
 - An honest "no artificial colors" claim can be a brand asset.
 - The catch: non-nutritive sweeteners are the part most likely to draw a challenge.
 

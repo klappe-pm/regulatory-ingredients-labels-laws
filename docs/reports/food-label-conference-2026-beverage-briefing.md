@@ -106,7 +106,7 @@ also appear in a stricter state version.
 | GRAS overhaul | GRAS means "Generally Recognized As Safe." For decades a company could decide on its own that an ingredient was safe and use it without telling FDA. FDA has proposed closing that self-certification path and is re-reviewing older additives. | Any ingredient you rely on under self-affirmed GRAS now needs a clean, audit-ready safety file. Preservatives like BHA and BHT are early review targets. |
 | Synthetic dye phase-out | FDA is pushing a voluntary phase-out of six petroleum-based color dyes by the end of 2026, with Red No. 3 moving faster. "No artificial colors" claims are allowed now under enforcement discretion. | Flavored and colored sparkling drinks may need to reformulate to natural colors. A color swap is also a claims event, not just a recipe change (see Claims below). |
 | Ultra-processed food (UPF) definition | There is no official definition of "ultra-processed" yet. FDA and USDA are jointly writing one. Once it exists, it becomes a lever for warnings, school bans, and marketing pressure. | Sweetened and heavily formulated beverages are likely to land inside whatever definition emerges. This is a watch item, not an immediate deadline. |
-| Front-of-package labeling (FOP) | A new box on the front of the package that rates Saturated Fat, Sodium, and Added Sugars as Low, Medium, or High. MAHA has floated turning it into a green/yellow/red "traffic light." | Added sugar is the most likely "High" trigger on a sweetened drink. This reshapes the front panel, so coordinate it with any other redesign. |
+| Front-of-package labeling (FOP) | FDA has proposed a front-label box that would rate Saturated Fat, Sodium, and Added Sugars as Low, Medium, or High. MAHA has floated turning it into a green/yellow/red "traffic light." | If finalized, added sugar is the most likely "High" trigger on a sweetened drink. This would reshape the front panel, so coordinate it with any other redesign. |
 | The new "Healthy" rule and claims | "Healthy" now means a product fits a food-group model, not just hitting nutrient thresholds. Adding vitamins to an unhealthy base no longer rescues the claim. Effective April 2025, mandatory by February 2028. | If any product carries or implies "healthy," it has to be re-checked against the new definition before the 2028 deadline. |
 
 ## California Is The One To Watch First
@@ -119,9 +119,9 @@ the most attention. It has two distinct kinds of risk.
 | Law | What it does | Date that matters |
 |---|---|---|
 | AB 418 (California Food Safety Act) | Bans brominated vegetable oil (BVO), potassium bromate, propylparaben, and Red Dye No. 3 from any food or drink sold in California. Penalties up to $5,000 first violation, $10,000 after. | January 1, 2027 |
-| AB 660 | Standardizes date labels: only "BEST if Used By" and "USE by" are allowed; "sell by" is banned. This is a packaging-copy change, not a formula change. | July 1, 2026 |
+| AB 660 | Standardizes date labels: if a date is used, it must use the "BEST if Used By" / "USE by" family of terms, including permitted frozen variants and small-package acronyms; "sell by" is banned. This is a packaging-copy change, not a formula change. | July 1, 2026 |
 | AB 2316 | Bans six synthetic dyes from foods sold through school channels. | December 31, 2027 |
-| AB 1264 and AB 2244 | Ultra-processed food rules, including a proposed voluntary "Non-Ultraprocessed Certified" seal. These name non-nutritive sweeteners such as sucralose. | CDPH defines terms by June 1, 2028; AB 2244 introduced February 2026 |
+| AB 1264 and AB 2244 | California's enacted school-focused UPF law plus a proposed voluntary "Non-Ultraprocessed Certified" seal. The UPF definition names non-nutritive sweeteners such as sucralose. | CDPH defines terms by June 1, 2028; AB 2244 introduced February 2026 |
 
 For a beverage company, BVO and Red No. 3 in AB 418 are the concrete near-term
 items. If either is in a formula sold in California, it has to be out before
@@ -164,7 +164,8 @@ non-alcoholic beverages directly.
   is recommended," and that language will show up in lawsuits and marketing
   fights.
 - SNAP purchase restrictions are spreading. Twenty-three states have approved
-  waivers that block soda, sweetened drinks, and energy drinks from SNAP
+  waivers that restrict soda, sweetened drinks, energy drinks, or similar
+  categories from SNAP
   benefits, with effective dates rolling out 2026 to 2028. The wording in some
   states is broad enough ("sweetened carbonated," for example) that it could
   catch a zero-sugar sparkling water depending on how it is read. This deserves a
@@ -290,11 +291,11 @@ lives in `docs/reports/conference-source-summaries/`.
 | HHS | U.S. Department of Health and Human Services, the parent agency of FDA. |
 | FDA | Food and Drug Administration, regulates about 80 percent of the U.S. food supply. |
 | GRAS | "Generally Recognized As Safe," the status that lets an ingredient be used without full premarket approval. |
-| FOP | Front-of-package labeling, the new front-label nutrition rating box. |
+| FOP | Front-of-package labeling, the proposed front-label nutrition rating box. |
 | UPF | Ultra-processed food, a category being defined to drive future labeling and restrictions. |
 | Prop 65 | California's 1986 right-to-know law requiring warnings for listed chemicals. |
 | Safe harbor | The exposure level under Prop 65 below which no warning is required. |
 | NLEA preemption | The federal rule that normally blocks states from setting different labeling requirements, with a carve-out for safety warnings. |
 | BVO | Brominated vegetable oil, an emulsifier used in some flavored drinks, banned in California as of 2027. |
 | Net impression | The legal standard that judges the overall message of a package, not just the literal words. |
-| SNAP | The federal food-assistance program; several states now block sweetened drinks from it. |
+| SNAP | The federal food-assistance program; several states now restrict sweetened drinks or similar categories from it. |
