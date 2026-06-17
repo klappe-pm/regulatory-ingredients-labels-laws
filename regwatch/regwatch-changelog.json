@@ -1,0 +1,66 @@
+{
+  "version": "0.1.0",
+  "description": "Dated regulatory developments feeding the briefing's 'what happened' section. Real, verifiable milestones with their published dates and sources. The analyst maintains currency; the live scan and FDA feeds add new entries. Dates are as published; confirm against the linked primary source.",
+  "events": [
+    {
+      "date": "2025-01-15",
+      "country": "US",
+      "agency": "FDA",
+      "obligation_id": "us-fed-dye-phaseout",
+      "headline": "FDA revoked the authorization for FD&C Red No. 3 in food",
+      "what_happened": "FDA issued a final rule revoking the color additive authorization for FD&C Red No. 3 in food and ingested drugs in response to a color additive petition, with a food compliance date of January 15, 2027. Beverages using Red No. 3 must reformulate.",
+      "cfr": [{"citation": "21 CFR Part 74", "url": "https://www.ecfr.gov/current/title-21/part-74"}],
+      "source_url": "https://www.fda.gov/food/hfp-constituent-updates"
+    },
+    {
+      "date": "2025-01-16",
+      "country": "US",
+      "agency": "FDA",
+      "obligation_id": "us-fed-fop-labeling",
+      "headline": "FDA proposed a front-of-package Nutrition Info box",
+      "what_happened": "FDA published a proposed rule for a mandatory front-of-package nutrition label rating Saturated Fat, Sodium, and Added Sugars as Low, Medium, or High. Comment and finalization follow; added sugar is the key beverage trigger.",
+      "cfr": [{"citation": "21 CFR Part 101", "url": "https://www.ecfr.gov/current/title-21/part-101"}],
+      "source_url": "https://www.fda.gov/food/nutrition-facts-label/front-package-labeling"
+    },
+    {
+      "date": "2025-02-25",
+      "country": "US",
+      "agency": "FDA",
+      "obligation_id": "us-fed-healthy-claim-rule",
+      "headline": "FDA 'healthy' claim final rule took effect",
+      "what_happened": "The updated definition of the 'healthy' nutrient content claim became effective, with a compliance date of February 25, 2028. Products implying 'healthy' must fit a food-group model.",
+      "cfr": [{"citation": "21 CFR 101.65", "url": "https://www.ecfr.gov/current/title-21/part-101"}],
+      "source_url": "https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/use-term-healthy-food-labeling"
+    },
+    {
+      "date": "2025-04-22",
+      "country": "US",
+      "agency": "FDA",
+      "obligation_id": "us-fed-dye-phaseout",
+      "headline": "FDA and HHS announced a phase-out of petroleum-based synthetic dyes",
+      "what_happened": "FDA and HHS announced an effort to phase out petroleum-based synthetic food dyes and to authorize new natural color additives, signaling reformulation pressure across colored beverages.",
+      "cfr": [{"citation": "21 CFR Part 73", "url": "https://www.ecfr.gov/current/title-21/part-73"}],
+      "source_url": "https://www.fda.gov/food/hfp-constituent-updates"
+    },
+    {
+      "date": "2024-08-02",
+      "country": "US",
+      "agency": "FDA",
+      "obligation_id": "us-ca-ab418",
+      "headline": "FDA revocation of brominated vegetable oil took effect",
+      "what_happened": "FDA's final rule revoking the food authorization for brominated vegetable oil became effective, removing BVO as a permitted food ingredient nationally and aligning with California AB 418.",
+      "cfr": [{"citation": "former 21 CFR 180.30", "url": "https://www.ecfr.gov/current/title-21/part-180"}],
+      "source_url": "https://www.fda.gov/food/hfp-constituent-updates"
+    },
+    {
+      "date": "2023-10-07",
+      "country": "US",
+      "agency": "California (CDPH)",
+      "obligation_id": "us-ca-ab418",
+      "headline": "California signed the California Food Safety Act (AB 418)",
+      "what_happened": "California enacted AB 418 banning BVO, potassium bromate, propylparaben, and Red No. 3 in foods sold in California effective January 1, 2027, setting the template other states have followed.",
+      "cfr": [],
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240AB418"
+    }
+  ]
+}

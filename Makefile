@@ -1,7 +1,7 @@
 ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 PYTHON ?= python3
 
-.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs
+.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing rebuild-agents test strip-agents strip-hooks strip-specs
 
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
@@ -11,7 +11,7 @@ AUDIT_DOCS := \
 	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
 
 help:
-	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs\n'
+	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing rebuild-agents test strip-agents strip-hooks strip-specs\n'
 
 doctor:
 	@test -f "$(ROOT)/CLAUDE.md"
@@ -40,10 +40,14 @@ regwatch-smoke:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" report --out "$(ROOT)/build/regwatch-report.md" --json "$(ROOT)/build/regwatch-report.json" >/dev/null
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence daily --out-dir "$(ROOT)/build/regwatch-smoke" >/dev/null
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/build/regwatch-smoke" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/build/regwatch-briefing.md" >/dev/null
 	@printf 'regwatch-smoke: passed\n'
 
 regwatch-brief:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/docs/reports/regwatch-samples"
+
+regwatch-briefing:
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/docs/reports/regwatch-samples/regwatch-fda-beverage-briefing.md"
 
 rebuild-agents:
 	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents" --tools claude-code

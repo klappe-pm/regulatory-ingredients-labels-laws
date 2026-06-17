@@ -13,6 +13,9 @@ engine (Deliverable 3). The engine is `scripts/regwatch.py`. The design is
 | `regwatch-ingredient-functions.json` | Maps ingredient function to definition and examples. |
 | `regwatch-jurisdictions.json` | Every jurisdiction the register accounts for: US federal, all 50 states plus DC, an aggregate marker, Canada, Mexico. |
 | `regwatch-talking-rain.json` | Talking Rain product portfolio model that impact analysis maps obligations onto. |
+| `regwatch-obligation-detail.json` | Human-readable detail per obligation: context, implications, action, CFR, and backlinks. |
+| `regwatch-changelog.json` | Dated regulatory developments feeding the briefing's "what happened" section. |
+| `regwatch-warning-letters.json` | FDA warning-letter enforcement themes for beverages, with governing CFR. |
 | `regwatch-schema.json` | Field definitions, required-ness, enums, and patterns the engine validates against. |
 | `state/regwatch-seen.json` | Last-seen content hash per source. Written by `scan --update`. |
 | `state/snapshots/` | Analyst-captured raw source fixtures (gitignored). |
@@ -34,7 +37,19 @@ python3 scripts/regwatch.py impact --severity act-now      # CPG impact analysis
 python3 scripts/regwatch.py beverage                       # beverage-category lens over the impacts
 python3 scripts/regwatch.py brief --cadence weekly --out-dir out   # synthesized brief in every format
 python3 scripts/regwatch.py brief --cadence daily --out-dir out    # short daily change brief
+python3 scripts/regwatch.py briefing --out briefing.md             # human-readable FDA beverage briefing
 ```
+
+## The Briefing
+
+`briefing` renders a clean, marked-up report focused on FDA food safety
+impacting US beverages, with Canada and Mexico as the other markets. Every item
+is written as What Happened / What It Means (with the governing CFR and the
+context for what the rule is) / What We Need To Do, with backlinks to primary
+sources. It draws on `regwatch-obligation-detail.json` for the prose and CFR,
+`regwatch-changelog.json` for dated recent developments, and
+`regwatch-warning-letters.json` for FDA enforcement themes. The committed sample
+is `docs/reports/regwatch-samples/regwatch-fda-beverage-briefing.md`.
 
 `make regwatch-validate` runs validation in CI and in `make test`;
 `make regwatch-brief` regenerates the weekly sample outputs.

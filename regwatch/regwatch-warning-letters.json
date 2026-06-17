@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0",
+  "description": "Recurring FDA warning-letter enforcement themes that hit the beverage industry, with what triggers them and the governing CFR. These are representative themes, not specific letters; confirm current actions against FDA's live Warning Letters database (linked). FDA enforces food safety and labeling largely through these letters, so they are a leading signal of where attention is.",
+  "database_url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters",
+  "themes": [
+    {
+      "theme": "Unapproved drug and disease claims on functional beverages",
+      "what_triggers": "Marketing a beverage with claims to treat, cure, or prevent disease (immunity, anxiety, sleep, weight loss) turns it into an unapproved new drug in FDA's view. Influencer and AI-drafted copy counts as the brand's claim.",
+      "cfr": [{"citation": "FD&C Act 505 / 21 CFR Part 201 (drug labeling)", "url": "https://www.ecfr.gov/current/title-21/part-201"}],
+      "beverage_note": "Highest-frequency theme for functional and wellness drinks. Route every claim through legal before launch."
+    },
+    {
+      "theme": "CBD and other unlawful additives in beverages",
+      "what_triggers": "Adding CBD or other substances FDA has not authorized for food makes the beverage adulterated. FDA has issued many warning letters for CBD-infused drinks.",
+      "cfr": [{"citation": "FD&C Act 301(ll); 21 CFR Part 170 (food additives)", "url": "https://www.ecfr.gov/current/title-21/part-170"}],
+      "beverage_note": "Do not add unauthorized actives to a conventional beverage."
+    },
+    {
+      "theme": "Illegal or uncertified color additives",
+      "what_triggers": "Using a color additive that is not listed for the use, not batch-certified where required, or used above its limit adulterates the product.",
+      "cfr": [{"citation": "21 CFR Parts 70-82 (color additives)", "url": "https://www.ecfr.gov/current/title-21/part-74"}],
+      "beverage_note": "Ties directly to the dye phase-out and Red No. 3 removal."
+    },
+    {
+      "theme": "Juice HACCP violations",
+      "what_triggers": "Juice and juice-containing beverages must follow HACCP controls including a 5-log pathogen reduction; missing plans or controls draw letters.",
+      "cfr": [{"citation": "21 CFR Part 120 (Juice HACCP)", "url": "https://www.ecfr.gov/current/title-21/part-120"}],
+      "beverage_note": "Applies to any juice content in flavored or fruit-forward lines."
+    },
+    {
+      "theme": "Acidified and low-acid beverage process controls",
+      "what_triggers": "Shelf-stable acidified or low-acid beverages require filed processes and registration; failures in scheduled processes or registration draw letters.",
+      "cfr": [{"citation": "21 CFR Parts 113, 114 and 108 (LACF/acidified)", "url": "https://www.ecfr.gov/current/title-21/part-114"}],
+      "beverage_note": "Relevant to canned and bottled shelf-stable products."
+    },
+    {
+      "theme": "Preventive controls and facility registration (FSMA)",
+      "what_triggers": "Failure to register a facility or to implement hazard analysis and risk-based preventive controls draws enforcement.",
+      "cfr": [{"citation": "21 CFR Part 117 (Preventive Controls for Human Food)", "url": "https://www.ecfr.gov/current/title-21/part-117"}],
+      "beverage_note": "Baseline GMP and food-safety system expectation for any producer."
+    }
+  ]
+}
