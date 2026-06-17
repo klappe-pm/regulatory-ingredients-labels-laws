@@ -16,3 +16,4 @@ jobs:
           python-version: "3.x"
       - run: make audit-strict
       - run: make regwatch-validate
+      - run: make regwatch-smoke
