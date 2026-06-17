@@ -143,7 +143,7 @@ def weekly_synthesis(
     by_product: dict[str, list[dict]] = {}
     for impact in impacts:
         by_product.setdefault(impact["product_name"], []).append(impact)
-    for name in sorted(by_product, key=lambda n: min(__rank(i["severity"]) for i in by_product[n])):
+    for name in sorted(by_product, key=lambda n: min(_severity_rank(i["severity"]) for i in by_product[n])):
         rows = by_product[name]
         bullets = [
             f"{i['obligation_title']} — {i['jurisdiction']}, {i['severity']}"
@@ -198,5 +198,5 @@ def weekly_synthesis(
     }
 
 
-def __rank(severity: str) -> int:
+def _severity_rank(severity: str) -> int:
     return {"act-now": 0, "high": 1, "watch": 2, "info": 3}[severity]

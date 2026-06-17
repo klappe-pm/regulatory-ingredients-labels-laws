@@ -28,7 +28,9 @@ import hashlib
 import json
 import pathlib
 import re
+import ssl
 import sys
+import urllib.error
 import urllib.request
 
 import regwatch_briefing
@@ -56,6 +58,10 @@ CANDIDATES_PATH = STATE_DIR / "regwatch-ingest-candidates.json"
 TAG_RE = re.compile(r"(?s)<[^>]+>")
 SCRIPT_STYLE_RE = re.compile(r"(?is)<(script|style)\b.*?</\1>")
 WHITESPACE_RE = re.compile(r"\s+")
+BROWSER_USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/124.0.0.0 Safari/537.36"
+)
 
 
 # --- loading ---------------------------------------------------------------
@@ -292,10 +298,34 @@ def list_obligations(args: argparse.Namespace) -> int:
 # --- source fetch and signal extraction ------------------------------------
 
 
-def http_get(url: str) -> str:
-    request = urllib.request.Request(url, headers={"User-Agent": "regwatch/0.1"})
-    with urllib.request.urlopen(request, timeout=30) as response:  # noqa: S310
-        return response.read().decode("utf-8", errors="replace")
+def http_get(url: str, timeout: int = 30) -> str:
+    """Fetch a URL as text, hardened for government sites.
+
+    Many .gov pages reject non-browser user agents (returning 403/404) and some
+    serve an incomplete certificate chain. So this sends a browser user agent,
+    retries once on a transient error (timeout/DNS), and falls back to an
+    unverified TLS context only when the certificate cannot be verified — bounded
+    to these read-only public-document fetches.
+    """
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": BROWSER_USER_AGENT, "Accept": "text/html,application/json,*/*"},
+    )
+
+    def _open(context: ssl.SSLContext | None = None) -> str:
+        with urllib.request.urlopen(request, timeout=timeout, context=context) as response:  # noqa: S310
+            return response.read().decode("utf-8", errors="replace")
+
+    try:
+        return _open()
+    except urllib.error.URLError as exc:
+        reason = getattr(exc, "reason", None)
+        if isinstance(reason, ssl.SSLCertVerificationError):
+            print(f"WARN  {url}: certificate not verified; fetching without verification")
+            return _open(ssl._create_unverified_context())
+        if isinstance(exc, urllib.error.HTTPError):
+            raise  # 403/404 are real; a retry will not help
+        return _open()  # one retry for a transient timeout or DNS hiccup
 
 
 def extract_signal(source: dict, content: str) -> str:
@@ -338,6 +368,8 @@ def fetch_source(source: dict, live: bool) -> tuple[str | None, str]:
     snapshot = SNAPSHOT_DIR / f"{source['source_id']}.txt"
     if snapshot.exists():
         return snapshot.read_text(encoding="utf-8", errors="replace"), "snapshot"
+    if source.get("mechanism") == "manual":
+        return None, "manual"  # analyst reviews this source by hand; never auto-fetched
     if live:
         try:
             return http_get(source["url"]), "live"
@@ -353,7 +385,8 @@ def compute_scan(sources: list[dict], seen: dict, live: bool) -> list[dict]:
         sid = source["source_id"]
         raw, origin = fetch_source(source, live)
         if raw is None:
-            results.append({"source_id": sid, "status": "MISSING", "origin": origin, "sha256": None})
+            status = "MANUAL" if origin == "manual" else "MISSING"
+            results.append({"source_id": sid, "status": status, "origin": origin, "sha256": None})
             continue
         digest = hashlib.sha256(extract_signal(source, raw).encode("utf-8")).hexdigest()
         prior = seen.get(sid, {}).get("sha256")
@@ -395,12 +428,15 @@ def scan(args: argparse.Namespace) -> int:
     seen = load_json(SEEN_PATH) if SEEN_PATH.exists() else {}
     results = compute_scan(sources, seen, args.live)
 
-    counts = {"NEW": 0, "CHANGED": 0, "UNCHANGED": 0, "MISSING": 0}
+    counts = {"NEW": 0, "CHANGED": 0, "UNCHANGED": 0, "MISSING": 0, "MANUAL": 0}
     new_state = dict(seen)
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     for result in results:
         counts[result["status"]] += 1
         sid, status, origin = result["source_id"], result["status"], result["origin"]
+        if status == "MANUAL":
+            print(f"MANUAL     {sid:<26}  review by hand (mechanism: manual)")
+            continue
         if status == "MISSING":
             print(f"MISSING    {sid:<26}  no snapshot ({origin}); capture one or use --live")
             continue

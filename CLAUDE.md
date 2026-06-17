@@ -18,9 +18,19 @@ augment, but do not replace, the user-scope policy in
 - Store session passoffs in `docs/passoffs/`. Read
   `docs/passoffs/LATEST.pointer`, resolve the target relative to that
   directory, and read the latest passoff before work.
-- Run the project verification command before claiming work is complete.
+- Run the project verification command (`make test`) before claiming work is
+  complete.
 - Plan-backed commit, push, PR creation, and merge are authorized when
   verification, required checks, and merge criteria pass.
+
+## regwatch
+
+The regulatory monitoring engine lives in `regwatch/` (data) and
+`scripts/regwatch*.py` (engine, standard library only). Before working on it,
+read `regwatch/CLAUDE.md` for the operating rules and
+`docs/reference/regwatch-troubleshooting.md` for the runbook. Detection and
+ingestion flag for human review; they never auto-edit the register or change
+log. Nothing the engine emits is legal advice.
 
 ## Active Routing
 

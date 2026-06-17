@@ -6,6 +6,7 @@ PYTHON ?= python3
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
 	"$(ROOT)/docs/reference/reference-README.md" \
+	"$(ROOT)/docs/reference/regwatch-troubleshooting.md" \
 	"$(ROOT)/docs/reference/mcp.md" \
 	"$(ROOT)/docs/reference/environment/environment-README.md" \
 	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
