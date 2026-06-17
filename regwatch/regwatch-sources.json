@@ -1,0 +1,105 @@
+{
+  "version": "0.1.0",
+  "description": "Authoritative source feeds for regulatory change detection, one per jurisdiction surface. method poll = we fetch on a cadence; subscribe = the source pushes. mechanism records how a feed is read so the engine can route it.",
+  "sources": [
+    {
+      "source_id": "us-fda-federal-register",
+      "country": "US",
+      "jurisdiction": "US-Federal",
+      "name": "Federal Register (FDA food rules and notices)",
+      "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=food-and-drug-administration&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE",
+      "method": "poll",
+      "mechanism": "api",
+      "cadence": "daily",
+      "notes": "JSON API. Primary feed for GRAS, FOP, Healthy, and dye rulemaking. Filter by docket and publication date."
+    },
+    {
+      "source_id": "us-fda-newsroom",
+      "country": "US",
+      "jurisdiction": "US-Federal",
+      "name": "FDA food program news and constituent updates",
+      "url": "https://www.fda.gov/food/news-events-cfsan",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "daily",
+      "notes": "This administration announces policy by press release ahead of formal rules, so the newsroom must be watched alongside the Federal Register."
+    },
+    {
+      "source_id": "us-usda-snap",
+      "country": "US",
+      "jurisdiction": "US-Federal",
+      "name": "USDA FNS SNAP waivers and policy",
+      "url": "https://www.fns.usda.gov/snap/waivers",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "Tracks state SNAP sweetened-beverage restriction waivers and their effective dates."
+    },
+    {
+      "source_id": "us-ca-leginfo",
+      "country": "US",
+      "jurisdiction": "US-CA",
+      "name": "California Legislative Information (leginfo)",
+      "url": "https://leginfo.legislature.ca.gov",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "Bill text and status for California measures (AB 418, AB 660, AB 2316, AB 1264, AB 2244). California sets the template other states copy."
+    },
+    {
+      "source_id": "us-ca-oehha-prop65",
+      "country": "US",
+      "jurisdiction": "US-CA",
+      "name": "OEHHA Proposition 65 chemical list",
+      "url": "https://oehha.ca.gov/proposition-65/proposition-65-list",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "The list of ~1,000 chemicals and their safe-harbor levels. Listing changes drive new warning obligations."
+    },
+    {
+      "source_id": "us-ncsl-tracker",
+      "country": "US",
+      "jurisdiction": "US-Multistate",
+      "name": "Multistate food-ingredient legislation tracker (NCSL and FISC)",
+      "url": "https://www.ncsl.org/health/food-additive-regulation",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "Aggregate coverage of the 140+ bills across 42 states. Confirmed bills are promoted from the aggregate monitoring row into per-state obligation rows."
+    },
+    {
+      "source_id": "ca-health-canada",
+      "country": "CA",
+      "jurisdiction": "CA-Federal",
+      "name": "Health Canada food and supplemented-foods regulations",
+      "url": "https://www.canada.ca/en/health-canada/services/food-nutrition.html",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "Supplemented Foods Regulations: caution statements and caffeine limits relevant to functional and energy beverages."
+    },
+    {
+      "source_id": "ca-canada-gazette",
+      "country": "CA",
+      "jurisdiction": "CA-Federal",
+      "name": "Canada Gazette (regulatory notices)",
+      "url": "https://gazette.gc.ca",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "Official publication of proposed and enacted federal regulations, including food additive and labelling amendments."
+    },
+    {
+      "source_id": "mx-dof-cofepris",
+      "country": "MX",
+      "jurisdiction": "MX-Federal",
+      "name": "Diario Oficial de la Federacion and COFEPRIS",
+      "url": "https://www.dof.gob.mx",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "NOM-051 front-of-pack warning labelling and COFEPRIS additive rules. Strict octagon-warning precedent relevant to sweetened and non-nutritive-sweetened beverages."
+    }
+  ]
+}

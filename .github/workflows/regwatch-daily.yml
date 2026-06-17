@@ -1,0 +1,36 @@
+name: regwatch-daily
+
+on:
+  schedule:
+    - cron: "17 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate the register
+        run: make regwatch-validate
+      - name: Restore last-seen state
+        uses: actions/cache@v4
+        with:
+          path: regwatch/state/regwatch-seen.json
+          key: regwatch-seen-${{ github.run_id }}
+          restore-keys: |
+            regwatch-seen-
+      - name: Scan sources and detect change
+        run: python3 scripts/regwatch.py scan --live --update
+      - name: Render the daily brief
+        run: python3 scripts/regwatch.py brief --cadence daily --out-dir out --formats md,newsletter
+      - name: Upload daily brief
+        uses: actions/upload-artifact@v4
+        with:
+          name: regwatch-daily
+          path: out/

@@ -118,6 +118,25 @@ patchwork (140+ bills, 42 states). A candidate phased shape:
 Open scope questions are listed below; the build does not start until they are
 settled in discussion.
 
+### Status Update (2026-06-17)
+
+The scope questions were answered (see below) and Phases A through D are built.
+The data model, seed register, source catalog, jurisdiction catalog (all 50
+states plus Canada and Mexico), and change-detection engine live in `regwatch/`
+and `scripts/regwatch.py`, with the full design in
+`deliverable-3-regulatory-monitoring-design.md`. The engine validates, reports
+coverage, lists, captures snapshots, scans with per-source signal extraction,
+and emits an analyst report. A weekly `regwatch` workflow runs the scan and
+routes the report as an artifact. Validation runs in CI via
+`make regwatch-validate`. Remaining work is analyst confirmation of rows against
+primary source text and the final delivery channel.
+
+A second layer adds daily and weekly update loops, a CPG impact suite that maps
+obligations onto a Talking Rain portfolio model, a beverage analytical lens, and
+a synthesis engine that renders the result as a Word document, an email
+newsletter, and a web posting. Sample outputs live in
+`docs/reports/regwatch-samples/`.
+
 ## Phase 0 — Scaffold Reconciliation
 
 Bring the repo into conformance before further build. Each item is a discrete,
@@ -143,16 +162,23 @@ low-risk change:
 
 ## Open Questions for Discussion
 
+Answered 2026-06-17 (marked inline):
+
 1. End goal: a reference knowledge base, a live change-monitoring automation,
-   or both? This sets the depth of Deliverable 3.
+   or both? **Answer: both, phased — register first, then monitoring on top.**
 2. Audience and product scope: internal compliance-analyst tool, or a broader
-   product? Single company (beverage) or multi-category?
+   product? **Answer: internal research; do not build a polished front end.
+   Get the mechanics, automations, and data model right.**
 3. Jurisdiction priority: U.S. federal plus California first, or full
-   multi-state plus Canada from the start?
+   multi-state plus Canada from the start? **Answer: all 50 US states, Canada,
+   and Mexico are modeled; the seed register starts with the federal and
+   California obligations we have evidence for plus aggregate multistate rows.**
 4. Presentation home: keep the deck in `docs/reports/`, or add a
-   `docs/presentations/` route (not yet in the canonical scaffold)?
+   `docs/presentations/` route (not yet in the canonical scaffold)? **Still
+   open; the deck remains in `docs/reports/`.**
 5. Automation runtime: where does it run (local, scheduled cloud agent), and
-   what is the alert cadence and delivery channel?
+   what is the alert cadence and delivery channel? **Still open; deferred to
+   Phase D. The engine runs locally and offline today.**
 
 ## Verification
 
