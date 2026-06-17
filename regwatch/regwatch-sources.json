@@ -20,9 +20,9 @@
       "name": "FDA newsroom press announcements",
       "url": "https://www.fda.gov/news-events/fda-newsroom/press-announcements",
       "method": "poll",
-      "mechanism": "html",
+      "mechanism": "manual",
       "cadence": "daily",
-      "notes": "This administration announces policy by press release ahead of formal rules, so the newsroom must be watched alongside the Federal Register."
+      "notes": "fda.gov blocks non-browser fetches (returns 404 to the runner), so this is reviewed by hand; the Federal Register API carries the machine-readable FDA actions. This administration announces policy by press release ahead of formal rules, so the newsroom must still be watched."
     },
     {
       "source_id": "us-fda-warning-letters",
@@ -31,9 +31,9 @@
       "name": "FDA Warning Letters database",
       "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters",
       "method": "poll",
-      "mechanism": "html",
+      "mechanism": "manual",
       "cadence": "weekly",
-      "notes": "FDA enforces food safety and labeling largely through warning letters; the database is a leading signal of enforcement focus for beverages. See regwatch-warning-letters.json for the recurring themes."
+      "notes": "fda.gov blocks non-browser fetches (returns 404 to the runner), so the database is reviewed by hand. FDA enforces food safety and labeling largely through warning letters; see regwatch-warning-letters.json for the recurring themes a reviewer looks for."
     },
     {
       "source_id": "us-usda-snap",
