@@ -197,30 +197,3 @@ def write_docx(path: str, doc: dict) -> None:
         archive.writestr("[Content_Types].xml", _CONTENT_TYPES)
         archive.writestr("_rels/.rels", _ROOT_RELS)
         archive.writestr("word/document.xml", document_xml)
-
-
-# --- multi-format entry point ----------------------------------------------
-
-
-def render_all(doc: dict, out_dir: str, stem: str, tags: list[str], subject: str) -> list[str]:
-    base = pathlib.Path(out_dir)
-    base.mkdir(parents=True, exist_ok=True)
-    written: list[str] = []
-
-    docx_path = base / f"{stem}.docx"
-    write_docx(str(docx_path), doc)
-    written.append(str(docx_path))
-
-    html_path = base / f"{stem}-newsletter.html"
-    html_path.write_text(render_newsletter_html(doc, subject), encoding="utf-8")
-    written.append(str(html_path))
-
-    txt_path = base / f"{stem}-newsletter.txt"
-    txt_path.write_text(render_newsletter_text(doc), encoding="utf-8")
-    written.append(str(txt_path))
-
-    web_path = base / f"{stem}-webpost.md"
-    web_path.write_text(render_webpost(doc, tags), encoding="utf-8")
-    written.append(str(web_path))
-
-    return written
