@@ -178,6 +178,26 @@ A second build layer turns detection into delivered analysis on a cadence.
   (HTML plus a plain-text alternative), and a web posting (markdown with front
   matter). Committed samples live in `docs/reports/regwatch-samples/`.
 
+## The Human-Readable Briefing
+
+The `briefing` command renders the usable, narrative report the project owner
+asked for, focused on FDA food safety impacting US beverages with Canada and
+Mexico as the other markets. It is built from three input sidecars so the
+content is deep, not just a list of titles:
+
+- `regwatch-obligation-detail.json` carries the context (what the rule is), the
+  implications for beverages, the action, the governing CFR with eCFR links, and
+  backlinks per obligation.
+- `regwatch-changelog.json` holds dated regulatory developments so the briefing
+  shows what happened recently, not a single in-window item.
+- `regwatch-warning-letters.json` captures the recurring FDA warning-letter
+  enforcement themes for beverages with their governing CFR, and the source
+  catalog adds the live FDA Warning Letters database.
+
+Each finding is written as What Happened, What It Means, and What We Need To Do,
+with CFR and source backlinks. The sidecars are validated by
+`make regwatch-validate`.
+
 ## Verification
 
 - `make regwatch-validate` passes (also runs in CI and in `make test`).

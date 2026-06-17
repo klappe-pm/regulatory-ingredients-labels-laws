@@ -25,6 +25,17 @@
       "notes": "This administration announces policy by press release ahead of formal rules, so the newsroom must be watched alongside the Federal Register."
     },
     {
+      "source_id": "us-fda-warning-letters",
+      "country": "US",
+      "jurisdiction": "US-Federal",
+      "name": "FDA Warning Letters database",
+      "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters",
+      "method": "poll",
+      "mechanism": "html",
+      "cadence": "weekly",
+      "notes": "FDA enforces food safety and labeling largely through warning letters; the database is a leading signal of enforcement focus for beverages. See regwatch-warning-letters.json for the recurring themes."
+    },
+    {
       "source_id": "us-usda-snap",
       "country": "US",
       "jurisdiction": "US-Federal",

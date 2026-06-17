@@ -31,6 +31,7 @@ import re
 import sys
 import urllib.request
 
+import regwatch_briefing
 import regwatch_impact
 import regwatch_render
 import regwatch_synthesis
@@ -43,6 +44,9 @@ SOURCES_PATH = DATA_DIR / "regwatch-sources.json"
 FUNCTIONS_PATH = DATA_DIR / "regwatch-ingredient-functions.json"
 JURISDICTIONS_PATH = DATA_DIR / "regwatch-jurisdictions.json"
 PORTFOLIO_PATH = DATA_DIR / "regwatch-talking-rain.json"
+DETAIL_PATH = DATA_DIR / "regwatch-obligation-detail.json"
+CHANGELOG_PATH = DATA_DIR / "regwatch-changelog.json"
+WARNING_LETTERS_PATH = DATA_DIR / "regwatch-warning-letters.json"
 STATE_DIR = DATA_DIR / "state"
 SEEN_PATH = STATE_DIR / "regwatch-seen.json"
 SNAPSHOT_DIR = STATE_DIR / "snapshots"
@@ -124,6 +128,43 @@ def check_catalog(name: str, items: list[dict], fields: dict, refs: dict, delimi
     return errors
 
 
+def validate_extras(obligation_ids: set[str]) -> list[str]:
+    """Validate the briefing sidecars: detail, change log, and warning letters."""
+    errors: list[str] = []
+
+    detail = load_json(DETAIL_PATH)["detail"]
+    for oid, info in detail.items():
+        if oid not in obligation_ids:
+            errors.append(f"detail '{oid}': not a known obligation_id")
+        for field in ("what", "means", "action"):
+            if not str(info.get(field, "")).strip():
+                errors.append(f"detail '{oid}': field '{field}' is required but empty")
+
+    changelog = load_json(CHANGELOG_PATH)["events"]
+    for index, event in enumerate(changelog, start=1):
+        prefix = f"changelog entry {index}"
+        if not is_iso_date(event.get("date", "")):
+            errors.append(f"{prefix}: date '{event.get('date', '')}' is not an ISO date")
+        if event.get("country") not in ("US", "CA", "MX"):
+            errors.append(f"{prefix}: country '{event.get('country', '')}' not in ['US', 'CA', 'MX']")
+        if not str(event.get("headline", "")).strip():
+            errors.append(f"{prefix}: headline is required but empty")
+        oid = event.get("obligation_id")
+        if oid and oid not in obligation_ids:
+            errors.append(f"{prefix}: obligation_id '{oid}' is not a known obligation")
+
+    warning_letters = load_json(WARNING_LETTERS_PATH)
+    if not str(warning_letters.get("database_url", "")).strip():
+        errors.append("warning-letters: database_url is required but empty")
+    for index, theme in enumerate(warning_letters.get("themes", []), start=1):
+        prefix = f"warning-letter theme {index}"
+        for field in ("theme", "what_triggers", "beverage_note"):
+            if not str(theme.get(field, "")).strip():
+                errors.append(f"{prefix}: field '{field}' is required but empty")
+
+    return errors
+
+
 def validate() -> int:
     schema = load_json(SCHEMA_PATH)
     delimiter = schema.get("list_delimiter", ";")
@@ -168,6 +209,8 @@ def validate() -> int:
         extra = set(row) - set(obligation_fields)
         if extra:
             errors.append(f"{prefix}: unexpected columns {sorted(extra)}")
+
+    errors += validate_extras({row["obligation_id"] for row in obligations})
 
     for error in errors:
         print(f"ERROR {error}")
@@ -563,6 +606,18 @@ def beverage_cmd(args: argparse.Namespace) -> int:
     return 0
 
 
+def briefing_cmd(args: argparse.Namespace) -> int:
+    obligations, _, _, impacts, _ = _impacts()
+    detail = load_json(DETAIL_PATH)["detail"]
+    changelog = load_json(CHANGELOG_PATH)
+    warning_letters = load_json(WARNING_LETTERS_PATH)
+    text = regwatch_briefing.build_briefing(
+        obligations, detail, changelog, warning_letters, impacts, dt.date.today(), recent_count=args.recent
+    )
+    write_output(text, args.out, "briefing")
+    return 0
+
+
 def brief_cmd(args: argparse.Namespace) -> int:
     obligations, portfolio, products, impacts, delimiter = _impacts()
     company = portfolio["company"]
@@ -658,6 +713,10 @@ def main(argv: list[str]) -> int:
 
     sub.add_parser("beverage", help="beverage-category lens over the impacts")
 
+    p_briefing = sub.add_parser("briefing", help="render the human-readable FDA beverage briefing (what happened / means / do)")
+    p_briefing.add_argument("--out", help="write markdown to this path instead of stdout")
+    p_briefing.add_argument("--recent", type=int, default=8, help="number of recent change-log events to show")
+
     p_brief = sub.add_parser("brief", help="render a synthesized daily or weekly brief in every output format")
     p_brief.add_argument("--cadence", choices=["daily", "weekly"], default="weekly")
     p_brief.add_argument("--out-dir", default=".", help="directory for the rendered files")
@@ -676,6 +735,7 @@ def main(argv: list[str]) -> int:
         "portfolio": lambda: portfolio_cmd(args),
         "impact": lambda: impact_cmd(args),
         "beverage": lambda: beverage_cmd(args),
+        "briefing": lambda: briefing_cmd(args),
         "brief": lambda: brief_cmd(args),
     }
     return dispatch[args.command]()
