@@ -18,3 +18,7 @@ docs/passoffs/*.tmp
 _*/
 # Raw download bundles; source PDFs are extracted and tracked individually
 *.zip
+
+# regwatch: analyst-captured source snapshots are local fixtures, not tracked
+regwatch/state/snapshots/*
+!regwatch/state/snapshots/.gitkeep

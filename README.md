@@ -21,7 +21,8 @@ make test
 ├── .github/          CI workflow templates
 ├── agents/           Shared and generated agent definitions
 ├── docs/             Plans, passoffs, and reference material
-├── scripts/          Project maintenance scripts
+├── regwatch/         Regulatory watch-list register, source catalog, and state
+├── scripts/          Project maintenance scripts and the regwatch engine
 ├── CLAUDE.md         Claude Code project instructions
 ├── Makefile          Validation and strip targets
 └── project.yml       Project identity manifest

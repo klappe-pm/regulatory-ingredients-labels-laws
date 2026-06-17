@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0",
+  "description": "Validation schema for the regulatory watch-list data model. Consumed by scripts/regwatch.py. One obligation row equals one distinct legal obligation in one jurisdiction.",
+  "list_delimiter": ";",
+  "obligation_fields": {
+    "obligation_id": {"required": true, "unique": true, "pattern": "^[a-z0-9-]+$"},
+    "country": {"required": true, "enum": ["US", "CA", "MX"]},
+    "jurisdiction_level": {"required": true, "enum": ["federal", "state", "provincial", "national"]},
+    "jurisdiction": {"required": true},
+    "instrument": {"required": true, "enum": ["statute", "bill", "final-rule", "proposed-rule", "guidance", "definition", "list", "program", "waiver"]},
+    "citation": {"required": false},
+    "title": {"required": true},
+    "ingredient_functions": {"required": false, "list": true, "ref": "functions"},
+    "ingredients": {"required": false, "list": true},
+    "claims_affected": {"required": false, "list": true},
+    "product_scope": {"required": false, "list": true},
+    "status": {"required": true, "enum": ["enacted", "proposed", "finalized", "voluntary", "in-progress", "monitoring"]},
+    "effective_date": {"required": false, "type": "date-or-empty"},
+    "key_date_note": {"required": false},
+    "source_id": {"required": true, "ref": "sources"},
+    "source_url": {"required": false, "type": "url-or-empty"},
+    "last_reviewed": {"required": true, "type": "date"},
+    "confidence": {"required": true, "enum": ["high", "medium", "low", "secondary-digest"]},
+    "notes": {"required": false}
+  },
+  "source_fields": {
+    "source_id": {"required": true, "unique": true, "pattern": "^[a-z0-9-]+$"},
+    "country": {"required": true, "enum": ["US", "CA", "MX"]},
+    "jurisdiction": {"required": true},
+    "name": {"required": true},
+    "url": {"required": true},
+    "method": {"required": true, "enum": ["poll", "subscribe"]},
+    "mechanism": {"required": true, "enum": ["api", "rss", "html", "email-list", "manual"]},
+    "cadence": {"required": true},
+    "notes": {"required": false}
+  },
+  "function_fields": {
+    "function_id": {"required": true, "unique": true, "pattern": "^[a-z0-9-]+$"},
+    "label": {"required": true},
+    "definition": {"required": true},
+    "examples": {"required": false, "list": true}
+  }
+}

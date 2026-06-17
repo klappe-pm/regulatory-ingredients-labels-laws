@@ -1,0 +1,60 @@
+{
+  "version": "0.1.0",
+  "description": "Ingredient-function map. Obligations are tagged by what an ingredient does, not only its name, so a ban on a function (for example synthetic color) resolves to every affected product in one query even when statutes name ingredients individually.",
+  "functions": [
+    {
+      "function_id": "color",
+      "label": "Color",
+      "definition": "Adds or modifies color. Synthetic FD&C dyes are the most heavily targeted function across both federal phase-out and state school-food bans.",
+      "examples": ["Red No. 3", "Red 40", "Yellow 5", "Yellow 6", "Blue 1", "Blue 2", "Green 3", "Titanium Dioxide"]
+    },
+    {
+      "function_id": "sweetener",
+      "label": "Sweetener",
+      "definition": "Provides sweetness, caloric or non-nutritive. Added sugar drives front-of-package and SNAP exposure; non-nutritive sweeteners drive UPF definitions and labeling challenges.",
+      "examples": ["Sucralose", "Aspartame", "Allulose", "Monk Fruit", "Stevia", "High Fructose Corn Syrup"]
+    },
+    {
+      "function_id": "preservative",
+      "label": "Preservative",
+      "definition": "Extends shelf life or prevents spoilage. Early GRAS re-review targets sit here.",
+      "examples": ["BHA", "BHT"]
+    },
+    {
+      "function_id": "emulsifier",
+      "label": "Emulsifier",
+      "definition": "Keeps otherwise separating components mixed. Relevant to flavored and citrus beverages.",
+      "examples": ["Brominated Vegetable Oil", "Carrageenan"]
+    },
+    {
+      "function_id": "flavor",
+      "label": "Flavor",
+      "definition": "Provides or modifies taste and aroma. Some flavor carriers and components appear on state target lists.",
+      "examples": ["Vanillin", "Diacetyl"]
+    },
+    {
+      "function_id": "stimulant",
+      "label": "Stimulant",
+      "definition": "Provides a functional stimulant effect. Drives caffeine labeling and supplemented-foods caution requirements.",
+      "examples": ["Caffeine"]
+    },
+    {
+      "function_id": "contaminant",
+      "label": "Contaminant",
+      "definition": "Not added intentionally but present as a trace. Drives Proposition 65 warning exposure through ingredients such as botanicals, colors, and concentrates.",
+      "examples": ["Lead", "Cadmium", "Arsenic", "Mercury", "Acrylamide"]
+    },
+    {
+      "function_id": "additive",
+      "label": "Additive",
+      "definition": "General functional additive not captured by a more specific function. Used for GRAS-pathway and state GRAS-reporting obligations.",
+      "examples": []
+    },
+    {
+      "function_id": "dough-conditioner",
+      "label": "Dough Conditioner",
+      "definition": "Strengthens or bleaches dough. Named in ingredient bans even though it is rare in beverages.",
+      "examples": ["Potassium Bromate"]
+    }
+  ]
+}
