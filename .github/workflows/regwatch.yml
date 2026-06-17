@@ -1,4 +1,4 @@
-name: regwatch
+name: regwatch-weekly
 
 on:
   schedule:
@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  watch:
+  weekly:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,12 +27,12 @@ jobs:
             regwatch-seen-
       - name: Scan sources and accept new baseline
         run: python3 scripts/regwatch.py scan --live --update
-      - name: Render analyst report
-        run: python3 scripts/regwatch.py report --window 365 --out regwatch-report.md --json regwatch-report.json
-      - name: Upload report
+      - name: Render the change-and-due report
+        run: python3 scripts/regwatch.py report --window 365 --out out/regwatch-report.md --json out/regwatch-report.json
+      - name: Render the weekly brief in every format
+        run: python3 scripts/regwatch.py brief --cadence weekly --out-dir out
+      - name: Upload weekly outputs
         uses: actions/upload-artifact@v4
         with:
-          name: regwatch-report
-          path: |
-            regwatch-report.md
-            regwatch-report.json
+          name: regwatch-weekly
+          path: out/

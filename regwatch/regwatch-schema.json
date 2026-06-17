@@ -47,5 +47,16 @@
     "name": {"required": true},
     "coverage": {"required": true, "enum": ["confirmed", "tracked", "aggregate"]},
     "notes": {"required": false}
+  },
+  "portfolio_fields": {
+    "product_id": {"required": true, "unique": true, "pattern": "^[a-z0-9-]+$"},
+    "name": {"required": true},
+    "category": {"required": false},
+    "ingredient_functions": {"required": false, "list": true, "ref": "functions"},
+    "ingredients": {"required": false, "list": true},
+    "claims": {"required": false, "list": true},
+    "channels": {"required": true, "list": true, "ref": "channels"},
+    "confidence": {"required": true, "enum": ["internal-model", "confirmed", "secondary-digest"]},
+    "notes": {"required": false}
   }
 }

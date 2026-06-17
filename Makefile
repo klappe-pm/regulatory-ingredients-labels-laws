@@ -1,7 +1,7 @@
 ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 PYTHON ?= python3
 
-.PHONY: help doctor audit audit-strict regwatch-validate rebuild-agents test strip-agents strip-hooks strip-specs
+.PHONY: help doctor audit audit-strict regwatch-validate regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs
 
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
@@ -11,7 +11,7 @@ AUDIT_DOCS := \
 	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
 
 help:
-	@printf 'targets: doctor audit audit-strict regwatch-validate rebuild-agents test strip-agents strip-hooks strip-specs\n'
+	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs\n'
 
 doctor:
 	@test -f "$(ROOT)/CLAUDE.md"
@@ -28,6 +28,9 @@ audit-strict:
 
 regwatch-validate:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" validate
+
+regwatch-brief:
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/docs/reports/regwatch-samples"
 
 rebuild-agents:
 	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents" --tools claude-code

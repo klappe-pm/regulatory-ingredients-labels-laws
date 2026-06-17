@@ -145,6 +145,39 @@ python3 scripts/regwatch.py report --out regwatch-report.md --json regwatch-repo
   routes the report as a build artifact. The remaining open choice is the final
   delivery channel and cadence beyond the artifact default.
 
+## Feedback Loops, Impact, and Synthesis
+
+A second build layer turns detection into delivered analysis on a cadence.
+
+- **Update loops.** Two scheduled workflows close the loop. The daily workflow
+  (`.github/workflows/regwatch-daily.yml`) scans for change and renders the
+  daily brief; the weekly workflow (`.github/workflows/regwatch.yml`) runs the
+  weekly scan plus the full synthesized brief. Both persist last-seen state
+  through the Actions cache and upload outputs as artifacts.
+- **Content abstraction and synthesis.** `scripts/regwatch_synthesis.py`
+  abstracts raw register rows, scan deltas, and impact scores into one document
+  model. The daily brief is short and change-driven; the weekly synthesis is a
+  full executive summary, coming-due list, per-product impact, beverage lens,
+  and recommended actions.
+- **CPG impact suite.** `scripts/regwatch_impact.py` joins each obligation to
+  the product portfolio on three gates — jurisdiction or channel reach,
+  school/SNAP scope, and an attribute match on ingredient function, named
+  ingredient, or claim — and scores severity (act-now, high, watch, info), with
+  a direct named-ingredient match weighted above a function-only match.
+- **Beverage component.** The same module applies a category lens over the
+  impacts (sweeteners and added sugar, synthetic colors, caffeine, preservatives
+  and GRAS, Proposition 65), naming affected products only where a product
+  actually carries the theme's function.
+- **Talking Rain connection.** `regwatch/regwatch-talking-rain.json` models the
+  portfolio (products, ingredient functions, claims, sales channels) that every
+  impact maps onto. Product attributes are an internal model flagged for
+  confirmation against current specifications.
+- **Outputs.** `scripts/regwatch_render.py` renders the synthesized model into
+  the requested formats: a Word document (`.docx`, built directly as a
+  WordprocessingML zip with no third-party dependency), an email newsletter
+  (HTML plus a plain-text alternative), and a web posting (markdown with front
+  matter). Committed samples live in `docs/reports/regwatch-samples/`.
+
 ## Verification
 
 - `make regwatch-validate` passes (also runs in CI and in `make test`).

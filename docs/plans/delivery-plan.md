@@ -131,6 +131,12 @@ routes the report as an artifact. Validation runs in CI via
 `make regwatch-validate`. Remaining work is analyst confirmation of rows against
 primary source text and the final delivery channel.
 
+A second layer adds daily and weekly update loops, a CPG impact suite that maps
+obligations onto a Talking Rain portfolio model, a beverage analytical lens, and
+a synthesis engine that renders the result as a Word document, an email
+newsletter, and a web posting. Sample outputs live in
+`docs/reports/regwatch-samples/`.
+
 ## Phase 0 — Scaffold Reconciliation
 
 Bring the repo into conformance before further build. Each item is a discrete,

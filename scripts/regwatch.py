@@ -31,6 +31,10 @@ import re
 import sys
 import urllib.request
 
+import regwatch_impact
+import regwatch_render
+import regwatch_synthesis
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "regwatch"
 SCHEMA_PATH = DATA_DIR / "regwatch-schema.json"
@@ -38,6 +42,7 @@ OBLIGATIONS_PATH = DATA_DIR / "regwatch-obligations.csv"
 SOURCES_PATH = DATA_DIR / "regwatch-sources.json"
 FUNCTIONS_PATH = DATA_DIR / "regwatch-ingredient-functions.json"
 JURISDICTIONS_PATH = DATA_DIR / "regwatch-jurisdictions.json"
+PORTFOLIO_PATH = DATA_DIR / "regwatch-talking-rain.json"
 STATE_DIR = DATA_DIR / "state"
 SEEN_PATH = STATE_DIR / "regwatch-seen.json"
 SNAPSHOT_DIR = STATE_DIR / "snapshots"
@@ -125,18 +130,28 @@ def validate() -> int:
     sources = load_json(SOURCES_PATH)["sources"]
     functions = load_json(FUNCTIONS_PATH)["functions"]
     jurisdictions = load_json(JURISDICTIONS_PATH)["jurisdictions"]
+    portfolio = load_json(PORTFOLIO_PATH)
+    products = portfolio["products"]
     obligations = load_obligations()
 
     refs = {
         "sources": {s["source_id"] for s in sources},
         "functions": {f["function_id"] for f in functions},
         "jurisdictions": {j["jurisdiction_id"] for j in jurisdictions},
+        "channels": set(portfolio.get("channels", [])),
     }
 
     errors: list[str] = []
     errors += check_catalog("jurisdictions", jurisdictions, schema["jurisdiction_fields"], refs, delimiter)
     errors += check_catalog("sources", sources, schema["source_fields"], refs, delimiter)
     errors += check_catalog("functions", functions, schema["function_fields"], refs, delimiter)
+    # Portfolio list fields are JSON arrays; flatten to delimited strings so the
+    # shared catalog checker can validate them the same way as the CSV register.
+    product_rows = [
+        {k: (delimiter.join(v) if isinstance(v, list) else ("" if v is None else str(v))) for k, v in product.items()}
+        for product in products
+    ]
+    errors += check_catalog("portfolio", product_rows, schema["portfolio_fields"], refs, delimiter)
 
     obligation_fields = schema["obligation_fields"]
     seen_ids: set[str] = set()
@@ -158,7 +173,8 @@ def validate() -> int:
         print(f"ERROR {error}")
     print(
         f"regwatch validate: {len(obligations)} obligations, {len(sources)} sources, "
-        f"{len(functions)} functions, {len(jurisdictions)} jurisdictions; errors={len(errors)}"
+        f"{len(functions)} functions, {len(jurisdictions)} jurisdictions, "
+        f"{len(products)} products; errors={len(errors)}"
     )
     return 1 if errors else 0
 
@@ -486,6 +502,116 @@ def write_output(text: str, out: str | None, label: str) -> None:
         sys.stdout.write(text)
 
 
+# --- portfolio, impact, and synthesized briefs -----------------------------
+
+
+def _delimiter() -> str:
+    return load_json(SCHEMA_PATH).get("list_delimiter", ";")
+
+
+def _impacts():
+    delimiter = _delimiter()
+    obligations = load_obligations()
+    portfolio = load_json(PORTFOLIO_PATH)
+    products = portfolio["products"]
+    impacts = regwatch_impact.assess_impacts(obligations, products, delimiter)
+    return obligations, portfolio, products, impacts, delimiter
+
+
+def portfolio_cmd(args: argparse.Namespace) -> int:
+    portfolio = load_json(PORTFOLIO_PATH)
+    for product in portfolio["products"]:
+        functions = ", ".join(product.get("ingredient_functions", [])) or "-"
+        channels = ", ".join(product.get("channels", []))
+        print(f"{product['product_id']:<28} {product['name']}")
+        print(f"{'':<28} functions: {functions}; channels: {channels}")
+    print(f"regwatch portfolio: {portfolio['company']}, {len(portfolio['products'])} products")
+    return 0
+
+
+def impact_cmd(args: argparse.Namespace) -> int:
+    _, _, products, impacts, _ = _impacts()
+    if args.product:
+        impacts = [i for i in impacts if i["product_id"] == args.product]
+    if args.severity:
+        impacts = [i for i in impacts if i["severity"] == args.severity]
+    for impact in impacts:
+        date = impact["effective_date"] or "no date"
+        print(f"{impact['severity']:<8} {impact['product_id']:<28} {impact['jurisdiction']:<14} {date:<11} {impact['obligation_title']}")
+        print(f"{'':<8} {'; '.join(impact['reasons'])}")
+    print(f"regwatch impact: {len(impacts)} impacts across {len(products)} products")
+    return 0
+
+
+def beverage_cmd(args: argparse.Namespace) -> int:
+    obligations, _, _, impacts, delimiter = _impacts()
+    findings = regwatch_impact.beverage_findings(obligations, impacts, products, delimiter)
+    for finding in findings:
+        print(f"## {finding['title']}")
+        print(finding["why"])
+        if finding["affected_products"]:
+            print("Affected products: " + ", ".join(finding["affected_products"]))
+        if finding["obligations"]:
+            print("Related obligations: " + ", ".join(finding["obligations"]))
+        print("Action: " + finding["action"])
+        print()
+    print(f"regwatch beverage: {len(findings)} findings")
+    return 0
+
+
+def brief_cmd(args: argparse.Namespace) -> int:
+    obligations, portfolio, products, impacts, delimiter = _impacts()
+    company = portfolio["company"]
+    today = dt.date.today()
+
+    if args.cadence == "daily":
+        sources = load_json(SOURCES_PATH)["sources"]
+        seen = load_json(SEEN_PATH) if SEEN_PATH.exists() else {}
+        scan_results = compute_scan(sources, seen, args.live)
+        doc = regwatch_synthesis.daily_brief(company, scan_results, obligations, impacts, today)
+        stem = "regwatch-daily-brief"
+        tags = ["regulatory", "daily", "beverage"]
+    else:
+        jurisdictions = load_json(JURISDICTIONS_PATH)["jurisdictions"]
+        confirmed = sum(1 for j in jurisdictions if j["coverage"] == "confirmed")
+        findings = regwatch_impact.beverage_findings(obligations, impacts, products, delimiter)
+        doc = regwatch_synthesis.weekly_synthesis(
+            company, obligations, impacts, findings, products, len(jurisdictions), confirmed, today
+        )
+        stem = "regwatch-weekly-brief"
+        tags = ["regulatory", "weekly", "beverage", "talking-rain"]
+
+    formats = {f.strip() for f in args.formats.split(",")} if args.formats else {"docx", "newsletter", "web", "md"}
+    out_dir = pathlib.Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    subject = doc["title"]
+    written: list[str] = []
+
+    if "md" in formats:
+        path = out_dir / f"{stem}.md"
+        path.write_text(regwatch_render.render_markdown(doc), encoding="utf-8")
+        written.append(str(path))
+    if "docx" in formats:
+        path = out_dir / f"{stem}.docx"
+        regwatch_render.write_docx(str(path), doc)
+        written.append(str(path))
+    if "newsletter" in formats:
+        html_path = out_dir / f"{stem}-newsletter.html"
+        txt_path = out_dir / f"{stem}-newsletter.txt"
+        html_path.write_text(regwatch_render.render_newsletter_html(doc, subject), encoding="utf-8")
+        txt_path.write_text(regwatch_render.render_newsletter_text(doc), encoding="utf-8")
+        written += [str(html_path), str(txt_path)]
+    if "web" in formats:
+        path = out_dir / f"{stem}-webpost.md"
+        path.write_text(regwatch_render.render_webpost(doc, tags), encoding="utf-8")
+        written.append(str(path))
+
+    for path in written:
+        print(f"wrote {path}")
+    print(f"regwatch brief: {args.cadence}; {len(doc['sections'])} sections; {len(written)} files")
+    return 0
+
+
 # --- cli -------------------------------------------------------------------
 
 
@@ -520,6 +646,20 @@ def main(argv: list[str]) -> int:
     p_report.add_argument("--out", help="write markdown to this path instead of stdout")
     p_report.add_argument("--json", help="also write the machine-readable report to this path")
 
+    sub.add_parser("portfolio", help="list the Talking Rain product portfolio")
+
+    p_impact = sub.add_parser("impact", help="assess obligation impact on the product portfolio (CPG suite)")
+    p_impact.add_argument("--product", help="filter to one product_id")
+    p_impact.add_argument("--severity", choices=["act-now", "high", "watch", "info"])
+
+    sub.add_parser("beverage", help="beverage-category lens over the impacts")
+
+    p_brief = sub.add_parser("brief", help="render a synthesized daily or weekly brief in every output format")
+    p_brief.add_argument("--cadence", choices=["daily", "weekly"], default="weekly")
+    p_brief.add_argument("--out-dir", default=".", help="directory for the rendered files")
+    p_brief.add_argument("--formats", help="comma list of docx,newsletter,web,md (default all)")
+    p_brief.add_argument("--live", action="store_true", help="daily cadence: re-fetch sources for change detection")
+
     args = parser.parse_args(argv)
     dispatch = {
         "validate": lambda: validate(),
@@ -529,6 +669,10 @@ def main(argv: list[str]) -> int:
         "scan": lambda: scan(args),
         "digest": lambda: digest(args),
         "report": lambda: report(args),
+        "portfolio": lambda: portfolio_cmd(args),
+        "impact": lambda: impact_cmd(args),
+        "beverage": lambda: beverage_cmd(args),
+        "brief": lambda: brief_cmd(args),
     }
     return dispatch[args.command]()
 
