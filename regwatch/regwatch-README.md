@@ -37,8 +37,21 @@ python3 scripts/regwatch.py impact --severity act-now      # CPG impact analysis
 python3 scripts/regwatch.py beverage                       # beverage-category lens over the impacts
 python3 scripts/regwatch.py brief --cadence weekly --out-dir out   # synthesized brief in every format
 python3 scripts/regwatch.py brief --cadence daily --out-dir out    # short daily change brief
+python3 scripts/regwatch.py ingest --live --since 365              # pull recent FDA Federal Register docs
 python3 scripts/regwatch.py briefing --out briefing.md             # human-readable FDA beverage briefing
 ```
+
+## Live Ingestion
+
+`ingest` pulls recent FDA documents from the Federal Register API, filters to
+the ones relevant to beverages (by CFR part and keyword), and writes candidate
+change-log events to `state/regwatch-ingest-candidates.json`, each flagged
+`unconfirmed` with the document type, source backlink, and the CFR references the
+API itself reports. Candidates are surfaced in the briefing under a "Newly
+Detected — Unconfirmed" section; a human confirms and promotes them into
+`regwatch-changelog.json` before any compliance use. Offline, `ingest` degrades
+gracefully (no network, no candidates); `--from-file` parses a saved response.
+The daily and weekly loops run `ingest --live` before rendering.
 
 ## The Briefing
 

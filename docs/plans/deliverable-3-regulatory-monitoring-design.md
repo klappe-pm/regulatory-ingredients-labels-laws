@@ -198,6 +198,19 @@ Each finding is written as What Happened, What It Means, and What We Need To Do,
 with CFR and source backlinks. The sidecars are validated by
 `make regwatch-validate`.
 
+## Live Ingestion From the Federal Register
+
+`scripts/regwatch_ingest.py` and the `ingest` command pull recent FDA documents
+from the Federal Register API, filter to the beverage-relevant ones by CFR part
+and keyword, and write candidate change-log events to
+`state/regwatch-ingest-candidates.json`. Each candidate carries the document
+type, the source backlink, and the CFR references the API itself reports, so CFR
+tagging is sourced rather than guessed. Candidates are flagged `unconfirmed` and
+surfaced in the briefing under a dedicated section; a human confirms and promotes
+them into the curated change log before any compliance use, preserving the
+human-in-the-loop posture. The daily and weekly loops run `ingest --live` before
+rendering; offline, ingestion degrades to no candidates.
+
 ## Verification
 
 - `make regwatch-validate` passes (also runs in CI and in `make test`).
