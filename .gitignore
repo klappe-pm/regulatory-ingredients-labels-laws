@@ -22,3 +22,6 @@ _*/
 # regwatch: analyst-captured source snapshots are local fixtures, not tracked
 regwatch/state/snapshots/*
 !regwatch/state/snapshots/.gitkeep
+
+# regwatch: live-ingest candidates are generated each run, not tracked
+regwatch/state/regwatch-ingest-candidates.json

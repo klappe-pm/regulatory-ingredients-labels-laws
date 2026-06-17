@@ -33,6 +33,7 @@ import urllib.request
 
 import regwatch_briefing
 import regwatch_impact
+import regwatch_ingest
 import regwatch_render
 import regwatch_synthesis
 
@@ -50,6 +51,7 @@ WARNING_LETTERS_PATH = DATA_DIR / "regwatch-warning-letters.json"
 STATE_DIR = DATA_DIR / "state"
 SEEN_PATH = STATE_DIR / "regwatch-seen.json"
 SNAPSHOT_DIR = STATE_DIR / "snapshots"
+CANDIDATES_PATH = STATE_DIR / "regwatch-ingest-candidates.json"
 
 TAG_RE = re.compile(r"(?s)<[^>]+>")
 SCRIPT_STYLE_RE = re.compile(r"(?is)<(script|style)\b.*?</\1>")
@@ -606,13 +608,53 @@ def beverage_cmd(args: argparse.Namespace) -> int:
     return 0
 
 
+def ingest_cmd(args: argparse.Namespace) -> int:
+    """Pull recent FDA documents from the Federal Register into unconfirmed candidates."""
+    today = dt.date.today()
+    since = (today - dt.timedelta(days=args.since)).isoformat()
+
+    json_text: str | None = None
+    origin = "none"
+    if args.from_file:
+        json_text = pathlib.Path(args.from_file).read_text(encoding="utf-8")
+        origin = "file"
+    elif args.live:
+        url = regwatch_ingest.build_query_url(since)
+        try:
+            json_text = http_get(url)
+            origin = "live"
+        except Exception as exc:  # network is best-effort
+            print(f"WARN  ingest: live fetch failed: {exc}")
+
+    if json_text is None:
+        candidates: list[dict] = []
+        print("regwatch ingest: no source data (use --live or --from-file); wrote 0 candidates")
+    else:
+        candidates = regwatch_ingest.parse_candidates(json_text, today)
+        print(f"regwatch ingest: {len(candidates)} candidate events from {origin} (since {since})")
+
+    document = regwatch_ingest.candidates_document(candidates, today, origin)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    CANDIDATES_PATH.write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
+    print(f"regwatch ingest: wrote {CANDIDATES_PATH.relative_to(ROOT)} (flagged unconfirmed for review)")
+    return 0
+
+
 def briefing_cmd(args: argparse.Namespace) -> int:
     obligations, _, _, impacts, _ = _impacts()
     detail = load_json(DETAIL_PATH)["detail"]
     changelog = load_json(CHANGELOG_PATH)
     warning_letters = load_json(WARNING_LETTERS_PATH)
+    candidates = load_json(CANDIDATES_PATH).get("candidates", []) if CANDIDATES_PATH.exists() else []
     text = regwatch_briefing.build_briefing(
-        obligations, detail, changelog, warning_letters, impacts, dt.date.today(), recent_count=args.recent
+        obligations,
+        detail,
+        changelog,
+        warning_letters,
+        impacts,
+        dt.date.today(),
+        recent_count=args.recent,
+        candidates=candidates,
     )
     write_output(text, args.out, "briefing")
     return 0
@@ -713,6 +755,11 @@ def main(argv: list[str]) -> int:
 
     sub.add_parser("beverage", help="beverage-category lens over the impacts")
 
+    p_ingest = sub.add_parser("ingest", help="pull recent FDA Federal Register documents into unconfirmed candidates")
+    p_ingest.add_argument("--live", action="store_true", help="fetch the Federal Register API")
+    p_ingest.add_argument("--from-file", help="parse a saved API response instead of fetching")
+    p_ingest.add_argument("--since", type=int, default=365, help="look back this many days")
+
     p_briefing = sub.add_parser("briefing", help="render the human-readable FDA beverage briefing (what happened / means / do)")
     p_briefing.add_argument("--out", help="write markdown to this path instead of stdout")
     p_briefing.add_argument("--recent", type=int, default=8, help="number of recent change-log events to show")
@@ -735,6 +782,7 @@ def main(argv: list[str]) -> int:
         "portfolio": lambda: portfolio_cmd(args),
         "impact": lambda: impact_cmd(args),
         "beverage": lambda: beverage_cmd(args),
+        "ingest": lambda: ingest_cmd(args),
         "briefing": lambda: briefing_cmd(args),
         "brief": lambda: brief_cmd(args),
     }

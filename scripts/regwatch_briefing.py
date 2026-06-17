@@ -72,6 +72,7 @@ def build_briefing(
     impacts: list[dict],
     today: dt.date,
     recent_count: int = 8,
+    candidates: list[dict] | None = None,
 ) -> str:
     impacts_by_ob = _impacts_by_obligation(impacts)
     by_id = {ob["obligation_id"]: ob for ob in obligations}
@@ -114,6 +115,30 @@ def build_briefing(
             out.append("")
         out.append(f"**Source.** [{event['agency']} — {event['country']}]({event['source_url']})")
         out.append("")
+
+    # Live, unconfirmed detections from the Federal Register feed.
+    candidates = candidates or []
+    if candidates:
+        out.append("## Newly Detected — Unconfirmed (Federal Register Feed)")
+        out.append("")
+        out.append(
+            f"{len(candidates)} item(s) pulled from the live Federal Register feed and flagged for "
+            "analyst confirmation. These are not yet promoted into the curated change log; confirm each "
+            "against the source before acting."
+        )
+        out.append("")
+        for candidate in candidates[:recent_count]:
+            out.append(f"### {candidate.get('date', '')} — {candidate.get('headline', '')}")
+            out.append("")
+            out.append(f"**What happened (unconfirmed).** {candidate.get('what_happened', '')}")
+            out.append("")
+            cfr = _links(candidate.get("cfr", []))
+            if cfr:
+                out.append(f"**CFR (from the feed).** {cfr}")
+                out.append("")
+            if candidate.get("source_url"):
+                out.append(f"**Source.** [Federal Register {candidate.get('document_number', '')}]({candidate['source_url']})")
+                out.append("")
 
     # United States: FDA first, then a condensed California subsection.
     out.append("## United States — FDA Food Safety (Beverage Focus)")
