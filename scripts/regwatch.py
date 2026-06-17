@@ -487,7 +487,9 @@ def report(args: argparse.Namespace) -> int:
 
     write_output("\n".join(lines).rstrip() + "\n", args.out, "report")
     if args.json:
-        pathlib.Path(args.json).write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        json_path = pathlib.Path(args.json)
+        json_path.parent.mkdir(parents=True, exist_ok=True)
+        json_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
         print(f"regwatch report: wrote {args.json}")
     if flagged:
         print(f"regwatch report: {len(flagged)} source change(s) flagged for review")
@@ -496,7 +498,9 @@ def report(args: argparse.Namespace) -> int:
 
 def write_output(text: str, out: str | None, label: str) -> None:
     if out:
-        pathlib.Path(out).write_text(text, encoding="utf-8")
+        path = pathlib.Path(out)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
         print(f"regwatch {label}: wrote {out}")
     else:
         sys.stdout.write(text)
@@ -544,7 +548,7 @@ def impact_cmd(args: argparse.Namespace) -> int:
 
 
 def beverage_cmd(args: argparse.Namespace) -> int:
-    obligations, _, _, impacts, delimiter = _impacts()
+    obligations, _, products, impacts, delimiter = _impacts()
     findings = regwatch_impact.beverage_findings(obligations, impacts, products, delimiter)
     for finding in findings:
         print(f"## {finding['title']}")

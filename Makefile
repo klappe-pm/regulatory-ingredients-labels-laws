@@ -1,7 +1,7 @@
 ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 PYTHON ?= python3
 
-.PHONY: help doctor audit audit-strict regwatch-validate regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs
+.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs
 
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
@@ -11,7 +11,7 @@ AUDIT_DOCS := \
 	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
 
 help:
-	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs\n'
+	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief rebuild-agents test strip-agents strip-hooks strip-specs\n'
 
 doctor:
 	@test -f "$(ROOT)/CLAUDE.md"
@@ -29,13 +29,26 @@ audit-strict:
 regwatch-validate:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" validate
 
+regwatch-smoke:
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" validate >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" coverage >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" portfolio >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" impact >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" beverage >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" list --upcoming 365 >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" scan >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" report --out "$(ROOT)/build/regwatch-report.md" --json "$(ROOT)/build/regwatch-report.json" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence daily --out-dir "$(ROOT)/build/regwatch-smoke" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/build/regwatch-smoke" >/dev/null
+	@printf 'regwatch-smoke: passed\n'
+
 regwatch-brief:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/docs/reports/regwatch-samples"
 
 rebuild-agents:
 	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents" --tools claude-code
 
-test: doctor audit-strict regwatch-validate
+test: doctor audit-strict regwatch-validate regwatch-smoke
 	@printf 'test: passed\n'
 
 strip-agents:
