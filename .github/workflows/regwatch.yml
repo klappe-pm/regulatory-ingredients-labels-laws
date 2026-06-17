@@ -1,0 +1,38 @@
+name: regwatch
+
+on:
+  schedule:
+    - cron: "17 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate the register
+        run: make regwatch-validate
+      - name: Restore last-seen state
+        uses: actions/cache@v4
+        with:
+          path: regwatch/state/regwatch-seen.json
+          key: regwatch-seen-${{ github.run_id }}
+          restore-keys: |
+            regwatch-seen-
+      - name: Scan sources and accept new baseline
+        run: python3 scripts/regwatch.py scan --live --update
+      - name: Render analyst report
+        run: python3 scripts/regwatch.py report --window 365 --out regwatch-report.md --json regwatch-report.json
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: regwatch-report
+          path: |
+            regwatch-report.md
+            regwatch-report.json

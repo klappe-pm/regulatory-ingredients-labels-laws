@@ -50,9 +50,13 @@ UI, and it does not auto-edit the register.
 - A source catalog of authoritative feeds at `regwatch/regwatch-sources.json`.
 - An ingredient-function map at `regwatch/regwatch-ingredient-functions.json`,
   so a ban on a function resolves to every affected product.
-- A validation schema at `regwatch/regwatch-schema.json`.
-- A standard-library engine at `scripts/regwatch.py` with `validate`, `list`,
-  `scan`, and `digest` commands.
+- A jurisdiction catalog at `regwatch/regwatch-jurisdictions.json` enumerating US
+  federal, all 50 states plus DC, an aggregate marker, Canada, and Mexico.
+- A validation schema at `regwatch/regwatch-schema.json` enforcing required-ness,
+  enums, patterns, and cross-file references.
+- A standard-library engine at `scripts/regwatch.py` with `validate`,
+  `coverage`, `list`, `capture`, `scan`, `digest`, and `report` commands.
+- A scheduled automation at `.github/workflows/regwatch.yml`.
 
 ## The Data Model
 
@@ -70,10 +74,14 @@ Key fields: `obligation_id` (stable slug), `country` (US, CA, MX),
 Two modeling choices carry weight. Obligations are tagged by ingredient
 function, not only by name, because statutes name ingredients individually but a
 business needs to find every product exposed to a function in one query. And the
-50-state patchwork starts as aggregate `monitoring` rows
-(`us-multistate-*`) that are promoted into per-state rows as individual bills are
-confirmed, so the register is honest about what is verified versus what is
-merely tracked.
+50-state patchwork is enumerated in the jurisdiction catalog with a `coverage`
+status per jurisdiction: `confirmed` jurisdictions have their own obligation
+rows, `tracked` jurisdictions are watched only through an aggregate multistate
+row, and the `aggregate` marker is that row itself. Confirmed states (California
+plus Iowa, Nebraska, Tennessee, New Jersey, New York, West Virginia, and Texas)
+were promoted out of the aggregate as evidence warranted; the rest stay tracked.
+The register is therefore honest about what is verified versus merely watched,
+and the `coverage` command reports the ratio.
 
 ## Source Catalog
 
@@ -86,13 +94,21 @@ through the multistate tracker until a confirmed bill warrants its own row.
 
 ## Change-Detection Mechanics
 
-The `scan` command obtains content for each source, computes a SHA-256 hash, and
-compares it to the last-seen hash in `regwatch/state/regwatch-seen.json`. Each
-source is classified NEW, CHANGED, UNCHANGED, or MISSING. Content is read from an
-analyst-captured snapshot under `regwatch/state/snapshots/` by default, so the
-engine runs and diffs deterministically offline; `--live` fetches the source URL
-when no snapshot exists. The last-seen state is only written when the analyst
-passes `--update`, which is the explicit act of accepting the new baseline.
+The `scan` command obtains content for each source, reduces it to a
+change-relevant signal, computes a SHA-256 hash, and compares it to the
+last-seen hash in `regwatch/state/regwatch-seen.json`. Each source is classified
+NEW, CHANGED, UNCHANGED, or MISSING. Signal extraction is per-source so the hash
+does not churn on markup or unrelated page furniture: the Federal Register API is
+reduced to a sorted list of document identifiers, and HTML is stripped to
+collapsed text. Content is read from an analyst-captured raw snapshot under
+`regwatch/state/snapshots/` by default, so the engine runs and diffs
+deterministically offline; `capture` and `--live` fetch the source URL over
+HTTP. The last-seen state is only written when the analyst passes `--update`,
+which is the explicit act of accepting the new baseline. The `report` command
+combines flagged source changes with obligations coming due into one
+analyst-facing alert in markdown and JSON; `.github/workflows/regwatch.yml` runs
+that on a weekly cadence, persists the last-seen state through the Actions cache,
+and uploads the report as an artifact.
 
 ## Human in the Loop
 
@@ -108,32 +124,40 @@ source text before any label use.
 
 ```bash
 python3 scripts/regwatch.py validate
+python3 scripts/regwatch.py coverage
 python3 scripts/regwatch.py list --upcoming 365
 python3 scripts/regwatch.py list --function color
-python3 scripts/regwatch.py scan --update
-python3 scripts/regwatch.py digest --out docs/reports/regwatch-digest.md
+python3 scripts/regwatch.py capture --source us-fda-federal-register
+python3 scripts/regwatch.py scan --live --update
+python3 scripts/regwatch.py report --out regwatch-report.md --json regwatch-report.json
 ```
 
 ## Phasing and Next Steps
 
-- Phase A, done here: data model, seed register, source catalog, engine.
-- Phase B: capture snapshots or wire `--live` per source, and confirm the
-  secondary-digest rows against primary source text.
-- Phase C: promote aggregate multistate rows into per-state obligations as bills
-  are confirmed, and schedule `scan` on a cadence.
-- Phase D: route the digest to a delivery channel once cadence is decided.
+- Phase A, done: data model, seed register, source catalog, engine.
+- Phase B, done: per-source signal extraction, `capture`, and `--live` fetch.
+  Confirming the secondary-digest rows against primary source text is the
+  remaining analyst task, not an engine task.
+- Phase C, done: the jurisdiction catalog enumerates all 50 states plus Canada
+  and Mexico, evidenced states are promoted to their own rows, and the weekly
+  workflow runs `scan` on a cadence.
+- Phase D, done: `report` surfaces changes and due dates, and the workflow
+  routes the report as a build artifact. The remaining open choice is the final
+  delivery channel and cadence beyond the artifact default.
 
 ## Verification
 
 - `make regwatch-validate` passes (also runs in CI and in `make test`).
 - `make audit-strict` and `make doctor` pass.
 - `scan` correctly reports NEW, then UNCHANGED, then CHANGED across snapshot
-  edits.
+  edits, and the Federal Register signal is order-independent.
+- Schema `pattern` and `enum` rules are enforced on the register and on all
+  three catalogs.
 
 ## Open Items
 
-- Live fetch for html sources will need per-source parsing to reduce noise from
-  unrelated page changes; hashing the whole page is a deliberately blunt first
-  cut.
-- Per-state coverage for all 50 states is modeled but not yet populated row by
-  row.
+- HTML signal extraction is collapsed-text; tightening it to per-source
+  selectors would further cut noise once live feeds are wired.
+- Confirmed-state coverage is 8 of 51 US jurisdictions; the rest stay tracked
+  under the aggregate until evidence promotes them to their own rows.
+- The final delivery channel beyond the artifact default is still open.

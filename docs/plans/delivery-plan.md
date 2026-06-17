@@ -120,11 +120,16 @@ settled in discussion.
 
 ### Status Update (2026-06-17)
 
-The scope questions were answered (see below) and Phase A is built. The data
-model, seed register, source catalog, and change-detection engine now live in
-`regwatch/` and `scripts/regwatch.py`, with the full design in
-`deliverable-3-regulatory-monitoring-design.md`. Validation runs in CI via
-`make regwatch-validate`.
+The scope questions were answered (see below) and Phases A through D are built.
+The data model, seed register, source catalog, jurisdiction catalog (all 50
+states plus Canada and Mexico), and change-detection engine live in `regwatch/`
+and `scripts/regwatch.py`, with the full design in
+`deliverable-3-regulatory-monitoring-design.md`. The engine validates, reports
+coverage, lists, captures snapshots, scans with per-source signal extraction,
+and emits an analyst report. A weekly `regwatch` workflow runs the scan and
+routes the report as an artifact. Validation runs in CI via
+`make regwatch-validate`. Remaining work is analyst confirmation of rows against
+primary source text and the final delivery channel.
 
 ## Phase 0 — Scaffold Reconciliation
 

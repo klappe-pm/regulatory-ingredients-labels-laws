@@ -6,7 +6,7 @@
     "obligation_id": {"required": true, "unique": true, "pattern": "^[a-z0-9-]+$"},
     "country": {"required": true, "enum": ["US", "CA", "MX"]},
     "jurisdiction_level": {"required": true, "enum": ["federal", "state", "provincial", "national"]},
-    "jurisdiction": {"required": true},
+    "jurisdiction": {"required": true, "ref": "jurisdictions"},
     "instrument": {"required": true, "enum": ["statute", "bill", "final-rule", "proposed-rule", "guidance", "definition", "list", "program", "waiver"]},
     "citation": {"required": false},
     "title": {"required": true},
@@ -26,7 +26,7 @@
   "source_fields": {
     "source_id": {"required": true, "unique": true, "pattern": "^[a-z0-9-]+$"},
     "country": {"required": true, "enum": ["US", "CA", "MX"]},
-    "jurisdiction": {"required": true},
+    "jurisdiction": {"required": true, "ref": "jurisdictions"},
     "name": {"required": true},
     "url": {"required": true},
     "method": {"required": true, "enum": ["poll", "subscribe"]},
@@ -39,5 +39,13 @@
     "label": {"required": true},
     "definition": {"required": true},
     "examples": {"required": false, "list": true}
+  },
+  "jurisdiction_fields": {
+    "jurisdiction_id": {"required": true, "unique": true},
+    "country": {"required": true, "enum": ["US", "CA", "MX"]},
+    "level": {"required": true, "enum": ["federal", "state", "provincial", "national", "aggregate"]},
+    "name": {"required": true},
+    "coverage": {"required": true, "enum": ["confirmed", "tracked", "aggregate"]},
+    "notes": {"required": false}
   }
 }
