@@ -43,6 +43,8 @@ regwatch-smoke:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/build/regwatch-smoke" >/dev/null
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" ingest >/dev/null
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/build/regwatch-briefing.md" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v1 --since-days 90 --out "$(ROOT)/build/regwatch-briefing-v1.md" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v2 --since-days 90 --out "$(ROOT)/build/regwatch-briefing-v2.md" >/dev/null
 	@printf 'regwatch-smoke: passed\n'
 
 regwatch-brief:
