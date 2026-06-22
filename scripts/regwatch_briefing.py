@@ -86,6 +86,35 @@ def _upcoming(obligations: list[dict], today: dt.date, horizon_days: int = 540) 
     return sorted(kept, key=lambda ob: ob["effective_date"])
 
 
+def _source_link(info: dict | None, ob: dict) -> str:
+    if info and info.get("backlinks"):
+        first = info["backlinks"][0]
+        return f"[{first['label']}]({first['url']})"
+    if ob.get("source_url"):
+        return f"[{ob['jurisdiction']} source]({ob['source_url']})"
+    return ""
+
+
+def _impacts_text(info: dict, oid: str, impacts_by_ob: dict[str, list[str]], tier: str) -> str:
+    text = info["impacts"]
+    products = impacts_by_ob.get(oid)
+    if products and tier != "v1":
+        text += f" Affected portfolio: {', '.join(products)}."
+    return text
+
+
+def _v1_item(ob: dict, info: dict, impacts_by_ob: dict[str, list[str]]) -> list[str]:
+    date = ob["effective_date"] or "no date"
+    lines = [f"- **{ob['title']}** — {ob['status']}, {date} ({ob['jurisdiction']})"]
+    lines.append(f"    - Summary: {info['summary']}")
+    lines.append(f"    - Impacts: {_impacts_text(info, ob['obligation_id'], impacts_by_ob, 'v1')}")
+    lines.append(f"    - Implications (beverage industry): {info['implications']}")
+    source = _source_link(info, ob)
+    if source:
+        lines.append(f"    - Source: {source}")
+    return lines
+
+
 def _obligation_block(ob: dict, detail: dict, impacts_by_ob: dict[str, list[str]], tier: str) -> list[str]:
     oid = ob["obligation_id"]
     info = detail.get(oid)
@@ -93,28 +122,24 @@ def _obligation_block(ob: dict, detail: dict, impacts_by_ob: dict[str, list[str]
     lines = [f"### {ob['title']}  \n_{ob['status']}{effective} · {ob['jurisdiction']}_", ""]
 
     if info:
-        lines += [f"**What happened.** {info['what']}", ""]
-        means = info["means"]
-        products = impacts_by_ob.get(oid)
-        if products and tier == "v3":
-            means += f" Affected portfolio: {', '.join(products)}."
-        lines += [f"**What it means.** {means}", ""]
+        lines += [f"**Summary.** {info['summary']}", ""]
+        lines += [f"**Impacts.** {_impacts_text(info, oid, impacts_by_ob, tier)}", ""]
+        lines += [f"**Implications (beverage industry).** {info['implications']}", ""]
         cfr = _links(info.get("cfr", []))
         if cfr:
             lines += [f"**Governing rule.** {cfr}", ""]
         if tier == "v3":
             lines += [f"**What we need to do.** {info['action']}", ""]
-        backlinks = _backlinks(info.get("backlinks", []))
-        if backlinks:
-            lines += [f"**Sources.** {backlinks}", ""]
+        source = _source_link(info, ob)
+        if source:
+            lines += [f"**Source.** {source}", ""]
     else:
         note = ob.get("notes") or "Detail pending; confirm against primary source."
-        lines += [f"**What happened.** {ob['title']} ({ob['status']}).", ""]
-        lines += [f"**What it means.** {note}", ""]
-        if tier == "v3":
-            lines += ["**What we need to do.** Confirm scope and effective date against the source, then add to the detail sidecar.", ""]
-        if ob.get("source_url"):
-            lines += [f"**Sources.** [{ob['jurisdiction']} source]({ob['source_url']})", ""]
+        lines += [f"**Summary.** {ob['title']} ({ob['status']}).", ""]
+        lines += [f"**Implications (beverage industry).** {note}", ""]
+        source = _source_link(None, ob)
+        if source:
+            lines += [f"**Source.** {source}", ""]
     return lines
 
 
@@ -230,12 +255,16 @@ def build_briefing(
     )
 
     if tier == "v1":
-        # Compact one-line list of the items that matter.
+        # Each item with indented Summary / Impacts / Implications / Source.
         out.append("## Key Items")
         out.append("")
         for ob in federal + california:
-            date = ob["effective_date"] or "no date"
-            out.append(f"- {ob['title']} — {ob['status']}, {date} ({ob['jurisdiction']})")
+            info = detail.get(ob["obligation_id"])
+            if info:
+                out += _v1_item(ob, info, impacts_by_ob)
+            else:
+                date = ob["effective_date"] or "no date"
+                out.append(f"- **{ob['title']}** — {ob['status']}, {date} ({ob['jurisdiction']})")
         out.append("")
     else:
         out.append("## United States — FDA Food Safety (Beverage Focus)")

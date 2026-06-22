@@ -1,12 +1,34 @@
 {
-  "version": "0.1.0",
-  "description": "Human-readable detail per obligation: context (what it is), implications for US beverages, the action, the governing CFR or equivalent, and backlinks. Keyed by obligation_id from regwatch-obligations.csv. Authored for internal research; confirm against primary text before any compliance or marketing use.",
+  "version": "0.2.0",
+  "description": "Standardized human-readable record per obligation, keyed by obligation_id. Every record carries summary, impacts, implications (to the beverage industry), topics, the governing CFR or national equivalent, an action, and source backlinks. This is the normalized basis for the tiered briefing and the exportable records database. Authored for internal research; confirm against primary text before any compliance or marketing use.",
+  "topics_vocabulary": [
+    "color-additives",
+    "sweeteners",
+    "added-sugar",
+    "preservatives",
+    "gras",
+    "ultra-processed",
+    "front-of-package",
+    "healthy-claim",
+    "date-labeling",
+    "school-food",
+    "snap",
+    "prop-65",
+    "caffeine",
+    "heavy-metals",
+    "state-patchwork",
+    "claims",
+    "emulsifiers",
+    "food-additives"
+  ],
   "detail": {
     "us-fed-gras-overhaul": {
       "agency": "FDA",
-      "what": "GRAS (Generally Recognized As Safe) is the status that lets a substance be added to food without FDA premarket approval if qualified experts agree it is safe. For decades a company could self-affirm GRAS and never tell FDA. FDA has signaled it will close that self-affirmation path and is re-reviewing older additives, several of which appear in beverages.",
-      "means": "Any ingredient a beverage relies on under self-affirmed GRAS now needs a clean, audit-ready safety dossier. Preservatives such as BHA and BHT are early federal re-review targets. If FDA narrows the GRAS pathway, ingredients in use today could require a notification or a reformulation.",
+      "summary": "GRAS (Generally Recognized As Safe) lets a substance be added to food without FDA premarket approval if qualified experts agree it is safe; for decades a company could self-affirm GRAS and never tell FDA. FDA has signaled it will close that self-affirmation path and is re-reviewing older additives.",
+      "impacts": "Any ingredient a beverage relies on under self-affirmed GRAS may need a notification or removal; preservatives such as BHA and BHT are early re-review targets.",
+      "implications": "A beverage maker can no longer assume a self-affirmed ingredient is settled; the industry must hold audit-ready safety files for every additive in use.",
       "action": "Inventory every self-affirmed GRAS ingredient in the portfolio and assemble its safety file now; flag any on FDA's re-review list for a reformulation contingency.",
+      "topics": ["gras", "preservatives", "food-additives"],
       "cfr": [
         {"citation": "21 CFR 170.30 (GRAS criteria)", "url": "https://www.ecfr.gov/current/title-21/part-170"},
         {"citation": "21 CFR 170 Subpart E (GRAS notification)", "url": "https://www.ecfr.gov/current/title-21/part-170"}
@@ -17,23 +39,26 @@
     },
     "us-fed-dye-phaseout": {
       "agency": "FDA",
-      "what": "Certified color additives are the synthetic FD&C dyes (Red 40, Yellow 5, Yellow 6, Blue 1, Blue 2, Green 3) listed and batch-certified by FDA. In 2025 FDA and HHS announced a push to phase out petroleum-based dyes, and FDA had already revoked the authorization for FD&C Red No. 3 in food in January 2025.",
-      "means": "Flavored and colored sparkling drinks that use certified dyes face reformulation pressure to exempt-from-certification colors (fruit, vegetable, and mineral sources under 21 CFR Part 73). A color change is also a claims event: it can support or undercut a 'no artificial colors' statement, so it must route through claims review, not just R&D.",
-      "action": "Map every SKU's color source. For any certified dye, plan a Part 73 alternative and coordinate the label/claims change. Treat the Red No. 3 food deauthorization as a hard removal item for any affected formula.",
+      "summary": "Certified color additives are the synthetic FD&C dyes (Red 40, Yellow 5, Yellow 6, Blue 1, Blue 2, Green 3) listed and batch-certified by FDA. In 2025 FDA and HHS announced a push to phase out petroleum-based dyes, and FDA had already revoked the authorization for FD&C Red No. 3 in food in January 2025.",
+      "impacts": "Flavored and colored sparkling drinks using certified dyes face reformulation to exempt-from-certification colors; Red No. 3 is a hard removal item.",
+      "implications": "A color change is also a claims event for the industry: it can support or undercut a 'no artificial colors' statement, so color sourcing becomes a marketing decision, not just an R&D one.",
+      "action": "Map every SKU's color source; for any certified dye, plan a Part 73 alternative and coordinate the label and claims change.",
+      "topics": ["color-additives", "claims"],
       "cfr": [
         {"citation": "21 CFR Part 74 (certified color additives)", "url": "https://www.ecfr.gov/current/title-21/part-74"},
         {"citation": "21 CFR Part 73 (colors exempt from certification)", "url": "https://www.ecfr.gov/current/title-21/part-73"}
       ],
       "backlinks": [
-        {"label": "FDA: Color Additives in Food", "url": "https://www.fda.gov/industry/color-additives/color-additives-and-foods"},
-        {"label": "FDA: FD&C Red No. 3 revocation", "url": "https://www.fda.gov/food/hfp-constituent-updates"}
+        {"label": "FDA: Color Additives in Food", "url": "https://www.fda.gov/industry/color-additives/color-additives-and-foods"}
       ]
     },
     "us-fed-upf-definition": {
       "agency": "FDA",
-      "what": "There is no legal definition of 'ultra-processed food' yet. FDA and USDA announced they are jointly developing one. There is no CFR text today; this is a watch item that, once defined, becomes a lever for warnings, school restrictions, and marketing pressure.",
-      "means": "Sweetened and heavily formulated beverages are likely to land inside whatever definition emerges, especially products using non-nutritive sweeteners. It is not an immediate deadline but it shapes the medium-term reformulation and positioning strategy.",
-      "action": "Track the joint FDA/USDA definition work; pressure-test the portfolio against the leading candidate definitions so a position is ready when text appears.",
+      "summary": "There is no legal definition of 'ultra-processed food' yet; FDA and USDA announced they are jointly developing one. Once it exists it becomes a lever for warnings, school restrictions, and marketing pressure.",
+      "impacts": "Sweetened and heavily formulated beverages, especially those using non-nutritive sweeteners, are likely to land inside whatever definition emerges.",
+      "implications": "The industry faces a medium-term repositioning question; a definition could reshape claims, school access, and consumer perception across the category.",
+      "action": "Track the joint FDA and USDA definition work and pressure-test the portfolio against the leading candidate definitions.",
+      "topics": ["ultra-processed", "sweeteners"],
       "cfr": [],
       "backlinks": [
         {"label": "FDA: Human Foods Program updates", "url": "https://www.fda.gov/food/hfp-constituent-updates"}
@@ -41,9 +66,11 @@
     },
     "us-fed-fop-labeling": {
       "agency": "FDA",
-      "what": "FDA proposed a front-of-package nutrition label (a 'Nutrition Info' box) that would rate Saturated Fat, Sodium, and Added Sugars as Low, Medium, or High on the front panel. It amends the food-labeling regulations in 21 CFR Part 101.",
-      "means": "For a sweetened drink, added sugar is the most likely 'High' trigger and would reshape the front panel. A zero-sugar line is comparatively well positioned, but any reformulation or redesign should be coordinated with this rule so the front panel is changed once, not twice.",
-      "action": "Model each SKU against the proposed thresholds; sequence any front-panel redesign to absorb the FOP box in a single coordinated change.",
+      "summary": "FDA proposed a front-of-package nutrition label (a 'Nutrition Info' box) rating Saturated Fat, Sodium, and Added Sugars as Low, Medium, or High on the front panel, amending 21 CFR Part 101.",
+      "impacts": "For a sweetened drink, added sugar is the most likely 'High' trigger and would reshape the front panel; a zero-sugar line is comparatively well positioned.",
+      "implications": "Front-of-package ratings could shift category-wide purchasing toward lower-sugar options and make added sugar a visible point-of-sale signal.",
+      "action": "Model each SKU against the proposed thresholds and sequence any front-panel redesign to absorb the box in one change.",
+      "topics": ["front-of-package", "added-sugar"],
       "cfr": [
         {"citation": "21 CFR 101.9 (nutrition labeling of food)", "url": "https://www.ecfr.gov/current/title-21/part-101"}
       ],
@@ -53,9 +80,11 @@
     },
     "us-fed-healthy-claim-rule": {
       "agency": "FDA",
-      "what": "FDA's updated 'healthy' claim rule redefines when a food may be labeled 'healthy': it must fit a food-group model, not just hit nutrient thresholds. The final rule is codified at 21 CFR 101.65; it was effective in 2025 with a compliance date in 2028.",
-      "means": "Adding vitamins to an unhealthy base no longer rescues a 'healthy' claim. Any beverage that carries or implies 'healthy' must be re-checked against the new definition before the compliance date.",
-      "action": "Audit every product that uses or implies 'healthy' against 21 CFR 101.65 and remove or substantiate the claim before the 2028 compliance date.",
+      "summary": "FDA's updated 'healthy' claim rule (21 CFR 101.65) requires a food to fit a food-group model, not just hit nutrient thresholds. It was effective in 2025 with a compliance date of February 25, 2028.",
+      "impacts": "Any beverage that carries or implies 'healthy' must be re-checked against the new definition before the compliance date; adding vitamins to an unhealthy base no longer qualifies.",
+      "implications": "The industry loses a long-used marketing lever and must substantiate wellness positioning against a stricter federal standard.",
+      "action": "Audit every product that uses or implies 'healthy' and remove or substantiate the claim before 2028.",
+      "topics": ["healthy-claim", "claims"],
       "cfr": [
         {"citation": "21 CFR 101.65 (implied nutrient content claims, 'healthy')", "url": "https://www.ecfr.gov/current/title-21/part-101"}
       ],
@@ -65,9 +94,11 @@
     },
     "us-fed-caffeine-guidance": {
       "agency": "FDA",
-      "what": "Caffeine added to cola-type beverages is GRAS up to 0.02 percent under 21 CFR 182.1180. FDA has separately warned about pure and highly concentrated caffeine and is working on voluntary caffeine-labeling guidance for the energy and functional categories.",
-      "means": "A caffeinated line must keep added caffeine within the GRAS basis for its category and be ready for voluntary labeling expectations. Energy positioning also intersects Canada's supplemented-foods caution statements.",
-      "action": "Confirm per-serving caffeine against the GRAS basis for the product category and prepare cautionary-statement copy for markets that expect it.",
+      "summary": "Caffeine added to cola-type beverages is GRAS up to 0.02 percent under 21 CFR 182.1180. FDA is working on voluntary caffeine-labeling guidance for the energy and functional categories and has warned about concentrated caffeine.",
+      "impacts": "A caffeinated line must keep added caffeine within the GRAS basis for its category and be ready for voluntary labeling expectations.",
+      "implications": "Energy and functional positioning carries added labeling and safety scrutiny, and intersects Canada's stricter supplemented-foods regime.",
+      "action": "Confirm per-serving caffeine against the GRAS basis and prepare cautionary-statement copy for markets that expect it.",
+      "topics": ["caffeine"],
       "cfr": [
         {"citation": "21 CFR 182.1180 (caffeine GRAS)", "url": "https://www.ecfr.gov/current/title-21/part-182"}
       ],
@@ -76,10 +107,12 @@
       ]
     },
     "us-ca-ab418": {
-      "agency": "California (OEHHA/CDPH)",
-      "what": "California AB 418, the California Food Safety Act, bans the manufacture or sale in California of foods containing brominated vegetable oil, potassium bromate, propylparaben, or FD&C Red No. 3, effective January 1, 2027. It is state law, not FDA, but it parallels federal action: FDA revoked BVO's food authorization in 2024 and Red No. 3's food authorization in 2025.",
-      "means": "BVO and Red No. 3 are the concrete near-term beverage items. Any formula sold in California containing either must be out before January 1, 2027, and the federal revocations make removal a national, not just California, question.",
-      "action": "Confirm with R&D and suppliers that no California-sold formula contains the four banned substances; treat BVO and Red No. 3 as national removal items given the parallel federal revocations.",
+      "agency": "California (CDPH)",
+      "summary": "California AB 418, the California Food Safety Act, bans the manufacture or sale in California of foods containing brominated vegetable oil, potassium bromate, propylparaben, or FD&C Red No. 3, effective January 1, 2027. It parallels FDA's federal revocations of BVO (2024) and Red No. 3 (2025).",
+      "impacts": "Any California-sold formula containing BVO or Red No. 3 must be reformulated before January 1, 2027; given the federal revocations these are national removal items.",
+      "implications": "California sets the template other states copy, so its bans effectively become the national floor for the industry.",
+      "action": "Confirm with R&D and suppliers that no California-sold formula contains the four banned substances and treat BVO and Red No. 3 as national removals.",
+      "topics": ["color-additives", "emulsifiers", "preservatives", "state-patchwork"],
       "cfr": [
         {"citation": "Federal parallel: BVO authorization revoked (former 21 CFR 180.30)", "url": "https://www.ecfr.gov/current/title-21/part-180"},
         {"citation": "Federal parallel: FD&C Red No. 3 (21 CFR Part 74)", "url": "https://www.ecfr.gov/current/title-21/part-74"}
@@ -90,9 +123,11 @@
     },
     "us-ca-prop65": {
       "agency": "California (OEHHA)",
-      "what": "Proposition 65 is California's 1986 right-to-know law. It does not ban anything; it requires a warning when a product exposes a person to one of roughly 1,000 listed chemicals above a safe-harbor level. For beverages the drivers are trace heavy metals (lead, cadmium, arsenic, mercury) and acrylamide carried in by botanicals, colors, concentrates, or water.",
-      "means": "Exposure, not harm, triggers a private enforcer's notice, and the burden shifts to the company to prove the exposure is below the safe-harbor level. Bottled water and botanical or fruit-forward beverages carry the most realistic heavy-metal exposure.",
-      "action": "Maintain annual heavy-metal and acrylamide testing for California-sold products, secure supplier attestation and indemnity, and apply warnings where a safe-harbor level cannot be met.",
+      "summary": "Proposition 65 is California's 1986 right-to-know law: it requires a warning when a product exposes a person to one of roughly 1,000 listed chemicals above a safe-harbor level. For beverages the drivers are trace heavy metals and acrylamide.",
+      "impacts": "Trace heavy metals carried in by botanicals, colors, concentrates, or water can trigger a warning obligation or a bounty-driven lawsuit; bottled water and botanical drinks carry the most exposure.",
+      "implications": "Exposure, not harm, triggers enforcement, so the industry carries ongoing testing and supplier-indemnity cost regardless of actual risk.",
+      "action": "Maintain annual heavy-metal and acrylamide testing for California-sold products, secure supplier attestation and indemnity, and warn where a safe-harbor level cannot be met.",
+      "topics": ["prop-65", "heavy-metals"],
       "cfr": [],
       "backlinks": [
         {"label": "OEHHA: Proposition 65 list", "url": "https://oehha.ca.gov/proposition-65/proposition-65-list"}
@@ -100,9 +135,11 @@
     },
     "ca-fed-supplemented-foods": {
       "agency": "Health Canada",
-      "what": "Health Canada's Supplemented Foods Regulations govern foods with added supplemental ingredients (including caffeine and certain vitamins). They require a Supplemented Food Facts table, cautionary statements, and caffeine limits, under Canada's Food and Drug Regulations rather than the US CFR.",
-      "means": "A caffeinated or functional beverage sold in Canada may need cautionary statements and must stay within Canadian caffeine limits, which can differ from the US GRAS basis. This is the main Canadian touchpoint for the portfolio.",
+      "summary": "Health Canada's Supplemented Foods Regulations govern foods with added supplemental ingredients (including caffeine and certain vitamins), requiring a Supplemented Food Facts table, cautionary statements, and caffeine limits.",
+      "impacts": "A caffeinated or functional beverage sold in Canada may need cautionary statements and must stay within Canadian caffeine limits, which can differ from the US basis.",
+      "implications": "Canada is a stricter functional-beverage market, so US formulations and labels may not port directly across the border.",
       "action": "Map any Canada-distributed SKU to the supplemented-foods requirements: caffeine limit, cautionary statements, and the Supplemented Food Facts table.",
+      "topics": ["caffeine"],
       "cfr": [],
       "backlinks": [
         {"label": "Health Canada: Supplemented foods", "url": "https://www.canada.ca/en/health-canada/services/food-nutrition/legislation-guidelines/supplemented-foods.html"}
@@ -110,12 +147,194 @@
     },
     "mx-fed-nom051": {
       "agency": "COFEPRIS",
-      "what": "Mexico's NOM-051 front-of-pack labeling requires black octagon warning seals for products high in calories, sugars, saturated fat, or sodium, plus disclaimer legends when a product contains non-nutritive sweeteners or added caffeine. It is Mexican federal law published in the Diario Oficial de la Federacion, not US CFR.",
-      "means": "A sweetened or non-nutritive-sweetened beverage sold in Mexico likely carries one or more octagon seals and a sweetener disclaimer, and products with those seals face marketing-to-children restrictions. It is the strictest front-of-pack regime the portfolio meets.",
-      "action": "For Mexico-distributed SKUs, determine the octagon seals and sweetener/caffeine legends triggered and confirm packaging compliance.",
+      "summary": "Mexico's NOM-051 front-of-pack labeling requires black octagon warning seals for products high in calories, sugars, saturated fat, or sodium, plus disclaimer legends when a product contains non-nutritive sweeteners or added caffeine.",
+      "impacts": "A sweetened or non-nutritive-sweetened beverage sold in Mexico likely carries one or more octagon seals and a sweetener disclaimer, and faces marketing-to-children restrictions.",
+      "implications": "Mexico is the strictest front-of-pack regime the portfolio meets and a preview of where warning-label policy can go.",
+      "action": "For Mexico-distributed SKUs, determine the octagon seals and sweetener or caffeine legends triggered and confirm packaging compliance.",
+      "topics": ["front-of-package", "added-sugar", "sweeteners"],
       "cfr": [],
       "backlinks": [
         {"label": "Diario Oficial de la Federacion", "url": "https://www.dof.gob.mx"}
+      ]
+    },
+    "us-ca-ab660": {
+      "agency": "California (CDFA)",
+      "summary": "California AB 660 standardizes date labels: a date, if used, must use the 'BEST if Used By' or 'USE by' family of terms, with 'sell by' banned, effective July 1, 2026.",
+      "impacts": "Packaging copy on California-sold products must conform by July 1, 2026; this is a label-copy change, not a formula change.",
+      "implications": "Date-label standardization is spreading and reduces the flexibility brands have in package wording.",
+      "action": "Update date-label copy for California SKUs before July 1, 2026.",
+      "topics": ["date-labeling"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "California Legislative Information: AB 660", "url": "https://leginfo.legislature.ca.gov"}
+      ]
+    },
+    "us-ca-ab2316": {
+      "agency": "California (CDPH)",
+      "summary": "California AB 2316 bans six synthetic dyes from foods sold through school channels, effective December 31, 2027.",
+      "impacts": "Only products that reach the school channel are affected; core retail lines are not directly covered.",
+      "implications": "School channels are becoming a distinct, stricter market that the industry must formulate for separately.",
+      "action": "Confirm whether any SKU reaches school channels and review its colors.",
+      "topics": ["color-additives", "school-food"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "California Legislative Information: AB 2316", "url": "https://leginfo.legislature.ca.gov"}
+      ]
+    },
+    "us-ca-ab1264": {
+      "agency": "California (CDPH)",
+      "summary": "California AB 1264 is an enacted school-focused ultra-processed-food law; CDPH must define terms by June 1, 2028, and the definition names non-nutritive sweeteners such as sucralose.",
+      "impacts": "Sucralose-sweetened drinks in the school channel may be restricted once the definition is set.",
+      "implications": "California's UPF definition will likely become a reference other states and channels adopt.",
+      "action": "Track the CDPH definition and assess school-channel exposure for non-nutritive-sweetened SKUs.",
+      "topics": ["ultra-processed", "sweeteners", "school-food"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "California Legislative Information: AB 1264", "url": "https://leginfo.legislature.ca.gov"}
+      ]
+    },
+    "us-ca-ab2244": {
+      "agency": "California (CDPH)",
+      "summary": "California AB 2244, introduced February 2026, proposes a voluntary 'Non-Ultraprocessed Certified' seal with retailer good-faith identification, using a UPF definition tied to prior California law.",
+      "impacts": "Certification could be a shelf differentiator at large retailers; non-certified products may face a perception gap.",
+      "implications": "A voluntary seal can still pressure the whole category to reformulate to qualify.",
+      "action": "Decide whether to pursue certification if the bill advances.",
+      "topics": ["ultra-processed", "claims"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "California Legislative Information: AB 2244", "url": "https://leginfo.legislature.ca.gov"}
+      ]
+    },
+    "us-ca-state-gras": {
+      "agency": "California",
+      "summary": "A California bill would create a state-level GRAS review process, part of the broader state GRAS-reporting trend.",
+      "impacts": "Adds a state reporting and review burden on additives used in California-sold products.",
+      "implications": "A state-by-state GRAS patchwork would multiply compliance cost across the industry.",
+      "action": "Monitor the bill and inventory self-affirmed GRAS additives in use.",
+      "topics": ["gras", "state-patchwork"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "California Legislative Information", "url": "https://leginfo.legislature.ca.gov"}
+      ]
+    },
+    "us-ia-school-food": {
+      "agency": "Iowa",
+      "summary": "Iowa enacted a school-food ingredient law naming synthetic dyes and other additives.",
+      "impacts": "Affects products sold through Iowa school channels only.",
+      "implications": "Part of the multistate school-food wave that fragments the school market.",
+      "action": "Confirm school-channel exposure and the colors used.",
+      "topics": ["color-additives", "school-food"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-ne-school-food": {
+      "agency": "Nebraska",
+      "summary": "Nebraska enacted a school-food ingredient law naming synthetic dyes and other additives.",
+      "impacts": "Affects products sold through Nebraska school channels only.",
+      "implications": "Part of the multistate school-food wave that fragments the school market.",
+      "action": "Confirm school-channel exposure and the colors used.",
+      "topics": ["color-additives", "school-food"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-tn-school-food": {
+      "agency": "Tennessee",
+      "summary": "Tennessee enacted a school-food ingredient law naming synthetic dyes and other additives.",
+      "impacts": "Affects products sold through Tennessee school channels only.",
+      "implications": "Part of the multistate school-food wave that fragments the school market.",
+      "action": "Confirm school-channel exposure and the colors used.",
+      "topics": ["color-additives", "school-food"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-nj-state-gras": {
+      "agency": "New Jersey",
+      "summary": "New Jersey is debating a state GRAS reporting bill.",
+      "impacts": "Potential state reporting burden on additives used in New Jersey-sold products.",
+      "implications": "Adds to the state GRAS-reporting trend and the cost of a patchwork.",
+      "action": "Monitor the bill and inventory self-affirmed GRAS additives.",
+      "topics": ["gras", "state-patchwork"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-ny-state-gras": {
+      "agency": "New York",
+      "summary": "New York is debating a state GRAS reporting bill.",
+      "impacts": "Potential state reporting burden on additives used in New York-sold products.",
+      "implications": "Adds to the state GRAS-reporting trend and the cost of a patchwork.",
+      "action": "Monitor the bill and inventory self-affirmed GRAS additives.",
+      "topics": ["gras", "state-patchwork"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-nj-ingredient-bill": {
+      "agency": "New Jersey",
+      "summary": "New Jersey filed one of the first state ingredient bills in 2023.",
+      "impacts": "Could restrict named additives in New Jersey-sold products if advanced.",
+      "implications": "An early signal that the ingredient patchwork reaches beyond California.",
+      "action": "Confirm the bill's current status against state text.",
+      "topics": ["state-patchwork", "color-additives"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-wv-ingredient-ban": {
+      "agency": "West Virginia",
+      "summary": "West Virginia enacted a statewide ingredient ban, subject to litigation.",
+      "impacts": "Could block sale of affected SKUs in West Virginia once effective.",
+      "implications": "States can ban outright, so the strictest state effectively sets the national floor.",
+      "action": "Confirm effective dates and the affected ingredients against state text.",
+      "topics": ["color-additives", "preservatives", "state-patchwork"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-tx-label-warning": {
+      "agency": "Texas",
+      "summary": "Texas label-warning legislation has been slowed by litigation but keeps recurring.",
+      "impacts": "Could require warning text on labels of Texas-sold products if enacted.",
+      "implications": "Signals that label-warning policy is spreading beyond California.",
+      "action": "Monitor the litigation and any refiling.",
+      "topics": ["claims", "state-patchwork"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-multistate-ingredient-patchwork": {
+      "agency": "Multistate",
+      "summary": "More than 140 ingredient bills across 42 states (13 enacted) target over 100 ingredients, with California setting the template.",
+      "impacts": "A nationally distributed product generally must meet the strictest state's rule or maintain separate formulations.",
+      "implications": "The patchwork is the central cost driver, pushing the industry toward function-tagged ingredient management and proactive reformulation.",
+      "action": "Maintain the function-tagged ingredient master list and promote confirmed bills into per-state rows.",
+      "topics": ["state-patchwork", "color-additives", "sweeteners"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "NCSL: food additive regulation", "url": "https://www.ncsl.org/health"}
+      ]
+    },
+    "us-multistate-snap-restrictions": {
+      "agency": "Multistate (USDA waivers)",
+      "summary": "Twenty-three states approved SNAP waivers restricting sweetened or carbonated beverages, with effective dates rolling out 2026 to 2028.",
+      "impacts": "Sweetened and possibly broadly worded zero-sugar sparkling lines may be SNAP-ineligible in some states.",
+      "implications": "Point-of-sale eligibility now varies by state, affecting volume in SNAP-heavy channels.",
+      "action": "Do a state-by-state read of which products are caught by the actual waiver wording.",
+      "topics": ["snap", "sweeteners", "added-sugar"],
+      "cfr": [],
+      "backlinks": [
+        {"label": "USDA FNS: SNAP waivers", "url": "https://www.fns.usda.gov/snap/waivers"}
       ]
     }
   }
