@@ -38,8 +38,21 @@ python3 scripts/regwatch.py beverage                       # beverage-category l
 python3 scripts/regwatch.py brief --cadence weekly --out-dir out   # synthesized brief in every format
 python3 scripts/regwatch.py brief --cadence daily --out-dir out    # short daily change brief
 python3 scripts/regwatch.py ingest --live --since 365              # pull recent FDA Federal Register docs
-python3 scripts/regwatch.py briefing --out briefing.md             # human-readable FDA beverage briefing
+python3 scripts/regwatch.py briefing --tier v1 --since-days 90     # tiered human-readable briefing
+python3 scripts/regwatch.py newsletter --out newsletter.md         # running index linking every record to its source
+python3 scripts/regwatch.py export --csv records.csv --json records.json  # normalized records database
 ```
+
+## Records, Newsletter, and Export
+
+Every obligation has a standardized record in `regwatch-obligation-detail.json`:
+a summary, the impacts, the implications for the beverage industry, a controlled
+topic list, the governing CFR, an action, and a source link. The briefing renders
+those (v1 as indented Summary / Impacts / Implications / Source per item), the
+`newsletter` command regenerates a single running index that links each record to
+its source, and `export` flattens the records to CSV and JSON for downstream
+analysis. The team one-pager and the data-model and visualization sketches live
+in `docs/reports/regwatch-rollout/` and `docs/plans/`.
 
 ## Live Ingestion
 

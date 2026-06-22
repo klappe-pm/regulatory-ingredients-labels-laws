@@ -45,6 +45,8 @@ regwatch-smoke:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/build/regwatch-briefing.md" >/dev/null
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v1 --since-days 90 --out "$(ROOT)/build/regwatch-briefing-v1.md" >/dev/null
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v2 --since-days 90 --out "$(ROOT)/build/regwatch-briefing-v2.md" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" newsletter --out "$(ROOT)/build/regwatch-newsletter.md" >/dev/null
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" export --csv "$(ROOT)/build/regwatch-records-export.csv" --json "$(ROOT)/build/regwatch-records-export.json" >/dev/null
 	@printf 'regwatch-smoke: passed\n'
 
 regwatch-brief:

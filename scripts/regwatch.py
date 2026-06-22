@@ -140,13 +140,25 @@ def validate_extras(obligation_ids: set[str]) -> list[str]:
     """Validate the briefing sidecars: detail, change log, and warning letters."""
     errors: list[str] = []
 
-    detail = load_json(DETAIL_PATH)["detail"]
+    detail_doc = load_json(DETAIL_PATH)
+    detail = detail_doc["detail"]
+    vocabulary = set(detail_doc.get("topics_vocabulary", []))
     for oid, info in detail.items():
         if oid not in obligation_ids:
             errors.append(f"detail '{oid}': not a known obligation_id")
-        for field in ("what", "means", "action"):
+        for field in ("summary", "impacts", "implications", "action"):
             if not str(info.get(field, "")).strip():
                 errors.append(f"detail '{oid}': field '{field}' is required but empty")
+        topics = info.get("topics", [])
+        if not topics:
+            errors.append(f"detail '{oid}': at least one topic is required")
+        for topic in topics:
+            if topic not in vocabulary:
+                errors.append(f"detail '{oid}': topic '{topic}' not in topics_vocabulary")
+    # Every obligation must have a standardized record so the briefing and the
+    # exportable database have complete coverage.
+    for oid in sorted(obligation_ids - set(detail)):
+        errors.append(f"detail: obligation '{oid}' has no record")
 
     changelog = load_json(CHANGELOG_PATH)["events"]
     for index, event in enumerate(changelog, start=1):
@@ -698,6 +710,115 @@ def briefing_cmd(args: argparse.Namespace) -> int:
     return 0
 
 
+RECORD_COLUMNS = [
+    "obligation_id", "country", "jurisdiction", "status", "effective_date",
+    "topics", "summary", "impacts", "implications", "action", "source_url", "cfr",
+]
+
+
+def _records() -> list[dict]:
+    """Normalized one-row-per-obligation records for the newsletter and export."""
+    delimiter = _delimiter()
+    obligations = load_obligations()
+    detail = load_json(DETAIL_PATH)["detail"]
+    records: list[dict] = []
+    for ob in obligations:
+        info = detail.get(ob["obligation_id"], {})
+        backlinks = info.get("backlinks", [])
+        source_url = backlinks[0]["url"] if backlinks else ob.get("source_url", "")
+        records.append(
+            {
+                "obligation_id": ob["obligation_id"],
+                "country": ob["country"],
+                "jurisdiction": ob["jurisdiction"],
+                "status": ob["status"],
+                "effective_date": ob.get("effective_date", ""),
+                "topics": delimiter.join(info.get("topics", [])),
+                "summary": info.get("summary", ""),
+                "impacts": info.get("impacts", ""),
+                "implications": info.get("implications", ""),
+                "action": info.get("action", ""),
+                "source_url": source_url,
+                "cfr": delimiter.join(c["citation"] for c in info.get("cfr", [])),
+            }
+        )
+    return records
+
+
+def newsletter_cmd(args: argparse.Namespace) -> int:
+    """Regenerate the single running index linking every record to its source."""
+    records = _records()
+    today = dt.date.today()
+    changelog = load_json(CHANGELOG_PATH).get("events", [])
+
+    lines = ["# regwatch-newsletter", ""]
+    lines.append(f"_Generated {today.isoformat()} · internal research, not legal advice._")
+    lines.append("")
+    lines.append("Running index of regulatory records, refreshed each run. Each record links to its source document.")
+    lines.append("")
+    lines.append("## In This Issue")
+    lines.append("")
+    lines += [
+        "- [v1 — headlines](regwatch-rollout-v1-report.md)",
+        "- [v2 — context and CFR](regwatch-rollout-v2-report.md)",
+        "- [v3 — full detail](regwatch-rollout-v3-report.md)",
+        "- [Team one-pager](regwatch-rollout-one-pager.md)",
+        "",
+    ]
+
+    buckets = [
+        ("United States — Federal", lambda r: r["jurisdiction"] == "US-Federal"),
+        ("California", lambda r: r["jurisdiction"] == "US-CA"),
+        ("Other States and Multistate", lambda r: r["country"] == "US" and r["jurisdiction"] not in ("US-Federal", "US-CA")),
+        ("Canada", lambda r: r["country"] == "CA"),
+        ("Mexico", lambda r: r["country"] == "MX"),
+    ]
+    for title, predicate in buckets:
+        rows = [r for r in records if predicate(r)]
+        if not rows:
+            continue
+        lines.append(f"## {title}")
+        lines.append("")
+        for r in rows:
+            date = f", effective {r['effective_date']}" if r["effective_date"] else ""
+            topics = f" · topics: {r['topics'].replace(';', ', ')}" if r["topics"] else ""
+            source = f" · [source]({r['source_url']})" if r["source_url"] else ""
+            lines.append(f"- **{r['obligation_id']}** — {r['status']}{date}{topics}{source}")
+        lines.append("")
+
+    lines.append("## Recent Developments")
+    lines.append("")
+    for event in sorted(changelog, key=lambda e: e.get("date", ""), reverse=True):
+        source = f" · [source]({event.get('source_url', '')})" if event.get("source_url") else ""
+        lines.append(f"- {event.get('date', '')} — {event.get('headline', '')}{source}")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("> Draft for analyst review and internal research only. Not legal advice.")
+    lines.append("")
+
+    out = args.out or "regwatch-newsletter.md"
+    write_output("\n".join(lines).rstrip() + "\n", out, "newsletter")
+    return 0
+
+
+def export_cmd(args: argparse.Namespace) -> int:
+    """Emit the normalized records as CSV and JSON for downstream analysis."""
+    records = _records()
+    csv_path = pathlib.Path(args.csv)
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=RECORD_COLUMNS)
+        writer.writeheader()
+        writer.writerows(records)
+    print(f"regwatch export: wrote {args.csv} ({len(records)} records)")
+    if args.json:
+        pathlib.Path(args.json).parent.mkdir(parents=True, exist_ok=True)
+        pathlib.Path(args.json).write_text(json.dumps(records, indent=2) + "\n", encoding="utf-8")
+        print(f"regwatch export: wrote {args.json}")
+    return 0
+
+
 def brief_cmd(args: argparse.Namespace) -> int:
     obligations, portfolio, products, impacts, delimiter = _impacts()
     company = portfolio["company"]
@@ -804,6 +925,13 @@ def main(argv: list[str]) -> int:
     p_briefing.add_argument("--tier", choices=["v1", "v2", "v3"], default="v3", help="rollout complexity tier")
     p_briefing.add_argument("--since-days", type=int, dest="since_days", help="window the recent section to N days")
 
+    p_news = sub.add_parser("newsletter", help="regenerate the running index linking every record to its source")
+    p_news.add_argument("--out", help="write to this path instead of stdout")
+
+    p_export = sub.add_parser("export", help="export the normalized records database (CSV plus optional JSON)")
+    p_export.add_argument("--csv", default="build/regwatch-records-export.csv", help="CSV output path")
+    p_export.add_argument("--json", help="also write the records as JSON to this path")
+
     p_brief = sub.add_parser("brief", help="render a synthesized daily or weekly brief in every output format")
     p_brief.add_argument("--cadence", choices=["daily", "weekly"], default="weekly")
     p_brief.add_argument("--out-dir", default=".", help="directory for the rendered files")
@@ -823,6 +951,8 @@ def main(argv: list[str]) -> int:
         "impact": lambda: impact_cmd(args),
         "beverage": lambda: beverage_cmd(args),
         "ingest": lambda: ingest_cmd(args),
+        "newsletter": lambda: newsletter_cmd(args),
+        "export": lambda: export_cmd(args),
         "briefing": lambda: briefing_cmd(args),
         "brief": lambda: brief_cmd(args),
     }
