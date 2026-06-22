@@ -64,6 +64,16 @@ sources. It draws on `regwatch-obligation-detail.json` for the prose and CFR,
 `regwatch-warning-letters.json` for FDA enforcement themes. The committed sample
 is `docs/reports/regwatch-samples/regwatch-fda-beverage-briefing.md`.
 
+The briefing renders at three complexity tiers for a phased team rollout, set by
+`--tier v1|v2|v3` (v1 is the simplest headlines, v3 the full detail), and the
+recent section can be windowed with `--since-days N`. The committed rollout set
+(three reports plus a per-version changelog) lives in
+`docs/reports/regwatch-rollout/`.
+
+```bash
+python3 scripts/regwatch.py briefing --tier v1 --since-days 90 --out report.md
+```
+
 `make regwatch-validate` runs validation in CI and in `make test`;
 `make regwatch-brief` regenerates the weekly sample outputs.
 

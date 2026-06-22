@@ -1,13 +1,21 @@
-"""regwatch human-readable briefing.
+"""regwatch human-readable briefing, tiered for a phased team rollout.
 
 Builds a clean, marked-up briefing focused on FDA food safety that directly
-impacts the United States beverage industry, plus Canada and Mexico. Every
-finding is written as What Happened / What It Means / What We Need To Do, with
-the governing CFR (or national equivalent) and backlinks to supporting sources.
-It reads the rich detail sidecar, the dated change log, and the FDA
-warning-letter themes so the output is usable, not just a list of titles.
+impacts the United States beverage industry, plus Canada and Mexico. The same
+data renders at three complexity tiers so reports can be rolled out to a team
+from simple to detailed:
 
-Pure function over already-loaded data; returns markdown.
+- v1: the headlines — what happened, what is coming due, the key items. One
+  screen, no jargon, US only.
+- v2: adds the context and the governing CFR per item, the FDA warning-letter
+  themes, and the Canada and Mexico view.
+- v3: the full briefing — adds What We Need To Do per item, the affected
+  portfolio, full warning-letter detail, the unconfirmed live feed, and a
+  consolidated action list.
+
+Each finding is written as What Happened / What It Means / What We Need To Do,
+with the governing CFR (or national equivalent) and backlinks. Pure function
+over already-loaded data; returns markdown.
 """
 
 from __future__ import annotations
@@ -15,6 +23,11 @@ from __future__ import annotations
 import datetime as dt
 
 STATUS_ORDER = {"enacted": 0, "finalized": 0, "voluntary": 1, "proposed": 2, "in-progress": 3, "monitoring": 4}
+TIER_ORDER = {"v1": 1, "v2": 2, "v3": 3}
+
+
+def _at_least(tier: str, floor: str) -> bool:
+    return TIER_ORDER[tier] >= TIER_ORDER[floor]
 
 
 def _links(items: list[dict]) -> str:
@@ -34,7 +47,46 @@ def _impacts_by_obligation(impacts: list[dict]) -> dict[str, list[str]]:
     return grouped
 
 
-def _obligation_block(ob: dict, detail: dict, impacts_by_ob: dict[str, list[str]]) -> list[str]:
+def _parse(date: str) -> dt.date | None:
+    try:
+        return dt.date.fromisoformat(date)
+    except (ValueError, TypeError):
+        return None
+
+
+def _recent_window(events: list[dict], today: dt.date, since_days: int | None, recent_count: int):
+    """Select recent change-log events.
+
+    With a window, return events within `since_days` of an anchor date. The
+    anchor is today when there is recent activity, otherwise the latest recorded
+    development, so a report stays populated against a historical change log and
+    states the window it actually covers.
+    """
+    dated = [(e, _parse(e.get("date", ""))) for e in events]
+    dated = [(e, d) for e, d in dated if d is not None]
+    if since_days is None:
+        ordered = [e for e, _ in sorted(dated, key=lambda pair: pair[1], reverse=True)]
+        return ordered[:recent_count], None
+    latest = max((d for _, d in dated), default=today)
+    has_recent = any(today - dt.timedelta(days=since_days) <= d <= today for _, d in dated)
+    anchor = today if has_recent else latest
+    start = anchor - dt.timedelta(days=since_days)
+    selected = [(e, d) for e, d in dated if start <= d <= anchor]
+    ordered = [e for e, _ in sorted(selected, key=lambda pair: pair[1], reverse=True)]
+    return ordered, (start, anchor, anchor != today)
+
+
+def _upcoming(obligations: list[dict], today: dt.date, horizon_days: int = 540) -> list[dict]:
+    horizon = today + dt.timedelta(days=horizon_days)
+    kept = []
+    for ob in obligations:
+        date = _parse(ob.get("effective_date", ""))
+        if date and today <= date <= horizon:
+            kept.append(ob)
+    return sorted(kept, key=lambda ob: ob["effective_date"])
+
+
+def _obligation_block(ob: dict, detail: dict, impacts_by_ob: dict[str, list[str]], tier: str) -> list[str]:
     oid = ob["obligation_id"]
     info = detail.get(oid)
     effective = f", effective {ob['effective_date']}" if ob["effective_date"] else ""
@@ -44,13 +96,14 @@ def _obligation_block(ob: dict, detail: dict, impacts_by_ob: dict[str, list[str]
         lines += [f"**What happened.** {info['what']}", ""]
         means = info["means"]
         products = impacts_by_ob.get(oid)
-        if products:
+        if products and tier == "v3":
             means += f" Affected portfolio: {', '.join(products)}."
         lines += [f"**What it means.** {means}", ""]
         cfr = _links(info.get("cfr", []))
         if cfr:
             lines += [f"**Governing rule.** {cfr}", ""]
-        lines += [f"**What we need to do.** {info['action']}", ""]
+        if tier == "v3":
+            lines += [f"**What we need to do.** {info['action']}", ""]
         backlinks = _backlinks(info.get("backlinks", []))
         if backlinks:
             lines += [f"**Sources.** {backlinks}", ""]
@@ -58,7 +111,8 @@ def _obligation_block(ob: dict, detail: dict, impacts_by_ob: dict[str, list[str]
         note = ob.get("notes") or "Detail pending; confirm against primary source."
         lines += [f"**What happened.** {ob['title']} ({ob['status']}).", ""]
         lines += [f"**What it means.** {note}", ""]
-        lines += ["**What we need to do.** Confirm scope and effective date against the source, then add to the detail sidecar.", ""]
+        if tier == "v3":
+            lines += ["**What we need to do.** Confirm scope and effective date against the source, then add to the detail sidecar.", ""]
         if ob.get("source_url"):
             lines += [f"**Sources.** [{ob['jurisdiction']} source]({ob['source_url']})", ""]
     return lines
@@ -73,58 +127,86 @@ def build_briefing(
     today: dt.date,
     recent_count: int = 8,
     candidates: list[dict] | None = None,
+    tier: str = "v3",
+    since_days: int | None = None,
 ) -> str:
+    if tier not in TIER_ORDER:
+        raise ValueError(f"unknown tier '{tier}'")
     impacts_by_ob = _impacts_by_obligation(impacts)
-    by_id = {ob["obligation_id"]: ob for ob in obligations}
+    window_label = {"v1": "v1 (headlines)", "v2": "v2 (context and CFR)", "v3": "v3 (full detail)"}[tier]
 
     out: list[str] = []
     out.append("# regwatch-fda-beverage-briefing")
     out.append("")
-    out.append(f"_Generated {today.isoformat()}. Internal research; not legal advice._")
+    out.append(f"_Generated {today.isoformat()} · {window_label} · internal research, not legal advice._")
     out.append("")
 
-    out.append("## Scope And How To Read This")
+    # Scope, scaled to tier.
+    out.append("## Scope")
     out.append("")
-    out.append(
-        "This briefing is focused on FDA food safety and labeling that directly impacts the "
-        "United States beverage industry, with Canada and Mexico covered as the two other markets "
-        "the portfolio reaches. Each item is written as **What happened**, **What it means** (with "
-        "the governing CFR or national equivalent and the context for what the rule actually is), "
-        "and **What we need to do**, with backlinks to primary sources. Confirm anything that "
-        "touches a live label against current source text and counsel before acting."
+    scope = (
+        "FDA food safety and labeling that directly impacts the United States beverage industry."
     )
-    out.append("")
+    if _at_least(tier, "v2"):
+        scope += " Canada and Mexico are covered as the other markets the portfolio reaches."
+    if tier == "v3":
+        scope += (
+            " Each item is written as What happened, What it means (with the governing CFR and the "
+            "context for what the rule is), and What we need to do, with backlinks to primary sources."
+        )
+    out += [scope, ""]
 
-    # Recent developments from the change log, most recent first.
-    events = sorted(changelog.get("events", []), key=lambda e: e["date"], reverse=True)[:recent_count]
-    out.append("## What Happened Recently")
+    # Recent developments.
+    events, window = _recent_window(changelog.get("events", []), today, since_days, recent_count)
+    heading = "What Happened Recently" if since_days is None else f"What Happened (Last {since_days} Days)"
+    out.append(f"## {heading}")
     out.append("")
-    out.append(
-        "Dated regulatory developments, most recent first. This is maintained as a change log so the "
-        "briefing reflects more than a single in-window item; the live scan and FDA feeds add to it."
-    )
-    out.append("")
-    for event in events:
-        out.append(f"### {event['date']} — {event['headline']}")
+    if window and window[2]:
+        out.append(
+            f"Covering {window[0].isoformat()} to {window[1].isoformat()}, anchored to the latest recorded "
+            "development because no newer entries are in the change log yet."
+        )
         out.append("")
-        out.append(f"**What happened.** {event['what_happened']}")
+    elif window:
+        out.append(f"Covering {window[0].isoformat()} to {window[1].isoformat()}.")
         out.append("")
-        cfr = _links(event.get("cfr", []))
-        if cfr:
-            out.append(f"**Governing rule.** {cfr}")
+    if not events:
+        out += ["No recorded developments in this window.", ""]
+    elif tier == "v1":
+        for event in events:
+            out.append(f"- {event['date']} — {event['headline']} ([source]({event.get('source_url', '')}))")
+        out.append("")
+    else:
+        for event in events:
+            out.append(f"### {event['date']} — {event['headline']}")
             out.append("")
-        out.append(f"**Source.** [{event['agency']} — {event['country']}]({event['source_url']})")
-        out.append("")
+            out.append(f"**What happened.** {event['what_happened']}")
+            out.append("")
+            cfr = _links(event.get("cfr", []))
+            if cfr:
+                out += [f"**Governing rule.** {cfr}", ""]
+            out.append(f"**Source.** [{event['agency']} — {event['country']}]({event.get('source_url', '')})")
+            out.append("")
 
-    # Live, unconfirmed detections from the Federal Register feed.
+    # Coming due (all tiers).
+    upcoming = _upcoming(obligations, today)
+    out.append("## Coming Due")
+    out.append("")
+    if upcoming:
+        for ob in upcoming:
+            out.append(f"- {ob['effective_date']} — {ob['jurisdiction']}: {ob['title']} ({ob['status']})")
+    else:
+        out.append("- Nothing with a dated effective date in the horizon.")
+    out.append("")
+
+    # Live unconfirmed feed (v3 only).
     candidates = candidates or []
-    if candidates:
+    if tier == "v3" and candidates:
         out.append("## Newly Detected — Unconfirmed (Federal Register Feed)")
         out.append("")
         out.append(
-            f"{len(candidates)} item(s) pulled from the live Federal Register feed and flagged for "
-            "analyst confirmation. These are not yet promoted into the curated change log; confirm each "
-            "against the source before acting."
+            f"{len(candidates)} item(s) from the live feed, flagged for analyst confirmation before "
+            "promotion into the change log."
         )
         out.append("")
         for candidate in candidates[:recent_count]:
@@ -134,88 +216,81 @@ def build_briefing(
             out.append("")
             cfr = _links(candidate.get("cfr", []))
             if cfr:
-                out.append(f"**CFR (from the feed).** {cfr}")
-                out.append("")
+                out += [f"**CFR (from the feed).** {cfr}", ""]
             if candidate.get("source_url"):
-                out.append(f"**Source.** [Federal Register {candidate.get('document_number', '')}]({candidate['source_url']})")
-                out.append("")
+                out += [f"**Source.** [Federal Register {candidate.get('document_number', '')}]({candidate['source_url']})", ""]
 
-    # United States: FDA first, then a condensed California subsection.
-    out.append("## United States — FDA Food Safety (Beverage Focus)")
-    out.append("")
-    federal = [ob for ob in obligations if ob["jurisdiction"] == "US-Federal"]
-    federal.sort(key=lambda ob: (STATUS_ORDER.get(ob["status"], 9), ob["title"]))
-    for ob in federal:
-        out += _obligation_block(ob, detail, impacts_by_ob)
-
-    out.append("### California (State Overlay)")
-    out.append("")
-    out.append(
-        "California is not FDA but it sets the strictest US bar and frequently parallels federal "
-        "action, so it is tracked here for the beverage portfolio."
+    federal = sorted(
+        [ob for ob in obligations if ob["jurisdiction"] == "US-Federal"],
+        key=lambda ob: (STATUS_ORDER.get(ob["status"], 9), ob["title"]),
     )
-    out.append("")
-    california = [ob for ob in obligations if ob["jurisdiction"] == "US-CA"]
-    california.sort(key=lambda ob: (STATUS_ORDER.get(ob["status"], 9), ob["title"]))
-    for ob in california:
-        out += _obligation_block(ob, detail, impacts_by_ob)
-
-    # FDA warning letters.
-    out.append("## FDA Warning Letters — Enforcement Themes For Beverages")
-    out.append("")
-    out.append(
-        "FDA enforces food safety and labeling largely through warning letters, so the recurring "
-        f"themes below are a leading signal of where attention lands. Check the live database: "
-        f"[FDA Warning Letters]({warning_letters['database_url']})."
+    california = sorted(
+        [ob for ob in obligations if ob["jurisdiction"] == "US-CA"],
+        key=lambda ob: (STATUS_ORDER.get(ob["status"], 9), ob["title"]),
     )
-    out.append("")
-    for theme in warning_letters.get("themes", []):
-        out.append(f"### {theme['theme']}")
+
+    if tier == "v1":
+        # Compact one-line list of the items that matter.
+        out.append("## Key Items")
         out.append("")
-        out.append(f"**What triggers it.** {theme['what_triggers']}")
+        for ob in federal + california:
+            date = ob["effective_date"] or "no date"
+            out.append(f"- {ob['title']} — {ob['status']}, {date} ({ob['jurisdiction']})")
         out.append("")
-        cfr = _links(theme.get("cfr", []))
-        if cfr:
-            out.append(f"**Governing rule.** {cfr}")
+    else:
+        out.append("## United States — FDA Food Safety (Beverage Focus)")
+        out.append("")
+        for ob in federal:
+            out += _obligation_block(ob, detail, impacts_by_ob, tier)
+        out.append("### California (State Overlay)")
+        out.append("")
+        out.append("California is not FDA but sets the strictest US bar and often parallels federal action.")
+        out.append("")
+        for ob in california:
+            out += _obligation_block(ob, detail, impacts_by_ob, tier)
+
+    # FDA warning letters (v2 brief, v3 full).
+    if _at_least(tier, "v2"):
+        out.append("## FDA Warning Letters — Enforcement Themes For Beverages")
+        out.append("")
+        out.append(
+            "FDA enforces largely through warning letters; these recurring themes signal where attention "
+            f"lands. Live database: [FDA Warning Letters]({warning_letters['database_url']})."
+        )
+        out.append("")
+        for theme in warning_letters.get("themes", []):
+            out.append(f"### {theme['theme']}")
             out.append("")
-        out.append(f"**For beverages.** {theme['beverage_note']}")
+            out.append(f"**What triggers it.** {theme['what_triggers']}")
+            out.append("")
+            if tier == "v3":
+                cfr = _links(theme.get("cfr", []))
+                if cfr:
+                    out += [f"**Governing rule.** {cfr}", ""]
+                out += [f"**For beverages.** {theme['beverage_note']}", ""]
+
+        # Canada and Mexico.
+        for country_name, code in (("Canada", "CA"), ("Mexico", "MX")):
+            out.append(f"## {country_name}")
+            out.append("")
+            rows = [ob for ob in obligations if ob["country"] == code]
+            if rows:
+                for ob in rows:
+                    out += _obligation_block(ob, detail, impacts_by_ob, tier)
+            else:
+                out += [f"No {country_name} obligations tracked yet.", ""]
+
+    # Consolidated actions (v3 only).
+    if tier == "v3":
+        out.append("## What To Do Next (Consolidated)")
         out.append("")
-
-    # Canada and Mexico.
-    out.append("## Canada")
-    out.append("")
-    canada = [ob for ob in obligations if ob["country"] == "CA"]
-    if canada:
-        for ob in canada:
-            out += _obligation_block(ob, detail, impacts_by_ob)
-    else:
-        out += ["No Canadian obligations tracked yet.", ""]
-
-    out.append("## Mexico")
-    out.append("")
-    mexico = [ob for ob in obligations if ob["country"] == "MX"]
-    if mexico:
-        for ob in mexico:
-            out += _obligation_block(ob, detail, impacts_by_ob)
-    else:
-        out += ["No Mexican obligations tracked yet.", ""]
-
-    # Consolidated actions.
-    out.append("## What To Do Next (Consolidated)")
-    out.append("")
-    actions: list[str] = []
-    seen: set[str] = set()
-    priority_ids = [ob["obligation_id"] for ob in federal] + [
-        ob["obligation_id"] for ob in obligations if ob["jurisdiction"] == "US-CA"
-    ]
-    for oid in priority_ids:
-        info = detail.get(oid)
-        if info and info["action"] not in seen:
-            actions.append(f"{by_id[oid]['title']}: {info['action']}")
-            seen.add(info["action"])
-    for action in actions:
-        out.append(f"- {action}")
-    out.append("")
+        seen: set[str] = set()
+        for ob in federal + california:
+            info = detail.get(ob["obligation_id"])
+            if info and info["action"] not in seen:
+                out.append(f"- {ob['title']}: {info['action']}")
+                seen.add(info["action"])
+        out.append("")
 
     out.append("---")
     out.append("")

@@ -691,6 +691,8 @@ def briefing_cmd(args: argparse.Namespace) -> int:
         dt.date.today(),
         recent_count=args.recent,
         candidates=candidates,
+        tier=args.tier,
+        since_days=args.since_days,
     )
     write_output(text, args.out, "briefing")
     return 0
@@ -799,6 +801,8 @@ def main(argv: list[str]) -> int:
     p_briefing = sub.add_parser("briefing", help="render the human-readable FDA beverage briefing (what happened / means / do)")
     p_briefing.add_argument("--out", help="write markdown to this path instead of stdout")
     p_briefing.add_argument("--recent", type=int, default=8, help="number of recent change-log events to show")
+    p_briefing.add_argument("--tier", choices=["v1", "v2", "v3"], default="v3", help="rollout complexity tier")
+    p_briefing.add_argument("--since-days", type=int, dest="since_days", help="window the recent section to N days")
 
     p_brief = sub.add_parser("brief", help="render a synthesized daily or weekly brief in every output format")
     p_brief.add_argument("--cadence", choices=["daily", "weekly"], default="weekly")
