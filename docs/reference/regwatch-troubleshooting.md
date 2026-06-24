@@ -48,8 +48,9 @@ do not add dependencies.
 - State (generated, not all tracked): `regwatch/state/regwatch-seen.json`
   (last-seen hashes), `state/snapshots/` (analyst captures, gitignored),
   `state/regwatch-ingest-candidates.json` (live candidates, gitignored).
-- Loops: `.github/workflows/regwatch-daily.yml` and `regwatch.yml`; audit CI in
-  `.github/workflows/audit.yml`.
+- Loops: `.github/workflows/regwatch-daily.yml`, `regwatch.yml` (weekly), and
+  `regwatch-biweekly.yml` (the bi-weekly team report, gated to even weeks); audit
+  CI in `.github/workflows/audit.yml`.
 
 ## How Verification Works
 
