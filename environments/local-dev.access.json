@@ -1,0 +1,47 @@
+{
+  "access-id": "local-dev",
+  "env-id": "local-dev",
+  "project": "regulatory-ingredients-labels-laws",
+  "workspace": {
+    "path": "/workspace/regulatory-ingredients-labels-laws",
+    "mode": "rw"
+  },
+  "shared-mounts": [
+    {
+      "store": "claude-config",
+      "path": "/mnt/claude-config",
+      "mode": "ro",
+      "why": "global rules, skills, and guard hooks load in every Claude session"
+    }
+  ],
+  "network": {
+    "mode": "allowlist",
+    "allow": [
+      "github.com",
+      "api.github.com",
+      "www.federalregister.gov",
+      "www.ecfr.gov",
+      "www.fda.gov",
+      "www.fns.usda.gov",
+      "leginfo.legislature.ca.gov",
+      "oehha.ca.gov",
+      "www.ncsl.org",
+      "www.canada.ca",
+      "gazette.gc.ca",
+      "www.dof.gob.mx"
+    ],
+    "enforcement": "declared-only"
+  },
+  "secrets-scope": [
+    "github"
+  ],
+  "capabilities": {
+    "docker-socket": false,
+    "privileged": false,
+    "host-git-config-rw": false
+  },
+  "review": {
+    "last-reviewed": "2026-07-09",
+    "widened-by": []
+  }
+}
