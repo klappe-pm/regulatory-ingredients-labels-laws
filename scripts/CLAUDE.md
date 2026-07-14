@@ -1,5 +1,8 @@
 # scripts/CLAUDE.md
 
+#agent-context
+
+
 Scripts should be deterministic, shell-safe, and runnable from the project
 root. Prefer standard-library implementations unless the project already
 declares a dependency. The regwatch engine is standard library only — do not

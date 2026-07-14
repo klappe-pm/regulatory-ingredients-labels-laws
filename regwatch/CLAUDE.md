@@ -1,5 +1,8 @@
 # regwatch/CLAUDE.md
 
+#agent-context
+
+
 Operating rules for any agent working in `regwatch/`, the regulatory monitoring
 data and engine area. Read these before editing.
 
