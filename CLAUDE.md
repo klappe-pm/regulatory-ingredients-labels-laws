@@ -1,5 +1,8 @@
 # Regulatory Ingredients Labels Laws Claude Code Instructions
 
+#agent-context
+
+
 Follow this file before editing this repository. Project-local instructions
 augment, but do not replace, the user-scope policy in
 `/Users/kevinlappe/.claude/`.
