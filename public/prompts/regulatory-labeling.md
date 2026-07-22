@@ -20,7 +20,13 @@ visibility: private
 
 # regulatory-labeling
 
-Master index for the regulatory labeling prompt library: a catalog of prompts a regulatory labeling specialist at a US beverage manufacturer runs inside Microsoft 365 Copilot, spanning intake, content derivation, claims compliance, review and verification, version reconciliation, market monitoring and status reporting, email communication, durable personal and team knowledge, and Copilot configuration itself. Every prompt follows the same nine-section contract (name, description, when-to-use, what-to-use-for, required-inputs, expected-outputs, output-handling, prompt-text, guardrails) and every compliance-facing prompt enforces human-in-the-loop review, forbids fabrication, and cites exact regulatory provisions. Default jurisdiction is US FDA; no SKU is treated as a dietary supplement unless stated.
+Master index for the regulatory labeling prompt library: a catalog of prompts a regulatory labeling specialist at a US beverage manufacturer runs inside Microsoft 365 Copilot, spanning onboarding setup, intake, content derivation, claims compliance, review and verification, version reconciliation, market monitoring and status reporting, email communication, durable personal and team knowledge, Copilot configuration, app-specific skills, and periodic reflection. Every prompt follows the same section contract (description, when-to-use, what-to-use-for, required-inputs, expected-outputs, how-to-run, output-handling, prompt-text, guardrails) and every compliance-facing prompt enforces human-in-the-loop review, forbids fabrication, cites exact regulatory provisions marked unverified until confirmed, and ends its output with an unverified-draft banner. Default jurisdiction is US FDA; no SKU is treated as a dietary supplement unless stated. New here? Read [[prompt-library-user-guide]] first, then run [[setup-interview]].
+
+## start-here
+
+- [[prompt-library-user-guide]]: how the library works, how to run a prompt in Copilot, and the safety rules. Read this first.
+- [[setup]]: a guided interview that builds your personal and team context so Copilot knows who you are and what you work on.
+- [[copilot-skills]]: plain-language guides for using Copilot inside Copilot Chat, Excel, Outlook, Word, and SharePoint.
 
 ## categories
 
@@ -33,6 +39,7 @@ Master index for the regulatory labeling prompt library: a catalog of prompts a 
 - [[communication-email]]: draft, revise, and reply to email in the specialist's voice, and convert threads into decisions and actions.
 - [[durable-knowledge]]: capture the specialist's durable communication style, stakeholders, team roles, and current workstreams for Copilot to remember.
 - [[copilot-configuration]]: route any durable-knowledge artifact to its correct Copilot layer, grounded in the current M365 personalization and agent layering model.
+- [[reflection]]: review your own prompting, find tasks worth turning into reusable assets, and run a monthly usage retro.
 
 ## browse
 

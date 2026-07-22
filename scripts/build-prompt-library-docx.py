@@ -22,6 +22,7 @@ PROMPTS_DIR = ROOT / "public" / "prompts"
 OUT_PATH = PROMPTS_DIR / "regulatory-labeling-prompt-library.docx"
 
 CATEGORY_ORDER = [
+    "setup",
     "label-intake",
     "content-derivation",
     "claims-compliance",
@@ -31,6 +32,8 @@ CATEGORY_ORDER = [
     "communication-email",
     "durable-knowledge",
     "copilot-configuration",
+    "copilot-skills",
+    "reflection",
 ]
 
 GENERATED_DATE = "2026-07-22"
@@ -229,11 +232,17 @@ def main():
         labeled_line(document, "What to use for:", item["what_to_use_for"])
         labeled_line(document, "Required inputs:", item["required_inputs"])
         labeled_line(document, "Expected outputs:", item["expected_outputs"])
-        labeled_line(document, "Saves to:", f"{item['saves_to']} (visibility: {item['visibility']})")
 
-        document.add_paragraph()
-        shaded_monospace_block(document, item["prompt_text"])
-        document.add_paragraph()
+        prompt_text = item.get("prompt_text", "").strip()
+        if prompt_text:
+            labeled_line(document, "Saves to:", f"{item['saves_to']} (visibility: {item['visibility']})")
+            document.add_paragraph()
+            shaded_monospace_block(document, prompt_text)
+            document.add_paragraph()
+        else:
+            # Skill guides have no copy-ready prompt block; point the reader to the vault note.
+            labeled_line(document, "Type:", "app skill guide (read the full guide in the vault; no copy-ready prompt block)")
+            document.add_paragraph()
 
         return_to_toc(document)
 
