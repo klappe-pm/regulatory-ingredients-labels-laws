@@ -1,0 +1,15 @@
+[
+  {
+    "category": "copilot-configuration",
+    "sub_category": "configuration",
+    "name": "personalization-install-router",
+    "description": "Routes a durable-knowledge artifact to the correct Microsoft 365 Copilot layer with exact click-path steps, grounded in copilot-layering-reference.",
+    "when_to_use": "A durable-knowledge prompt has produced an artifact and the specialist needs to know exactly where to install it.",
+    "what_to_use_for": "Given an artifact and the list of which Copilot surfaces are enabled in the specialist's tenant, returning the single owning layer, the exact click-path, the cost or admin gate to expect, and a verification step.",
+    "required_inputs": "An artifact (the durable-knowledge output to be installed); which Copilot surfaces are enabled.",
+    "expected_outputs": "Owning layer; click-path steps; caveats; verification check.",
+    "saves_to": "public/regulatory-labeling/",
+    "visibility": "public",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: route a durable-knowledge artifact to the correct Copilot layer with exact installation steps.\n\nSource of truth: the layering map in copilot-layering-reference (Custom Instructions, Copilot Memory, Excel personalization/workbook rules, private declarative agent via Agent Builder, Copilot Notebook instructions, Office Scripts via Power Automate) is the grounding for every routing decision. Treat it as a reference to verify against the specialist's own tenant, not as a settled, permanent fact.\n\nMethod:\n1. Read the artifact I provide and identify what kind of durable knowledge it is: behavioral/style rule, discrete fact, spreadsheet file convention, scoped task/domain context, notebook-scoped context, or executable logic.\n2. Read the list of enabled Copilot surfaces I provide.\n3. Match the artifact type to its owning layer per the layering map, restricted to what is actually enabled; if the ideal layer is not enabled, recommend the best available alternative and say explicitly that it is a fallback.\n4. Return the exact click-path to install the artifact in that layer.\n5. State the cost or admin gate to expect, grounded in the layering reference.\n6. Give one verification step: a specific question or action confirming the installed setting actually took effect.\n7. Never assert a capability is enabled without the specialist's confirmation.\n\nThis recommends where to install the artifact; it never installs it. The specialist performs the click-path themselves.\n\nDo not fabricate a Copilot feature, menu path, or gating rule not grounded in the layering reference provided. Flag anything you cannot confirm against the specialist's own tenant.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste artifact here]\n\nEnabled Copilot surfaces: [list of enabled surfaces]"
+  }
+]

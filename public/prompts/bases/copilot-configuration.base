@@ -1,0 +1,17 @@
+# Hyphenated keys (sub-category, use-case, date-created, date-revised) are read via bracket notation, e.g. note["sub-category"], because bare hyphens parse as subtraction.
+filters:
+  and:
+    - 'category == "copilot-configuration"'
+    - 'file.ext == "md"'
+
+views:
+  - type: table
+    name: "copilot-configuration notes"
+    order:
+      - file.name
+      - note["sub-category"]
+      - note["type"]
+      - topic
+      - note["use-case"]
+      - visibility
+      - note["date-revised"]
