@@ -42,7 +42,7 @@ jobs:
       - name: Restore last-seen state
         uses: actions/cache@v4
         with:
-          path: regwatch/state/regwatch-seen.json
+          path: public/regwatch/state/regwatch-seen.json
           key: regwatch-seen-${{ github.run_id }}
           restore-keys: |
             regwatch-seen-
@@ -63,7 +63,7 @@ jobs:
       - name: Include the team one-pager
         run: cp docs/reports/regwatch-rollout/regwatch-rollout-one-pager.md out/ || true
       - name: Stage ingest candidates
-        run: cp regwatch/state/regwatch-ingest-candidates.json out/ || true
+        run: cp public/regwatch/state/regwatch-ingest-candidates.json out/ || true
       - name: Upload the bi-weekly report
         uses: actions/upload-artifact@v4
         with:

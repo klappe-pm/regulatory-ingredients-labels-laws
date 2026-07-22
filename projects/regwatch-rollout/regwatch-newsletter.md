@@ -1,6 +1,6 @@
 # regwatch-newsletter
 
-_Generated 2026-06-22 · internal research, not legal advice._
+_Generated 2026-07-22 · internal research, not legal advice._
 
 Running index of regulatory records, refreshed each run. Each record links to its source document.
 

@@ -1,17 +1,14 @@
-# regwatch/CLAUDE.md
+# public/regwatch/CLAUDE.md
 
-#agent-context
-
-
-Operating rules for any agent working in `regwatch/`, the regulatory monitoring
-data and engine area. Read these before editing.
+Operating rules for any agent working in `public/regwatch/`, the regulatory monitoring data and engine area. Read these before editing.
 
 ## What This Is
 
-`regwatch/` holds the data; `scripts/regwatch.py` and its sibling
-`regwatch_*.py` modules are the engine. Full orientation is in
-`regwatch/regwatch-README.md`; the runbook for diagnosing problems is
-`docs/reference/regwatch-troubleshooting.md`.
+
+
+
+
+`public/regwatch/` holds the data; `scripts/regwatch.py` and its sibling `regwatch_*.py` modules are the engine. Full orientation is in `public/regwatch/regwatch-README.md`; the runbook for diagnosing problems is `public/regwatch/regwatch-troubleshooting.md`.
 
 ## Rules
 

@@ -92,15 +92,7 @@ python3 scripts/regwatch.py briefing --tier v1 --since-days 90 --out report.md
 
 ## Feedback And Update Loops
 
-Three scheduled workflows close the loop. `.github/workflows/regwatch-daily.yml`
-scans for change and renders the daily brief; `.github/workflows/regwatch.yml`
-runs the weekly scan plus the full synthesized brief; and
-`.github/workflows/regwatch-biweekly.yml` is the bi-weekly team report — it
-fires every Monday and a gate job runs it only on even weeks (a stable 14-day
-cadence), rendering the v1/v2/v3 tiers, the newsletter, and the export over the
-last 14 days. `make regwatch-rollout` regenerates the committed team report set
-locally. All workflows persist last-seen state through the Actions cache and
-upload their outputs as artifacts.
+Three scheduled workflows close the loop. `.github/workflows/regwatch-daily.yml` scans for change and renders the daily brief; `.github/workflows/regwatch.yml` runs the weekly scan plus the full synthesized brief; and `.github/workflows/regwatch-biweekly.yml` is the bi-weekly team report, it fires every Monday and a gate job runs it only on even weeks (a stable 14-day cadence), rendering the v1/v2/v3 tiers, the newsletter, and the export over the last 14 days. `make regwatch-rollout` regenerates the committed team report set locally. All workflows persist last-seen state through the Actions cache and upload their outputs as artifacts.
 
 ## Outputs
 

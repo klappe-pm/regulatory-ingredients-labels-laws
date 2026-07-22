@@ -40,7 +40,7 @@ import regwatch_render
 import regwatch_synthesis
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "regwatch"
+DATA_DIR = ROOT / "public" / "regwatch"
 SCHEMA_PATH = DATA_DIR / "regwatch-schema.json"
 OBLIGATIONS_PATH = DATA_DIR / "regwatch-obligations.csv"
 SOURCES_PATH = DATA_DIR / "regwatch-sources.json"
