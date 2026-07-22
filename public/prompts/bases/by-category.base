@@ -1,0 +1,31 @@
+# Hyphenated frontmatter keys (sub-category, use-case, date-revised) are read with bracket
+# notation, e.g. note["sub-category"], because a bare hyphen parses as subtraction in a
+# Bases expression. `types` is a list, so membership is tested with .contains().
+filters:
+  and:
+    - 'file.ext == "md"'
+    - or:
+        - 'note["types"].contains("prompt")'
+        - 'note["types"].contains("skill")'
+
+properties:
+  file.name:
+    displayName: Prompt
+  category:
+    displayName: Category
+  note["sub-category"]:
+    displayName: Sub-category
+  note["use-case"]:
+    displayName: Use case
+  visibility:
+    displayName: Visibility
+
+views:
+  - type: cards
+    name: "By category"
+    groupBy:
+      property: category
+      direction: ASC
+    order:
+      - file.name
+      - note["use-case"]

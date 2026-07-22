@@ -1,5 +1,8 @@
 # scripts/CLAUDE.md
 
+#agent-context
+
+
 Scripts should be deterministic, shell-safe, and runnable from the project
 root. Prefer standard-library implementations unless the project already
 declares a dependency. The regwatch engine is standard library only — do not
@@ -21,5 +24,4 @@ over loaded data, so they stay testable and free of circular imports:
 - `regwatch_briefing.py` — the human-readable FDA beverage briefing.
 - `regwatch_ingest.py` — Federal Register live ingestion.
 
-Exercised end to end by `make regwatch-smoke`. For diagnosis see
-`docs/reference/regwatch-troubleshooting.md`.
+Exercised end to end by `make regwatch-smoke`. For diagnosis see `public/regwatch/regwatch-troubleshooting.md`.

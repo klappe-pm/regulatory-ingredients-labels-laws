@@ -1,0 +1,68 @@
+[
+  {
+    "category": "reflection",
+    "sub_category": "self-improvement",
+    "name": "copilot-usage-retro",
+    "type": "prompt",
+    "aliases": [
+      "copilot usage retro",
+      "end of month reflection",
+      "is copilot worth it review",
+      "keep stop start review",
+      "monthly retro",
+      "monthly review of copilot",
+      "retro on my ai use",
+      "what worked this month"
+    ],
+    "summary": "A short monthly retrospective the specialist runs with Copilot: what worked, what wasted time, which prompts earned their keep, which were ignored, and one focused change for next month. It is deliberately lightweight so it actually gets done, and it feeds a running record so month-over-month trends are visible. Reach for it once a month, or at the end of a launch cycle, to keep the library and your habits improving instead of drifting.",
+    "use_cases": "It is month-end (or the end of a launch cycle) and you want a quick keep/stop/start read before habits drift; You want a dated record that builds a visible trend line so you can compare against last month's retro; Copilot wasted time on something this month and you want to decide what to change or retire; A recurring frustration points at a missing reusable asset, and you want to flag it for a [[skill-gap-finder]] run",
+    "expected_outputs": "A dated retro note: what worked, what wasted time, prompts to keep or retire, and one priority for next month; A short trend line versus last month's retro if one was provided",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat, running a monthly usage retrospective with a regulatory labeling specialist at a US beverage manufacturer who is a beginner at using AI assistants. Your single task: interview me briefly, then produce a dated retro note.\n\nOptional input: (1) last month's retro note, if attached, for trend comparison. If it is not attached, run the retro from my answers alone; do not invent a prior month.\n\nAsk these questions one at a time, accept brief answers, and never push:\n1. What did Copilot genuinely help with this month?\n2. Where did it waste your time or produce something you had to redo?\n3. Which prompts or habits do you want to keep using?\n4. Which do you want to stop or change?\n5. What is the one thing you most want to improve next month?\n\nMethod:\n1. Record my answers as keep, stop, and start items; keep them concrete and few.\n2. If last month's note is attached, add a one-line trend: what improved, what recurred, what is new.\n3. Choose exactly one priority for next month, drawn from my answers, and state it as a specific action.\n4. If a frustration points at a missing reusable asset, note that a skill-gap-finder run could address it.\n\nRules: use only my answers and the attached prior note; never invent a win, a frustration, or a trend. Keep it short enough that I will actually do it again next month.\n\nReturn the complete file content and nothing else, in this order:\n1. This YAML frontmatter, with bracketed placeholders filled:\n---\ndomain: regulatory-ingredients-labels-laws\ncategory: reflection\nsub-category: self-improvement\ndate-created: [TODAY as yyyy-MM-dd]\ndate-revised: [TODAY as yyyy-MM-dd]\ntype: reflection-note\nstatus: REVIEW\naliases: []\ntags:\n  - reflection\n  - self-improvement\ntopic: beverage-label-compliance\nuse-case: monthly-usage-retro\nvisibility: private\n---\n2. An H1 equal to: copilot-usage-retro-[TODAY as yyyy-mm-dd]\n3. Keep / stop / start sections, the trend line if applicable, and the single next-month priority.\n4. This exact final line:\nRETRO NOTES - my own reflection, recorded for next month; not a change to any saved work."
+  },
+  {
+    "category": "reflection",
+    "sub_category": "self-improvement",
+    "name": "prompting-style-review",
+    "type": "prompt",
+    "aliases": [
+      "am i prompting well",
+      "better prompting tips",
+      "coach my prompts",
+      "how can i prompt better",
+      "improve my copilot prompts",
+      "prompting feedback",
+      "prompting style review",
+      "review my prompting"
+    ],
+    "summary": "Has Copilot review a sample of the specialist's own recent chats and return concrete, prioritized coaching on how to prompt more effectively: where instructions were vague, where context was missing, where a task should have been split, and which habits are already working. Reach for it after a week or two of real use, when technique feels hit-or-miss, or before deciding which tasks to turn into saved prompts. Written for a beginner LLM user, so the feedback is specific and actionable rather than abstract.",
+    "use_cases": "Your Copilot technique feels hit-or-miss after a week or two of real use and you want a ranked list of what to fix first; You have three to ten recent chats you can paste and want before-and-after rewrites drawn from your own words; You are about to decide which recurring tasks to turn into saved prompts and want a read on your habits first (often paired with a [[skill-gap-finder]] run); You suspect specific habits are hurting results (vague instructions, missing context, several unrelated asks in one prompt, no stated output format) but cannot name them",
+    "expected_outputs": "A ranked list of prompting improvements, each with a before-and-after example drawn from your own chats; A short list of what you are already doing well, so you keep it; One suggested next step (often a saved prompt or a skill-gap-finder run)",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat, coaching a regulatory labeling specialist at a US beverage manufacturer who is a beginner at using AI assistants. Your single task: review the sample of their own recent Copilot chats below and give concrete, prioritized advice on how to prompt better.\n\nYou should have this input: (1) a sample of my recent chats, pasted at the end. If none is pasted, stop and ask me to paste some; do not invent examples.\n\nMethod:\n1. Read the chats as evidence of my prompting habits, not as tasks to redo.\n2. Identify recurring patterns in how I prompt: vague instructions, missing context or inputs, no stated output format, several unrelated asks in one prompt, no success criteria, or not saying which app or file to use.\n3. Produce a ranked list of at most five improvements. Rank by how much each would improve my results. For each: name the habit, quote a short real example from my chats, show a concrete rewrite of that exact prompt, and say in one line why the rewrite is better.\n4. Produce a short \"keep doing this\" list of two to three things I already do well, with an example each.\n5. End with one suggested next step. If you notice the same task type recurring across chats, suggest turning it into a saved prompt or running a skill-gap review.\n\nRules: use only my pasted chats as evidence; never fabricate an example or attribute a habit you cannot point to. Keep advice specific and actionable for a non-technical user; avoid jargon. This is coaching for me to act on, not a change to any of my saved work.\n\nReturn the complete file content and nothing else, in this order:\n1. This YAML frontmatter, with bracketed placeholders filled:\n---\ndomain: regulatory-ingredients-labels-laws\ncategory: reflection\nsub-category: self-improvement\ndate-created: [TODAY as yyyy-MM-dd]\ndate-revised: [TODAY as yyyy-MM-dd]\ntype: reflection-note\nstatus: REVIEW\naliases: []\ntags:\n  - reflection\n  - self-improvement\ntopic: beverage-label-compliance\nuse-case: review-prompting-style\nvisibility: private\n---\n2. An H1 equal to: prompting-style-review-[TODAY as yyyy-mm-dd]\n3. The ranked improvements, the keep-doing list, and the next step, as specified above.\n4. This exact final line:\nCOACHING NOTES - based only on the chats I pasted; my judgment, not Copilot's, decides what to change.\n\n[Paste your recent Copilot chats here]"
+  },
+  {
+    "category": "reflection",
+    "sub_category": "self-improvement",
+    "name": "skill-gap-finder",
+    "type": "prompt",
+    "aliases": [
+      "build a copilot skill",
+      "find skill gaps",
+      "systematize my recurring tasks",
+      "what am i missing a prompt for",
+      "what should i turn into a saved prompt",
+      "what skills do i need",
+      "what to automate next",
+      "which tasks need a template"
+    ],
+    "summary": "Takes a list of the specialist's recurring tasks (or a batch of recent chats) and identifies which ones are worth turning into a reusable asset: a saved prompt, a fill-in template, or a full Copilot skill. It ranks the candidates by how often the task recurs and how much time each conversion would save, then drafts the single best candidate so the specialist has something concrete to install. Reach for it when the same manual task keeps recurring or the library seems to be missing a prompt for something you do often.",
+    "use_cases": "The same manual task keeps recurring and you want to decide what to systematize next instead of re-solving it by hand; The library seems to be missing a prompt for something you do frequently and you want it drafted for you; A [[prompting-style-review]] flagged a repeated task type and you want to convert it into a reusable asset; You have three to ten recent chats or a bulleted task list (with rough frequencies) and want a ranked table plus a first draft of the top candidate",
+    "expected_outputs": "A ranked table of candidate assets: task, recurrence, time saved, best form (saved prompt, template, or skill), and why; A drafted top candidate ready to refine and install; A pointer to where each asset should live (a durable-knowledge record, a saved prompt, or a copilot-skills guide)",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat, advising a regulatory labeling specialist at a US beverage manufacturer who is a beginner at using AI assistants. Your single task: from my recurring tasks below, identify which are worth turning into reusable assets and draft the best one.\n\nYou should have this input: (1) a list of my recurring tasks (or chats showing them), pasted at the end, ideally with rough frequency. If nothing is pasted, stop and ask; do not invent tasks.\n\nDefinitions to apply:\n- Saved prompt: a single reusable instruction I paste when I need it. Best for a well-defined task with variable inputs.\n- Template: a fill-in document (Word or Excel) I reuse. Best when the output shape is fixed and I fill blanks.\n- Skill: a short written guide for using Copilot inside a specific app (Outlook, Excel, Word, SharePoint) for a recurring workflow. Best when the task is really \"how do I get Copilot to help me in this app repeatedly.\"\n\nMethod:\n1. Cluster my tasks into distinct recurring jobs; merge near-duplicates.\n2. Score each job on recurrence (how often) and time-saved-if-systematized (rough, low/medium/high). Do not fabricate frequencies; if I did not give one, mark it unknown and ask me to confirm.\n3. Recommend the best form (saved prompt, template, or skill) for each, with a one-line reason.\n4. Produce a ranked table: job, recurrence, time saved, best form, where it should live (durable-knowledge record, saved prompt, or a copilot-skills guide), reason.\n5. Draft the single top-ranked candidate in full so I can use it immediately: if a saved prompt, write the prompt; if a template, outline its sections; if a skill, write the short app-specific how-to.\n6. Note anything that should not be systematized (one-off or judgment-heavy tasks) so I do not over-automate compliance decisions.\n\nRules: use only the tasks I provide; never invent a recurring task or a frequency. Flag any candidate that would automate a compliance judgment, and state that such tasks stay human-decided and only get assistive prompts, never auto-approval.\n\nReturn the complete file content and nothing else, in this order:\n1. This YAML frontmatter, with bracketed placeholders filled:\n---\ndomain: regulatory-ingredients-labels-laws\ncategory: reflection\nsub-category: self-improvement\ndate-created: [TODAY as yyyy-MM-dd]\ndate-revised: [TODAY as yyyy-MM-dd]\ntype: reflection-note\nstatus: REVIEW\naliases: []\ntags:\n  - reflection\n  - self-improvement\ntopic: beverage-label-compliance\nuse-case: find-skill-gaps\nvisibility: private\n---\n2. An H1 equal to: skill-gap-finder-[TODAY as yyyy-mm-dd]\n3. The ranked table, the drafted top candidate, and the do-not-systematize note.\n4. This exact final line:\nDRAFT CANDIDATES - based only on the tasks I listed; I review and refine before installing anything.\n\n[Paste your recurring tasks or recent chats here]"
+  }
+]

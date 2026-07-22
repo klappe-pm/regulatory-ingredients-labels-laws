@@ -21,7 +21,7 @@ jobs:
       - name: Restore last-seen state
         uses: actions/cache@v4
         with:
-          path: regwatch/state/regwatch-seen.json
+          path: public/regwatch/state/regwatch-seen.json
           key: regwatch-seen-${{ github.run_id }}
           restore-keys: |
             regwatch-seen-
@@ -36,7 +36,7 @@ jobs:
       - name: Render the human-readable briefing
         run: python3 scripts/regwatch.py briefing --out out/regwatch-fda-beverage-briefing.md
       - name: Stage ingest candidates for the artifact
-        run: cp regwatch/state/regwatch-ingest-candidates.json out/ || true
+        run: cp public/regwatch/state/regwatch-ingest-candidates.json out/ || true
       - name: Upload weekly outputs
         uses: actions/upload-artifact@v4
         with:

@@ -8,6 +8,10 @@ purpose: Reference and tooling for regulatory ingredient and product-label laws.
 scaffold-overlays:
   - records-and-source-corpus
 canonical-scaffold: /Users/kevinlappe/Projects/harness/scaffolding/project-routing-spec.md
+# Deviation from the canonical overlay (see CLAUDE.md, Project Layout): this
+# project additionally splits shareable data/reports into public/ and private
+# working outputs into projects/, alongside the overlay's sources/ and docs/.
+# Not yet reflected in project-routing-spec.md.
 
 status:
   parent_git_initialized: true

@@ -1,18 +1,14 @@
 ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 PYTHON ?= python3
 
-.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing rebuild-agents test strip-agents strip-hooks strip-specs
+.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing regwatch-rollout rebuild-agents prompts-normalize prompts-sync prompts-check prompts-docx test strip-agents strip-hooks strip-specs
 
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
-	"$(ROOT)/docs/reference/reference-README.md" \
-	"$(ROOT)/docs/reference/regwatch-troubleshooting.md" \
-	"$(ROOT)/docs/reference/mcp.md" \
-	"$(ROOT)/docs/reference/environment/environment-README.md" \
-	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
+	"$(ROOT)/public/regwatch/regwatch-troubleshooting.md"
 
 help:
-	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing rebuild-agents test strip-agents strip-hooks strip-specs\n'
+	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing regwatch-rollout rebuild-agents test strip-agents strip-hooks strip-specs\n'
 
 doctor:
 	@test -f "$(ROOT)/CLAUDE.md"
@@ -50,15 +46,36 @@ regwatch-smoke:
 	@printf 'regwatch-smoke: passed\n'
 
 regwatch-brief:
-	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/docs/reports/regwatch-samples"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/projects/regwatch-samples"
 
 regwatch-briefing:
-	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/docs/reports/regwatch-samples/regwatch-fda-beverage-briefing.md"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/projects/regwatch-samples/regwatch-fda-beverage-briefing.md"
+
+ROLLOUT := $(ROOT)/projects/regwatch-rollout
+regwatch-rollout:
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v1 --since-days 90 --out "$(ROLLOUT)/regwatch-rollout-v1-report.md"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v2 --since-days 90 --out "$(ROLLOUT)/regwatch-rollout-v2-report.md"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v3 --since-days 90 --out "$(ROLLOUT)/regwatch-rollout-v3-report.md"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" newsletter --out "$(ROLLOUT)/regwatch-newsletter.md"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" export --csv "$(ROLLOUT)/regwatch-records-export.csv"
+	@printf 'regwatch-rollout: regenerated v1/v2/v3 reports, newsletter, and export\n'
 
 rebuild-agents:
 	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents" --tools claude-code
 
-test: doctor audit-strict regwatch-validate regwatch-smoke
+prompts-normalize:
+	@$(PYTHON) "$(ROOT)/scripts/normalize-prompt-frontmatter.py"
+
+prompts-sync:
+	@$(PYTHON) "$(ROOT)/scripts/sync-prompt-manifests.py"
+
+prompts-check:
+	@$(PYTHON) "$(ROOT)/scripts/sync-prompt-manifests.py" --check
+
+prompts-docx: prompts-sync
+	@$(PYTHON) "$(ROOT)/scripts/build-prompt-library-docx.py"
+
+test: doctor audit-strict regwatch-validate regwatch-smoke prompts-check
 	@printf 'test: passed\n'
 
 strip-agents:
