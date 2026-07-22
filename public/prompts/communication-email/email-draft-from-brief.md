@@ -2,40 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: communication-email
 sub-category: email-editing
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: draft-email-from-brief
+visibility: private
+aliases:
+  - compose email from a brief
+  - draft an email
+  - draft email in my voice
+  - email drafting helper
+  - email from bullet points
+  - quick email draft
+  - turn key points into an email
+  - write an email from notes
 tags:
   - communication-email
   - email-editing
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: draft-email-from-brief
-visibility: private
 ---
 
 # email-draft-from-brief
 
-## description
+## prompt-summary
 
-Drafts an email from a short brief in the specialist's own voice, producing a subject line, body, and alternate subject options.
+Drafts an email from a short brief in the specialist's own voice, producing a subject line, body, and alternate subject options. Reach for it when you have a purpose, recipient, and key points but no drafted email yet, and you want a ready-to-review first draft. It applies your installed communication style profile from [[communication-style-profile]] if one exists, or a plain, direct, professional voice when none is installed. The draft is yours to review and send; Copilot never sends.
 
-## when-to-use
+## use-cases
 
-The specialist has a purpose, recipient, and key points but no drafted email yet.
-
-## what-to-use-for
-
-Turning purpose, recipient, key points, and target tone into a ready-to-review draft email, applying the specialist's style profile from [[communication-style-profile]] if one has been installed, or a plain, direct, professional voice when none is installed.
-
-## required-inputs
-
-- Purpose (what the email needs to accomplish)
-- Recipient (who, and relationship/context if relevant)
-- Key points (what must be said)
-- Tone (target tone for this email)
+- You have a purpose, recipient, and key points but no drafted email yet.
+- You want to turn purpose, recipient, key points, and target tone into a ready-to-review draft.
+- You want the email written in your own first-person voice using your style profile from [[communication-style-profile]].
+- You want two alternate subject line options to choose from.
+- You need a fast first draft that a person reviews before it is sent.
 
 ## expected-outputs
 
@@ -43,23 +45,7 @@ Turning purpose, recipient, key points, and target tone into a ready-to-review d
 - Alternate subject line options
 - Note on which style profile was applied, if any
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile; to draft directly into an email instead, open Copilot in Outlook and expect subject and body only, no file output.
-2. Have your four inputs ready as text: purpose, recipient (and whether they are internal or external), key points, and target tone; you paste them into the bracketed placeholders, no file attachment needed.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself, then send the email from your own mailbox. Nothing is final until a person signs off; Copilot never sends.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: communication-email`, `sub-category: email-editing`, `date-created`/`date-revised` set to the run date, `type: email-draft`, `status: REVIEW`, `aliases: []`, `tags: [communication-email, email-editing]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: email-draft-from-brief`, `visibility: private`.
-
-File name: `email-draft-<slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 Run this in Microsoft 365 Copilot Chat to produce the file output specified at the end. If you are running in Copilot in Outlook instead, return only the subject line and body into the compose window and skip the file output contract.
@@ -114,6 +100,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist before sending.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile; to draft directly into an email instead, open Copilot in Outlook and expect subject and body only, no file output.
+2. Have your four inputs ready as text: purpose, recipient (and whether they are internal or external), key points, and target tone; you paste them into the bracketed placeholders, no file attachment needed.
+3. Copy the prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `email-draft-<slug>-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem), saved in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself, then send the email from your own mailbox. Nothing is final until a person signs off; Copilot never sends.
 
 ## guardrails
 

@@ -2,56 +2,49 @@
 domain: regulatory-ingredients-labels-laws
 category: setup
 sub-category: onboarding
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: refresh-onboarding-profile
+visibility: private
+aliases:
+  - my role changed update copilot
+  - quarterly copilot refresh
+  - re-run onboarding
+  - refresh my copilot profile
+  - refresh setup record
+  - update copilot about me
+  - update setup profile
+  - what changed since onboarding
 tags:
   - onboarding
   - regulatory-labeling
   - setup
-topic: beverage-label-compliance
-use-case: refresh-onboarding-profile
-visibility: private
 ---
 
 # setup-refresh
 
-## description
+## prompt-summary
 
-A shorter re-interview that reads your existing setup profile record back to you, asks only what may have changed since it was written, and produces an updated record plus a short list of installed Copilot entries to update or remove. It exists so the specialist maintains context by confirming deltas, not by re-answering the full onboarding interview each quarter.
+A shorter re-interview that reads your existing setup profile record back to you, asks only what may have changed since it was written, and produces an updated record plus a short list of installed Copilot entries to update or remove. It exists so the specialist maintains context by confirming deltas, not by re-answering the full onboarding interview each quarter. Reach for it when your role, team, product lines, tools, or workstreams have changed, or when a scheduled refresh comes due.
 
-## when-to-use
+## use-cases
 
-Role, team, product lines, tools, or workstreams have changed, or a scheduled refresh (a quarterly pass is a good default) is due.
-
-## what-to-use-for
-
-Updating an existing setup profile record through targeted change questions, and surfacing which durable-knowledge artifacts and installed Copilot layers now need to be updated or retired.
-
-## required-inputs
-
-- The current `setup-profile-record.md` from a prior [[setup-interview]] or [[setup-refresh]] run
+- Your role and scope, product lines, tools, or workstreams have changed since the last record was written.
+- A scheduled refresh is due (a quarterly pass is a good default) and you want to confirm deltas rather than re-answer everything.
+- A colleague departed or a workstream closed, and you need the stale installed context surfaced for removal.
+- You need to know which durable-knowledge artifacts and installed Copilot layers now require updating or retiring.
+- You have a current `setup-profile-record.md` from a prior [[setup-interview]] or [[setup-refresh]] run to update in place.
 
 ## expected-outputs
 
 - An updated setup profile record with a dated change log section
 - A to-update and to-remove list keyed to the durable-knowledge prompts and the install router
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach your current `setup-profile-record.md` with the paperclip or a `/` file reference; paste its text if you cannot attach it.
-3. Copy the entire prompt-text block below and paste it into the chat.
-4. Answer only the change questions; "no change" is a valid answer to any of them.
-5. Copilot cannot save files. Copy its full reply into `setup-profile-record.md` in `projects/regulatory-labeling/` (replacing the old one), then work the to-update and to-remove list.
-
-## output-handling
-
-File name: `setup-profile-record.md` (replaces the prior record), H1 equal to the file-name stem. Saves to: `projects/regulatory-labeling/`. Copilot cannot save files; copy the full reply over the existing record. The record keeps a dated change-log section so prior states remain visible.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat, refreshing the context profile of a regulatory labeling specialist at a US beverage manufacturer. Your single task: interview me about what has changed since my attached setup profile record, then produce an updated record.
@@ -91,8 +84,16 @@ visibility: private
 UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before any downstream use.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the current `setup-profile-record.md` from a prior [[setup-interview]] or [[setup-refresh]] run; attach it with the paperclip or a `/` file reference, or paste its text if you cannot attach it.
+3. Copy the entire prompt block above, paste it into the chat, and answer only the change questions; "no change" is a valid answer to any of them.
+4. Copilot cannot save files. Copy its full reply into `setup-profile-record.md` (H1 equal to the file-name stem) in `projects/regulatory-labeling/`, replacing the old one; the record keeps a dated change-log section so prior states stay visible.
+5. Work the to-update and to-remove list, and treat nothing as final until a person signs off.
+
 ## guardrails
 
-The refresh carries unchanged content forward verbatim and applies only stated deltas; it never invents a change or silently drops a field. The to-remove list is what keeps stale context from accumulating in Copilot Memory and agent knowledge, per the lifecycle guidance in [[durable-knowledge]]. The record is input for review; installation runs only through [[personalization-install-router]].
+The refresh carries unchanged content forward verbatim and applies only stated deltas; it never invents a change or silently drops a field. The to-remove list is what keeps stale context from accumulating in Copilot Memory and agent knowledge, per the lifecycle guidance in the durable-knowledge prompts. The record is input for review; installation runs only through [[personalization-install-router]].
 
 Related: [[setup-interview]], [[workstream-inventory]], [[personalization-install-router]].

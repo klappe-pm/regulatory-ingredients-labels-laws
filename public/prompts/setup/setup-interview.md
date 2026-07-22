@@ -2,56 +2,49 @@
 domain: regulatory-ingredients-labels-laws
 category: setup
 sub-category: onboarding
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: first-run-onboarding-interview
+visibility: private
+aliases:
+  - build my copilot profile
+  - copilot getting started
+  - first time setup
+  - new specialist onboarding
+  - onboarding interview
+  - set up copilot
+  - setup profile record
+  - tell copilot about me
 tags:
   - onboarding
   - regulatory-labeling
   - setup
-topic: beverage-label-compliance
-use-case: first-run-onboarding-interview
-visibility: private
 ---
 
 # setup-interview
 
-## description
+## prompt-summary
 
-A staged onboarding interview that Copilot conducts with the specialist: one question at a time across six short stages (role, products, workflows, people, communication style, wrap-up). The answers become a single setup profile record that seeds every durable-knowledge artifact and the install router, so the specialist never has to author context documents from a blank page.
+A staged onboarding interview that Copilot conducts with the specialist: one question at a time across six short stages (role, products, workflows, people, communication style, wrap-up). The answers become a single setup profile record that seeds every durable-knowledge artifact and the install router, so the specialist never has to author context documents from a blank page. Reach for it on a first session with this library, when a new team member joins, or any time you want to rebuild your Copilot context from scratch.
 
-## when-to-use
+## use-cases
 
-First session with this library, a new team member joining, or any time the specialist wants to rebuild their Copilot context from scratch.
-
-## what-to-use-for
-
-Collecting personal and team working context through guided questions instead of document writing, and producing the setup profile record that downstream prompts consume.
-
-## required-inputs
-
-- None to start; the interview gathers everything by asking. Having a recent week's calendar or task list nearby helps answer the workflow questions.
+- Your first session with this prompt library and you have no setup profile record yet.
+- A new team member is joining and needs their own Copilot context built through guided questions instead of document writing.
+- You want to rebuild your Copilot context from scratch after a role or team change too large for an incremental pass.
+- You need the setup profile record that downstream prompts consume, produced without writing context documents by hand.
+- You are ready to feed the results forward to [[communication-style-profile]], [[stakeholder-and-contact-map]], [[team-roles-and-responsibilities]], [[workstream-inventory]], and [[personalization-install-router]].
 
 ## expected-outputs
 
 - A setup profile record with one section per stage
 - A next-steps list mapping each section to the durable-knowledge prompt that formalizes it
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Copy the entire prompt-text block below and paste it into the chat; no attachments are needed.
-3. Answer one question at a time. Say "skip" to pass on a question and "pause" to stop early; a paused interview still produces a partial record you can resume from later.
-4. Copilot cannot save files. Copy its full reply into a new note named `setup-profile-record.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Follow the next-steps list at the end of the record.
-
-## output-handling
-
-File name: `setup-profile-record.md`, H1 equal to the file-name stem. Saves to: `projects/regulatory-labeling/`. Copilot cannot save files; copy the full reply into a new note at that path. Re-running the interview replaces the record; use [[setup-refresh]] for incremental updates.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat, onboarding a regulatory labeling specialist at a US beverage manufacturer. Your single task: interview me, then produce my setup profile record.
@@ -97,8 +90,16 @@ visibility: private
 UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before any downstream use.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have nearby a recent week's calendar or task list to help answer the workflow questions; no attachments are required, since the interview gathers everything by asking.
+3. Copy the entire prompt block above, paste it into the chat, and answer one question at a time. Say "skip" to pass on a question and "pause" to stop early; a paused interview still produces a partial record you can resume from later.
+4. Copilot cannot save files. Copy its full reply into a new note named `setup-profile-record.md` (H1 equal to the file-name stem) in `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder. Re-running the interview replaces the record; use [[setup-refresh]] for incremental updates.
+5. Follow the next-steps list at the end of the record; review it, and treat nothing as final until a person signs off.
+
 ## guardrails
 
-The interview records answers verbatim and never invents context; skipped means not-provided, never guessed. Stage 4 collects business roles and work channels only, per the privacy rules in [[durable-knowledge]]. The record is input for the specialist to review, not an installed profile; installation happens only through [[personalization-install-router]] after human review.
+The interview records answers verbatim and never invents context; skipped means not-provided, never guessed. Stage 4 collects business roles and work channels only, per the privacy rules in the durable-knowledge prompts. The record is input for the specialist to review, not an installed profile; installation happens only through [[personalization-install-router]] after human review.
 
 Related: [[setup-refresh]], [[communication-style-profile]], [[stakeholder-and-contact-map]], [[team-roles-and-responsibilities]], [[workstream-inventory]], [[personalization-install-router]].

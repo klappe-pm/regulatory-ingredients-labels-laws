@@ -2,58 +2,49 @@
 domain: regulatory-ingredients-labels-laws
 category: version-reconciliation
 sub-category: reconciliation
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - reconciliation
-  - version-reconciliation
-  - regulatory-labeling
-  - comparison
 topic: beverage-label-compliance
 use-case: audit-change-propagation
 visibility: private
+aliases:
+  - change propagation check
+  - claim change did not propagate
+  - did the change reach every sku
+  - find labels missing the update
+  - formula change rollout audit
+  - propagation matrix across skus
+  - unpropagated label change
+  - which labels still have the old version
+tags:
+  - comparison
+  - reconciliation
+  - regulatory-labeling
+  - version-reconciliation
 ---
 
 # change-propagation-audit
 
-## description
+## prompt-summary
 
-Traces whether one approved label change actually reached every downstream label and asset it should have, flagging any SKU or asset the change never propagated to.
+Traces whether one approved label change actually reached every downstream label and asset it should have, flagging any SKU or asset the change never propagated to. Reach for it after any approved change to a formula, claim, or Nutrition Facts Panel value, across every SKU and asset that shares that formula or claim. The change record is the source of truth for what should exist downstream; every downstream artifact is what is under test.
 
-## when-to-use
+## use-cases
 
-After any approved change to a formula, claim, or NFP value, across every SKU and asset that shares that formula or claim.
-
-## what-to-use-for
-
-Building a propagation matrix that shows, for one approved change, which downstream artifacts have it and which do not.
-
-## required-inputs
-
-- Change record (what changed, when, and why it was approved), with its change ID, version, and approval date.
-- SKU list (every SKU that could be affected), with its version or as-of date.
-- Downstream artifacts (labels, packaging files, marketing assets tied to those SKUs), each labeled with its filename and version or date.
+- An approved formula, claim, allergen, or NFP change just landed and you need to confirm it reached every SKU and asset that shares that formula or claim.
+- You are building a propagation matrix that shows, for one approved change, which downstream artifacts have it and which still show pre-change content.
+- A SKU family shares a claim or formula and you suspect one label or marketing asset was missed in the rollout.
+- Any artifact still carrying the old version is approaching the print pipeline and needs a print-risk flag before release.
+- You need every unpropagated change listed explicitly, mapped to a single action (hold-print, escalate, correct-record, or clear) with a citation.
 
 ## expected-outputs
 
 A propagation matrix covering every SKU x artifact pair with a stated cell count, a list of unpropagated changes, print-risk flags for anything still in the print pipeline, an aggregate disposition, and a machine-readable JSON summary block with a `no_blocking_findings_detected` boolean.
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the change record, the SKU list, and every downstream artifact with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached or when its text is outlined artwork rather than live text.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `change-propagation-audit-<change-id>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); the date stamp keeps re-runs from overwriting earlier audits.
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this frontmatter to the saved output file: `domain: regulatory-ingredients-labels-laws`, `category: version-reconciliation`, `sub-category: reconciliation`, `date-created`/`date-revised` set to the run date, `type: propagation-audit`, `status: REVIEW`, `aliases: []`, `tags: [version-reconciliation, reconciliation, comparison, <change-id>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: audit-change-propagation`, `visibility: private`. File name: `change-propagation-audit-<change-id>-<yyyy-MM-dd>.md`, H1 equal to the file-name stem. Save path: `projects/regulatory-labeling/` (visibility: private).
-
-## prompt-text
+## prompt
 
 ```text
 You are running inside Microsoft 365 Copilot Chat as a change-propagation auditor for a beverage manufacturer's regulatory labeling specialist. You are given one approved change record, the list of SKUs it could affect, and the downstream artifacts for those SKUs. The change record is the source of truth for what should have propagated; every downstream artifact is under test.
@@ -114,16 +105,18 @@ visibility: private
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the change record (with its change ID, version, and approval date), the SKU list (with its version or as-of date), and every downstream artifact (each labeled with its filename and version or date). Attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached or when its text is outlined artwork rather than live text.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `change-propagation-audit-<change-id>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder), with the H1 equal to that file-name stem; the date stamp keeps re-runs from overwriting earlier audits. Apply this frontmatter to the saved file: `domain: regulatory-ingredients-labels-laws`, `category: version-reconciliation`, `sub-category: reconciliation`, `date-created`/`date-revised` set to the run date, `type: propagation-audit`, `status: REVIEW`, `aliases: []`, `tags: [version-reconciliation, reconciliation, comparison, <change-id>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: audit-change-propagation`, `visibility: private`.
+5. Review the output yourself. Nothing is final until a person signs off.
+
 ## guardrails
 
 - The change record is the source of truth for what should exist downstream; the artifacts are what is under test.
 - Propagation is never assumed without evidence; an unconfirmed artifact state is an unable-to-verify finding, not a pass.
 - `no_blocking_findings_detected` means only that no critical finding was detected in this run; it is a signal for downstream tooling, never an approval.
 - Every citation is UNVERIFIED until the specialist confirms it against the current eCFR.
-
-## see-also
-
-- [[version-reconciliation]] (category index)
-- [[production-vs-documented-comparison]]
-- [[print-proof-preflight]]
-- [[market-pull-vs-record-check]]
+- Related: [[production-vs-documented-comparison]], [[print-proof-preflight]], [[market-pull-vs-record-check]]

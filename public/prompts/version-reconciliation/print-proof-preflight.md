@@ -2,61 +2,49 @@
 domain: regulatory-ingredients-labels-laws
 category: version-reconciliation
 sub-category: prepress
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - prepress
-  - version-reconciliation
-  - regulatory-labeling
-  - comparison
 topic: beverage-label-compliance
 use-case: preflight-press-proof
 visibility: private
+aliases:
+  - hold or release the print job
+  - is this proof safe to print
+  - last check before print
+  - prepress regulatory copy check
+  - press proof preflight
+  - print release preflight
+  - proof against label of record
+  - proof vs approved label check
+tags:
+  - comparison
+  - prepress
+  - regulatory-labeling
+  - version-reconciliation
 ---
 
 # print-proof-preflight
 
-## description
+## prompt-summary
 
-Preflights the regulatory copy of a press proof against the approved label of record before print release, the last gate before real cost and real risk commit. Scoped to regulated label content; visual and dimensional print-spec checks stay human-only.
+Preflights the regulatory copy of a press proof against the approved label of record before print release, the last gate before real cost and real risk commit. Reach for it when a press proof exists for a run and needs sign-off before the print job is released. Scoped to regulated label content; visual and dimensional print-spec checks (dimensions, bleed, color, substrate, barcode scannability, measured type size) stay human-only. The approved label of record always wins on conflict; the press proof is what is under test.
 
-## when-to-use
+## use-cases
 
-A press proof exists for a run and needs sign-off before the print job is released.
-
-## what-to-use-for
-
-Field-by-field comparison of the press proof's regulated content against the approved label of record, silent-change detection, and a hold or release recommendation for human sign-off.
-
-## required-inputs
-
-- Press proof (the artifact under test), as a live-text export or pasted text, with its filename and proof version or date. Outlined or curved artwork text cannot be read; supply the text layer or paste the copy.
-- Approved label of record (the source of truth), with its filename, version identifier, and effective date.
+- A press proof exists for a run and needs regulatory sign-off before the print job is released.
+- You need a field-by-field comparison of the proof's regulated content against the approved label of record before real print cost and market risk lock in.
+- You suspect a silent change between approval and this proof, including a font or layout substitution that alters the wording or completeness of mandatory text.
+- You need a hold or release-for-human-sign-off recommendation, with every blocking issue named.
+- You want the human-only print-spec items (dimensions, bleed, color, substrate, barcode scannability, measured type size) listed for the checker rather than assessed in chat.
 
 ## expected-outputs
 
 A preflight table with exactly one row per enumerated field, a closing completeness attestation ("Fields compared: N of N; skipped: none"), an aggregate disposition, a machine-readable JSON summary block with a `no_blocking_findings_detected` boolean, and a recommend-hold or recommend-release-for-human-sign-off recommendation. Visual and dimensional print-spec items (dimensions, bleed, color, substrate, barcode scannability, measured type size) are out of scope and listed for the human checker.
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the press proof (live-text export) and the approved label of record with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste the proof copy directly when the proof PDF has outlined artwork text, which Copilot cannot read.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `print-proof-preflight-<sku-slug>-<run-id>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); the run ID keeps re-runs from overwriting earlier preflights.
-5. Review the output yourself and complete the human-only print-spec checks with the prepress vendor. Nothing is released until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: version-reconciliation`, `sub-category: prepress`, `date-created`/`date-revised` set to the run date, `type: preflight-review`, `status: REVIEW`, `aliases: []`, `tags: [version-reconciliation, prepress, comparison, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: preflight-press-proof`, `visibility: private`.
-
-File name: `print-proof-preflight-<sku-slug>-<run-id>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```text
 You are running inside Microsoft 365 Copilot Chat as a prepress preflight reviewer for a beverage manufacturer's regulatory labeling specialist. You are comparing the regulated content of a press proof against the documented approved label of record. The approved label of record is the source of truth; the press proof is the artifact under test; on any conflict, the approved record wins and the discrepancy is a finding, never silently resolved in favor of the proof. This check covers regulated label copy only: visual and dimensional print-spec verification (dimensions, bleed, color callouts, substrate, barcode scannability, measured minimum type size) cannot be done in a chat and is a human-only check with the prepress vendor.
@@ -113,6 +101,14 @@ visibility: private
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the press proof (as a live-text export or pasted text, with its filename and proof version or date) and the approved label of record (with its filename, version identifier, and effective date). Attach both with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste the proof copy directly when the proof PDF has outlined artwork text, which Copilot cannot read.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `print-proof-preflight-<sku-slug>-<run-id>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder), with the H1 equal to that file-name stem; the run ID keeps re-runs from overwriting earlier preflights. Apply this frontmatter to the saved file: `domain: regulatory-ingredients-labels-laws`, `category: version-reconciliation`, `sub-category: prepress`, `date-created`/`date-revised` set to the run date, `type: preflight-review`, `status: REVIEW`, `aliases: []`, `tags: [version-reconciliation, prepress, comparison, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: preflight-press-proof`, `visibility: private`.
+5. Review the output yourself and complete the human-only print-spec checks with the prepress vendor. Nothing is released until a person signs off.
+
 ## guardrails
 
 - The approved label of record always wins on conflict; the press proof is what is under test.
@@ -120,10 +116,4 @@ UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling speci
 - Visual and dimensional print-spec checks (dimensions, bleed, color, substrate, barcode scannability, measured type size) are human-only; no output of this prompt covers them.
 - `no_blocking_findings_detected` means only that no critical discrepancy was detected in this run; it is never print approval.
 - Every citation is UNVERIFIED until the specialist confirms it against the current eCFR.
-
-## see-also
-
-- [[version-reconciliation]] (category index)
-- [[production-vs-documented-comparison]]
-- [[change-propagation-audit]]
-- [[market-pull-vs-record-check]]
+- Related: [[production-vs-documented-comparison]], [[change-propagation-audit]], [[market-pull-vs-record-check]]

@@ -2,30 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-skills
 sub-category: outlook
+types:
+  - skill
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: skill
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: copilot-in-outlook
+visibility: private
+aliases:
+  - coach my email draft
+  - copilot in outlook
+  - draft an email with copilot
+  - email action items
+  - outlook copilot for regulatory email
+  - reply to email with copilot
+  - summarize email thread
+  - write email in my voice
 tags:
   - copilot-skills
   - m365-copilot
   - outlook
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: copilot-in-outlook
-visibility: private
 ---
 
 # copilot-in-outlook
 
-## description
+## prompt-summary
 
 How to use Copilot inside Outlook to draft and reply to email in your voice, summarize long threads, and pull action items, without ever letting it send on its own. Email is where a regulatory position becomes externally consequential, so this guide pairs the convenience with the checks that keep a draft from going out wrong.
 
-## when-to-use
+## use-cases
 
-Drafting or replying to email, catching up on a long thread, or turning a thread into a task list, especially anything that states a regulatory position.
+- You are drafting a new email or a reply that states a regulatory position and want it in your own voice.
+- You need to catch up on a long thread and see what was decided and what is still open.
+- You want to turn a thread into a saved action list with owners via [[email-thread-to-actions]].
+- You have a draft and want Copilot to coach its tone and clarity before you send it.
+- A position email needs its citations checked and its AI assistance kept out of the message body.
 
 ## what-copilot-can-do-here
 

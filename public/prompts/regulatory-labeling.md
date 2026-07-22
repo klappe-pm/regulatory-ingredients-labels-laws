@@ -2,49 +2,59 @@
 domain: regulatory-ingredients-labels-laws
 category: regulatory-labeling
 sub-category: overview
+types:
+  - index
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: index
 status: DONE
-aliases:
-  - regulatory labeling prompt library
-  - prompt library home
-tags:
-  - regulatory-labeling
-  - prompt-library
-  - copilot
 topic: beverage-label-compliance
 use-case: browse-prompt-library
 visibility: private
+aliases:
+  - all prompts
+  - copilot prompt library
+  - prompt catalog
+  - prompt library home
+  - regulatory labeling prompt library
+tags:
+  - copilot
+  - prompt-library
+  - regulatory-labeling
 ---
 
 # regulatory-labeling
 
-Master index for the regulatory labeling prompt library: a catalog of prompts a regulatory labeling specialist at a US beverage manufacturer runs inside Microsoft 365 Copilot, spanning onboarding setup, intake, content derivation, claims compliance, review and verification, version reconciliation, market monitoring and status reporting, email communication, durable personal and team knowledge, Copilot configuration, app-specific skills, and periodic reflection. Every prompt follows the same section contract (description, when-to-use, what-to-use-for, required-inputs, expected-outputs, how-to-run, output-handling, prompt-text, guardrails) and every compliance-facing prompt enforces human-in-the-loop review, forbids fabrication, cites exact regulatory provisions marked unverified until confirmed, and ends its output with an unverified-draft banner. Default jurisdiction is US FDA; no SKU is treated as a dietary supplement unless stated. New here? Read [[prompt-library-user-guide]] first, then run [[setup-interview]].
+Home for the Microsoft 365 Copilot prompt library for a regulatory labeling specialist at a US beverage manufacturer (US FDA / CFR 21). Each prompt does one job: you open it, read the summary, copy the prompt block, paste it into Copilot, and review what comes back. Nothing here approves a label or is legal advice; every compliance prompt is human-sign-off gated and marks its citations unverified until you confirm them against the current eCFR.
 
-## start-here
+New here? Read [[prompt-library-user-guide]] first. It explains how to run any prompt and has a "which prompt do I need" table. To set up your own context so Copilot knows your role and products, run [[setup-interview]].
 
-- [[prompt-library-user-guide]]: how the library works, how to run a prompt in Copilot, and the safety rules. Read this first.
-- [[setup]]: a guided interview that builds your personal and team context so Copilot knows who you are and what you work on.
-- [[copilot-skills]]: plain-language guides for using Copilot inside Copilot Chat, Excel, Outlook, Word, and SharePoint.
+## the-categories
 
-## categories
+- label-intake: turn a dev brief and formula into a structured intake record, and scope intended claims by pathway.
+- content-derivation: draft the ingredient statement, verify allergens, and build and rounding-check the Nutrition Facts Panel.
+- claims-compliance: test nutrient content, structure/function, prohibited/misleading, and "healthy" claims.
+- review-and-verification: run a checklist review and an independent second-eyes review.
+- version-reconciliation: catch drift between the approved label and production copy, propagation, or a press proof.
+- market-and-reporting: compare an in-market label to the approved record, and write the weekly report.
+- communication-email: draft, revise, and reply to email in your voice, and turn threads into actions.
+- durable-knowledge: capture your style, stakeholders, team, and workstreams for Copilot to remember.
+- copilot-configuration: route durable-knowledge into the right Copilot layer.
+- copilot-skills: app guides for Copilot Chat, Excel, Outlook, Word, and SharePoint.
+- setup: a guided interview that builds your context.
+- reflection: review your prompting, find skills to build, and run a monthly retro.
 
-- [[label-intake]]: normalize a dev brief and formula into a structured intake record, and scope intended claims by regulatory pathway, before any drafting begins.
-- [[content-derivation]]: derive the ingredient statement, verify the allergen declaration, and build and rounding-check the Nutrition Facts Panel from the formula.
-- [[claims-compliance]]: test nutrient content claims, structure/function claims, prohibited or misleading claims, and "healthy" eligibility against exact provisions.
-- [[review-and-verification]]: evaluate a draft against a checklist and run an independent second, human-in-the-loop review.
-- [[version-reconciliation]]: catch silent drift between the approved label of record and production copy, downstream propagation, or a press proof.
-- [[market-and-reporting]]: compare an in-market label against the approved record, and roll findings into a weekly status report.
-- [[communication-email]]: draft, revise, and reply to email in the specialist's voice, and convert threads into decisions and actions.
-- [[durable-knowledge]]: capture the specialist's durable communication style, stakeholders, team roles, and current workstreams for Copilot to remember.
-- [[copilot-configuration]]: route any durable-knowledge artifact to its correct Copilot layer, grounded in the current M365 personalization and agent layering model.
-- [[reflection]]: review your own prompting, find tasks worth turning into reusable assets, and run a monthly usage retro.
+## find-a-prompt
 
-## browse
+Three ways to find a prompt, use whichever fits how you think:
+
+- Search: open the quick switcher (or search) and type what you would call the task; every prompt carries plain-language aliases.
+- Filter: open [[prompt-explorer]] and pick property values from dropdowns (starts empty, fills as you choose; needs the Dataview plugin).
+- Browse: the tables below list everything, grouped by category.
+
+## browse-all-prompts
 
 ![[bases/all-prompts.base]]
 
-## by category
+## by-category
 
 ![[bases/by-category.base]]

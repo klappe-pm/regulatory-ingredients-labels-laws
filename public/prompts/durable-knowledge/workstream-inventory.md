@@ -2,37 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: durable-knowledge
 sub-category: workstreams
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - durable-knowledge
-  - workstreams
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: inventory-workstreams
 visibility: private
+aliases:
+  - active workstreams
+  - confidential workstreams flag
+  - copilot memory what i do
+  - current projects list
+  - list my current projects
+  - project status roundup
+  - what am i working on
+  - workstream inventory
+tags:
+  - durable-knowledge
+  - regulatory-labeling
+  - workstreams
 ---
 
 # workstream-inventory
 
-## description
+## prompt-summary
 
-Inventories what the specialist is currently working on, as durable context for a private declarative agent's knowledge or Copilot Memory.
+Inventories what the specialist is currently working on as durable context for a private declarative agent's knowledge or Copilot Memory. It turns a list of current projects and workstreams into structured records (name, goal, status, stakeholders, key artifacts, confidentiality flag) plus a review-by date so the context never goes stale. Reach for it on a stated cadence (monthly, or alongside the weekly status report, whichever comes first) and whenever workstreams change enough that Copilot's sense of "what am I working on" would be wrong.
 
-## when-to-use
+## use-cases
 
-On a stated cadence: monthly, or alongside the weekly status report, whichever comes first, and additionally whenever workstreams change enough that Copilot's context on "what am I working on" would be stale.
-
-## what-to-use-for
-
-Turning a list of current projects and workstreams into structured records with goal, status, stakeholders, and key artifacts, kept current as durable Copilot context.
-
-## required-inputs
-
-- Current projects and workstreams
+- Monthly refresh of durable "what am I working on" context, or alongside the weekly status report, whichever comes first.
+- Workstreams change enough that Copilot's context would be stale and needs replacing.
+- You want each project recorded with goal, status (using this project's status vocabulary), stakeholders, and key artifacts.
+- You need unreleased SKU names, claims strategy, or launch timing flagged as confidential so they go only into a private, never-shared layer.
+- You are routing this artifact to its owning Copilot layer via [[personalization-install-router]], or pairing it with the [[weekly-status-report]] companion artifact.
 
 ## expected-outputs
 
@@ -40,23 +45,7 @@ Turning a list of current projects and workstreams into structured records with 
 - Review-by date for the whole inventory
 - Install footer naming the owning Copilot layer, load steps, and the remove-the-prior-version step
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the input ready: your list of current projects and workstreams. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `workstream-inventory-record-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); the date stamp means re-runs never overwrite an earlier record.
-5. Review the output yourself, remove the prior installed version, then install the new one per its install footer. Nothing installs automatically and nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: durable-knowledge`, `sub-category: workstreams`, `date-created`/`date-revised` set to the run date, `type: workstream-record`, `status: REVIEW`, `aliases: []`, `tags: [durable-knowledge, workstreams]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: workstream-inventory`, `visibility: private`.
-
-File name: `workstream-inventory-record-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem. The `-record` suffix keeps outputs from colliding with this prompt file's stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: inventory the specialist's current workstreams from a list of current projects and workstreams.
@@ -105,6 +94,14 @@ UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before 
 
 [Paste current projects and workstreams here]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the input ready: your list of current projects and workstreams. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `workstream-inventory-record-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem; the `-record` suffix keeps outputs from colliding with this prompt file's stem; the date stamp means re-runs never overwrite an earlier record) in `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself, remove the prior installed version, then install the new one per its install footer. Nothing installs automatically and nothing is final until a person signs off.
 
 ## guardrails
 

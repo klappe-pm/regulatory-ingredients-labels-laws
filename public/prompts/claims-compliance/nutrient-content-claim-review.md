@@ -2,39 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: claims-compliance
 sub-category: claims
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - claims-compliance
-  - claims
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: review-nutrient-content-claim
 visibility: private
+aliases:
+  - claim vs nutrition facts
+  - does this claim pass
+  - excellent source claim
+  - good source claim
+  - low sodium claim
+  - nutrient content claim check
+  - reduced sugar claim review
+  - sugar free claim check
+tags:
+  - claims
+  - claims-compliance
+  - regulatory-labeling
 ---
 
 # nutrient-content-claim-review
 
-## description
+## prompt-summary
 
-Tests nutrient content claims (e.g. "sugar free," "excellent source of vitamin C") against their FDA definition and disclosure triggers using the NFP values that support them, and flags claim terms FDA has never defined (e.g. "low sugar") as not permitted rather than testable.
+Tests a nutrient content claim (like sugar free, excellent source of vitamin C, or low sodium) against its FDA definition and disclosure triggers, using the Nutrition Facts values that back it. Reach for it when marketing proposes a nutrient claim and you need to know whether the numbers actually support it before the label is finalized. Claim terms FDA has never defined (like low sugar) are flagged as not permitted, not merely failing.
 
-## when-to-use
+## use-cases
 
-A claim has been scoped as a nutrient-content-claim pathway item in [[claims-target-scoping]], or any nutrient content claim needs review before label finalization.
-
-## what-to-use-for
-
-Testing claim text against 21 CFR 101.13/Subpart D definitions and 101.65 implied-claim rules on a per-RACC basis, checking the 101.13(h) disclosure triggers, and producing a per-claim verdict with required disclosures and a rewrite if the claim fails.
-
-## required-inputs
-
-- Claim text (exact wording)
-- Full NFP values, including total fat, saturated fat, cholesterol, and sodium (the 21 CFR 101.13(h) disclosure triggers key on these four even when the claim is about a different nutrient)
-- Serving size and RACC (21 CFR 101.12)
+- A claim routed to the nutrient-content pathway by [[claims-target-scoping]].
+- Marketing proposes "good source of", "free", "low", or "reduced" wording and you need the numbers checked against the definition.
+- You need to know whether a claim triggers a "see nutrition information" disclosure under 21 CFR 101.13(h).
+- You suspect a term (for example "low sugar") may not be a legal nutrient content claim at all.
+- Any nutrient content claim needs a per-RACC review against 21 CFR 101.13/Subpart D and 101.65 before label finalization.
 
 ## expected-outputs
 
@@ -43,23 +46,7 @@ Testing claim text against 21 CFR 101.13/Subpart D definitions and 101.65 implie
 - Citation, marked UNVERIFIED until confirmed against the current eCFR
 - Rewrite suggestion if the claim fails
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the claim text and NFP values with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste the claim text, NFP values, and serving size/RACC directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `nutrient-content-claim-review-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: claims-compliance`, `sub-category: claims`, `date-created`/`date-revised` set to the run date, `type: claim-review`, `status: REVIEW`, `aliases: []`, `tags: [claims-compliance, claims, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: nutrient-content-claim-review`, `visibility: private`.
-
-File name: `nutrient-content-claim-review-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: test nutrient content claims against their FDA definition and disclosure triggers.
@@ -120,6 +107,14 @@ Serving size and RACC: [serving size and RACC]
 
 SKU identifier: [SKU]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the claim text (exact wording), the full NFP values (including total fat, saturated fat, cholesterol, and sodium, since the 21 CFR 101.13(h) disclosure triggers key on these four even when the claim is about a different nutrient), and the serving size and RACC (21 CFR 101.12); attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste them directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `nutrient-content-claim-review-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

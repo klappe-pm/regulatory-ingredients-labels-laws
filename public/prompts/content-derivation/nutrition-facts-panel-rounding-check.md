@@ -2,39 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: content-derivation
 sub-category: nutrition-facts-panel
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: verify-nfp-rounding
+visibility: private
+aliases:
+  - calories rounding
+  - fda rounding rules check
+  - is this value rounded correctly
+  - nfp rounding review
+  - nutrition facts rounding check
+  - nutrition panel verification
+  - percent daily value recheck
+  - sodium rounding increment
 tags:
   - content-derivation
   - nutrition-facts-panel
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: verify-nfp-rounding
-visibility: private
 ---
 
 # nutrition-facts-panel-rounding-check
 
-## description
+## prompt-summary
 
-Verifies FDA rounding rules and %DV computation on every value in a draft Nutrition Facts Panel against the rounding increments embedded in the prompt, quoting the applied increment and showing the computation before each verdict.
+Verifies FDA rounding rules and %DV computation on every value in a draft Nutrition Facts Panel against the rounding increments embedded in the prompt, quoting the applied increment and showing the computation before each verdict. Reach for it after a draft NFP has been built, or whenever draft NFP values change and need re-verification before print. A mismatch between the draft value and the correctly rounded value is treated as a finding, not a judgment call, and anything not resolvable from the supplied data is marked unable-to-verify.
 
-## when-to-use
+## use-cases
 
-After [[nutrition-facts-panel-buildout]] has produced a draft NFP, or whenever draft NFP values change and need re-verification before print.
-
-## what-to-use-for
-
-Checking each declared NFP value against its embedded 21 CFR 101.9(c) rounding increment and recomputing %DV against the supplied DV basis, flagging any value that was rounded or computed incorrectly.
-
-## required-inputs
-
-- Draft NFP values (as currently drafted)
-- DV basis used (which Daily Value table/version, with its values)
-- Unrounded underlying nutrient data, if available
+- A draft NFP from [[nutrition-facts-panel-buildout]] is ready and needs a rounding and %DV cross-check before print.
+- Draft NFP values changed and need re-verification before the label is finalized.
+- You need each declared value checked against its embedded 21 CFR 101.9(c) rounding increment with the computation shown.
+- You need %DV recomputed against the supplied DV basis, with mismatches flagged.
+- You need corrected values produced wherever a rounding or %DV fail is found.
+- You need an aggregate disposition with an explicit list of every critical or major fail blocking sign-off.
 
 ## expected-outputs
 
@@ -44,23 +48,7 @@ Checking each declared NFP value against its embedded 21 CFR 101.9(c) rounding i
 - Aggregate disposition (no-findings-pending-human-review, findings-require-action, or blocked) with a blocking-issues list
 - Citations for each rounding rule applied
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the draft NFP values, the DV basis (with its values), and, if available, the unrounded nutrient data ready; attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste each into its placeholder when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `nfp-rounding-review-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: content-derivation`, `sub-category: nutrition-facts-panel`, `date-created`/`date-revised` set to the run date, `type: nfp-rounding-review`, `status: REVIEW`, `aliases: []`, `tags: [content-derivation, nutrition-facts-panel, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: nfp-rounding-review`, `visibility: private`.
-
-File name: `nfp-rounding-review-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: verify rounding and %DV on every value in a draft Nutrition Facts Panel.
@@ -123,6 +111,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the draft NFP values (as currently drafted), the DV basis used (which Daily Value table/version, with its values), and, if available, the unrounded underlying nutrient data ready; attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste each into its placeholder when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `nfp-rounding-review-<sku-slug>.md` (kebab-case, H1 equal to the file-name stem) saved to `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

@@ -2,30 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-skills
 sub-category: excel
+types:
+  - skill
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: skill
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: copilot-in-excel
+visibility: private
+aliases:
+  - clean up supplier spreadsheet
+  - copilot in excel
+  - excel copilot for labeling
+  - excel formulas help
+  - explain this excel formula
+  - nutrition facts math in excel
+  - percent of racc
+  - servings per container calculation
 tags:
   - copilot-skills
   - excel
   - m365-copilot
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: copilot-in-excel
-visibility: private
 ---
 
 # copilot-in-excel
 
-## description
+## prompt-summary
 
 How to use Copilot inside Excel for the number-heavy parts of labeling: organizing formula and ingredient tables, scaffolding Nutrition Facts math, and cleaning up messy data from R&D or a co-packer. The theme throughout: Copilot is fast at structure and slow to be trusted on arithmetic, so it drafts the table and you verify every number.
 
-## when-to-use
+## use-cases
 
-You have formula quantities, nutrient data, or a supplier spreadsheet in Excel and want help structuring, checking, or summarizing it, especially before a Nutrition Facts Panel buildout.
+- You inherited an R&D or supplier spreadsheet and need to understand its columns and formulas before trusting it.
+- You want to scaffold servings-per-container or percent-of-RACC arithmetic before a Nutrition Facts Panel buildout.
+- You need to clean up messy formula or nutrient data (inconsistent units, blank cells) into a proper table.
+- You have nutrient data to summarize or check before handing off to [[nutrition-facts-panel-buildout]] and [[nutrition-facts-panel-rounding-check]].
+- Copilot's answers feel off and you want to confirm it is reading the table by column name.
 
 ## what-copilot-can-do-here
 

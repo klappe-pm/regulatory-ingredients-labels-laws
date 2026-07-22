@@ -2,42 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: market-and-reporting
 sub-category: surveillance
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - market-and-reporting
-  - surveillance
-  - regulatory-labeling
-  - comparison
 topic: beverage-label-compliance
 use-case: check-market-label-vs-record
 visibility: private
+aliases:
+  - consumer photo label check
+  - does the shelf label match the record
+  - in-market label check
+  - label drift in market
+  - market pull vs record check
+  - recall or relabel decision
+  - shelf audit label comparison
+  - undeclared allergen on shelf
+tags:
+  - comparison
+  - market-and-reporting
+  - regulatory-labeling
+  - surveillance
 ---
 
 # market-pull-vs-record-check
 
-## description
+## prompt-summary
 
-Compares a label already in the market against the approved record, field by field, to catch drift that reached consumers and needs a recall or relabel decision, not just a print hold.
+Compares a label already in the market against the approved record, field by field, to catch drift that reached consumers. Reach for it when a market pull, a consumer photo, or a shelf audit surfaces an in-market label and you need to know whether it still matches what should be on shelf. Because the product is already in consumers' hands, findings here feed a recall or relabel decision, not just a print hold. The approved record is the source of truth: on any conflict the record wins and the discrepancy is a finding, never resolved in favor of what is on shelf.
 
-## when-to-use
+## use-cases
 
-A market pull sample, a consumer photo, or a routine shelf audit surfaces an in-market label that needs checking against the approved record of what should be on shelf.
-
-## what-to-use-for
-
-Field-by-field comparison of an in-market label against the approved record, silent-change detection, and escalation of any in-market discrepancy to a recall/relabel decision path.
-
-## required-inputs
-
-- In-market label (image or extracted text)
-- Approved record (the source of truth), with its version identifier and effective date
-- SKU identifier
-- Lot or date code from the pulled sample (or an explicit note that it is unknown)
-- Pull date and location (retailer, city, or channel)
+- A market pull sample, a consumer photo, or a routine shelf audit surfaces an in-market label that needs checking against the approved record.
+- You need a field-by-field comparison of an in-market label against the approved record, including pass rows and a fields-compared attestation.
+- You suspect a silent change: a regulated value (ingredient order, allergen declaration, Nutrition Facts value, RACC, net quantity, claim wording) that drifted between the record and what is actually on shelf.
+- A discrepancy needs escalation to a recall or relabel decision path, including undeclared major allergen or other safety-relevant findings.
+- The pulled sample's lot or date code cannot be tied to the record version in force, so findings must be marked provisional until a human confirms the record version.
 
 ## expected-outputs
 
@@ -46,23 +47,7 @@ Field-by-field comparison of an in-market label against the approved record, sil
 - Recall/relabel escalation flag
 - Machine-readable summary (JSON with `no_blocking_findings_detected` and `recall_escalation`)
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the in-market label photo or file and the approved record with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste extracted text directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder (label text, approved record, SKU, lot or date code, pull date and location, record version and effective date) before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder). The file name is date-stamped so repeat pulls of the same SKU never overwrite an earlier check.
-5. Review the output yourself. Nothing is final until a person signs off; every citation is unverified until confirmed against the current eCFR.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: market-and-reporting`, `sub-category: surveillance`, `date-created`/`date-revised` set to the run date, `type: market-surveillance-review`, `status: REVIEW`, `aliases: []`, `tags: [market-and-reporting, surveillance, comparison, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: market-pull-vs-record-check`, `visibility: private`.
-
-File name: `market-pull-vs-record-<sku-slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat as a market surveillance reviewer for a beverage manufacturer's regulatory labeling specialist. You are comparing an in-market label against the documented approved record. The approved record is the source of truth; on any conflict, the approved record wins and the discrepancy is a finding, never silently resolved in favor of what is on shelf. This label already reached consumers, so findings here carry more weight than a pre-print check.
@@ -118,6 +103,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have these inputs ready: the in-market label (image or extracted text), the approved record (source of truth) with its version identifier and effective date, the SKU identifier, the lot or date code from the pulled sample (or an explicit "unknown"), and the pull date and location (retailer, city, or channel). Attach the label photo or file and the approved record with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste extracted text directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder (label text, approved record, SKU, lot or date code, pull date and location, record version and effective date) before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `market-pull-vs-record-<sku-slug>-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem, date-stamped so repeat pulls of the same SKU never overwrite an earlier check) in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off; every citation is unverified until confirmed against the current eCFR.
 
 ## guardrails
 

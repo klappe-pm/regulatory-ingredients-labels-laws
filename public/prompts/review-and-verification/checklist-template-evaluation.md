@@ -2,40 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: review-and-verification
 sub-category: checklist-evaluation
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - checklist-evaluation
-  - review-and-verification
-  - regulatory-labeling
-  - checklist
 topic: beverage-label-compliance
 use-case: evaluate-labeling-checklist
 visibility: private
+aliases:
+  - checklist evaluation
+  - checklist findings table
+  - does this label pass the checklist
+  - evaluate labeling checklist
+  - go no go checklist gate
+  - item by item label check
+  - label compliance checklist
+  - run label against a checklist
+tags:
+  - checklist
+  - checklist-evaluation
+  - regulatory-labeling
+  - review-and-verification
 ---
 
 # checklist-template-evaluation
 
-## description
+## prompt-summary
 
-Runs a labeling artifact and its source records against a checklist, writing an explicit finding for every checklist item rather than a single pass/fail summary.
+Runs one labeling artifact and its source records against a checklist, writing an explicit finding for every checklist item rather than a single pass/fail summary. Reach for it before any label content (ingredient statement, NFP, allergen statement, claims) is treated as final, or whenever a formal go/no-go checklist gate exists in the workflow. Each line gets a verdict, a severity, and a required action, plus one aggregate disposition that feeds a human sign-off decision but never expresses approval.
 
-## when-to-use
+## use-cases
 
-Before any label content (ingredient statement, NFP, allergen statement, claims) is treated as final, and whenever a formal go/no-go checklist gate exists in the workflow.
-
-## what-to-use-for
-
-Item-by-item evaluation of an artifact against a checklist, producing a verdict, a severity, and a required action for every line, plus one aggregate disposition that feeds a human sign-off decision.
-
-## required-inputs
-
-- The artifact under review (ingredient statement, NFP, allergen statement, or claims copy).
-- Source records the checklist items reference (formula, approved label of record with version and effective date, approved RACC and serving size, substantiation file).
-- Optional: the specialist's approved checklist template. If none is attached, the prompt-text carries clearly labeled built-in default checklists; the output must then flag that defaults were used and the run must be repeated against the real approved checklist before it is relied on.
+- A label component (ingredient statement, NFP, allergen statement, or claims copy) reaches a formal go/no-go checklist gate before it can be treated as final.
+- You need an item-by-item verdict, severity, and required action for each checklist line, not a single pass/fail summary.
+- You are checking an artifact against the source records the checklist items reference: the formula, the approved label of record with version and effective date, the approved RACC and serving size, and the substantiation file.
+- No approved checklist template is attached, so you rely on the built-in defaults and need the output to flag that defaults were used and must be re-run against the real approved checklist.
+- The result feeds a human sign-off decision, typically ahead of a [[second-eyes-hitl-review]].
 
 ## expected-outputs
 
@@ -45,19 +48,7 @@ Item-by-item evaluation of an artifact against a checklist, producing a verdict,
 - A completeness attestation line ("Items evaluated: N of N; skipped: none").
 - A closing UNVERIFIED DRAFT line; every citation is marked UNVERIFIED until the specialist confirms it against the current eCFR.
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the artifact under review and its source records (formula, approved label of record, RACC/serving-size record, substantiation file) with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); attach your approved checklist template if you have one; paste text directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `checklist-evaluation-<sku-or-artifact-slug>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this note's frontmatter convention (domain, category, sub-category, date-created, date-revised, type, status, aliases, tags, then topic, use-case, visibility) to the saved output file, with output `type: checklist-evaluation` and `status: REVIEW`. File name pattern: `checklist-evaluation-<sku-or-artifact-slug>-<yyyy-MM-dd>.md`. Save path: `projects/regulatory-labeling/` (visibility: private). The date in the file name means re-runs never overwrite an earlier evaluation.
-
-## prompt-text
+## prompt
 
 ```text
 You are running inside Microsoft 365 Copilot Chat as a labeling checklist evaluator for a beverage manufacturer's regulatory labeling specialist. Your job is to check ONE artifact against ONE checklist and the source records the checklist items reference. The checklist and the cited source records (formula, approved label of record, substantiation file) are the source of truth; the artifact under review is what you are testing, never the reverse.
@@ -129,15 +120,18 @@ visibility: private
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the artifact under review and its source records (the formula, the approved label of record with version and effective date, the RACC and serving-size record, and the substantiation file), plus your approved checklist template if you have one. Attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste the text directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `checklist-evaluation-<sku-or-artifact-slug>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder). Set the output frontmatter `type: checklist-evaluation` and `status: REVIEW`; the date in the file name means re-runs never overwrite an earlier evaluation.
+5. Review the output yourself. Nothing is final until a person signs off.
+
 ## guardrails
 
 - This prompt is a checklist run, not an approval. The disposition vocabulary cannot express approval, and human sign-off is always required before the artifact ships.
 - If the run used the built-in default checklists, the output says so prominently and every result is provisional until re-run against the real approved checklist.
 - If a checklist item cannot be checked because an input is missing or unreadable, it is marked unable-to-verify, never guessed and never silently dropped.
 - Every citation is marked UNVERIFIED until the specialist confirms it against the current eCFR; a citation whose current status cannot be confirmed is flagged, never guessed.
-
-## see also
-
-- [[review-and-verification]] (category index)
-- [[second-eyes-hitl-review]], typically the next step after a checklist evaluation
-- [[production-vs-documented-comparison]], a field-level comparison prompt for the same drift problem
+- Related: [[second-eyes-hitl-review]], typically the next step after a checklist evaluation; [[production-vs-documented-comparison]], a field-level comparison prompt for the same drift problem.

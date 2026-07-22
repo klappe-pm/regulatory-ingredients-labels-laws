@@ -2,40 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: content-derivation
 sub-category: nutrition-facts-panel
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: build-nutrition-facts-panel
+visibility: private
+aliases:
+  - added sugars line
+  - build the nutrition facts label
+  - dual column labeling
+  - nfp field set
+  - nutrition facts panel buildout
+  - percent daily value calculation
+  - racc percentage check
+  - servings per container calculation
 tags:
   - content-derivation
   - nutrition-facts-panel
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: build-nutrition-facts-panel
-visibility: private
 ---
 
 # nutrition-facts-panel-buildout
 
-## description
+## prompt-summary
 
-Builds the Nutrition Facts Panel field set at the correct serving size from supplied nutrient data, the supplied Reference Amount Customarily Consumed (RACC), and supplied Daily Value (DV) table values, with the arithmetic shown for every computed value.
+Builds the Nutrition Facts Panel field set at the correct serving size from supplied nutrient data, the supplied Reference Amount Customarily Consumed (RACC), and supplied Daily Value (DV) table values, with the arithmetic shown for every computed value. Reach for it once nutrient data and a serving size or RACC determination exist for a SKU and the NFP has not yet been built, or when the formula or fill volume changed since the last build. It only uses supplied RACC and DV values, never recalled ones, and marks any value not directly computable from the data as UNVERIFIED.
 
-## when-to-use
+## use-cases
 
-Nutrient data and a serving size or RACC determination exist for a SKU and the NFP has not yet been built, or the formula/fill volume changed since the last build.
-
-## what-to-use-for
-
-Turning nutrient testing data, a serving size/RACC determination, fill volume, and the DV values in use into the full NFP field set: serving size, servings per container, all mandatory nutrients, %DV, and the added-sugars line, applying the numeric single-serving and dual-column rules.
-
-## required-inputs
-
-- Nutrient data (per-serving or per-100g test results)
-- Serving size / RACC determination
-- Fill volume (container size)
-- Daily Value (DV) table values in use
+- Nutrient data and a serving size or RACC determination exist for a SKU and the NFP has not yet been built.
+- The formula or fill volume changed since the last build and the NFP needs rebuilding.
+- You need the fill-volume-to-RACC percentage computed to decide single-serving versus dual-column labeling per 21 CFR 101.9(b)(6) and (b)(12)(i).
+- You need the full mandatory nutrient field set per 21 CFR 101.9(c) with %DV shown for every nutrient that has a Daily Value.
+- You need the added-sugars line stated explicitly with its gram value and %DV arithmetic.
+- You need to catch when a SKU is actually a dietary supplement, where Supplement Facts (21 CFR 101.36) governs instead.
 
 ## expected-outputs
 
@@ -45,23 +48,7 @@ Turning nutrient testing data, a serving size/RACC determination, fill volume, a
 - UNVERIFIED marks on any value not directly computable from the supplied data
 - Citations for each rule applied
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have all four inputs ready (nutrient data, serving size/RACC determination, fill volume, DV values in use); attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste each into its placeholder when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `nfp-draft-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: content-derivation`, `sub-category: nutrition-facts-panel`, `date-created`/`date-revised` set to the run date, `type: nfp-draft`, `status: REVIEW`, `aliases: []`, `tags: [content-derivation, nutrition-facts-panel, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: nfp-draft`, `visibility: private`.
-
-File name: `nfp-draft-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: build the Nutrition Facts Panel field set at the correct serving size.
@@ -120,6 +107,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have all four inputs ready: nutrient data (per-serving or per-100g test results), the serving size/RACC determination, the fill volume (container size), and the Daily Value (DV) table values in use; attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste each into its placeholder when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `nfp-draft-<sku-slug>.md` (kebab-case, H1 equal to the file-name stem) saved to `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

@@ -204,7 +204,7 @@ def main():
         p = document.add_paragraph(style="List Bullet")
         anchor = bookmark_name(item["name"])
         add_internal_hyperlink(p, anchor, item["name"])
-        p.add_run(f": {item['when_to_use']}")
+        p.add_run(f": {item.get('summary', '')}")
 
     document.add_heading("Native Word TOC (optional secondary aid)", level=2)
     document.add_paragraph(
@@ -227,11 +227,12 @@ def main():
         run.bold = True
         run.font.size = Pt(16)
 
-        labeled_line(document, "Description:", item["description"])
-        labeled_line(document, "When to use:", item["when_to_use"])
-        labeled_line(document, "What to use for:", item["what_to_use_for"])
-        labeled_line(document, "Required inputs:", item["required_inputs"])
-        labeled_line(document, "Expected outputs:", item["expected_outputs"])
+        labeled_line(document, "Summary:", item.get("summary", ""))
+        labeled_line(document, "Use cases:", item.get("use_cases", ""))
+        labeled_line(document, "Expected outputs:", item.get("expected_outputs", ""))
+        aliases = item.get("aliases", [])
+        if aliases:
+            labeled_line(document, "Also known as:", "; ".join(aliases))
 
         prompt_text = item.get("prompt_text", "").strip()
         if prompt_text:

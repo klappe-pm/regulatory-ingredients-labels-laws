@@ -1,13 +1,12 @@
-# Hyphenated frontmatter keys (sub-category, use-case, date-created, date-revised) collide with
-# the minus/subtraction operator in Bases expressions; every reference below uses bracket
-# notation, e.g. note["sub-category"], instead of a bare identifier. Keys are not renamed.
-
+# Hyphenated frontmatter keys (sub-category, use-case, date-revised) are read with bracket
+# notation, e.g. note["sub-category"], because a bare hyphen parses as subtraction in a
+# Bases expression. `types` is a list, so membership is tested with .contains().
 filters:
   and:
     - 'file.ext == "md"'
     - or:
-        - 'note["type"] == "prompt"'
-        - 'note["type"] == "skill"'
+        - 'note["types"].contains("prompt")'
+        - 'note["types"].contains("skill")'
 
 properties:
   file.name:
@@ -16,8 +15,6 @@ properties:
     displayName: Category
   note["sub-category"]:
     displayName: Sub-category
-  topic:
-    displayName: Topic
   note["use-case"]:
     displayName: Use case
   visibility:
@@ -27,15 +24,13 @@ properties:
 
 views:
   - type: table
-    name: "All Prompts"
+    name: "All prompts"
     groupBy:
       property: category
       direction: ASC
     order:
       - file.name
-      - category
       - note["sub-category"]
-      - topic
       - note["use-case"]
       - visibility
       - note["date-revised"]

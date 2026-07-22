@@ -2,39 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: communication-email
 sub-category: email-editing
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: draft-reply-with-regulatory-position
+visibility: private
+aliases:
+  - answer whether a claim is allowed
+  - cite cfr in a reply
+  - draft a regulatory reply
+  - hold or escalate email reply
+  - regulatory position email
+  - reply with a regulatory position
+  - reply with citations
+  - respond to a compliance question
+  - state a compliance position in email
 tags:
   - communication-email
   - email-editing
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: draft-reply-with-regulatory-position
-visibility: private
 ---
 
 # email-reply-with-regulatory-position
 
-## description
+## prompt-summary
 
-Drafts a reply that states a regulatory position with citations, holding or escalating rather than committing the company to a position it cannot fully substantiate.
+Drafts a reply that states a regulatory position with citations, holding or escalating rather than committing the company to a position it cannot fully substantiate. Reach for it when an incoming email or thread asks you to state or confirm a regulatory position, such as whether a claim is allowed or whether a label change is compliant. It states the position clearly in your first-person voice, cites the exact provisions it rests on, marks every citation UNVERIFIED until you confirm it against the current eCFR, and adds a hold or escalation note (with a named review gate for external recipients or novel or contested positions).
 
-## when-to-use
+## use-cases
 
-An incoming email or thread asks the specialist to state or confirm a regulatory position (e.g. whether a claim is allowed, whether a label change is compliant).
-
-## what-to-use-for
-
-Turning the incoming email/thread and the specialist's position and citations into a reply that states the position clearly, cites its basis, and includes a hold or escalation note if the position cannot be fully substantiated.
-
-## required-inputs
-
-- Incoming email or thread
-- Position and citations (the specialist's intended regulatory position and its basis)
-- Recipient type (internal or external)
+- An incoming email or thread asks whether a specific claim is allowed under FDA rules.
+- Someone asks you to confirm that a proposed label change is compliant.
+- You have a position and its supporting citations and need them turned into a clear reply a non-specialist can follow.
+- Your position does not fully resolve the question and you need the reply to hold or escalate rather than overstate certainty.
+- The recipient is external, or the position is novel or contested, and the reply must name a review gate (regulatory counsel or your manager) before it can be sent.
 
 ## expected-outputs
 
@@ -42,23 +46,7 @@ Turning the incoming email/thread and the specialist's position and citations in
 - Citations list, each marked UNVERIFIED pending the specialist's confirmation against the current eCFR
 - Hold or escalation note, including a named review gate (regulatory counsel or manager) when the recipient is external or the position is novel or contested
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile; to reply directly inside an email instead, open Copilot in Outlook and expect subject and body only, no file output.
-2. Have your inputs ready: the incoming email or thread (copy its full text, or attach it with the paperclip or a `/` file reference if it is saved in OneDrive or SharePoint), your position and its citations, and whether the recipient is internal or external.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Before sending the reply: confirm every citation against the current eCFR yourself, and clear the named review gate (regulatory counsel or your manager) for any external recipient or novel or contested position. Copilot's output is never verification and Copilot never sends.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: communication-email`, `sub-category: email-editing`, `date-created`/`date-revised` set to the run date, `type: email-draft`, `status: REVIEW`, `aliases: []`, `tags: [communication-email, email-editing, regulatory-position]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: email-reply-regulatory-position`, `visibility: private`.
-
-File name: `email-reply-regulatory-position-<slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 Run this in Microsoft 365 Copilot Chat to produce the file output specified at the end. If you are running in Copilot in Outlook instead, return only the subject line and reply body into the compose window and skip the file output contract.
@@ -112,6 +100,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile; to reply directly inside an email instead, open Copilot in Outlook and expect subject and body only, no file output.
+2. Have your inputs ready: the incoming email or thread (copy its full text, or attach it with the paperclip or a `/` file reference if it is saved in OneDrive or SharePoint), your position and its citations, and whether the recipient is internal or external; you paste or attach these into the bracketed placeholders.
+3. Copy the prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `email-reply-regulatory-position-<slug>-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem), saved in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Before sending the reply: confirm every citation against the current eCFR yourself, and clear the named review gate (regulatory counsel or your manager) for any external recipient or novel or contested position. Copilot's output is never verification and Copilot never sends.
 
 ## guardrails
 

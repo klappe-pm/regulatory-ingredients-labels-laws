@@ -2,39 +2,44 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-configuration
 sub-category: configuration
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - copilot-configuration
-  - configuration
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: route-durable-knowledge-artifact
 visibility: public
+aliases:
+  - copilot click path
+  - copilot install steps
+  - custom instructions or memory or agent
+  - install routing prompt
+  - route durable knowledge
+  - verify the setting took effect
+  - where do i install this artifact
+  - which copilot layer
+  - which copilot surface owns this
+tags:
+  - configuration
+  - copilot-configuration
+  - regulatory-labeling
 ---
 
 # personalization-install-router
 
-## description
+## prompt-summary
 
-Routes a durable-knowledge artifact (see [[durable-knowledge]]) to the correct Microsoft 365 Copilot layer with exact click-path steps, grounded in [[copilot-layering-reference]].
+Routes a durable-knowledge artifact (see the durable-knowledge prompts) to the single owning Microsoft 365 Copilot layer and returns exact installation steps, grounded only in [[copilot-layering-reference]]. Reach for it once a durable-knowledge prompt has produced an artifact and the specialist needs to know exactly where it belongs (Custom Instructions, Memory, an Agent Builder agent, Excel rules, a Notebook, a file, or Office Scripts) and how to put it there. It returns the owning layer, the click-path or pane description, the cost or admin gate to expect, and a verification step, and it recommends but never installs anything.
 
-## when-to-use
+## use-cases
 
-A durable-knowledge prompt (from [[durable-knowledge]]) has produced an artifact and the specialist needs to know exactly where to install it.
-
-## what-to-use-for
-
-Given an artifact, the list of which Copilot surfaces are enabled in the specialist's tenant, and the layering reference itself, returning the single owning layer, the exact click-path or pane description, the cost or admin gate to expect, and a verification step confirming the setting took effect.
-
-## required-inputs
-
-- An artifact (the durable-knowledge output to be installed)
-- Which Copilot surfaces are enabled (from the verify-what-is-enabled checklist in [[copilot-layering-reference]])
-- The [[copilot-layering-reference]] file itself, attached to the chat, or its layer-map table pasted into the prompt
+- A durable-knowledge prompt (such as [[communication-style-profile]] or [[workstream-inventory]]) has produced an artifact and you need the one layer that owns it plus the exact steps to install it.
+- You have the list of which Copilot surfaces are actually enabled in the tenant and need the routing restricted to what is available, with a labeled fallback when the ideal layer is off.
+- You want the click-path where the reference gives one, or a pane description to locate yourself where the location varies by tenant and build.
+- You need to know the cost or admin gate to expect for a layer (free, metered, admin-gated, license-dependent) before committing to it.
+- You need a verification step to confirm the installed setting actually took effect, and a replace-do-not-duplicate check against any prior copy.
+- The artifact carries colleague personal data or confidential product information and you need the data-handling caution before it goes into Memory or shareable agent instructions.
 
 ## expected-outputs
 
@@ -43,23 +48,7 @@ Given an artifact, the list of which Copilot surfaces are enabled in the special
 - Caveats
 - Verification check
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the durable-knowledge artifact and the copilot-layering-reference file with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste the artifact text or the layer-map table directly when a file cannot be attached, and have the enabled-surfaces list ready from the verify-what-is-enabled checklist in [[copilot-layering-reference]].
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `public/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); this is the one public save path in the library.
-5. Review the output yourself. Nothing is installed until you perform the click-path yourself, and nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention in canonical key order: `domain: regulatory-ingredients-labels-laws`, `category: copilot-configuration`, `sub-category: configuration`, `date-created`/`date-revised` set to the run date, `type: install-routing`, `status: REVIEW`, `aliases: []`, `tags: [copilot-configuration, configuration]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: personalization-install-routing`, `visibility: public`.
-
-File name: `install-routing-<artifact-slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `public/regulatory-labeling/` (this is the one public-visibility prompt output in the library).
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: route one durable-knowledge artifact to the correct Microsoft 365 Copilot layer and return exact installation steps for the specialist to perform themselves.
@@ -113,6 +102,14 @@ Enabled Copilot surfaces: [list of enabled surfaces]
 
 Layer-map table from copilot-layering-reference: [attach the file to this chat, or paste its layer-map table here]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have these inputs ready: the durable-knowledge artifact to install, the list of which Copilot surfaces are enabled (from the verify-what-is-enabled checklist in [[copilot-layering-reference]]), and the copilot-layering-reference file itself. Attach the artifact and the reference with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste the artifact text or the layer-map table directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `install-routing-<artifact-slug>-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem) and save it in `public/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); this is the one public save path in the library. Apply the project frontmatter convention in canonical key order (`domain`, `category`, `sub-category`, `date-created`/`date-revised` set to the run date, `type: install-routing`, `status: REVIEW`, `aliases: []`, `tags: [copilot-configuration, configuration]`, then `topic: beverage-label-compliance`, `use-case: personalization-install-routing`, `visibility: public`).
+5. Review the output yourself. Nothing is installed until you perform the click-path yourself, and nothing is final until a person signs off.
 
 ## guardrails
 

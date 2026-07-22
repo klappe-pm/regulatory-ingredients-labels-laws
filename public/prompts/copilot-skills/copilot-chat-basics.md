@@ -2,29 +2,41 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-skills
 sub-category: foundations
+types:
+  - skill
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: skill
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: copilot-chat-foundations
+visibility: private
+aliases:
+  - attach a file to copilot
+  - copilot beginner guide
+  - copilot chat basics
+  - getting started with copilot
+  - how to use copilot
+  - why is copilot not reading my file
+  - work copilot vs personal copilot
+  - write a good copilot prompt
 tags:
   - copilot-skills
   - m365-copilot
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: copilot-chat-foundations
-visibility: private
 ---
 
 # copilot-chat-basics
 
-## description
+## prompt-summary
 
 The foundation guide every other skill assumes. It teaches the handful of moves that make Microsoft 365 Copilot Chat useful and safe for a beginner: opening the right (work) Copilot, attaching or referencing your files, writing a prompt that gets a good answer, and reading the reply critically. If you learn only one guide, learn this one.
 
-## when-to-use
+## use-cases
 
-Before running any prompt in this library for the first time, and any time Copilot's answers feel vague, wrong, or like it did not see your file.
+- You are about to run a prompt from this library for the first time and want Copilot set up correctly.
+- Copilot's answers feel vague or generic and you are not sure it actually read your attachment.
+- Copilot returned something wrong or invented and you want to sanity-check how you asked.
+- You are unsure whether you are in the work Copilot or the personal one before pasting company files.
 
 ## what-copilot-can-do-here
 
@@ -37,7 +49,7 @@ Before running any prompt in this library for the first time, and any time Copil
 - Save a file for you. It returns text; you copy that text into a file yourself.
 - Reliably read a scanned image, a photo of a label, or artwork where the text is outlined (turned into a picture). It may guess and sound confident.
 - Look up the current text of a regulation. It works from training data that can be out of date, so every legal citation it gives is unverified until you check it.
-- Remember this chat tomorrow unless you deliberately saved something into a durable layer (see [[copilot-configuration]]).
+- Remember this chat tomorrow unless you deliberately saved something into a durable layer (see [[personalization-install-router]]).
 
 ## setup
 
@@ -69,4 +81,4 @@ Before running any prompt in this library for the first time, and any time Copil
 
 Use only the work (licensed) Copilot for anything containing SKU, formula, colleague, or other company information; the personal Copilot is not covered by your company's data agreement. Copilot assists and drafts; it never approves a label, and its legal citations are unverified until a person checks them. When in doubt about what is safe to paste, ask your IT or compliance contact first.
 
-Related: [[copilot-in-excel]], [[copilot-in-outlook]], [[copilot-in-word]], [[copilot-in-sharepoint]], [[copilot-configuration]].
+Related: [[copilot-in-excel]], [[copilot-in-outlook]], [[copilot-in-word]], [[copilot-in-sharepoint]], [[personalization-install-router]].

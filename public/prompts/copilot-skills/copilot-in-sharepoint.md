@@ -2,30 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-skills
 sub-category: sharepoint
+types:
+  - skill
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: skill
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: copilot-in-sharepoint
+visibility: private
+aliases:
+  - ask questions across documents
+  - confirm document version
+  - copilot in sharepoint
+  - find the current label of record
+  - search a sharepoint library
+  - sharepoint copilot for labeling
+  - sharepoint grounded agent
+  - site scoped copilot agent
 tags:
   - copilot-skills
   - m365-copilot
   - regulatory-labeling
   - sharepoint
-topic: beverage-label-compliance
-use-case: copilot-in-sharepoint
-visibility: private
 ---
 
 # copilot-in-sharepoint
 
-## description
+## prompt-summary
 
 How to use Copilot with SharePoint to find the current label of record, ask questions grounded in a document library, and (where your permissions allow) stand up a site-scoped agent so Copilot answers only from a trusted set of files. SharePoint is where the authoritative documents live, so getting Copilot to point at the right library, and knowing when it cannot, is the whole skill.
 
-## when-to-use
+## use-cases
 
-Looking for the current approved label or spec, asking questions across a folder of documents, or setting up a reusable grounded assistant for your team's labeling library.
+- You are hunting for the current approved label of record or spec in a SharePoint library.
+- You want to ask questions grounded in a specific file or document library without outside knowledge.
+- You need to confirm the version and last-modified date of a document before treating it as authoritative.
+- You want to stand up a site-scoped agent so your team gets answers only from approved files (see [[copilot-layering-reference]]).
+- You are unsure whether agent creation is enabled for you and need to check with IT before relying on it.
 
 ## what-copilot-can-do-here
 
