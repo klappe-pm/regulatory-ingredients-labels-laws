@@ -30,6 +30,10 @@ augment, but do not replace, the user-scope policy in
 
 The regulatory monitoring engine lives in `public/regwatch/` (data) and `scripts/regwatch*.py` (engine, standard library only). Before working on it, read `public/regwatch/CLAUDE.md` for the operating rules and `public/regwatch/regwatch-troubleshooting.md` for the runbook. Detection and ingestion flag for human review; they never auto-edit the register or change log. Nothing the engine emits is legal advice. Generated rollout reports and samples live under `projects/regwatch-rollout/` and `projects/regwatch-samples/`.
 
+## prompt library
+
+The Microsoft 365 Copilot prompt library lives in `public/prompts/`, an Obsidian vault surface. The `.md` prompt files are the single source of truth: each per-category `.manifest.json` and the Word export (`public/prompts/regulatory-labeling-prompt-library.docx`) are generated from them by `scripts/sync-prompt-manifests.py` and `scripts/build-prompt-library-docx.py`. After editing any prompt, run `make prompts-sync` (or `make prompts-docx` to also rebuild the Word file); `make test` runs `prompts-check` and fails on manifest drift. Every compliance-facing prompt is human-sign-off gated, marks citations unverified until confirmed against the current eCFR, and never approves a label. Prompt outputs save to `projects/regulatory-labeling/` (private); only `copilot-configuration` routing notes save to `public/regulatory-labeling/`. Bases (`public/prompts/bases/*.base`) reference hyphenated frontmatter keys with bracket notation (`note["sub-category"]`) because bare hyphens parse as subtraction; keep that form.
+
 ## Active Routing
 
 Current document paths are routed through stable `.pointer` files. Each pointer
