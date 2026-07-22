@@ -1,0 +1,72 @@
+[
+  {
+    "category": "copilot-skills",
+    "sub_category": "foundations",
+    "name": "copilot-chat-basics",
+    "type": "skill",
+    "description": "The foundation guide every other skill assumes. It teaches the handful of moves that make Microsoft 365 Copilot Chat useful and safe for a beginner: opening the right (work) Copilot, attaching or referencing your files, writing a prompt that gets a good answer, and reading the reply critically. If you learn only one guide, learn this one.",
+    "when_to_use": "Before running any prompt in this library for the first time, and any time Copilot's answers feel vague, wrong, or like it did not see your file.",
+    "what_to_use_for": "",
+    "required_inputs": "",
+    "expected_outputs": "",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": ""
+  },
+  {
+    "category": "copilot-skills",
+    "sub_category": "excel",
+    "name": "copilot-in-excel",
+    "type": "skill",
+    "description": "How to use Copilot inside Excel for the number-heavy parts of labeling: organizing formula and ingredient tables, scaffolding Nutrition Facts math, and cleaning up messy data from R&D or a co-packer. The theme throughout: Copilot is fast at structure and slow to be trusted on arithmetic, so it drafts the table and you verify every number.",
+    "when_to_use": "You have formula quantities, nutrient data, or a supplier spreadsheet in Excel and want help structuring, checking, or summarizing it, especially before a Nutrition Facts Panel buildout.",
+    "what_to_use_for": "",
+    "required_inputs": "",
+    "expected_outputs": "",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": ""
+  },
+  {
+    "category": "copilot-skills",
+    "sub_category": "outlook",
+    "name": "copilot-in-outlook",
+    "type": "skill",
+    "description": "How to use Copilot inside Outlook to draft and reply to email in your voice, summarize long threads, and pull action items, without ever letting it send on its own. Email is where a regulatory position becomes externally consequential, so this guide pairs the convenience with the checks that keep a draft from going out wrong.",
+    "when_to_use": "Drafting or replying to email, catching up on a long thread, or turning a thread into a task list, especially anything that states a regulatory position.",
+    "what_to_use_for": "",
+    "required_inputs": "",
+    "expected_outputs": "",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": ""
+  },
+  {
+    "category": "copilot-skills",
+    "sub_category": "sharepoint",
+    "name": "copilot-in-sharepoint",
+    "type": "skill",
+    "description": "How to use Copilot with SharePoint to find the current label of record, ask questions grounded in a document library, and (where your permissions allow) stand up a site-scoped agent so Copilot answers only from a trusted set of files. SharePoint is where the authoritative documents live, so getting Copilot to point at the right library, and knowing when it cannot, is the whole skill.",
+    "when_to_use": "Looking for the current approved label or spec, asking questions across a folder of documents, or setting up a reusable grounded assistant for your team's labeling library.",
+    "what_to_use_for": "",
+    "required_inputs": "",
+    "expected_outputs": "",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": ""
+  },
+  {
+    "category": "copilot-skills",
+    "sub_category": "word",
+    "name": "copilot-in-word",
+    "type": "skill",
+    "description": "How to use Copilot inside Word to draft and edit the documents a labeling specialist produces: label copy decks, regulatory memos, and review write-ups, plus comparing two versions of a document. Word is a comfortable place to draft, but comparing long documents is a task where Copilot silently misses things, so this guide points you to the dedicated comparison prompts for anything that matters.",
+    "when_to_use": "Drafting or tightening a memo or copy deck, reformatting a document, or getting a first look at what changed between two versions.",
+    "what_to_use_for": "",
+    "required_inputs": "",
+    "expected_outputs": "",
+    "saves_to": "projects/regulatory-labeling/",
+    "visibility": "private",
+    "prompt_text": ""
+  }
+]

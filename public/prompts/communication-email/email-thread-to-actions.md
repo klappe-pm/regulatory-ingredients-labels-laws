@@ -37,29 +37,41 @@ Reading a thread end to end and extracting what was decided, what still needs do
 ## expected-outputs
 
 - Summary
-- Decisions
+- Decisions, each attributed to the person who made it
 - Action items with owners
 - Open questions
+- Privileged-and-confidential marking when the thread includes legal counsel
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile. This prompt runs in Copilot Chat only.
+2. Have the full email thread ready: copy its complete text in chronological order, or attach it with the paperclip or a `/` file reference if it is saved in OneDrive or SharePoint.
+3. Copy the entire prompt-text block below, paste it into the chat, and fill the placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named per output-handling (the date stamp in the file name keeps re-runs from overwriting), in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. If the output is marked privileged and confidential (the thread included legal counsel), confirm handling with counsel before saving or sharing it. Review every decision, owner, and open question against the thread yourself; nothing is final until a person signs off.
 
 ## output-handling
 
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: communication-email`, `sub-category: email-editing`, `date-created`/`date-revised` set to the run date, `type: thread-summary`, `status: DONE`, `aliases: []`, `tags: [communication-email, email-editing]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: email-thread-to-actions`, `visibility: private`.
+Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: communication-email`, `sub-category: email-editing`, `date-created`/`date-revised` set to the run date, `type: thread-summary`, `status: REVIEW`, `aliases: []`, `tags: [communication-email, email-editing]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: email-thread-to-actions`, `visibility: private`.
 
 File name: `thread-summary-<slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
 
-Saves to: `{private_folder}`.
+Saves to: `projects/regulatory-labeling/`.
 
 ## prompt-text
 
 ```
-You are running inside Microsoft 365 Copilot Chat. Your single task: convert an email thread into a summary, decisions, action items, and open questions.
+Run this in Microsoft 365 Copilot Chat. Your single task: convert an email thread into a summary, decisions, action items, and open questions.
+
+You should have this input: (1) the full email thread, in chronological order. If the thread is missing, truncated, or unreadable, stop and list what is missing. Never proceed from memory or invent content for a missing input.
 
 Method:
 1. Read the entire thread I provide below, in chronological order.
 2. Write a short summary of what the thread was about and how it resolved (or where it stands if unresolved).
-3. List every decision actually made in the thread, attributed to whoever made it, exactly as stated; do not infer a decision that was discussed but not actually settled.
+3. List every decision actually made in the thread; every decision names the person who made it, exactly as stated in the thread; do not infer a decision that was discussed but not actually settled.
 4. List every action item mentioned, with an owner (the person named in the thread) and a due date if one was stated; if no owner or date was given, say so rather than assigning one.
 5. List every regulatory question raised in the thread that was not resolved by the end of it.
+6. If any participant in the thread is legal counsel (internal or external), put the line "PRIVILEGED AND CONFIDENTIAL - contains attorney communications" directly under the H1, and end the output by telling me to confirm handling with counsel before saving or sharing this file.
 
 Source of truth: the thread I provide is the only source; do not add a decision, owner, or deadline not stated in it.
 
@@ -67,13 +79,34 @@ This is a summarization pass, not a decision-making one; unresolved items stay l
 
 Do not fabricate a decision, an owner, or a deadline not present in the thread.
 
-Return the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.
-
 [Paste email thread here]
+
+Return the complete file content and nothing else, in this order:
+1. This YAML frontmatter, with bracketed placeholders filled:
+---
+domain: regulatory-ingredients-labels-laws
+category: communication-email
+sub-category: email-editing
+date-created: [TODAY as yyyy-MM-dd]
+date-revised: [TODAY as yyyy-MM-dd]
+type: thread-summary
+status: REVIEW
+aliases: []
+tags:
+  - communication-email
+  - email-editing
+topic: beverage-label-compliance
+use-case: email-thread-to-actions
+visibility: private
+---
+2. An H1 equal to the output file name without .md: thread-summary-<slug>-<yyyy-MM-dd>
+3. The body specified in the method above, including the privileged-and-confidential marking when step 6 applies.
+4. This exact final line:
+UNVERIFIED DRAFT - requires review by the regulatory labeling specialist; decisions, owners, and open questions unconfirmed against the source thread.
 ```
 
 ## guardrails
 
-Never invents a decision, owner, or deadline the thread did not actually state; unresolved regulatory questions stay open, never silently closed.
+Never invents a decision, owner, or deadline the thread did not actually state; unresolved regulatory questions stay open, never silently closed. Every decision names the person who made it. When the thread includes legal counsel, the output is marked privileged and confidential and the specialist confirms handling with counsel before saving or sharing it.
 
 Related: [[email-draft-from-brief]], [[weekly-status-report]] (market-and-reporting/, a common downstream consumer of extracted action items).

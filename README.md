@@ -34,6 +34,20 @@ python3 scripts/regwatch.py ingest --live # pull the Federal Register feed
 
 Nothing the engine emits is legal advice; confirm against primary source text.
 
+## Copilot Prompt Library
+
+`public/prompts/` is an Obsidian-navigable library of Microsoft 365 Copilot prompts for the regulatory labeling specialist workflow (US FDA / CFR 21). It spans onboarding setup, label intake, content derivation, claims compliance, review and verification, version reconciliation, market and reporting, email, durable knowledge, Copilot configuration, app-specific skills, and reflection.
+
+- Start here: `public/prompts/prompt-library-user-guide.md`, then the master index `public/prompts/regulatory-labeling.md`.
+- Every compliance prompt is human-sign-off gated, marks its citations unverified until confirmed against the current eCFR, and never approves a label. Nothing in the library is legal advice.
+- The `.md` prompt files are the single source of truth. The per-category `.manifest.json` sidecars and the Word export are generated from them:
+
+```bash
+make prompts-sync   # regenerate .manifest.json from the .md prompts
+make prompts-check  # fail if any manifest is stale (part of make test)
+make prompts-docx   # rebuild the hyperlinked Word export
+```
+
 ## Project Structure
 
 ```text

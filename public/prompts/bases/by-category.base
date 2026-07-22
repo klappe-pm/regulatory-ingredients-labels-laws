@@ -5,7 +5,9 @@
 filters:
   and:
     - 'file.ext == "md"'
-    - 'note["type"] == "prompt"'
+    - or:
+        - 'note["type"] == "prompt"'
+        - 'note["type"] == "skill"'
 
 properties:
   file.name:

@@ -1,7 +1,7 @@
 ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 PYTHON ?= python3
 
-.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing regwatch-rollout rebuild-agents test strip-agents strip-hooks strip-specs
+.PHONY: help doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing regwatch-rollout rebuild-agents prompts-sync prompts-check prompts-docx test strip-agents strip-hooks strip-specs
 
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
@@ -63,7 +63,16 @@ regwatch-rollout:
 rebuild-agents:
 	@$(PYTHON) "$(ROOT)/scripts/build-agents.py" --shared-dir "$(ROOT)/agents/shared" --out-dir "$(ROOT)/agents" --tools claude-code
 
-test: doctor audit-strict regwatch-validate regwatch-smoke
+prompts-sync:
+	@$(PYTHON) "$(ROOT)/scripts/sync-prompt-manifests.py"
+
+prompts-check:
+	@$(PYTHON) "$(ROOT)/scripts/sync-prompt-manifests.py" --check
+
+prompts-docx: prompts-sync
+	@$(PYTHON) "$(ROOT)/scripts/build-prompt-library-docx.py"
+
+test: doctor audit-strict regwatch-validate regwatch-smoke prompts-check
 	@printf 'test: passed\n'
 
 strip-agents:
