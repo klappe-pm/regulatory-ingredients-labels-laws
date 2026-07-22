@@ -1,14 +1,12 @@
 # regwatch-fda-beverage-briefing
 
-_Generated 2026-06-22 · v3 (full detail) · internal research, not legal advice._
+_Generated 2026-07-22 · v3 (full detail) · internal research, not legal advice._
 
 ## Scope
 
 FDA food safety and labeling that directly impacts the United States beverage industry. Canada and Mexico are covered as the other markets the portfolio reaches. Each item is written as What happened, What it means (with the governing CFR and the context for what the rule is), and What we need to do, with backlinks to primary sources.
 
-## What Happened (Last 90 Days)
-
-Covering 2025-01-22 to 2025-04-22, anchored to the latest recorded development because no newer entries are in the change log yet.
+## What Happened Recently
 
 ### 2025-04-22 — FDA and HHS announced a phase-out of petroleum-based synthetic dyes
 
@@ -26,11 +24,41 @@ Covering 2025-01-22 to 2025-04-22, anchored to the latest recorded development b
 
 **Source.** [FDA — US](https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/use-term-healthy-food-labeling)
 
+### 2025-01-16 — FDA proposed a front-of-package Nutrition Info box
+
+**What happened.** FDA published a proposed rule for a mandatory front-of-package nutrition label rating Saturated Fat, Sodium, and Added Sugars as Low, Medium, or High. Comment and finalization follow; added sugar is the key beverage trigger.
+
+**Governing rule.** [21 CFR Part 101](https://www.ecfr.gov/current/title-21/part-101)
+
+**Source.** [FDA — US](https://www.fda.gov/food/nutrition-facts-label/front-package-labeling)
+
+### 2025-01-15 — FDA revoked the authorization for FD&C Red No. 3 in food
+
+**What happened.** FDA issued a final rule revoking the color additive authorization for FD&C Red No. 3 in food and ingested drugs in response to a color additive petition, with a food compliance date of January 15, 2027. Beverages using Red No. 3 must reformulate.
+
+**Governing rule.** [21 CFR Part 74](https://www.ecfr.gov/current/title-21/part-74)
+
+**Source.** [FDA — US](https://www.fda.gov/food/hfp-constituent-updates)
+
+### 2024-08-02 — FDA revocation of brominated vegetable oil took effect
+
+**What happened.** FDA's final rule revoking the food authorization for brominated vegetable oil became effective, removing BVO as a permitted food ingredient nationally and aligning with California AB 418.
+
+**Governing rule.** [former 21 CFR 180.30](https://www.ecfr.gov/current/title-21/part-180)
+
+**Source.** [FDA — US](https://www.fda.gov/food/hfp-constituent-updates)
+
+### 2023-10-07 — California signed the California Food Safety Act (AB 418)
+
+**What happened.** California enacted AB 418 banning BVO, potassium bromate, propylparaben, and Red No. 3 in foods sold in California effective January 1, 2027, setting the template other states have followed.
+
+**Source.** [California (CDPH) — US](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240AB418)
+
 ## Coming Due
 
-- 2026-07-01 — US-CA: California Date Label Standardization (enacted)
 - 2026-12-31 — US-Federal: Synthetic Dye Phase-Out (voluntary)
 - 2027-01-01 — US-CA: California Food Safety Act Ingredient Ban (enacted)
+- 2027-12-31 — US-CA: California School Food Dye Ban (enacted)
 
 ## United States — FDA Food Safety (Beverage Focus)
 

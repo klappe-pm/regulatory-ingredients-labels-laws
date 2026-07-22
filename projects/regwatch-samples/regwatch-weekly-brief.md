@@ -2,19 +2,18 @@
 
 _Synthesized impact analysis for the beverage portfolio_
 
-Generated 2026-06-17.
+Generated 2026-07-22.
 
 ## Executive Summary
 
 Talking Rain Beverage Company carries 5 modeled products. The register tracks 25 obligations across 55 jurisdictions, 11 of them with confirmed rows. This synthesis maps every tracked obligation onto the portfolio.
 
-26 product-obligation impacts were identified: 0 act-now, 3 high, 19 watch, and 4 informational. 4 of 5 products carry at least one impact.
+26 product-obligation impacts were identified: 3 act-now, 3 high, 16 watch, and 4 informational. 4 of 5 products carry at least one impact.
 
-3 obligations reach an effective date within a year; the soonest is California Date Label Standardization (US-CA) on 2026-07-01.
+2 obligations reach an effective date within a year; the soonest is Synthetic Dye Phase-Out (US-Federal) on 2026-12-31.
 
 ## Coming Due Within 365 Days
 
-- 2026-07-01 — US-CA: California Date Label Standardization (enacted)
 - 2026-12-31 — US-Federal: Synthetic Dye Phase-Out (voluntary)
 - 2027-01-01 — US-CA: California Food Safety Act Ingredient Ban (enacted)
 
@@ -24,8 +23,8 @@ Talking Rain Beverage Company carries 5 modeled products. The register tracks 25
 
 ### Sparkling Ice +Caffeine
 
-- California Food Safety Act Ingredient Ban — US-CA, high, effective 2027-01-01 [function: color]
-- Synthetic Dye Phase-Out — US-Federal, watch, effective 2026-12-31 [function: color]
+- California Food Safety Act Ingredient Ban — US-CA, act-now, effective 2027-01-01 [function: color]
+- Synthetic Dye Phase-Out — US-Federal, high, effective 2026-12-31 [function: color]
 - Ultra-Processed Food Definition — US-Federal, watch [function: sweetener]
 - Caffeine Labeling Guidance — US-Federal, watch [function: stimulant; ingredient: Caffeine]
 - California Non-Ultraprocessed Certified Seal — US-CA, watch [function: sweetener]
@@ -36,8 +35,8 @@ Talking Rain Beverage Company carries 5 modeled products. The register tracks 25
 
 ### Sparkling Ice (classic flavors)
 
-- California Food Safety Act Ingredient Ban — US-CA, high, effective 2027-01-01 [function: color]
-- Synthetic Dye Phase-Out — US-Federal, watch, effective 2026-12-31 [function: color; claim: no-artificial-colors]
+- California Food Safety Act Ingredient Ban — US-CA, act-now, effective 2027-01-01 [function: color]
+- Synthetic Dye Phase-Out — US-Federal, high, effective 2026-12-31 [function: color; claim: no-artificial-colors]
 - Ultra-Processed Food Definition — US-Federal, watch [function: sweetener]
 - California Non-Ultraprocessed Certified Seal — US-CA, watch [function: sweetener]
 - New Jersey Ingredient Restriction Bill — US-NJ, watch [function: color]
@@ -47,8 +46,8 @@ Talking Rain Beverage Company carries 5 modeled products. The register tracks 25
 
 ### Sparkling Ice Starburst
 
-- California Food Safety Act Ingredient Ban — US-CA, high, effective 2027-01-01 [function: color]
-- Synthetic Dye Phase-Out — US-Federal, watch, effective 2026-12-31 [function: color]
+- California Food Safety Act Ingredient Ban — US-CA, act-now, effective 2027-01-01 [function: color]
+- Synthetic Dye Phase-Out — US-Federal, high, effective 2026-12-31 [function: color]
 - Ultra-Processed Food Definition — US-Federal, watch [function: sweetener]
 - California Non-Ultraprocessed Certified Seal — US-CA, watch [function: sweetener]
 - New Jersey Ingredient Restriction Bill — US-NJ, watch [function: color]
@@ -104,6 +103,9 @@ Trace heavy metals carried in by botanicals, colors, or concentrates create boun
 
 ## Recommended Actions
 
+- Act now: Sparkling Ice +Caffeine against California Food Safety Act Ingredient Ban (US-CA, effective 2027-01-01).
+- Act now: Sparkling Ice (classic flavors) against California Food Safety Act Ingredient Ban (US-CA, effective 2027-01-01).
+- Act now: Sparkling Ice Starburst against California Food Safety Act Ingredient Ban (US-CA, effective 2027-01-01).
 - Confirm sweetener disclosures and watch front-of-package, UPF, SNAP, California AB 1264, and Mexico NOM-051.
 - Inventory color sources by SKU and route any swap through claims review.
 - Confirm per-serving caffeine and cautionary-statement requirements per market.

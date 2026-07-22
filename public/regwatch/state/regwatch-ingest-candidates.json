@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "generated": "2026-07-22",
+  "source": "Federal Register API",
+  "origin": "none",
+  "note": "Unconfirmed candidates from the live feed. A human confirms and promotes into regwatch-changelog.json before any compliance use.",
+  "candidates": []
+}

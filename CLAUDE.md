@@ -28,12 +28,7 @@ augment, but do not replace, the user-scope policy in
 
 ## regwatch
 
-The regulatory monitoring engine lives in `regwatch/` (data) and
-`scripts/regwatch*.py` (engine, standard library only). Before working on it,
-read `regwatch/CLAUDE.md` for the operating rules and
-`docs/reference/regwatch-troubleshooting.md` for the runbook. Detection and
-ingestion flag for human review; they never auto-edit the register or change
-log. Nothing the engine emits is legal advice.
+The regulatory monitoring engine lives in `public/regwatch/` (data) and `scripts/regwatch*.py` (engine, standard library only). Before working on it, read `public/regwatch/CLAUDE.md` for the operating rules and `public/regwatch/regwatch-troubleshooting.md` for the runbook. Detection and ingestion flag for human review; they never auto-edit the register or change log. Nothing the engine emits is legal advice. Generated rollout reports and samples live under `projects/regwatch-rollout/` and `projects/regwatch-samples/`.
 
 ## Active Routing
 
@@ -51,8 +46,6 @@ document is superseded.
 
 ## Project Layout
 
-Project layout and agent routing follow the canonical scaffold spec:
-`/Users/kevinlappe/Projects/harness/scaffolding/project-routing-spec.md`.
-This project applies the Records and Source-Corpus overlay: raw source
-material lives under `sources/`; derived summaries and reports live under
-`docs/`.
+Project layout and agent routing follow the canonical scaffold spec: `/Users/kevinlappe/Projects/harness/scaffolding/project-routing-spec.md`. This project applies the Records and Source-Corpus overlay: raw source material lives under `sources/`; derived summaries and reports live under `docs/`.
+
+This overlay description is stale for one deliberate deviation: operational data and generated reports intended for reuse or sharing live under `public/` (for example `public/regwatch/`, `public/prompts/`), and private working outputs live under `projects/` (for example `projects/regwatch-rollout/`, `projects/regwatch-samples/`, `projects/regulatory-labeling/`). This split is not yet reflected in the canonical scaffold spec; treat `public/` and `projects/` as this project's convention, additive to, not a replacement for, the overlay's `sources/`/`docs/` structure.

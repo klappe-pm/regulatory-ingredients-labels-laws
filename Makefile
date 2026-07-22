@@ -5,11 +5,7 @@ PYTHON ?= python3
 
 AUDIT_DOCS := \
 	"$(ROOT)/docs/plans" \
-	"$(ROOT)/docs/reference/reference-README.md" \
-	"$(ROOT)/docs/reference/regwatch-troubleshooting.md" \
-	"$(ROOT)/docs/reference/mcp.md" \
-	"$(ROOT)/docs/reference/environment/environment-README.md" \
-	"$(ROOT)/docs/reference/environment/environment-macos-machine-specs.md"
+	"$(ROOT)/public/regwatch/regwatch-troubleshooting.md"
 
 help:
 	@printf 'targets: doctor audit audit-strict regwatch-validate regwatch-smoke regwatch-brief regwatch-briefing regwatch-rollout rebuild-agents test strip-agents strip-hooks strip-specs\n'
@@ -50,12 +46,12 @@ regwatch-smoke:
 	@printf 'regwatch-smoke: passed\n'
 
 regwatch-brief:
-	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/docs/reports/regwatch-samples"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" brief --cadence weekly --out-dir "$(ROOT)/projects/regwatch-samples"
 
 regwatch-briefing:
-	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/docs/reports/regwatch-samples/regwatch-fda-beverage-briefing.md"
+	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --out "$(ROOT)/projects/regwatch-samples/regwatch-fda-beverage-briefing.md"
 
-ROLLOUT := $(ROOT)/docs/reports/regwatch-rollout
+ROLLOUT := $(ROOT)/projects/regwatch-rollout
 regwatch-rollout:
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v1 --since-days 90 --out "$(ROLLOUT)/regwatch-rollout-v1-report.md"
 	@$(PYTHON) "$(ROOT)/scripts/regwatch.py" briefing --tier v2 --since-days 90 --out "$(ROLLOUT)/regwatch-rollout-v2-report.md"

@@ -30,28 +30,8 @@ docs:
     sources:
       - project.yml
 
-  - path: docs/reference/reference-README.md
-    class: authored
-    sources:
-      - docs/reference/
-
-  - path: docs/reference/regwatch-troubleshooting.md
+  - path: public/regwatch/regwatch-troubleshooting.md
     class: authored
     sources:
       - scripts/regwatch.py
-      - regwatch/
-
-  - path: docs/reference/mcp.md
-    class: authored
-    sources:
-      - .claude/
-
-  - path: docs/reference/environment/environment-README.md
-    class: authored
-    sources:
-      - docs/reference/environment/
-
-  - path: docs/reference/environment/environment-macos-machine-specs.md
-    class: authored
-    sources:
-      - docs/reference/environment/
+      - public/regwatch/

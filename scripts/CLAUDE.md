@@ -24,5 +24,4 @@ over loaded data, so they stay testable and free of circular imports:
 - `regwatch_briefing.py` — the human-readable FDA beverage briefing.
 - `regwatch_ingest.py` — Federal Register live ingestion.
 
-Exercised end to end by `make regwatch-smoke`. For diagnosis see
-`docs/reference/regwatch-troubleshooting.md`.
+Exercised end to end by `make regwatch-smoke`. For diagnosis see `public/regwatch/regwatch-troubleshooting.md`.

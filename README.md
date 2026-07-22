@@ -28,9 +28,9 @@ python3 scripts/regwatch.py briefing      # human-readable FDA beverage briefing
 python3 scripts/regwatch.py ingest --live # pull the Federal Register feed
 ```
 
-- Engine and data: `regwatch/regwatch-README.md`.
+- Engine and data: `public/regwatch/regwatch-README.md`.
 - Design: `docs/plans/deliverable-3-regulatory-monitoring-design.md`.
-- Troubleshooting runbook for agents: `docs/reference/regwatch-troubleshooting.md`.
+- Troubleshooting runbook for agents: `public/regwatch/regwatch-troubleshooting.md`.
 
 Nothing the engine emits is legal advice; confirm against primary source text.
 

@@ -1,6 +1,6 @@
 # regwatch-fda-beverage-briefing
 
-_Generated 2026-06-22 · v1 (headlines) · internal research, not legal advice._
+_Generated 2026-07-22 · v1 (headlines) · internal research, not legal advice._
 
 ## Scope
 
@@ -15,9 +15,9 @@ Covering 2025-01-22 to 2025-04-22, anchored to the latest recorded development b
 
 ## Coming Due
 
-- 2026-07-01 — US-CA: California Date Label Standardization (enacted)
 - 2026-12-31 — US-Federal: Synthetic Dye Phase-Out (voluntary)
 - 2027-01-01 — US-CA: California Food Safety Act Ingredient Ban (enacted)
+- 2027-12-31 — US-CA: California School Food Dye Ban (enacted)
 
 ## Key Items
 

@@ -1,10 +1,10 @@
 # regwatch-fda-beverage-briefing
 
-_Generated 2026-06-22 · v2 (context and CFR) · internal research, not legal advice._
+_Generated 2026-07-22 · v3 (full detail) · internal research, not legal advice._
 
 ## Scope
 
-FDA food safety and labeling that directly impacts the United States beverage industry. Canada and Mexico are covered as the other markets the portfolio reaches.
+FDA food safety and labeling that directly impacts the United States beverage industry. Canada and Mexico are covered as the other markets the portfolio reaches. Each item is written as What happened, What it means (with the governing CFR and the context for what the rule is), and What we need to do, with backlinks to primary sources.
 
 ## What Happened (Last 90 Days)
 
@@ -28,9 +28,9 @@ Covering 2025-01-22 to 2025-04-22, anchored to the latest recorded development b
 
 ## Coming Due
 
-- 2026-07-01 — US-CA: California Date Label Standardization (enacted)
 - 2026-12-31 — US-Federal: Synthetic Dye Phase-Out (voluntary)
 - 2027-01-01 — US-CA: California Food Safety Act Ingredient Ban (enacted)
+- 2027-12-31 — US-CA: California School Food Dye Ban (enacted)
 
 ## United States — FDA Food Safety (Beverage Focus)
 
@@ -45,6 +45,8 @@ _finalized, effective 2028-02-28 · US-Federal_
 
 **Governing rule.** [21 CFR 101.65 (implied nutrient content claims, 'healthy')](https://www.ecfr.gov/current/title-21/part-101)
 
+**What we need to do.** Audit every product that uses or implies 'healthy' and remove or substantiate the claim before 2028.
+
 **Source.** [FDA: Use of the Term Healthy on Food Labeling](https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/use-term-healthy-food-labeling)
 
 ### Synthetic Dye Phase-Out  
@@ -57,6 +59,8 @@ _voluntary, effective 2026-12-31 · US-Federal_
 **Implications (beverage industry).** A color change is also a claims event for the industry: it can support or undercut a 'no artificial colors' statement, so color sourcing becomes a marketing decision, not just an R&D one.
 
 **Governing rule.** [21 CFR Part 74 (certified color additives)](https://www.ecfr.gov/current/title-21/part-74); [21 CFR Part 73 (colors exempt from certification)](https://www.ecfr.gov/current/title-21/part-73)
+
+**What we need to do.** Map every SKU's color source; for any certified dye, plan a Part 73 alternative and coordinate the label and claims change.
 
 **Source.** [FDA: Color Additives in Food](https://www.fda.gov/industry/color-additives/color-additives-and-foods)
 
@@ -71,6 +75,8 @@ _proposed · US-Federal_
 
 **Governing rule.** [21 CFR 101.9 (nutrition labeling of food)](https://www.ecfr.gov/current/title-21/part-101)
 
+**What we need to do.** Model each SKU against the proposed thresholds and sequence any front-panel redesign to absorb the box in one change.
+
 **Source.** [FDA: Front-of-Package Nutrition Labeling](https://www.fda.gov/food/nutrition-facts-label/front-package-labeling)
 
 ### GRAS Self-Affirmation Overhaul  
@@ -83,6 +89,8 @@ _proposed · US-Federal_
 **Implications (beverage industry).** A beverage maker can no longer assume a self-affirmed ingredient is settled; the industry must hold audit-ready safety files for every additive in use.
 
 **Governing rule.** [21 CFR 170.30 (GRAS criteria)](https://www.ecfr.gov/current/title-21/part-170); [21 CFR 170 Subpart E (GRAS notification)](https://www.ecfr.gov/current/title-21/part-170)
+
+**What we need to do.** Inventory every self-affirmed GRAS ingredient in the portfolio and assemble its safety file now; flag any on FDA's re-review list for a reformulation contingency.
 
 **Source.** [FDA: How U.S. FDA's GRAS Notification Program Works](https://www.fda.gov/food/generally-recognized-safe-gras/how-us-fdas-gras-notification-program-works)
 
@@ -97,6 +105,8 @@ _in-progress · US-Federal_
 
 **Governing rule.** [21 CFR 182.1180 (caffeine GRAS)](https://www.ecfr.gov/current/title-21/part-182)
 
+**What we need to do.** Confirm per-serving caffeine against the GRAS basis and prepare cautionary-statement copy for markets that expect it.
+
 **Source.** [FDA: Spilling the Beans on Caffeine](https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much)
 
 ### Ultra-Processed Food Definition  
@@ -107,6 +117,8 @@ _in-progress · US-Federal_
 **Impacts.** Sweetened and heavily formulated beverages, especially those using non-nutritive sweeteners, are likely to land inside whatever definition emerges. Affected portfolio: Sparkling Ice +Caffeine, Sparkling Ice (classic flavors), Sparkling Ice Starburst.
 
 **Implications (beverage industry).** The industry faces a medium-term repositioning question; a definition could reshape claims, school access, and consumer perception across the category.
+
+**What we need to do.** Track the joint FDA and USDA definition work and pressure-test the portfolio against the leading candidate definitions.
 
 **Source.** [FDA: Human Foods Program updates](https://www.fda.gov/food/hfp-constituent-updates)
 
@@ -123,6 +135,8 @@ _enacted, effective 2026-07-01 · US-CA_
 
 **Implications (beverage industry).** Date-label standardization is spreading and reduces the flexibility brands have in package wording.
 
+**What we need to do.** Update date-label copy for California SKUs before July 1, 2026.
+
 **Source.** [California Legislative Information: AB 660](https://leginfo.legislature.ca.gov)
 
 ### California Food Safety Act Ingredient Ban  
@@ -136,6 +150,8 @@ _enacted, effective 2027-01-01 · US-CA_
 
 **Governing rule.** [Federal parallel: BVO authorization revoked (former 21 CFR 180.30)](https://www.ecfr.gov/current/title-21/part-180); [Federal parallel: FD&C Red No. 3 (21 CFR Part 74)](https://www.ecfr.gov/current/title-21/part-74)
 
+**What we need to do.** Confirm with R&D and suppliers that no California-sold formula contains the four banned substances and treat BVO and Red No. 3 as national removals.
+
 **Source.** [California Legislative Information: AB 418](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240AB418)
 
 ### California School Food Dye Ban  
@@ -146,6 +162,8 @@ _enacted, effective 2027-12-31 · US-CA_
 **Impacts.** Only products that reach the school channel are affected; core retail lines are not directly covered.
 
 **Implications (beverage industry).** School channels are becoming a distinct, stricter market that the industry must formulate for separately.
+
+**What we need to do.** Confirm whether any SKU reaches school channels and review its colors.
 
 **Source.** [California Legislative Information: AB 2316](https://leginfo.legislature.ca.gov)
 
@@ -158,6 +176,8 @@ _enacted, effective 2028-06-01 · US-CA_
 
 **Implications (beverage industry).** California's UPF definition will likely become a reference other states and channels adopt.
 
+**What we need to do.** Track the CDPH definition and assess school-channel exposure for non-nutritive-sweetened SKUs.
+
 **Source.** [California Legislative Information: AB 1264](https://leginfo.legislature.ca.gov)
 
 ### Proposition 65 Warning Requirement  
@@ -168,6 +188,8 @@ _enacted · US-CA_
 **Impacts.** Trace heavy metals carried in by botanicals, colors, concentrates, or water can trigger a warning obligation or a bounty-driven lawsuit; bottled water and botanical drinks carry the most exposure.
 
 **Implications (beverage industry).** Exposure, not harm, triggers enforcement, so the industry carries ongoing testing and supplier-indemnity cost regardless of actual risk.
+
+**What we need to do.** Maintain annual heavy-metal and acrylamide testing for California-sold products, secure supplier attestation and indemnity, and warn where a safe-harbor level cannot be met.
 
 **Source.** [OEHHA: Proposition 65 list](https://oehha.ca.gov/proposition-65/proposition-65-list)
 
@@ -180,6 +202,8 @@ _proposed · US-CA_
 
 **Implications (beverage industry).** A voluntary seal can still pressure the whole category to reformulate to qualify.
 
+**What we need to do.** Decide whether to pursue certification if the bill advances.
+
 **Source.** [California Legislative Information: AB 2244](https://leginfo.legislature.ca.gov)
 
 ### California State GRAS Reporting Bill  
@@ -191,6 +215,8 @@ _proposed · US-CA_
 
 **Implications (beverage industry).** A state-by-state GRAS patchwork would multiply compliance cost across the industry.
 
+**What we need to do.** Monitor the bill and inventory self-affirmed GRAS additives in use.
+
 **Source.** [California Legislative Information](https://leginfo.legislature.ca.gov)
 
 ## FDA Warning Letters — Enforcement Themes For Beverages
@@ -201,25 +227,49 @@ FDA enforces largely through warning letters; these recurring themes signal wher
 
 **What triggers it.** Marketing a beverage with claims to treat, cure, or prevent disease (immunity, anxiety, sleep, weight loss) turns it into an unapproved new drug in FDA's view. Influencer and AI-drafted copy counts as the brand's claim.
 
+**Governing rule.** [FD&C Act 505 / 21 CFR Part 201 (drug labeling)](https://www.ecfr.gov/current/title-21/part-201)
+
+**For beverages.** Highest-frequency theme for functional and wellness drinks. Route every claim through legal before launch.
+
 ### CBD and other unlawful additives in beverages
 
 **What triggers it.** Adding CBD or other substances FDA has not authorized for food makes the beverage adulterated. FDA has issued many warning letters for CBD-infused drinks.
+
+**Governing rule.** [FD&C Act 301(ll); 21 CFR Part 170 (food additives)](https://www.ecfr.gov/current/title-21/part-170)
+
+**For beverages.** Do not add unauthorized actives to a conventional beverage.
 
 ### Illegal or uncertified color additives
 
 **What triggers it.** Using a color additive that is not listed for the use, not batch-certified where required, or used above its limit adulterates the product.
 
+**Governing rule.** [21 CFR Parts 70-82 (color additives)](https://www.ecfr.gov/current/title-21/part-74)
+
+**For beverages.** Ties directly to the dye phase-out and Red No. 3 removal.
+
 ### Juice HACCP violations
 
 **What triggers it.** Juice and juice-containing beverages must follow HACCP controls including a 5-log pathogen reduction; missing plans or controls draw letters.
+
+**Governing rule.** [21 CFR Part 120 (Juice HACCP)](https://www.ecfr.gov/current/title-21/part-120)
+
+**For beverages.** Applies to any juice content in flavored or fruit-forward lines.
 
 ### Acidified and low-acid beverage process controls
 
 **What triggers it.** Shelf-stable acidified or low-acid beverages require filed processes and registration; failures in scheduled processes or registration draw letters.
 
+**Governing rule.** [21 CFR Parts 113, 114 and 108 (LACF/acidified)](https://www.ecfr.gov/current/title-21/part-114)
+
+**For beverages.** Relevant to canned and bottled shelf-stable products.
+
 ### Preventive controls and facility registration (FSMA)
 
 **What triggers it.** Failure to register a facility or to implement hazard analysis and risk-based preventive controls draws enforcement.
+
+**Governing rule.** [21 CFR Part 117 (Preventive Controls for Human Food)](https://www.ecfr.gov/current/title-21/part-117)
+
+**For beverages.** Baseline GMP and food-safety system expectation for any producer.
 
 ## Canada
 
@@ -231,6 +281,8 @@ _enacted · CA-Federal_
 **Impacts.** A caffeinated or functional beverage sold in Canada may need cautionary statements and must stay within Canadian caffeine limits, which can differ from the US basis.
 
 **Implications (beverage industry).** Canada is a stricter functional-beverage market, so US formulations and labels may not port directly across the border.
+
+**What we need to do.** Map any Canada-distributed SKU to the supplemented-foods requirements: caffeine limit, cautionary statements, and the Supplemented Food Facts table.
 
 **Source.** [Health Canada: Supplemented foods](https://www.canada.ca/en/health-canada/services/food-nutrition/legislation-guidelines/supplemented-foods.html)
 
@@ -245,7 +297,25 @@ _enacted · MX-Federal_
 
 **Implications (beverage industry).** Mexico is the strictest front-of-pack regime the portfolio meets and a preview of where warning-label policy can go.
 
+**What we need to do.** For Mexico-distributed SKUs, determine the octagon seals and sweetener or caffeine legends triggered and confirm packaging compliance.
+
 **Source.** [Diario Oficial de la Federacion](https://www.dof.gob.mx)
+
+## What To Do Next (Consolidated)
+
+- Healthy Claim Definition: Audit every product that uses or implies 'healthy' and remove or substantiate the claim before 2028.
+- Synthetic Dye Phase-Out: Map every SKU's color source; for any certified dye, plan a Part 73 alternative and coordinate the label and claims change.
+- Front-Of-Package Nutrition Labeling: Model each SKU against the proposed thresholds and sequence any front-panel redesign to absorb the box in one change.
+- GRAS Self-Affirmation Overhaul: Inventory every self-affirmed GRAS ingredient in the portfolio and assemble its safety file now; flag any on FDA's re-review list for a reformulation contingency.
+- Caffeine Labeling Guidance: Confirm per-serving caffeine against the GRAS basis and prepare cautionary-statement copy for markets that expect it.
+- Ultra-Processed Food Definition: Track the joint FDA and USDA definition work and pressure-test the portfolio against the leading candidate definitions.
+- California Date Label Standardization: Update date-label copy for California SKUs before July 1, 2026.
+- California Food Safety Act Ingredient Ban: Confirm with R&D and suppliers that no California-sold formula contains the four banned substances and treat BVO and Red No. 3 as national removals.
+- California School Food Dye Ban: Confirm whether any SKU reaches school channels and review its colors.
+- California School Ultra-Processed Food Law: Track the CDPH definition and assess school-channel exposure for non-nutritive-sweetened SKUs.
+- Proposition 65 Warning Requirement: Maintain annual heavy-metal and acrylamide testing for California-sold products, secure supplier attestation and indemnity, and warn where a safe-harbor level cannot be met.
+- California Non-Ultraprocessed Certified Seal: Decide whether to pursue certification if the bill advances.
+- California State GRAS Reporting Bill: Monitor the bill and inventory self-affirmed GRAS additives in use.
 
 ---
 
