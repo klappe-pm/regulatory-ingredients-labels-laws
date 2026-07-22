@@ -1,0 +1,28 @@
+[
+  {
+    "category": "market-and-reporting",
+    "sub_category": "surveillance",
+    "name": "market-pull-vs-record-check",
+    "description": "Compares a label already in the market against the approved record, field by field, to catch drift that reached consumers and needs a recall or relabel decision, not just a print hold.",
+    "when_to_use": "A market pull sample, a consumer photo, or a routine shelf audit surfaces an in-market label that needs checking against the approved record.",
+    "what_to_use_for": "Field-by-field comparison of an in-market label against the approved record, silent-change detection, and escalation of any in-market discrepancy to a recall/relabel decision path.",
+    "required_inputs": "In-market label (image or extracted text); approved record (the source of truth).",
+    "expected_outputs": "Discrepancy findings; severity; recall/relabel escalation flag; machine-readable summary.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat as a market surveillance reviewer for a beverage manufacturer's regulatory labeling specialist. You are comparing an in-market label against the documented approved record. The approved record is the source of truth; on any conflict, the approved record wins and the discrepancy is a finding, never silently resolved in favor of what is on shelf. This label already reached consumers, so findings here carry more weight than a pre-print check.\n\nMethod:\n1. Extract every field from the in-market label and the approved record: ingredient statement wording and predominance order, sub-ingredient parentheticals, allergen Contains statement, every Nutrition Facts Panel value, serving size and RACC, servings per container, added sugars, percent Daily Value figures, net quantity, and each claim's exact wording.\n2. Diff field by field. For every field, record: id, field, expected (approved record), observed (in-market label), verdict (pass/fail/na), severity (critical/major/minor), citation, required-action.\n3. Actively look for silent changes: any regulated value that drifted between the approved record and what is actually on shelf.\n4. Map every finding to exactly one action: recall-escalation, relabel, correct-record, or clear.\n5. Produce a human-readable discrepancy table AND a machine-readable JSON summary block: {\"total_fields\": n, \"critical\": n, \"major\": n, \"minor\": n, \"pass\": n, \"market_safe\": true|false, \"recall_escalation\": true|false}.\n6. Never mark the in-market label cleared yourself; any critical finding is an immediate escalation to a human decision-maker.\n7. Never fabricate a citation, a threshold, or a figure. Flag anything whose current regulatory status you cannot confirm.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste in-market label image description/text here]\n\n[Paste approved record here]\n\nSKU identifier: [SKU]"
+  },
+  {
+    "category": "market-and-reporting",
+    "sub_category": "status-reporting",
+    "name": "weekly-status-report",
+    "description": "Generates a categorized weekly status report for the labeling function from in-progress items, a findings log, deadlines, and incidents.",
+    "when_to_use": "Weekly, or whenever the specialist needs a rolled-up status view across active SKUs, reviews, and open incidents for a stakeholder update.",
+    "what_to_use_for": "Synthesizing in-progress items, findings, deadlines, and incidents into a structured report with clear sections, without inventing any fact not present in the inputs.",
+    "required_inputs": "In-progress items; findings log; deadlines; incidents.",
+    "expected_outputs": "Structured report with frontmatter, sections, blockers, and decisions needed.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: generate a categorized weekly status report for the labeling function from the inputs I provide.\n\nSource of truth: the in-progress items, findings log, deadlines, and incidents I provide are the only sources. Do not add a date, a status, or a fact not present in them.\n\nMethod:\n1. Read the in-progress items, findings log, deadlines, and incidents I provide below.\n2. Organize into sections: In Progress, Findings This Week (grouped by severity), Blockers, Decisions Needed, Upcoming Deadlines, Incidents.\n3. Do not resolve any open decision yourself; list it under Decisions Needed exactly as it stands.\n4. Do not fabricate a deadline, a finding, or an incident detail not present in the inputs. If a section has nothing to report, say so explicitly rather than omitting it silently.\n5. Where a finding references a regulatory provision, carry the citation through into the report rather than dropping it.\n\nThis is a reporting and synthesis prompt, not a compliance judgment; it never resolves an open decision, it surfaces it for the reader.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste in-progress items here]\n\n[Paste findings log here]\n\n[Paste deadlines here]\n\n[Paste incidents here]\n\nReport week of: [date]"
+  }
+]

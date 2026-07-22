@@ -1,0 +1,39 @@
+# Hyphenated frontmatter keys (sub-category, use-case, date-created, date-revised) collide with
+# the minus/subtraction operator in Bases expressions; every reference below uses bracket
+# notation, e.g. note["sub-category"], instead of a bare identifier. Keys are not renamed.
+
+filters:
+  and:
+    - 'file.ext == "md"'
+    - 'note["type"] == "prompt"'
+
+properties:
+  file.name:
+    displayName: Prompt
+  category:
+    displayName: Category
+  note["sub-category"]:
+    displayName: Sub-category
+  topic:
+    displayName: Topic
+  note["use-case"]:
+    displayName: Use case
+  visibility:
+    displayName: Visibility
+  note["date-revised"]:
+    displayName: Revised
+
+views:
+  - type: table
+    name: "All Prompts"
+    groupBy:
+      property: category
+      direction: ASC
+    order:
+      - file.name
+      - category
+      - note["sub-category"]
+      - topic
+      - note["use-case"]
+      - visibility
+      - note["date-revised"]

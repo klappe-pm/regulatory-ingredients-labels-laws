@@ -1,0 +1,54 @@
+[
+  {
+    "category": "durable-knowledge",
+    "sub_category": "personalization",
+    "name": "communication-style-profile",
+    "description": "Captures the specialist's voice and formatting defaults as durable rules: style rules destined for Custom Instructions, and discrete facts destined for Copilot Memory.",
+    "when_to_use": "Once, when first setting up Copilot personalization, and again whenever the specialist's writing style or stated preferences change materially.",
+    "what_to_use_for": "Turning writing samples, stated preferences, and role context into two clearly separated outputs: durable style rules for Custom Instructions, and discrete facts for Copilot Memory.",
+    "required_inputs": "Writing samples; stated preferences; role.",
+    "expected_outputs": "Style rules for Custom Instructions; discrete facts for Copilot Memory; install footer naming the owning Copilot layer and load steps.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: capture the specialist's communication style as two separated durable outputs, one for Custom Instructions and one for Copilot Memory.\n\nMethod:\n1. Read the writing samples, stated preferences, and role I provide below.\n2. Derive style rules: voice, formatting defaults, a do/don't list, and a short phrase bank. Write these as rules for Custom Instructions.\n3. Separately, derive discrete facts worth remembering as short factual statements for Copilot Memory.\n4. Do not invent a preference not evidenced in the writing samples or explicitly stated; note weakly evidenced patterns as tentative.\n5. End with an install footer: style rules go into Custom Instructions (Copilot Chat, Settings and more, Chat settings, Personalization), discrete facts go into Copilot Memory (same pane); note that behavioral-rule propagation into inline Word/Excel/Outlook authoring is partial and rolling. Include a one-line verification step.\n\nSource of truth: the writing samples, stated preferences, and role I provide are the only sources.\n\nThis is durable context for the specialist to review and install themselves; it never installs itself.\n\nDo not fabricate a preference, a fact, or a phrase not evidenced in the inputs.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste writing samples here]\n\n[Paste stated preferences here]\n\nRole: [role]"
+  },
+  {
+    "category": "durable-knowledge",
+    "sub_category": "relationships",
+    "name": "stakeholder-and-contact-map",
+    "description": "Maps who the specialist interacts with and how each connects to them, as durable context for Copilot Memory or a private declarative agent's knowledge.",
+    "when_to_use": "Once, when first setting up durable context, and again whenever stakeholders or interaction patterns change materially.",
+    "what_to_use_for": "Turning a contact list, roles, and interaction cadence into a structured contact map with an install footer.",
+    "required_inputs": "Contact list; roles; interaction cadence.",
+    "expected_outputs": "Contact map (who, role, connection, cadence, channel); install footer naming the owning Copilot layer and load steps.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: build a stakeholder and contact map from a contact list, roles, and interaction cadence.\n\nMethod:\n1. Read the contact list, roles, and interaction cadence I provide below.\n2. For each contact, produce a row: name, role, how they connect to me, cadence, and channel.\n3. Group contacts by function if a natural grouping emerges.\n4. Do not invent a contact, role, or cadence not present in the inputs.\n5. End with an install footer: this map is best suited to Copilot Memory (small number of contacts) or a private declarative agent's knowledge (larger map), built via Agent Builder at m365.cloud.microsoft/chat; note sharing is admin-gated. Include a one-line verification step.\n\nSource of truth: the contact list, roles, and interaction cadence I provide are the only sources.\n\nThis is durable context for the specialist to review and install themselves.\n\nDo not fabricate a contact, connection, or cadence not present in the inputs.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste contact list here]\n\n[Paste roles here]\n\n[Paste interaction cadence here]"
+  },
+  {
+    "category": "durable-knowledge",
+    "sub_category": "relationships",
+    "name": "team-roles-and-responsibilities",
+    "description": "Records team roles, ownership, and escalation paths as durable context for a private declarative agent's instructions or knowledge.",
+    "when_to_use": "Once, when setting up durable team context, and again after a team or ownership change.",
+    "what_to_use_for": "Turning a team roster and ownership information into a structured roles-and-responsibilities record with RACI-style ownership and escalation paths.",
+    "required_inputs": "Team roster; ownership.",
+    "expected_outputs": "Roles plus RACI-style ownership; escalation paths; install footer naming the owning Copilot layer and load steps.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: record team roles, ownership, and escalation paths from a team roster and ownership information.\n\nMethod:\n1. Read the team roster and ownership information I provide below.\n2. For each function relevant to labeling, identify who is Responsible, Accountable, Consulted, and Informed, using only roles present in the roster.\n3. Build an escalation path for each function using only relationships stated or clearly implied.\n4. Do not invent a role, ownership assignment, or escalation path not supported by the inputs; mark \"owner not specified\" where the roster does not name one.\n5. End with an install footer: this record is best suited to a private declarative agent's instructions or knowledge, built via Agent Builder at m365.cloud.microsoft/chat; note that pointing the agent at SharePoint/Graph content is metered and off by default. Include a one-line verification step.\n\nSource of truth: the team roster and ownership information I provide are the only sources.\n\nThis is durable context for the specialist to review and install themselves.\n\nDo not fabricate a role, ownership assignment, or escalation path not present in the inputs.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste team roster here]\n\n[Paste ownership information here]"
+  },
+  {
+    "category": "durable-knowledge",
+    "sub_category": "workstreams",
+    "name": "workstream-inventory",
+    "description": "Inventories what the specialist is currently working on, as durable context for a private declarative agent's knowledge or Copilot Memory.",
+    "when_to_use": "Periodically, or whenever workstreams change enough that Copilot's context on \"what am I working on\" would be stale.",
+    "what_to_use_for": "Turning a list of current projects and workstreams into structured records with goal, status, stakeholders, and key artifacts, kept current as durable Copilot context.",
+    "required_inputs": "Current projects and workstreams.",
+    "expected_outputs": "Workstream records (name, goal, status, stakeholders, artifacts); install footer naming the owning Copilot layer and load steps.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: inventory the specialist's current workstreams from a list of current projects and workstreams.\n\nMethod:\n1. Read the current projects and workstreams I provide below.\n2. For each one, produce a record: name, goal, status (NEW, DRAFT, INPRG, REVIEW, DONE, ARCHIVED, plus a blocked flag if applicable), stakeholders, and key artifacts.\n3. Do not invent a workstream, status, or stakeholder not present in the inputs; mark status \"unspecified\" if unclear.\n4. End with an install footer: this inventory is best suited to a private declarative agent's knowledge or Copilot Memory, note the tradeoff. Include a one-line verification step.\n\nSource of truth: the current projects and workstreams I provide are the only sources.\n\nThis is durable context for the specialist to review and install themselves, refreshed periodically.\n\nDo not fabricate a workstream, status, or stakeholder not present in the inputs.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste current projects and workstreams here]"
+  }
+]

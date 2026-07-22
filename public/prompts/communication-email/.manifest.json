@@ -1,0 +1,54 @@
+[
+  {
+    "category": "communication-email",
+    "sub_category": "email-editing",
+    "name": "email-draft-from-brief",
+    "description": "Drafts an email from a short brief in the specialist's own voice, producing a subject line, body, and alternate subject options.",
+    "when_to_use": "The specialist has a purpose, recipient, and key points but no drafted email yet.",
+    "what_to_use_for": "Turning purpose, recipient, key points, and target tone into a ready-to-review draft email, applying the specialist's style profile if one has been installed.",
+    "required_inputs": "Purpose; recipient; key points; tone.",
+    "expected_outputs": "Subject plus body draft; alternate subject line options; note on which style profile was applied, if any.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat (or Copilot in Outlook if composing directly). Your single task: draft an email from a short brief.\n\nMethod:\n1. Read the purpose, recipient, key points, and target tone I provide below, and my installed communication style profile if one is available to you.\n2. Draft a subject line and body that accomplishes the stated purpose, covers every key point, and matches the target tone and my style profile.\n3. Propose two alternate subject lines.\n4. State which style profile, if any, you applied.\n5. Do not add a commitment, deadline, or promise not present in the key points I gave you.\n\nSource of truth: the purpose, recipient, key points, and tone I provide are the only sources for content; do not invent facts, dates, or commitments.\n\nThis is a draft for my review before sending, not a sent email. Do not represent it as final or already sent.\n\nDo not fabricate a fact, name, or commitment not present in the inputs I provide.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\nPurpose: [purpose]\n\nRecipient: [recipient]\n\nKey points: [key points]\n\nTarget tone: [tone]"
+  },
+  {
+    "category": "communication-email",
+    "sub_category": "email-editing",
+    "name": "email-tone-and-clarity-revision",
+    "description": "Revises an existing email draft for tone, clarity, and commitment risk, flagging any wording that could read as overcommitment or an inadvertent compliance claim.",
+    "when_to_use": "A draft email exists and needs a tone/clarity pass before sending.",
+    "what_to_use_for": "Revising a draft for tone and clarity against a target tone, listing every change made, and flagging any phrase that overcommits the company or makes an inadvertent regulatory or health claim.",
+    "required_inputs": "Draft email; target tone.",
+    "expected_outputs": "Revised email; change list; flags for overcommitment or compliance risk.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat (or Copilot in Outlook if revising directly). Your single task: revise a draft email for tone, clarity, and commitment risk.\n\nMethod:\n1. Read the draft email and target tone I provide below.\n2. Revise for tone and clarity.\n3. Produce a change list: what changed and why, line by line for any substantive edit.\n4. Flag any phrase in the original or revised draft that overcommits the company, makes an inadvertent nutrient content, health, or \"healthy\" implied claim, or states a regulatory conclusion as settled when it is not.\n5. Do not change the factual content of the email beyond tone and clarity; note any needed factual rewrite as a recommendation rather than silently rewriting it.\n\nSource of truth: the draft email and target tone I provide are the only sources.\n\nThis is a draft revision for my review before sending, not a sent email.\n\nDo not fabricate a fact or commitment not present in the original draft.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste draft email here]\n\nTarget tone: [tone]"
+  },
+  {
+    "category": "communication-email",
+    "sub_category": "email-editing",
+    "name": "email-reply-with-regulatory-position",
+    "description": "Drafts a reply that states a regulatory position with citations, holding or escalating rather than committing the company to a position it cannot fully substantiate.",
+    "when_to_use": "An incoming email or thread asks the specialist to state or confirm a regulatory position.",
+    "what_to_use_for": "Turning the incoming email/thread and the specialist's position and citations into a reply that states the position clearly, cites its basis, and includes a hold or escalation note if needed.",
+    "required_inputs": "Incoming email or thread; position and citations.",
+    "expected_outputs": "Reply stating the position; citations; hold or escalation note.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat (or Copilot in Outlook if replying directly). Your single task: draft a reply that states a regulatory position with citations.\n\nSource of truth: the position and citations I provide are what this reply states; the incoming email/thread is what it responds to. Do not state a position stronger than what my supplied position and citations actually support.\n\nMethod:\n1. Read the incoming email/thread and my stated position and citations below.\n2. Draft a reply that states the position clearly, in plain language, while citing the exact regulatory provision(s) my position rests on.\n3. If my supplied position and citations do not fully resolve the question being asked, do not fill the gap yourself; draft the reply to state what is confirmed, and add an explicit hold or escalation note.\n4. Do not overstate certainty; if a citation's current status cannot be confirmed, say so in the reply rather than presenting it as settled.\n\nThis is a draft for my review before sending, not a sent reply.\n\nDo not fabricate a citation, a regulatory conclusion, or a commitment beyond what I supplied as my position.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste incoming email/thread here]\n\n[Paste my position and citations here]"
+  },
+  {
+    "category": "communication-email",
+    "sub_category": "email-editing",
+    "name": "email-thread-to-actions",
+    "description": "Converts an email thread into a summary, decisions made, action items with owners, and open regulatory questions, so nothing discussed in email gets lost.",
+    "when_to_use": "A thread has run long enough (or reached a conclusion) that its content needs to become tracked decisions and actions rather than staying buried in email.",
+    "what_to_use_for": "Reading a thread end to end and extracting what was decided, what still needs doing, and what regulatory questions remain open.",
+    "required_inputs": "Email thread.",
+    "expected_outputs": "Summary; decisions; action items with owners; open questions.",
+    "saves_to": "{private_folder}",
+    "visibility": "private",
+    "prompt_text": "You are running inside Microsoft 365 Copilot Chat. Your single task: convert an email thread into a summary, decisions, action items, and open questions.\n\nMethod:\n1. Read the entire thread I provide below, in chronological order.\n2. Write a short summary of what the thread was about and how it resolved (or where it stands if unresolved).\n3. List every decision actually made in the thread, attributed to whoever made it, exactly as stated; do not infer a decision that was discussed but not actually settled.\n4. List every action item mentioned, with an owner and a due date if one was stated; if no owner or date was given, say so rather than assigning one.\n5. List every regulatory question raised in the thread that was not resolved by the end of it.\n\nSource of truth: the thread I provide is the only source; do not add a decision, owner, or deadline not stated in it.\n\nThis is a summarization pass, not a decision-making one; unresolved items stay listed as open questions, never resolved here.\n\nDo not fabricate a decision, an owner, or a deadline not present in the thread.\n\nReturn the complete file content, beginning with the YAML frontmatter block, ready to save at the path I specify, with no commentary outside the file content.\n\n[Paste email thread here]"
+  }
+]
