@@ -2,41 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: review-and-verification
 sub-category: hitl-review
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - hitl-review
-  - review-and-verification
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: second-eyes-review-artifact
 visibility: private
+aliases:
+  - cross check review findings
+  - double check a prior review
+  - human in the loop review
+  - independent re-review
+  - second eyes review
+  - second pair of eyes label check
+  - two stage review
+  - verify prior review citations
+tags:
+  - hitl-review
+  - regulatory-labeling
+  - review-and-verification
 ---
 
 # second-eyes-hitl-review
 
-## description
+## prompt-summary
 
-Runs a two-stage second-eyes review over a prior review's output: stage-a re-derives findings from the artifact and the source of truth in a fresh chat without seeing the prior review, and stage-b compares the two findings sets, verifies the prior review's citations, and recommends (never makes) a human sign-off decision.
+Runs a two-stage second-eyes review over a prior review's output: stage-a re-derives findings from the artifact and the source of truth in a fresh chat without seeing the prior review, and stage-b compares the two findings sets, verifies the prior review's citations, and recommends (never makes) a human sign-off decision. Reach for it after any review or checklist pass has produced a finding set, and before a human reviewer signs off on the artifact. This is not an independent human review: both stages run on the same model, driven by the same user, in the same Microsoft 365 tenant as the first pass, so correlated errors (a shared misreading, a shared fabricated citation, a shared blind spot) will not be caught. It supplements, and never replaces, review by a second person.
 
-## when-to-use
+## use-cases
 
-After any review or checklist pass (including checklist-template-evaluation) has produced a finding set, and before a human reviewer signs off on the artifact.
-
-Honest limits: this is not an independent human review. Both stages run on the same model, driven by the same user, in the same Microsoft 365 tenant as the first pass, so correlated errors (a shared misreading, a shared fabricated citation, a shared blind spot) will not be caught. This prompt supplements, and never replaces, review by a second person.
-
-## what-to-use-for
-
-Cross-checking a prior review's findings for agreements, disputes, and missed issues, verifying every citation the prior review used against the documented source of truth, stating residual risk, and recommending a next step for the human reviewer.
-
-## required-inputs
-
-- The prior review's output (findings, disposition). Stage-b only; never give this to stage-a.
-- The artifact under review.
-- The documented source of truth (approved label of record with version and effective date, formula, substantiation file).
+- A prior review or checklist pass (including [[checklist-template-evaluation]]) has produced a finding set, and a human reviewer is about to sign off on the artifact.
+- You want the prior review's findings cross-checked for agreements, disputes, and missed issues against an independently derived pass.
+- You need every citation the prior review used verified against the documented source of truth (approved label of record with version and effective date, formula, substantiation file).
+- You want residual risk stated explicitly and a recommended next step (ready-for-human-decision, escalate, or re-review) for the human reviewer.
+- You accept that this supplements, but does not replace, a second person's review, since both passes share the same model, user, and tenant.
 
 ## expected-outputs
 
@@ -44,20 +45,7 @@ Cross-checking a prior review's findings for agreements, disputes, and missed is
 - Stage-b: agreements, disputes, and missed-issue tables; a citation-verification list covering every citation the prior review used, with unconfirmable citations listed as residual risk; an explicit residual-risk summary; and a recommendation that is exactly one of ready-for-human-decision, escalate, re-review. Never an approval.
 - A closing UNVERIFIED DRAFT line on each stage's output.
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Stage-a runs in a FRESH chat: attach only the artifact and the documented source of truth (paperclip or `/` file reference; files must be in OneDrive or SharePoint). Do not attach or mention the prior review in this chat; that would anchor the re-derivation and defeat the point of a second pass.
-3. Copy the stage-a prompt-text block below into that fresh chat, fill every bracketed placeholder, send, and copy Copilot's full reply.
-4. Stage-b runs in another new chat: attach the prior review's output, the artifact, and the source of truth, paste the stage-a findings into the stage-b prompt-text where marked, fill the remaining placeholders, and send.
-5. Copilot cannot save files. Copy the stage-b reply into a new note named `second-eyes-review-<sku-or-artifact-slug>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-6. Review the output yourself. The recommendation is input to your decision; nothing is signed off until a person signs off, and true independence still requires a second person.
-
-## output-handling
-
-Apply this note's frontmatter convention (domain, category, sub-category, date-created, date-revised, type, status, aliases, tags, then topic, use-case, visibility) to the saved output file, with output `type: second-eyes-review` and `status: REVIEW`. File name pattern: `second-eyes-review-<sku-or-artifact-slug>-<yyyy-MM-dd>.md`. Save path: `projects/regulatory-labeling/` (visibility: private). Save the stage-b output; keep the stage-a reply pasted inside it as its own section if you want the full trail. The date in the file name means re-runs never overwrite an earlier review.
-
-## prompt-text
+## prompt
 
 ### stage-a-independent-findings
 
@@ -130,15 +118,18 @@ visibility: private
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the prior review's output (findings and disposition), the artifact under review, and the documented source of truth (approved label of record with version and effective date, formula, substantiation file). Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste text directly when a file cannot be attached. Do not attach or mention the prior review in the stage-a chat; that would anchor the re-derivation and defeat the point of a second pass.
+3. Stage-a runs in a FRESH chat with only the artifact and the source of truth attached: copy the stage-a prompt block above into that chat, fill every bracketed placeholder, send, and copy Copilot's full reply. Stage-b runs in another new chat with the prior review, the artifact, and the source of truth attached: copy the stage-b prompt block above, paste the stage-a findings where marked, fill the remaining placeholders, and send.
+4. Copilot cannot save files. Copy the stage-b reply into a new note named `second-eyes-review-<sku-or-artifact-slug>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); set the output frontmatter `type: second-eyes-review` and `status: REVIEW`, and keep the stage-a reply pasted inside it as its own section if you want the full trail. The date in the file name means re-runs never overwrite an earlier review.
+5. Review the output yourself. The recommendation is input to your decision; nothing is signed off until a person signs off, and true independence still requires a second person.
+
 ## guardrails
 
 - This prompt never approves. The recommendation vocabulary is closed (ready-for-human-decision, escalate, re-review) and cannot express approval or sign-off; a human makes the sign-off decision.
 - Independence is procedural, not real: stage-a must run in a fresh chat without the prior review attached, and even then both passes share the same model, user, and tenant, so correlated errors will not be caught. This supplements, never replaces, a second person's review.
 - Stage-b verifies every citation the prior review used against the attached source of truth; any citation that cannot be confirmed is listed as residual risk, never silently accepted.
 - Any uncertainty is surfaced explicitly as residual risk rather than resolved silently. Never fabricate a finding, citation, threshold, or figure.
-
-## see also
-
-- [[review-and-verification]] (category index)
-- [[checklist-template-evaluation]], a common upstream input
-- [[production-vs-documented-comparison]]
+- Related: [[checklist-template-evaluation]], a common upstream input; [[production-vs-documented-comparison]].

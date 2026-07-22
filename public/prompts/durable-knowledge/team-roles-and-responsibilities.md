@@ -2,38 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: durable-knowledge
 sub-category: relationships
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - durable-knowledge
-  - relationships
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: record-team-roles-and-responsibilities
 visibility: private
+aliases:
+  - escalation paths
+  - raci for labeling
+  - responsible accountable consulted informed
+  - team ownership map
+  - team roles and responsibilities
+  - team roster for copilot
+  - who approves label changes
+  - who owns what
+tags:
+  - durable-knowledge
+  - regulatory-labeling
+  - relationships
 ---
 
 # team-roles-and-responsibilities
 
-## description
+## prompt-summary
 
-Records team roles, ownership, and escalation paths as durable context for a private declarative agent's instructions or knowledge.
+Records team roles, ownership, and escalation paths as durable context for a private declarative agent's instructions or knowledge. It turns a team roster and ownership information into a RACI-style record (responsible, accountable, consulted, informed, per labeling function) with an escalation path for each function. Reach for it once when setting up durable team context, and again after a team or ownership change.
 
-## when-to-use
+## use-cases
 
-Once, when setting up durable team context, and again after a team or ownership change.
-
-## what-to-use-for
-
-Turning a team roster and ownership information into a structured roles-and-responsibilities record with RACI-style ownership and escalation paths.
-
-## required-inputs
-
-- Team roster
-- Ownership (who owns what, at least at a summary level)
+- First-time setup of durable team context for a private declarative agent.
+- A team or ownership change (someone joins, leaves, or picks up a new function) and the record needs refreshing.
+- You need a RACI-style map of who is responsible, accountable, consulted, and informed for each labeling function (formulation, regulatory/legal, marketing, QA, prepress/print, market surveillance).
+- You need documented escalation paths: who to escalate to first and who the final decision-maker is per function.
+- You are routing this artifact to its owning Copilot layer via [[personalization-install-router]].
 
 ## expected-outputs
 
@@ -41,23 +45,7 @@ Turning a team roster and ownership information into a structured roles-and-resp
 - Escalation paths
 - Install footer naming the owning Copilot layer and load steps
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the inputs ready: team roster and ownership information. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `team-roles-and-responsibilities-record-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself, verify escalation paths against an official org source, then install it by hand per its install footer. Nothing installs automatically and nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: durable-knowledge`, `sub-category: relationships`, `date-created`/`date-revised` set to the run date, `type: team-roles-record`, `status: REVIEW`, `aliases: []`, `tags: [durable-knowledge, relationships]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: team-roles-and-responsibilities`, `visibility: private`.
-
-File name: `team-roles-and-responsibilities-record-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem. The `-record` suffix keeps outputs from colliding with this prompt file's stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: record team roles, ownership, and escalation paths from a team roster and ownership information.
@@ -106,6 +94,14 @@ UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before 
 
 [Paste ownership information here]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the inputs ready: team roster and ownership information (who owns what, at least at a summary level). Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `team-roles-and-responsibilities-record-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem; the `-record` suffix keeps outputs from colliding with this prompt file's stem) in `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself, verify escalation paths against an official org source, then install it by hand per its install footer. Nothing installs automatically and nothing is final until a person signs off.
 
 ## guardrails
 

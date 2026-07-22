@@ -2,38 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: claims-compliance
 sub-category: claims
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - claims-compliance
-  - claims
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: review-structure-function-claim
 visibility: private
+aliases:
+  - disease claim risk
+  - does this claim become a drug claim
+  - dshea disclaimer needed
+  - health claim routing
+  - structure function claim check
+  - substantiation on file check
+  - supports hydration claim
+  - supports immune health claim
+tags:
+  - claims
+  - claims-compliance
+  - regulatory-labeling
 ---
 
 # structure-function-claim-review
 
-## description
+## prompt-summary
 
-Assesses structure/function claims (e.g. "supports immune health") on a conventional beverage for truthful, non-disease framing and a nutritive-value basis, checking that substantiation is on file. The DSHEA disclaimer regime (21 CFR 101.93) applies to dietary supplements only, not to conventional beverages.
+Checks a structure/function claim on a conventional beverage (like supports immune health) for truthful, non-disease framing and a nutritive-value basis, and confirms the substantiation on file is topically responsive to the claim as worded. Reach for it when marketing proposes a body-function claim and you need to know whether it stays a permitted structure/function statement or crosses into health-claim or drug-claim territory before the label is finalized. The DSHEA disclaimer regime (21 CFR 101.93) applies to dietary supplements only, not to conventional beverages, so this prompt does not require it.
 
-## when-to-use
+## use-cases
 
-A claim has been scoped as structure/function in [[claims-target-scoping]], or any structure/function claim needs review before label finalization.
-
-## what-to-use-for
-
-Reviewing claim text and substantiation on file to confirm the claim describes a structure or function of the body rather than a disease, derives from the beverage's nutritive value, and is correctly routed if it crosses into health-claim or drug-claim territory.
-
-## required-inputs
-
-- Claim text (exact wording)
-- Substantiation on file (summary of evidence backing the claim)
+- A claim routed to the structure/function pathway by [[claims-target-scoping]].
+- Marketing proposes body-function wording (for example "supports immune health" or "supports hydration") and you need the framing checked.
+- You need to know whether a claim crosses into disease risk-reduction framing that requires an authorized health claim under 21 CFR 101.14/Subpart E.
+- You suspect a claim implies treatment, cure, mitigation, or diagnosis, which makes it a per-se drug claim under FDCA 201(g).
+- You need to confirm the claimed effect rests on the beverage's nutritive value (FDCA 201(g)(1)(C)) and that substantiation on file is topically responsive.
 
 ## expected-outputs
 
@@ -42,23 +46,7 @@ Reviewing claim text and substantiation on file to confirm the claim describes a
 - Nutritive-value basis flag
 - Citation, marked UNVERIFIED until confirmed against the current eCFR
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the claim text and substantiation summary with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `structure-function-claim-review-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: claims-compliance`, `sub-category: claims`, `date-created`/`date-revised` set to the run date, `type: claim-review`, `status: REVIEW`, `aliases: []`, `tags: [claims-compliance, claims, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: structure-function-claim-review`, `visibility: private`.
-
-File name: `structure-function-claim-review-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: assess structure/function claims on a conventional beverage for truthful, non-disease framing and a nutritive-value basis.
@@ -116,6 +104,14 @@ UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling speci
 
 SKU identifier: [SKU]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the claim text (exact wording) and the substantiation-on-file summary (the evidence backing the claim); attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste the text directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `structure-function-claim-review-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

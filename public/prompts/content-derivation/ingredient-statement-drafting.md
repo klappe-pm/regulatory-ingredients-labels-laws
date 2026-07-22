@@ -2,38 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: content-derivation
 sub-category: ingredient-statement
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: draft-ingredient-statement
+visibility: private
+aliases:
+  - 2 percent or less grouping
+  - common or usual name
+  - ingredient list order
+  - ingredient statement draft
+  - natural flavor declaration
+  - predominance by weight
+  - preservative function declaration
+  - sub-ingredient parentheticals
 tags:
   - content-derivation
   - ingredient-statement
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: draft-ingredient-statement
-visibility: private
 ---
 
 # ingredient-statement-drafting
 
-## description
+## prompt-summary
 
-Derives a compliant ingredient statement from the formula, ordering ingredients by predominance by weight and formatting sub-ingredient parentheticals, flavor declarations, and preservative-function declarations correctly.
+Derives a compliant draft ingredient statement from a formula, ordering ingredients by predominance by weight and formatting sub-ingredient parentheticals, flavor declarations, and preservative-function declarations correctly. Reach for it once an intake record with a formula table exists and the ingredient statement has not yet been drafted, or when the formula has changed since the last draft. It flags anything that needs a human decision (ambiguous ordering, a proprietary blend name, an unclear flavor or preservative status) rather than resolving it silently.
 
-## when-to-use
+## use-cases
 
-An intake record ([[brief-and-formula-intake]]) exists with a formula table, and the ingredient statement has not yet been drafted or the formula has changed since the last draft.
-
-## what-to-use-for
-
-Turning a formula (ingredients with quantities, sub-ingredients for compound ingredients) into a draft ingredient statement in descending order by predominance by weight, with parentheticals for sub-ingredients, the 2-percent-or-less grouping where it applies, flavor and preservative-function declarations, and flags for anything that needs a human decision (for example: two ingredients close enough in weight that order is ambiguous, or an ingredient needing a common-or-usual name determination).
-
-## required-inputs
-
-- Formula with quantities
-- Sub-ingredient breakdowns for any compound ingredient
+- An intake record ([[brief-and-formula-intake]]) exists with a formula table and the ingredient statement has not yet been drafted.
+- The formula changed since the last draft and the ingredient statement needs rebuilding.
+- You need ingredients ordered in descending predominance by weight per 21 CFR 101.4(a)(1).
+- You need the "Contains 2% or less of" grouping under 21 CFR 101.4(a)(2) applied and its covered ingredients listed.
+- You need compound ingredients formatted with sub-ingredient parentheticals, plus flavor and preservative-function declarations per 21 CFR 101.22.
+- You need ambiguous predominance order or a non-obvious common-or-usual name flagged for a human naming decision.
 
 ## expected-outputs
 
@@ -42,23 +47,7 @@ Turning a formula (ingredients with quantities, sub-ingredients for compound ing
 - Statement of whether the 2-percent-or-less grouping was applied, and to which ingredients
 - Flags for ambiguous ordering, naming, flavor, or preservative-function decisions
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the formula (with quantities and sub-ingredient breakdowns) ready; attach it with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste it into the placeholder when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `ingredient-statement-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: content-derivation`, `sub-category: ingredient-statement`, `date-created`/`date-revised` set to the run date, `type: ingredient-statement-draft`, `status: REVIEW`, `aliases: []`, `tags: [content-derivation, ingredient-statement, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: ingredient-statement-draft`, `visibility: private`.
-
-File name: `ingredient-statement-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: derive a compliant draft ingredient statement from a formula.
@@ -111,6 +100,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the formula ready with quantities and sub-ingredient breakdowns for any compound ingredient; attach it with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste it into the placeholder when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `ingredient-statement-<sku-slug>.md` (kebab-case, H1 equal to the file-name stem) saved to `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

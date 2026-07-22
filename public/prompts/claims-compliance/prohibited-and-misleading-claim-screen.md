@@ -2,39 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: claims-compliance
 sub-category: claims
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - claims-compliance
-  - claims
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: screen-prohibited-claims
 visibility: private
+aliases:
+  - anti-aging claim check
+  - implied disease claim screen
+  - label art copy screen
+  - longevity claim check
+  - marketing copy review
+  - misleading claim check
+  - prohibited claim screen
+  - unsubstantiated claim screen
+tags:
+  - claims
+  - claims-compliance
+  - regulatory-labeling
 ---
 
 # prohibited-and-misleading-claim-screen
 
-## description
+## prompt-summary
 
-Screens marketing and label art copy for prohibited, implied-disease, or unsubstantiated claims, including unauthorized longevity claims, flagging severity and proposing safer alternatives. Imagery is screened only through a written description; undescribed imagery is flagged for human review.
+Screens all marketing and label art copy end to end for prohibited, implied-disease, or unsubstantiated claims (including unauthorized longevity or anti-aging outcomes), flags severity, and proposes safer alternative phrasing. Reach for it before finalizing any drafted or revised copy, or when an earlier review flagged a phrase as ambiguous and it needs a dedicated prohibited-claim assessment. Imagery is screened only through a written description; any undescribed imagery is flagged for human review, never assumed clean.
 
-## when-to-use
+## use-cases
 
-Any marketing copy or label art copy is drafted or revised and needs a screen before it is finalized, or a claim flagged as ambiguous by [[claims-target-scoping]], [[nutrient-content-claim-review]], or [[structure-function-claim-review]] needs a dedicated prohibited-claim assessment.
-
-## what-to-use-for
-
-Reading marketing copy and label art copy end to end to catch phrases that read as prohibited, implied-disease, or unsubstantiated claims that a claim-by-claim review might miss because they are not phrased as a discrete "claim."
-
-## required-inputs
-
-- Marketing copy
-- Label art copy (all on-pack text)
-- Written description of label imagery (Copilot screens described imagery only; undescribed imagery needs human review)
+- Any marketing copy or label art copy is drafted or revised and needs a screen before it is finalized.
+- A claim flagged as ambiguous by [[claims-target-scoping]], [[nutrient-content-claim-review]], or [[structure-function-claim-review]] needs a dedicated prohibited-claim assessment.
+- You need to catch phrases that read as prohibited, implied-disease, or unsubstantiated claims but are not phrased as a discrete "claim".
+- You need unauthorized longevity or anti-aging outcomes flagged under FDCA 403(a)(1) and 21 CFR 1.21, with safer alternative phrasing proposed.
+- You need label imagery screened through its written description, with undescribed elements flagged for human review.
 
 ## expected-outputs
 
@@ -44,23 +47,7 @@ Reading marketing copy and label art copy end to end to catch phrases that read 
 - Safer alternative phrasing
 - List of imagery elements requiring human review
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the marketing copy and label art copy with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached, and always paste the imagery description as text.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `prohibited-claim-screen-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: claims-compliance`, `sub-category: claims`, `date-created`/`date-revised` set to the run date, `type: claim-screen`, `status: REVIEW`, `aliases: []`, `tags: [claims-compliance, claims, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: prohibited-claim-screen`, `visibility: private`.
-
-File name: `prohibited-claim-screen-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: screen marketing and label art copy for prohibited, implied-disease, or unsubstantiated claims.
@@ -119,6 +106,14 @@ UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling speci
 
 SKU identifier: [SKU]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the marketing copy, the label art copy (all on-pack text), and a written description of the label imagery (Copilot screens described imagery only; undescribed imagery needs human review); attach the copy with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), paste text directly when a file cannot be attached, and always paste the imagery description as text.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `prohibited-claim-screen-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

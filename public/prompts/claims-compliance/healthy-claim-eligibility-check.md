@@ -2,40 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: claims-compliance
 sub-category: claims
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - claims-compliance
-  - claims
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: check-healthy-claim-eligibility
 visibility: private
+aliases:
+  - 2024 healthy rule
+  - can we say healthy
+  - healthy claim check
+  - healthy claim eligibility
+  - healthy definition update
+  - healthy label claim
+  - implied nutrient content claim
+  - plain water healthy claim
+tags:
+  - claims
+  - claims-compliance
+  - regulatory-labeling
 ---
 
 # healthy-claim-eligibility-check
 
-## description
+## prompt-summary
 
-Determines eligibility to use "healthy" and related implied nutrient content claims against 21 CFR 101.65(d)(2)-(3) as amended by the December 19, 2024 final rule, using NFP values, formula, RACC, and food-group-equivalent amounts. Plain water and plain carbonated water automatically qualify under the updated rule.
+Determines whether a product may use "healthy" and related implied nutrient content claims, testing NFP values, formula, RACC, and food-group-equivalent amounts against 21 CFR 101.65(d)(2)-(3) as amended by the December 19, 2024 final rule. Reach for it when marketing wants to use "healthy" and you need an eligibility verdict, plus the gaps to close if the product does not yet qualify, before the label is finalized. Plain water and plain carbonated water automatically qualify under the updated rule.
 
-## when-to-use
+## use-cases
 
-A claim scoped as an implied nutrient content claim in [[claims-target-scoping]] includes "healthy" or similar wording, or any time the specialist wants to test eligibility before using such a claim.
-
-## what-to-use-for
-
-Testing NFP values, formula composition, and per-RACC food-group-equivalent amounts against the current FDA "healthy" implied-claim criteria under 21 CFR 101.65(d), producing an eligibility verdict and gaps.
-
-## required-inputs
-
-- NFP values (including added sugars, sodium, and saturated fat)
-- Formula
-- Serving size and RACC (21 CFR 101.12)
-- Per-RACC food-group-equivalent amounts (fruit, vegetable, dairy, grain, and protein-food contributions)
+- A claim scoped as an implied nutrient content claim in [[claims-target-scoping]] includes "healthy" or similar wording.
+- Marketing wants to use "healthy" on a beverage and you need an eligibility verdict before the label is finalized.
+- You need the product tested against both the prior and the updated "healthy" definitions before the February 25, 2028 compliance date.
+- You need to know the gaps (added sugars, sodium, saturated fat, or food-group-equivalent amounts per RACC) that would need to change to qualify.
+- The SKU is plain water or plain carbonated water and you need to confirm automatic qualification with no disqualifying added ingredients.
 
 ## expected-outputs
 
@@ -43,23 +45,7 @@ Testing NFP values, formula composition, and per-RACC food-group-equivalent amou
 - Gaps (what would need to change to become eligible, if not currently eligible)
 - Citation, marked UNVERIFIED until confirmed against the current eCFR, with the applicable regime (pre-2024 or updated) stated
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the NFP values and formula with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste the serving size, RACC, and food-group-equivalent amounts directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `healthy-claim-eligibility-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: claims-compliance`, `sub-category: claims`, `date-created`/`date-revised` set to the run date, `type: claim-review`, `status: REVIEW`, `aliases: []`, `tags: [claims-compliance, claims, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: healthy-claim-eligibility`, `visibility: private`.
-
-File name: `healthy-claim-eligibility-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: determine eligibility to use "healthy" and related implied nutrient content claims.
@@ -122,6 +108,14 @@ Per-RACC food-group-equivalent amounts: [fruit, vegetable, dairy, grain, protein
 
 SKU identifier: [SKU]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the NFP values (including added sugars, sodium, and saturated fat), the formula, the serving size and RACC (21 CFR 101.12), and the per-RACC food-group-equivalent amounts (fruit, vegetable, dairy, grain, and protein-food contributions); attach the NFP values and formula with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste the serving size, RACC, and food-group-equivalent amounts directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `healthy-claim-eligibility-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

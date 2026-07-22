@@ -2,18 +2,28 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-configuration
 sub-category: configuration
+types:
+  - reference
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: reference
 status: DONE
-aliases: []
-tags:
-  - copilot-configuration
-  - configuration
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: reference-copilot-layers
 visibility: public
+aliases:
+  - agent builder grounding
+  - copilot layers
+  - copilot memory setup
+  - copilot pages vs notebook
+  - custom instructions vs memory
+  - microsoft 365 copilot settings
+  - office scripts and power automate
+  - where to install copilot instructions
+  - which copilot layer owns this
+tags:
+  - configuration
+  - copilot-configuration
+  - regulatory-labeling
 ---
 
 # copilot-layering-reference
@@ -57,6 +67,4 @@ Replace, do not duplicate. When a durable-knowledge artifact is revised, update 
 
 ## how-this-is-used
 
-[[personalization-install-router]] takes a durable-knowledge artifact (see [[durable-knowledge]]), the list of enabled surfaces, and this reference attached to the chat, and returns the single owning layer, the click-path or pane description, the cost or admin gate to expect, and a verification step, grounded only in this map.
-
-Up: [[copilot-configuration]]
+[[personalization-install-router]] takes a durable-knowledge artifact (see the durable-knowledge prompts), the list of enabled surfaces, and this reference attached to the chat, and returns the single owning layer, the click-path or pane description, the cost or admin gate to expect, and a verification step, grounded only in this map.

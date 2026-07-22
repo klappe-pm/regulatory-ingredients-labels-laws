@@ -2,37 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: communication-email
 sub-category: email-editing
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: convert-thread-to-actions
+visibility: private
+aliases:
+  - action items with owners
+  - email thread to tasks
+  - extract decisions from email
+  - open questions from a thread
+  - recap a long email thread
+  - summarize an email thread
+  - thread summary
+  - turn a thread into action items
+  - who owns what from this thread
 tags:
   - communication-email
   - email-editing
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: convert-thread-to-actions
-visibility: private
 ---
 
 # email-thread-to-actions
 
-## description
+## prompt-summary
 
-Converts an email thread into a summary, decisions made, action items with owners, and open regulatory questions, so nothing discussed in email gets lost.
+Converts an email thread into a summary, decisions made, action items with owners, and open regulatory questions, so nothing discussed in email gets lost. Reach for it when a thread has run long enough (or reached a conclusion) that its content needs to become tracked decisions and actions rather than staying buried in email. It reads the thread end to end and extracts what was decided, what still needs doing, and what regulatory questions remain open, attributing each decision and action to the person named in the thread. When any participant is legal counsel, it marks the output privileged and confidential.
 
-## when-to-use
+## use-cases
 
-A thread has run long enough (or reached a conclusion) that its content needs to become tracked decisions and actions rather than staying buried in email.
-
-## what-to-use-for
-
-Reading a thread end to end and extracting what was decided, what still needs doing, and what regulatory questions remain open.
-
-## required-inputs
-
-- Email thread
+- A thread has run long enough that its content needs to become tracked decisions and actions rather than staying buried in email.
+- A thread reached a conclusion and you need the decisions and next steps captured before they are lost.
+- You need every action item pulled out with its owner and any stated due date.
+- You need the open regulatory questions the thread raised but did not resolve.
+- The thread includes legal counsel and the summary must be marked privileged and confidential.
 
 ## expected-outputs
 
@@ -42,23 +48,7 @@ Reading a thread end to end and extracting what was decided, what still needs do
 - Open questions
 - Privileged-and-confidential marking when the thread includes legal counsel
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile. This prompt runs in Copilot Chat only.
-2. Have the full email thread ready: copy its complete text in chronological order, or attach it with the paperclip or a `/` file reference if it is saved in OneDrive or SharePoint.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill the placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling (the date stamp in the file name keeps re-runs from overwriting), in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. If the output is marked privileged and confidential (the thread included legal counsel), confirm handling with counsel before saving or sharing it. Review every decision, owner, and open question against the thread yourself; nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: communication-email`, `sub-category: email-editing`, `date-created`/`date-revised` set to the run date, `type: thread-summary`, `status: REVIEW`, `aliases: []`, `tags: [communication-email, email-editing]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: email-thread-to-actions`, `visibility: private`.
-
-File name: `thread-summary-<slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 Run this in Microsoft 365 Copilot Chat. Your single task: convert an email thread into a summary, decisions, action items, and open questions.
@@ -104,6 +94,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review by the regulatory labeling specialist; decisions, owners, and open questions unconfirmed against the source thread.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile. This prompt runs in Copilot Chat only.
+2. Have the full email thread ready: copy its complete text in chronological order, or attach it with the paperclip or a `/` file reference if it is saved in OneDrive or SharePoint.
+3. Copy the prompt block above, paste it into the chat, and fill the placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `thread-summary-<slug>-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem; the date stamp in the file name keeps re-runs from overwriting), saved in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. If the output is marked privileged and confidential (the thread included legal counsel), confirm handling with counsel before saving or sharing it. Review every decision, owner, and open question against the thread yourself; nothing is final until a person signs off.
 
 ## guardrails
 

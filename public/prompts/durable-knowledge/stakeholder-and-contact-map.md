@@ -2,62 +2,49 @@
 domain: regulatory-ingredients-labels-laws
 category: durable-knowledge
 sub-category: relationships
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - durable-knowledge
-  - relationships
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: map-stakeholders-and-contacts
 visibility: private
+aliases:
+  - co-packer and supplier contacts
+  - contact map for copilot
+  - copilot memory contacts
+  - key contacts list
+  - map my stakeholders
+  - stakeholder and contact map
+  - who do i work with
+  - who reviews my label claims
+tags:
+  - durable-knowledge
+  - regulatory-labeling
+  - relationships
 ---
 
 # stakeholder-and-contact-map
 
-## description
+## prompt-summary
 
-Maps who the specialist interacts with and how each connects to them, as durable context for Copilot Memory or a private declarative agent's knowledge.
+Maps who the specialist interacts with and how each person connects to them, as durable context for Copilot Memory or a private declarative agent's knowledge. It turns a contact list, roles, and interaction cadence into a structured map of who, role, connection, cadence, and channel, grouped by function. Reach for it once when first setting up durable context, and again whenever stakeholders or interaction patterns change materially.
 
-## when-to-use
+## use-cases
 
-Once, when first setting up durable context, and again whenever stakeholders or interaction patterns change materially.
-
-## what-to-use-for
-
-Turning a contact list, roles, and interaction cadence into a structured contact map with an install footer.
-
-## required-inputs
-
-- Contact list
-- Roles
-- Interaction cadence
+- First-time setup of durable contact context for Copilot Memory or a private declarative agent.
+- Stakeholders or interaction patterns change materially and the installed map needs refreshing.
+- You want a structured record of who reviews your label claims, owns formula changes, or is an external co-packer or supplier contact.
+- You want contacts grouped by function (internal regulatory/legal, R&D/formulation, marketing, external co-packer/supplier).
+- You are routing this artifact to its owning Copilot layer via [[personalization-install-router]].
 
 ## expected-outputs
 
 - Contact map (who, role, connection to the specialist, cadence, channel)
 - Install footer naming the owning Copilot layer and load steps
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the inputs ready: contact list, roles, and interaction cadence. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached. Strip personal phone numbers and home emails from the contact list before attaching it.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `stakeholder-contact-map-record-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself, then install it by hand per its install footer. Nothing installs automatically and nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: durable-knowledge`, `sub-category: relationships`, `date-created`/`date-revised` set to the run date, `type: contact-map`, `status: REVIEW`, `aliases: []`, `tags: [durable-knowledge, relationships]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: stakeholder-contact-map`, `visibility: private`.
-
-File name: `stakeholder-contact-map-record-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem. The `-record` suffix keeps outputs from colliding with this prompt file's stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: build a stakeholder and contact map from a contact list, roles, and interaction cadence.
@@ -108,6 +95,14 @@ UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before 
 
 [Paste interaction cadence here]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the inputs ready: contact list, roles, and interaction cadence. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached. Strip personal phone numbers and home emails from the contact list before attaching it.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `stakeholder-contact-map-record-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem; the `-record` suffix keeps outputs from colliding with this prompt file's stem) in `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself, then install it by hand per its install footer. Nothing installs automatically and nothing is final until a person signs off.
 
 ## guardrails
 

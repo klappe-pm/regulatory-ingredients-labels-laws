@@ -2,39 +2,42 @@
 domain: regulatory-ingredients-labels-laws
 category: durable-knowledge
 sub-category: personalization
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: capture-communication-style-profile
+visibility: private
+aliases:
+  - communication style profile
+  - copilot memory facts
+  - copilot personalization setup
+  - custom instructions setup
+  - no em dashes preference
+  - remember that facts
+  - voice and tone defaults
+  - writing style rules
 tags:
   - durable-knowledge
   - personalization
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: capture-communication-style-profile
-visibility: private
 ---
 
 # communication-style-profile
 
-## description
+## prompt-summary
 
-Captures the specialist's voice and formatting defaults as durable rules: style rules destined for Custom Instructions, and discrete facts destined for Copilot Memory.
+Captures the specialist's voice and formatting defaults as two separated durable outputs: style rules destined for Copilot Custom Instructions, and discrete facts destined for Copilot Memory. It turns writing samples, stated preferences, and role context into a do/don't list, a phrase bank, and "Remember that ..." fact statements. Reach for it once when first setting up Copilot personalization, and again whenever the specialist's writing style or stated preferences change materially.
 
-## when-to-use
+## use-cases
 
-Once, when first setting up Copilot personalization, and again whenever the specialist's writing style or stated preferences change materially.
-
-## what-to-use-for
-
-Turning writing samples, stated preferences, and role context into two clearly separated outputs: durable style rules for Custom Instructions, and discrete facts for Copilot Memory.
-
-## required-inputs
-
-- Writing samples (a few representative emails or documents)
-- Stated preferences (anything the specialist explicitly wants followed, e.g. "no em dashes")
-- Role (the specialist's role and context)
+- First-time Copilot personalization setup, turning a few representative emails or documents into durable style rules.
+- The specialist's writing style or a stated preference (for example "no em dashes") changes and the installed rules need refreshing.
+- You want voice and formatting defaults (formal vs informal, bullet vs prose, heading use) captured as Custom Instructions rules.
+- You want discrete facts (role, team, recurring correspondents by role, standing preferences) separated out as "Remember that ..." Copilot Memory statements.
+- You are routing this artifact to its owning Copilot layer via [[personalization-install-router]].
 
 ## expected-outputs
 
@@ -42,23 +45,7 @@ Turning writing samples, stated preferences, and role context into two clearly s
 - Discrete facts for Copilot Memory, each phrased as a "Remember that ..." statement
 - Install footer naming the owning Copilot layer and load steps
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the inputs ready: writing samples, stated preferences, and your role. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `communication-style-profile-record-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself, then install it by hand per its install footer. Nothing installs automatically and nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: durable-knowledge`, `sub-category: personalization`, `date-created`/`date-revised` set to the run date, `type: style-profile`, `status: REVIEW`, `aliases: []`, `tags: [durable-knowledge, personalization]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: communication-style-profile`, `visibility: private`.
-
-File name: `communication-style-profile-record-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem. The `-record` suffix keeps outputs from colliding with this prompt file's stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: capture the specialist's communication style as two separated durable outputs, one for Custom Instructions and one for Copilot Memory.
@@ -109,6 +96,14 @@ UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before 
 
 Role: [role]
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the inputs ready: writing samples (a few representative emails or documents), stated preferences (anything the specialist explicitly wants followed, for example "no em dashes"), and your role and context. Attach files with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `communication-style-profile-record-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem; the `-record` suffix keeps outputs from colliding with this prompt file's stem) in `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself, then install it by hand per its install footer. Nothing installs automatically and nothing is final until a person signs off.
 
 ## guardrails
 

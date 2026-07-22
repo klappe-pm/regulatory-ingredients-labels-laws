@@ -2,30 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: copilot-skills
 sub-category: word
+types:
+  - skill
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: skill
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: copilot-in-word
+visibility: private
+aliases:
+  - compare two documents
+  - copilot in word
+  - draft a memo with copilot
+  - first look document diff
+  - reformat a document
+  - tighten a memo
+  - word copilot for labeling
+  - write a copy deck
 tags:
   - copilot-skills
   - m365-copilot
   - regulatory-labeling
   - word
-topic: beverage-label-compliance
-use-case: copilot-in-word
-visibility: private
 ---
 
 # copilot-in-word
 
-## description
+## prompt-summary
 
 How to use Copilot inside Word to draft and edit the documents a labeling specialist produces: label copy decks, regulatory memos, and review write-ups, plus comparing two versions of a document. Word is a comfortable place to draft, but comparing long documents is a task where Copilot silently misses things, so this guide points you to the dedicated comparison prompts for anything that matters.
 
-## when-to-use
+## use-cases
 
-Drafting or tightening a memo or copy deck, reformatting a document, or getting a first look at what changed between two versions.
+- You are drafting a regulatory memo or a label copy deck from an outline or a set of points.
+- You want to tighten or reformat an existing document without changing any number, name, or citation.
+- You need a first look at what changed between two versions of a document before a full comparison.
+- You are preparing to run [[production-vs-documented-comparison]] or [[change-propagation-audit]] and want a rough diff first.
+- You want a long document summarized to its key points.
 
 ## what-copilot-can-do-here
 

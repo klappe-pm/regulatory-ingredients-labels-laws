@@ -2,41 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: label-intake
 sub-category: intake
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - label-intake
-  - intake
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: normalize-intake-record
 visibility: private
+aliases:
+  - allergen capture table
+  - formula spec intake
+  - new sku intake
+  - normalize dev brief
+  - open questions and missing data
+  - reformulation intake
+  - serving size racc check
+  - structure intake record
+tags:
+  - intake
+  - label-intake
+  - regulatory-labeling
 ---
 
 # brief-and-formula-intake
 
-## description
+## prompt-summary
 
-Normalizes a dev brief and a formula/spec into a single structured labeling intake record, so drafting and review prompts downstream have one consistent source instead of a scattered brief and spreadsheet.
+Normalizes a dev brief and a formula or spec sheet into one structured labeling intake record, so downstream drafting and review prompts work from a single consistent source instead of a scattered brief and spreadsheet. Reach for it when a new SKU, reformulation, or line extension has a dev brief and a formula but no structured intake record yet. It captures SKU identity, a formula table with quantities, an allergen capture table, intended serving size with a RACC cross-check flag, claims mentioned in the brief, and a list of open questions and missing data blocking downstream drafting.
 
-## when-to-use
+## use-cases
 
-A new SKU, reformulation, or line extension has a dev brief and a formula but no structured intake record yet.
-
-## what-to-use-for
-
-Turning free-form brief text and a formula/spec sheet into a normalized record: SKU identity, formula table with quantities, allergen capture table, intended serving size with a RACC cross-check flag, claims mentioned in the brief, and a list of open questions or missing data blocking downstream drafting.
-
-## required-inputs
-
-- Dev brief (text or pasted document content)
-- Formula or spec sheet (ingredient list with quantities, sub-ingredient breakdowns if any)
-- SKU identifier
-- Supplier allergen statement (optional; when absent, its absence is recorded as missing data because it blocks downstream allergen verification)
-- RACC for the product category from 21 CFR 101.12(b) Table 2 (optional; when not supplied, the RACC cross-check is flagged for the specialist to verify)
+- A new SKU, reformulation, or line extension arrives with a dev brief and a formula but no structured intake record yet.
+- You need to turn free-form brief text and a formula/spec sheet into one normalized record (SKU identity, formula table, allergen capture, serving size) before drafting starts.
+- You need an allergen capture table built from the formula: the nine major allergens per FALCPA and the FASTER Act, plus any sulfite stated at or above 10 ppm (declaration required per 21 CFR 101.100(a)(4)).
+- You need the intended serving size cross-checked against the RACC for the product category in 21 CFR 101.12(b) Table 2.
+- You need every claim mentioned in the brief captured verbatim before running [[claims-target-scoping]].
+- You need open questions and missing data surfaced (for example an absent supplier allergen statement that blocks allergen verification) before downstream drafting or review.
 
 ## expected-outputs
 
@@ -44,23 +46,7 @@ Turning free-form brief text and a formula/spec sheet into a normalized record: 
 - Open questions list
 - Missing-data list, each item naming what is missing and what it blocks
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the dev brief and the formula/spec open, then paste their text into the bracketed placeholders in the prompt; attach a file with the paperclip or a `/` file reference only if it already lives in OneDrive or SharePoint.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: label-intake`, `sub-category: intake`, `date-created` and `date-revised` set to the day the specialist runs this prompt, `type: intake-record`, `status: REVIEW` (advance per the status vocabulary once the specialist has reviewed), `aliases: []`, `tags: [label-intake, intake, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: intake-record`, `visibility: private`.
-
-File name: `intake-record-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: normalize a dev brief and a formula/spec into one structured labeling intake record for a beverage SKU.
@@ -119,6 +105,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the dev brief, the formula or spec sheet (ingredient list with quantities and any sub-ingredient breakdowns), and the SKU identifier; optionally the supplier allergen statement (its absence is recorded as missing data because it blocks downstream allergen verification) and the RACC for the product category from 21 CFR 101.12(b) Table 2 (when not supplied, the RACC cross-check is flagged for you to verify). Paste their text into the bracketed placeholders, or attach a file with the paperclip or a `/` file reference only if it already lives in OneDrive or SharePoint.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `intake-record-<sku-slug>.md` (kebab-case, H1 equal to the file-name stem) and save it to `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

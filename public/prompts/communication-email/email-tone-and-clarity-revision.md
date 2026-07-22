@@ -2,38 +2,43 @@
 domain: regulatory-ingredients-labels-laws
 category: communication-email
 sub-category: email-editing
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: revise-email-tone-clarity
+visibility: private
+aliases:
+  - check email for compliance claims
+  - clean up email tone
+  - edit email before sending
+  - email tone check
+  - flag overcommitment in email
+  - improve email clarity
+  - polish an email draft
+  - revise an email
+  - tone and clarity pass
 tags:
   - communication-email
   - email-editing
   - regulatory-labeling
-topic: beverage-label-compliance
-use-case: revise-email-tone-clarity
-visibility: private
 ---
 
 # email-tone-and-clarity-revision
 
-## description
+## prompt-summary
 
-Revises an existing email draft for tone, clarity, and commitment risk, flagging any wording that could read as overcommitment or an inadvertent compliance claim.
+Revises an existing email draft for tone, clarity, and commitment risk, flagging any wording that could read as overcommitment or an inadvertent compliance claim. Reach for it when a draft already exists (from [[email-draft-from-brief]] or written directly) and needs a tone and clarity pass before sending. It revises against a target tone, applies your style profile from [[communication-style-profile]] if one is installed (or a plain, direct, professional voice when none is), lists every change made, and flags phrases that overcommit the company or make an inadvertent regulatory or health claim.
 
-## when-to-use
+## use-cases
 
-A draft email exists (from [[email-draft-from-brief]] or written directly) and needs a tone/clarity pass before sending.
-
-## what-to-use-for
-
-Revising a draft for tone and clarity against a target tone, applying the specialist's style profile from [[communication-style-profile]] if one has been installed (or a plain, direct, professional voice when none is installed), listing every change made, and flagging any phrase that overcommits the company or makes an inadvertent regulatory or health claim.
-
-## required-inputs
-
-- Draft email
-- Target tone
+- A draft email exists and needs a tone and clarity pass before sending.
+- You want the draft revised against a specific target tone and your style profile from [[communication-style-profile]].
+- You want a line-by-line change list showing what was edited and why.
+- You want any phrase that overcommits the company on a deadline, outcome, or regulatory position flagged, not silently rewritten.
+- You want any inadvertent nutrient content, health, or implied "healthy" claim caught before it goes out.
 
 ## expected-outputs
 
@@ -42,23 +47,7 @@ Revising a draft for tone and clarity against a target tone, applying the specia
 - Flags for overcommitment or compliance risk
 - Note on which style profile was applied, if any
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile; to revise directly inside an email instead, open Copilot in Outlook and expect subject and body only, no file output.
-2. Have your two inputs ready as text: the draft email (copy its full text) and the target tone; you paste them into the bracketed placeholders, no file attachment needed.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the revision and every flag yourself, then send the email from your own mailbox. Nothing is final until a person signs off; Copilot never sends.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: communication-email`, `sub-category: email-editing`, `date-created`/`date-revised` set to the run date, `type: email-revision`, `status: REVIEW`, `aliases: []`, `tags: [communication-email, email-editing]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: email-tone-clarity-revision`, `visibility: private`.
-
-File name: `email-revision-<slug>-<yyyy-MM-dd>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 Run this in Microsoft 365 Copilot Chat to produce the file output specified at the end. If you are running in Copilot in Outlook instead, return only the revised subject line and body into the compose window and skip the file output contract.
@@ -107,6 +96,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist before sending.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile; to revise directly inside an email instead, open Copilot in Outlook and expect subject and body only, no file output.
+2. Have your two inputs ready as text: the draft email (copy its full text) and the target tone; you paste them into the bracketed placeholders, no file attachment needed.
+3. Copy the prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `email-revision-<slug>-<yyyy-MM-dd>.md` (kebab-case, H1 equal to the file-name stem), saved in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the revision and every flag yourself, then send the email from your own mailbox. Nothing is final until a person signs off; Copilot never sends.
 
 ## guardrails
 

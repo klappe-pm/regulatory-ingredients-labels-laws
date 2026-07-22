@@ -53,6 +53,16 @@ def parse_frontmatter(text):
     return fm, body
 
 
+def note_types(fm):
+    """Return the set of type values, from the `types` list or a scalar `type`/`types`."""
+    vals = set(fm.get("types__list", []))
+    for scalar_key in ("types", "type"):
+        v = fm.get(scalar_key, "")
+        if v and v not in ("[]",):
+            vals.add(v)
+    return vals
+
+
 def section(body, name):
     """Return the text of an H2 section by kebab heading, minus code fences handled separately."""
     pat = re.compile(r"^## " + re.escape(name) + r"\s*\n(.*?)(?=^## |\Z)", re.S | re.M)
@@ -77,33 +87,32 @@ def extract_fences(body):
 
 
 def saves_to(body):
-    oh = section(body, "output-handling")
-    m = re.search(r"[Ss]aves? (?:to|path)[:\s]*`?([^\s`.,]+/)`?", oh)
-    if m:
-        return m.group(1)
-    m = re.search(r"`(projects/regulatory-labeling/|public/regulatory-labeling/)`", oh)
+    # The save path lives in how-to-run now (output-handling was folded in).
+    hint = section(body, "how-to-run") + "\n" + body
+    m = re.search(r"`(projects/regulatory-labeling/|public/regulatory-labeling/)`", hint)
     return m.group(1) if m else "projects/regulatory-labeling/"
 
 
 def build_entry(path):
     text = path.read_text()
     fm, body = parse_frontmatter(text)
-    if fm.get("type") not in INCLUDE_TYPES:
+    types = note_types(fm)
+    if not (types & INCLUDE_TYPES):
         return None
     fences = extract_fences(body)
     prompt_text = fences[0].strip() if fences else ""
     if len(fences) > 1:
         # multi-stage prompts (e.g. second-eyes): join stages with a separator
         prompt_text = "\n\n=====\n\n".join(f.strip() for f in fences)
+    entry_type = "skill" if "skill" in types else "prompt"
     return {
         "category": fm.get("category", ""),
         "sub_category": fm.get("sub-category", ""),
         "name": path.stem,
-        "type": fm.get("type", ""),
-        "description": first_para(section(body, "description")),
-        "when_to_use": first_para(section(body, "when-to-use")),
-        "what_to_use_for": first_para(section(body, "what-to-use-for")),
-        "required_inputs": first_para(section(body, "required-inputs")),
+        "type": entry_type,
+        "aliases": fm.get("aliases__list", []),
+        "summary": first_para(section(body, "prompt-summary")),
+        "use_cases": first_para(section(body, "use-cases")),
         "expected_outputs": first_para(section(body, "expected-outputs")),
         "saves_to": saves_to(body),
         "visibility": fm.get("visibility", "private"),

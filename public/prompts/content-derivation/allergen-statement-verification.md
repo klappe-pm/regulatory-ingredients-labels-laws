@@ -2,40 +2,44 @@
 domain: regulatory-ingredients-labels-laws
 category: content-derivation
 sub-category: ingredient-statement
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - content-derivation
-  - ingredient-statement
-  - allergens
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: verify-allergen-declaration
 visibility: private
+aliases:
+  - allergen check
+  - contains statement draft
+  - cross-contact allergen review
+  - does this need a contains statement
+  - may contain labeling
+  - nine major allergens check
+  - precautionary allergen labeling
+  - sesame declaration
+tags:
+  - allergens
+  - content-derivation
+  - ingredient-statement
+  - regulatory-labeling
 ---
 
 # allergen-statement-verification
 
-## description
+## prompt-summary
 
-Verifies the allergen declaration against the formula and facility cross-contact information, checking all nine major food allergens, producing a findings table, a Contains statement draft, and a precautionary-allergen-labeling (PAL) assessment.
+Verifies a product's allergen declaration against the formula and the facility's cross-contact data, checking all nine major food allergens and producing a per-allergen findings table, a draft Contains statement, and a precautionary allergen labeling (PAL) assessment. Reach for it once a draft ingredient statement exists, or whenever the formula, allergen matrix, or facility statement changes. It flags generic declarations (a bare "fish" or "tree nuts" entry) as findings rather than passes, and marks any gap in the supplied data instead of guessing.
 
-## when-to-use
+## use-cases
 
-After [[ingredient-statement-drafting]] has produced a draft ingredient statement, or whenever the formula, allergen matrix, or facility statement changes.
-
-## what-to-use-for
-
-Checking every major food allergen against the formula and the facility's allergen matrix and cross-contact statement, producing a per-allergen findings table, a draft Contains statement, gaps in the supplied data, and a PAL assessment.
-
-## required-inputs
-
-- Formula (with sub-ingredients)
-- Allergen matrix (facility-level allergen handling data)
-- Facility statement (cross-contact controls)
+- A draft ingredient statement from [[ingredient-statement-drafting]] is ready and needs an allergen cross-check before sign-off.
+- The formula, the facility allergen matrix, or the cross-contact statement changed since the last verification.
+- You need a Contains statement drafted per 21 USC 343(w) from the food source names of every major allergen present.
+- You need to decide whether a voluntary "may contain" (PAL) statement is warranted from facility cross-contact risk.
+- You must confirm fish, crustacean shellfish, and tree nuts are declared by specific species or type, not generically.
+- You want to surface gaps where the allergen matrix or facility statement does not cover an ingredient present in the formula.
 
 ## expected-outputs
 
@@ -45,23 +49,7 @@ Checking every major food allergen against the formula and the facility's allerg
 - PAL (precautionary allergen labeling, e.g. "may contain") assessment, marked voluntary
 - Aggregate disposition (no-findings-pending-human-review, findings-require-action, or blocked)
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have all three inputs ready (formula, allergen matrix, facility statement); attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste each into its placeholder when a file cannot be attached.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `allergen-verification-<sku-slug>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: content-derivation`, `sub-category: ingredient-statement`, `date-created`/`date-revised` set to the run date, `type: allergen-verification`, `status: REVIEW`, `aliases: []`, `tags: [content-derivation, ingredient-statement, allergens, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: allergen-verification`, `visibility: private`.
-
-File name: `allergen-verification-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: verify the allergen declaration for a formula against the major food allergens and facility cross-contact data.
@@ -118,6 +106,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have the three inputs ready: the formula with sub-ingredients, the allergen matrix (facility-level allergen handling data), and the facility statement (cross-contact controls); attach them with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint), or paste each into its placeholder when a file cannot be attached.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `allergen-verification-<sku-slug>.md` (kebab-case, H1 equal to the file-name stem) saved to `projects/regulatory-labeling/` in this vault, or your team's equivalent OneDrive/SharePoint folder.
+5. Review the output yourself. Nothing is final until a person signs off.
 
 ## guardrails
 

@@ -2,57 +2,49 @@
 domain: regulatory-ingredients-labels-laws
 category: version-reconciliation
 sub-category: reconciliation
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - reconciliation
-  - version-reconciliation
-  - regulatory-labeling
-  - comparison
 topic: beverage-label-compliance
 use-case: reconcile-production-vs-record
 visibility: private
+aliases:
+  - art file vs label of record
+  - compare production label to approved
+  - did the production file match the approved label
+  - field by field label comparison
+  - label drift check
+  - packaging proof reconciliation
+  - production vs approved label check
+  - silent label change detection
+tags:
+  - comparison
+  - reconciliation
+  - regulatory-labeling
+  - version-reconciliation
 ---
 
 # production-vs-documented-comparison
 
-## description
+## prompt-summary
 
-Diffs a production copy of a label against the documented approved label of record, field by field, to catch silent drift before it compounds downstream.
+Diffs a production copy of a label against the documented approved label of record, field by field, to catch silent drift before it compounds downstream. Reach for it whenever a production file (art file, packaging proof, copy deck) is generated or re-generated from an approved label, and before that production copy is used as an input anywhere else (prepress, downstream SKUs, marketing assets). The approved label of record always wins on conflict; the production copy is what is under test.
 
-## when-to-use
+## use-cases
 
-Whenever a production file (art file, packaging proof, copy deck) is generated or re-generated from an approved label, and before that production copy is used as an input anywhere else (prepress, downstream SKUs, marketing assets).
-
-## what-to-use-for
-
-Field-by-field comparison of a production copy against the approved label of record, silent-change detection, and mapping every finding to an action.
-
-## required-inputs
-
-- Production copy (the artifact under test), with its filename and version identifier or export date.
-- Approved label of record (the source of truth), with its filename, version identifier, and effective date.
+- A production art file, packaging proof, or copy deck was just generated or re-generated from an approved label and you need to confirm it matches before anyone builds on it.
+- A production copy is about to feed prepress, downstream SKUs, or marketing assets, and must be reconciled against the label of record first.
+- You suspect silent drift: a formula change that never reached the ingredient statement, an added-sugars value that no longer matches the formula, or an allergen added or removed without a declaration update.
+- A claim was edited after approval and you need to confirm the production copy still matches the approved wording and its substantiation.
+- You need every field-level finding mapped to a single action (hold-print, escalate, correct-record, or clear) with a citation.
 
 ## expected-outputs
 
 A reconciliation table with exactly one row per enumerated field, a closing completeness attestation ("Fields compared: N of N; skipped: none"), an aggregate disposition, and a machine-readable JSON summary block with a `no_blocking_findings_detected` boolean.
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Attach the production copy and the approved label of record with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached or when its text is outlined artwork rather than live text.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `production-vs-documented-comparison-<sku-slug>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder); the date stamp keeps re-runs from overwriting earlier comparisons.
-5. Review the output yourself. Nothing is final until a person signs off.
-
-## output-handling
-
-Apply this frontmatter to the saved output file: `domain: regulatory-ingredients-labels-laws`, `category: version-reconciliation`, `sub-category: reconciliation`, `date-created`/`date-revised` set to the run date, `type: reconciliation-review`, `status: REVIEW`, `aliases: []`, `tags: [version-reconciliation, reconciliation, comparison, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: reconcile-production-vs-record`, `visibility: private`. File name: `production-vs-documented-comparison-<sku-slug>-<yyyy-MM-dd>.md`, H1 equal to the file-name stem. Save path: `projects/regulatory-labeling/` (visibility: private).
-
-## prompt-text
+## prompt
 
 ```text
 You are running inside Microsoft 365 Copilot Chat as a label reconciliation reviewer for a beverage manufacturer's regulatory labeling specialist. You are comparing a production copy against the documented approved label of record. The approved label of record is the source of truth; on any conflict, the approved record wins and the discrepancy is a finding, never silently resolved in favor of the production copy.
@@ -109,16 +101,18 @@ visibility: private
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the production copy (with its filename and version identifier or export date) and the approved label of record (with its filename, version identifier, and effective date). Attach both with the paperclip or a `/` file reference (files must be in OneDrive or SharePoint); paste text directly when a file cannot be attached or when its text is outlined artwork rather than live text.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `production-vs-documented-comparison-<sku-slug>-<yyyy-MM-dd>.md` in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder), with the H1 equal to that file-name stem; the date stamp keeps re-runs from overwriting earlier comparisons. Apply this frontmatter to the saved file: `domain: regulatory-ingredients-labels-laws`, `category: version-reconciliation`, `sub-category: reconciliation`, `date-created`/`date-revised` set to the run date, `type: reconciliation-review`, `status: REVIEW`, `aliases: []`, `tags: [version-reconciliation, reconciliation, comparison, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: reconcile-production-vs-record`, `visibility: private`.
+5. Review the output yourself. Nothing is final until a person signs off.
+
 ## guardrails
 
 - The approved label of record always wins on conflict; the production copy is what is under test.
 - `no_blocking_findings_detected` means only that no critical discrepancy was detected in this run; it is a machine-readable signal for downstream tooling, never an approval, and a human still decides whether to proceed.
 - Unreadable or unconfirmable values are unable-to-verify findings, never guesses and never silent omissions.
 - Every citation is UNVERIFIED until the specialist confirms it against the current eCFR.
-
-## see-also
-
-- [[version-reconciliation]] (category index)
-- [[change-propagation-audit]]
-- [[print-proof-preflight]]
-- [[market-pull-vs-record-check]]
+- Related: [[change-propagation-audit]], [[print-proof-preflight]], [[market-pull-vs-record-check]]

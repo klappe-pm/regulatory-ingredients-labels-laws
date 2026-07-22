@@ -2,37 +2,41 @@
 domain: regulatory-ingredients-labels-laws
 category: reflection
 sub-category: self-improvement
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: review-prompting-style
+visibility: private
+aliases:
+  - am i prompting well
+  - better prompting tips
+  - coach my prompts
+  - how can i prompt better
+  - improve my copilot prompts
+  - prompting feedback
+  - prompting style review
+  - review my prompting
 tags:
   - reflection
   - regulatory-labeling
   - self-improvement
-topic: beverage-label-compliance
-use-case: review-prompting-style
-visibility: private
 ---
 
 # prompting-style-review
 
-## description
+## prompt-summary
 
-Has Copilot review a sample of the specialist's own recent chats and return concrete, prioritized coaching on how to prompt more effectively: where instructions were vague, where context was missing, where a task should have been split, and which habits are already working. Written for a beginner LLM user, so the feedback is specific and actionable rather than abstract.
+Has Copilot review a sample of the specialist's own recent chats and return concrete, prioritized coaching on how to prompt more effectively: where instructions were vague, where context was missing, where a task should have been split, and which habits are already working. Reach for it after a week or two of real use, when technique feels hit-or-miss, or before deciding which tasks to turn into saved prompts. Written for a beginner LLM user, so the feedback is specific and actionable rather than abstract.
 
-## when-to-use
+## use-cases
 
-After a week or two of real use, when technique feels hit-or-miss, or before deciding which tasks to turn into saved prompts.
-
-## what-to-use-for
-
-Turning a batch of real Copilot conversations into a short, ranked list of prompting improvements the specialist can apply immediately.
-
-## required-inputs
-
-- A sample of recent Copilot chats (copy the text of three to ten conversations, or export them); redact anything you should not paste per company policy
+- Your Copilot technique feels hit-or-miss after a week or two of real use and you want a ranked list of what to fix first
+- You have three to ten recent chats you can paste and want before-and-after rewrites drawn from your own words
+- You are about to decide which recurring tasks to turn into saved prompts and want a read on your habits first (often paired with a [[skill-gap-finder]] run)
+- You suspect specific habits are hurting results (vague instructions, missing context, several unrelated asks in one prompt, no stated output format) but cannot name them
 
 ## expected-outputs
 
@@ -40,19 +44,7 @@ Turning a batch of real Copilot conversations into a short, ranked list of promp
 - A short list of what you are already doing well, so you keep it
 - One suggested next step (often a saved prompt or a skill-gap-finder run)
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Gather three to ten recent chats: select the conversation text and paste it into the prompt where marked, or attach an export. Remove anything company policy says should not be reused.
-3. Copy the entire prompt-text block below, paste it into the chat, and paste your chats where marked before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named `prompting-style-review-<yyyy-mm-dd>.md` in `projects/regulatory-labeling/`.
-5. Pick the top one or two improvements and try them in your next real task.
-
-## output-handling
-
-File name: `prompting-style-review-<yyyy-mm-dd>.md`, H1 equal to the file-name stem. Saves to: `projects/regulatory-labeling/`. Copilot cannot save files; copy the full reply into a new note at that path. The date stamp keeps each review as its own dated record so you can see progress over time.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat, coaching a regulatory labeling specialist at a US beverage manufacturer who is a beginner at using AI assistants. Your single task: review the sample of their own recent Copilot chats below and give concrete, prioritized advice on how to prompt better.
@@ -94,8 +86,16 @@ COACHING NOTES - based only on the chats I pasted; my judgment, not Copilot's, d
 [Paste your recent Copilot chats here]
 ```
 
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Gather three to ten recent chats and have them ready: select the conversation text to paste where marked, or attach an export. Remove anything company policy says should not be reused.
+3. Copy the entire prompt block above, paste it into the chat, and paste your chats where marked before sending. Fill any bracketed blanks.
+4. Copilot cannot save files. Copy its full reply into a new note named `prompting-style-review-<yyyy-mm-dd>.md` in `projects/regulatory-labeling/`, with H1 equal to the file-name stem. The date stamp keeps each review as its own dated record so you can see progress over time.
+5. Review the output and pick the top one or two improvements to try in your next real task. Nothing is final until you decide to act on it.
+
 ## guardrails
 
 The review uses only the chats the specialist pastes and never invents examples or habits. It coaches; it does not change saved prompts, records, or installed context. Redact anything company policy restricts before pasting, since chat samples may contain SKU, formula, or colleague details.
 
-Related: [[skill-gap-finder]], [[copilot-usage-retro]], [[copilot-configuration]].
+Related: [[skill-gap-finder]], [[copilot-usage-retro]], [[personalization-install-router]].

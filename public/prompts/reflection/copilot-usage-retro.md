@@ -2,57 +2,48 @@
 domain: regulatory-ingredients-labels-laws
 category: reflection
 sub-category: self-improvement
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
+topic: beverage-label-compliance
+use-case: monthly-usage-retro
+visibility: private
+aliases:
+  - copilot usage retro
+  - end of month reflection
+  - is copilot worth it review
+  - keep stop start review
+  - monthly retro
+  - monthly review of copilot
+  - retro on my ai use
+  - what worked this month
 tags:
   - reflection
   - regulatory-labeling
   - self-improvement
-topic: beverage-label-compliance
-use-case: monthly-usage-retro
-visibility: private
 ---
 
 # copilot-usage-retro
 
-## description
+## prompt-summary
 
-A short monthly retrospective the specialist runs with Copilot: what worked, what wasted time, which prompts earned their keep, which were ignored, and one focused change for next month. It is deliberately lightweight so it actually gets done, and it feeds a running record so month-over-month trends are visible.
+A short monthly retrospective the specialist runs with Copilot: what worked, what wasted time, which prompts earned their keep, which were ignored, and one focused change for next month. It is deliberately lightweight so it actually gets done, and it feeds a running record so month-over-month trends are visible. Reach for it once a month, or at the end of a launch cycle, to keep the library and your habits improving instead of drifting.
 
-## when-to-use
+## use-cases
 
-Once a month, or at the end of a launch cycle, to keep the library and the specialist's habits improving instead of drifting.
-
-## what-to-use-for
-
-Producing a dated retro note with a few concrete keep/stop/start items and one priority for the coming month.
-
-## required-inputs
-
-- Optional: last month's `copilot-usage-retro-<date>.md` for trend continuity
-- Optional: notes on wins and frustrations from the month; the retro also works from memory answered in the chat
+- It is month-end (or the end of a launch cycle) and you want a quick keep/stop/start read before habits drift
+- You want a dated record that builds a visible trend line so you can compare against last month's retro
+- Copilot wasted time on something this month and you want to decide what to change or retire
+- A recurring frustration points at a missing reusable asset, and you want to flag it for a [[skill-gap-finder]] run
 
 ## expected-outputs
 
 - A dated retro note: what worked, what wasted time, prompts to keep or retire, and one priority for next month
 - A short trend line versus last month's retro if one was provided
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Optionally attach last month's retro note for comparison.
-3. Copy the entire prompt-text block below and paste it into the chat.
-4. Answer the few reflection questions; brief answers are fine.
-5. Copilot cannot save files. Copy its full reply into a new note named `copilot-usage-retro-<yyyy-mm-dd>.md` in `projects/regulatory-labeling/`, then act on the single next-month priority.
-
-## output-handling
-
-File name: `copilot-usage-retro-<yyyy-mm-dd>.md`, H1 equal to the file-name stem. Saves to: `projects/regulatory-labeling/`. Copilot cannot save files; copy the full reply into a new dated note so the series builds a visible trend.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat, running a monthly usage retrospective with a regulatory labeling specialist at a US beverage manufacturer who is a beginner at using AI assistants. Your single task: interview me briefly, then produce a dated retro note.
@@ -97,6 +88,14 @@ visibility: private
 4. This exact final line:
 RETRO NOTES - my own reflection, recorded for next month; not a change to any saved work.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Optionally have last month's retro note ready to attach for comparison.
+3. Copy the entire prompt block above and paste it into the chat.
+4. Answer the few reflection questions; brief answers are fine.
+5. Copilot cannot save files. Copy its full reply into a new note named `copilot-usage-retro-<yyyy-mm-dd>.md` in `projects/regulatory-labeling/`, with H1 equal to the file-name stem, so the series builds a visible trend. Then act on the single next-month priority once you have reviewed it.
 
 ## guardrails
 

@@ -2,62 +2,52 @@
 domain: regulatory-ingredients-labels-laws
 category: label-intake
 sub-category: intake
+types:
+  - prompt
 date-created: 2026-07-22
 date-revised: 2026-07-22
-type: prompt
 status: DONE
-aliases: []
-tags:
-  - label-intake
-  - intake
-  - claims
-  - regulatory-labeling
 topic: beverage-label-compliance
 use-case: scope-claim-pathways
 visibility: private
+aliases:
+  - build claim inventory
+  - claims scoping
+  - classify claims by pathway
+  - disease claim flag
+  - natural claim review
+  - nutrient content vs health claim
+  - structure function claim routing
+  - triage marketing claims
+  - what pathway does this claim need
+tags:
+  - claims
+  - intake
+  - label-intake
+  - regulatory-labeling
 ---
 
 # claims-target-scoping
 
-## description
+## prompt-summary
 
-Captures the claims a brief intends to make and classifies each by the FDA regulatory pathway it would need to clear, so downstream claims-compliance review starts from a scoped inventory instead of raw marketing copy.
+Captures the claims a brief intends to make and classifies each by the FDA regulatory pathway it would need to clear, so downstream claims-compliance review starts from a scoped inventory instead of raw marketing copy. Reach for it after [[brief-and-formula-intake]] has produced an intake record, or whenever proposed claims and positioning copy exist for a SKU and need triaging before drafting or review. It tags each distinct claim by claim type and names the substantiation that pathway requires, flagging anything that reads as a disease claim or uses "natural" for human review.
 
-## when-to-use
+## use-cases
 
-After [[brief-and-formula-intake]] has produced an intake record, or whenever proposed claims and positioning copy exist for a SKU and need to be triaged before drafting or review.
-
-## what-to-use-for
-
-Reading proposed claims and positioning copy, then tagging each distinct claim by claim type (nutrient content including relative claims and "diet" brand-name use, implied nutrient content including "healthy", percent juice, authorized or qualified health claim, structure/function, "natural", or non-regulated marketing language) and the substantiation each pathway requires.
-
-## required-inputs
-
-- Proposed claims (list or extracted from brief/positioning copy)
-- Positioning copy (optional; marketing language as drafted, when it exists separately from the claims list)
+- [[brief-and-formula-intake]] has produced an intake record and its captured claims need triaging by pathway before drafting.
+- Proposed claims and positioning copy exist for a SKU and need scoping before drafting or review.
+- Marketing proposes nutrient content, relative, implied, percent juice, health, structure/function, or "natural" wording that must be tagged to a pathway (21 CFR 101.13, 101.65, 101.30, 101.14).
+- You need each pathway's substantiation or disclosure requirement named before the claims-compliance prompts adjudicate.
+- You suspect a claim reads as an unauthorized disease claim (wording that states or implies preventing, treating, mitigating, or curing a disease under FDCA section 201(g)) and needs escalation.
+- Any "natural" claim needs routing to human review.
 
 ## expected-outputs
 
 - Claim inventory: each claim, its claim-type tag, the regulatory pathway it falls under with its citation marked UNVERIFIED, and the substantiation required for that pathway
 - Flags for any claim that does not cleanly fit a recognized pathway, reads as a disease claim, or uses "natural" (always routed to human review)
 
-## how-to-run
-
-1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
-2. Have the proposed claims and any positioning copy open, then paste their text into the bracketed placeholders in the prompt; attach a file with the paperclip or a `/` file reference only if it already lives in OneDrive or SharePoint.
-3. Copy the entire prompt-text block below, paste it into the chat, and fill every bracketed placeholder before sending.
-4. Copilot cannot save files. Copy its full reply into a new note named per output-handling, in `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
-5. Review the output yourself. Nothing is final until a person signs off; every routing tag still needs adjudication by the claims-compliance prompts.
-
-## output-handling
-
-Apply this project's frontmatter convention: `domain: regulatory-ingredients-labels-laws`, `category: label-intake`, `sub-category: intake`, `date-created` and `date-revised` set to the run date, `type: claim-inventory`, `status: REVIEW`, `aliases: []`, `tags: [label-intake, intake, claims, <sku-slug>]`, then below `tags`: `topic: beverage-label-compliance`, `use-case: claim-inventory`, `visibility: private`.
-
-File name: `claim-inventory-<sku-slug>.md`, kebab-case, H1 equal to the file-name stem.
-
-Saves to: `projects/regulatory-labeling/`.
-
-## prompt-text
+## prompt
 
 ```
 You are running inside Microsoft 365 Copilot Chat. Your single task: build a claim inventory from proposed claims and positioning copy, classifying each claim by its regulatory pathway.
@@ -123,6 +113,14 @@ visibility: private
 4. This exact final line:
 UNVERIFIED DRAFT - requires review and sign-off by the regulatory labeling specialist; citations unconfirmed against current eCFR.
 ```
+
+## how-to-run
+
+1. Open Microsoft 365 Copilot Chat in your work (Microsoft 365) profile.
+2. Have ready the proposed claims (a list, or extracted from the brief and positioning copy), any positioning copy as drafted, and the SKU identifier. Paste their text into the bracketed placeholders, or attach a file with the paperclip or a `/` file reference only if it already lives in OneDrive or SharePoint.
+3. Copy the entire prompt block above, paste it into the chat, and fill every bracketed placeholder before sending.
+4. Copilot cannot save files. Copy its full reply into a new note named `claim-inventory-<sku-slug>.md` (kebab-case, H1 equal to the file-name stem) and save it to `projects/regulatory-labeling/` in this vault (or your team's equivalent OneDrive/SharePoint folder).
+5. Review the output yourself. Nothing is final until a person signs off; every routing tag still needs adjudication by the claims-compliance prompts.
 
 ## guardrails
 
