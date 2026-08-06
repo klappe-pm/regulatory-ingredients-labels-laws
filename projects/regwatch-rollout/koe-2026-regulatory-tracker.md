@@ -28,7 +28,7 @@ Verbatim goal text as entered in the performance system, transcribed from the go
 
 | Field | Value |
 |---|---|
-| Record header | Diane Tran |
+| Goal owner | Diane Tran (confirmed 2026-08-05) |
 | Status | New |
 | Date | 11 / 02 / 2026 (field label not legible in the screenshot) |
 | Season | KOE 2026, closing November 2026 |
@@ -37,7 +37,7 @@ Verbatim goal text as entered in the performance system, transcribed from the go
 Provenance and assumptions, read these before circulating:
 
 - Only the blockquote above is transcribed from the record. Boxes 2 through 9 are proposed for review, not extracted; the milestone windows, percentage targets, and reviewer set are drafted here and need Diane's confirmation before anything becomes a commitment she is measured against.
-- This treats Diane Tran as the owner of the goal record, since her name heads it. If she is instead the stakeholder on someone else's goal, box 7 flips: her cadence and depth decision becomes the gating external dependency.
+- Diane Tran owns this goal, confirmed 2026-08-05. Box 7 therefore lists only what sits outside her control; the cadence and briefing-depth call is hers to make and close, so it appears as a deliverable in box 4 and a September milestone, never as a dependency she is waiting on.
 - The November deadline comes from the goal text itself ("by end of KOE season, November 2026"), which is unambiguous. Whether the `11 / 02 / 2026` field is the due date or a start date is not readable in the screenshot; it is used here as the due date.
 - The reviewing functions named below are R&D, brand, legal, and leadership, the audiences the rollout one-pager already identifies. Suppliers appear there too but as an external notified party, not a reviewer.
 
