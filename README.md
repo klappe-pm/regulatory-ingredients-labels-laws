@@ -65,3 +65,7 @@ make prompts-docx   # rebuild the hyperlinked Word export
 
 Session handoffs belong in `docs/passoffs/`. Local secrets and machine state
 belong outside the repo or in ignored files.
+
+## Agent adapters
+
+Behavioral policy lives only in [AGENTS.md](AGENTS.md). The root adapter files are bootstrapping-only: [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), [GEMINI.md](GEMINI.md), [WARP.md](WARP.md), [KIRO.md](KIRO.md), [KIMI.md](KIMI.md), [LLAMA.md](LLAMA.md), [GROK.md](GROK.md), [DEVIN.md](DEVIN.md), [OPENCLAW.md](OPENCLAW.md), and [CURSOR-AGENT.md](CURSOR-AGENT.md).
