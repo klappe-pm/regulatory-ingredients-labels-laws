@@ -15,7 +15,9 @@ Primary operational surfaces are `public/regwatch/` for the regulatory monitorin
 - Read a file before editing it and run `make test` before claiming project work complete.
 - Regwatch detection and ingestion flag candidates for human review. They never edit the curated register or change log automatically.
 - Confirm regulatory claims against primary source text. Nothing the project produces is legal advice or label approval.
-- Prompt files are the source of truth for the prompt library. After editing a prompt, run `make prompts-sync`; use `make prompts-docx` when the Word export must be rebuilt.
+- Prompt files are the source of truth for the prompt library. Each prompt uses exactly these H2 sections in order: `prompt-summary`, `use-cases`, `expected-outputs`, `prompt`, `how-to-run`, and `guardrails`.
+- Prompt frontmatter uses a `types` list, never a scalar `type`, and each prompt has 6 to 10 natural-language aliases. Run `make prompts-normalize` after hand edits, then run `make prompts-sync`; use `make prompts-docx` when the Word export must be rebuilt.
+- The fenced block under a prompt's `prompt` section is the paste-into-Copilot artifact. Do not change it without regenerating the manifests and Word export.
 - Keep generated state, dependency artifacts, caches, and local secrets out of commits.
 
 ## project-navigation
