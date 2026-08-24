@@ -1,5 +1,11 @@
 # AGENTS.md
 
+## project
+
+- project: regulatory-ingredients-labels-laws
+
+This value must match the directory this repository sits in. Generation fails when it does not, because an `AGENTS.md` copied from another repository once carried the wrong project's content for nine days with nothing to catch it.
+
 ## project-contract
 
 This file is the canonical behavioral contract for every AI agent working in this repository.
