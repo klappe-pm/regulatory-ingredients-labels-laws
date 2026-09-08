@@ -1,0 +1,31 @@
+:root {
+  /* shade index 1 = lightest, 5 = darkest; shade 3 is the default per level */
+  --h1-1: #A7C4DE; --h1-2: #8FB4D6; --h1-3: #77A3CD; --h1-4: #608FBE; --h1-5: #4F7DAB;
+  --h2-1: #E0C492; --h2-2: #D6B67C; --h2-3: #CBA767; --h2-4: #BD9754; --h2-5: #AC8745;
+  --h3-1: #97CDC5; --h3-2: #81C0B7; --h3-3: #6BB2A8; --h3-4: #57A298; --h3-5: #469287;
+  --h4-1: #DBA8B2; --h4-2: #D0939F; --h4-3: #C47E8C; --h4-4: #B56B7A; --h4-5: #A55A69;
+  --h5-1: #ACCDA1; --h5-2: #9AC18D; --h5-3: #88B47A; --h5-4: #76A569; --h5-5: #65955A;
+  --h6-1: #C3ABD3; --h6-2: #B499C8; --h6-3: #A487BC; --h6-4: #9376AC; --h6-5: #82669B;
+}
+
+.depth-1 { --level-color: var(--h1-3); }
+.depth-2 { --level-color: var(--h2-3); }
+.depth-3 { --level-color: var(--h3-3); }
+.depth-4 { --level-color: var(--h4-3); }
+.depth-5 { --level-color: var(--h5-3); }
+.depth-6 { --level-color: var(--h6-3); }
+
+.folder-row {
+  border-left: 3px solid var(--level-color);
+  border-radius: 0;
+  /* Margin indents the border, padding spaces the text from the border */
+  margin-left: calc(var(--depth, 0) * 24px); 
+  padding-left: 8px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.folder-row span {
+  display: inline-flex;
+  align-items: center;
+}

@@ -1,0 +1,61 @@
+/* ---------------------------------------------------------------------------
+   Custom Minimal Theme Overrides - Gruvbox Light High Contrast
+--------------------------------------------------------------------------- */
+
+body {
+  /* Gutter & Line Numbers */
+  --gutter-background: #ebdbb2; /* Gruvbox light background */
+  --line-number-color: #7c6f64;
+  --line-number-color-active: #282828;
+  
+  /* Row Highlight */
+  --active-line-bg: #d5c4a1; /* Subtle Gruvbox highlight */
+
+  /* Heading Sizes */
+  --h1-size: 1.3em;
+  --h2-size: 1.2em;
+  --h3-size: 1.05em;
+  --h4-size: 1.05em;
+  --h5-size: 1.05em;
+  --h6-size: 1.05em;
+
+  /* Headings: Leading with Greens/Blues, transitioning to Reds */
+  --h1-color: #98971a; /* Gruvbox Green */
+  --h2-color: #458588; /* Gruvbox Blue */
+  --h3-color: #689d6a; /* Gruvbox Aqua/Cyan */
+  --h4-color: #d65d0e; /* Gruvbox Orange */
+  --h5-color: #cc241d; /* Gruvbox Red */
+  --h6-color: #b16286; /* Gruvbox Purple/Pink */
+}
+
+/* ---------------------------------------------------------------------------
+   Component Styling
+--------------------------------------------------------------------------- */
+
+/* Gutter styling */
+.cm-editor .cm-lineNumbers {
+  background-color: var(--gutter-background) !important;
+  color: var(--line-number-color);
+}
+
+/* Row highlight styling */
+.active-line-on .cm-line.cm-active {
+  background-color: var(--active-line-bg) !important;
+}
+
+/* Code Fence: Light green with border */
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-codeblock,
+.markdown-rendered pre {
+  background-color: #f2e6bd !important; /* Gruvbox pale green/yellow base */
+  border: 1px solid #98971a !important; /* Gruvbox green border */
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Apply specific heading colors */
+.markdown-source-view.mod-cm6 .cm-header-1, .markdown-preview-view h1 { color: var(--h1-color) !important; }
+.markdown-source-view.mod-cm6 .cm-header-2, .markdown-preview-view h2 { color: var(--h2-color) !important; }
+.markdown-source-view.mod-cm6 .cm-header-3, .markdown-preview-view h3 { color: var(--h3-color) !important; }
+.markdown-source-view.mod-cm6 .cm-header-4, .markdown-preview-view h4 { color: var(--h4-color) !important; }
+.markdown-source-view.mod-cm6 .cm-header-5, .markdown-preview-view h5 { color: var(--h5-color) !important; }
+.markdown-source-view.mod-cm6 .cm-header-6, .markdown-preview-view h6 { color: var(--h6-color) !important; }

@@ -1,3 +1,9 @@
 [
-  "lappe-linter"
+  "obsidian-tasks-plugin",
+  "vscode-editor",
+  "templater-obsidian",
+  "obsidian-style-settings",
+  "obsidian-minimal-settings",
+  "hidden-folders-access",
+  "obsidian-linter"
 ]

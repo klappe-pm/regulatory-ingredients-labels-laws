@@ -1,1 +1,7 @@
-{}
+{
+  "cssTheme": "Minimal",
+  "theme": "moonstone",
+  "accentColor": "#17a119",
+  "translucency": false,
+  "enabledCssSnippets": []
+}

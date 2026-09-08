@@ -1,0 +1,1 @@
+/Users/kevinlappe/Documents/regulatory-ingredients-labels-laws/public

@@ -1,0 +1,4 @@
+rigor: high
+environment: local-dev
+checkpoint: 2026-08-08T00:00:00-07:00 canonical adapter architecture and deterministic policy snapshot completed; pointer validation and diff check passed; high rigor remains appropriate
+checkpoint: 2026-08-08T12:17:28-07:00 project contract, pointer registry, adapter traversal, and full project test suite passed; high rigor remains appropriate

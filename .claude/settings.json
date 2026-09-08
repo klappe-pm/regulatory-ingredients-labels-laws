@@ -5,6 +5,16 @@
       "Edit(~/projects/**)",
       "Read(~/.claude/projects/**)",
       "Edit(~/.claude/projects/**)",
+      "Read(~/.claude/**)",
+      "Edit(~/.claude/**)",
+      "Read(~/.codex/**)",
+      "Edit(~/.codex/**)",
+      "Read(~/.gemini/**)",
+      "Edit(~/.gemini/**)",
+      "Read(~/.cursor/**)",
+      "Edit(~/.cursor/**)",
+      "Read(~/.config/opencode/**)",
+      "Edit(~/.config/opencode/**)",
       "Bash(git *)",
       "Bash(gh *)",
       "Bash(ls *)",
@@ -141,7 +151,13 @@
     ],
     "blockReadsOutsideWorkingDirectories": true,
     "additionalDirectories": [
-      "~/projects"
+      "~/projects",
+      "~/.claude",
+      "~/.codex",
+      "~/.gemini",
+      "~/.cursor",
+      "~/.config/opencode"
     ]
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
