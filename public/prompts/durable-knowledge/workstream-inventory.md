@@ -105,6 +105,6 @@ UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before 
 
 ## guardrails
 
-Human-in-the-loop: the specialist reviews and installs this inventory themselves, refreshes it by the review-by date (monthly or with the weekly status report, whichever comes first), and removes the prior installed version before installing the new one. Confidentiality: unreleased SKU names, claims strategy, and launch timing stay out of any shareable layer; confidential workstreams go only into a private, never-shared layer, per Talking Rain's Copilot and data-handling policy.
+Human-in-the-loop: the specialist reviews and installs this inventory themselves, refreshes it by the review-by date (monthly or with the weekly status report, whichever comes first), and removes the prior installed version before installing the new one. Confidentiality: unreleased SKU names, claims strategy, and launch timing stay out of any shareable layer; confidential workstreams go only into a private, never-shared layer, per your organization's Copilot and data-handling policy.
 
 Related: [[personalization-install-router]] (copilot-configuration/), [[weekly-status-report]] (market-and-reporting/, a natural companion artifact), [[team-roles-and-responsibilities]].

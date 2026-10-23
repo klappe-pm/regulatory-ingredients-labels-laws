@@ -107,6 +107,6 @@ Role: [role]
 
 ## guardrails
 
-Human-in-the-loop: the specialist reviews and installs these rules themselves; this prompt never writes directly into Custom Instructions or Memory. Tentative patterns are flagged as tentative, not asserted as firm rules. Privacy: the output carries business role information only, never personal phone numbers, home emails, or judgments about colleagues; confirm against Talking Rain's Copilot and data-handling policy before installing.
+Human-in-the-loop: the specialist reviews and installs these rules themselves; this prompt never writes directly into Custom Instructions or Memory. Tentative patterns are flagged as tentative, not asserted as firm rules. Privacy: the output carries business role information only, never personal phone numbers, home emails, or judgments about colleagues; confirm against your organization's Copilot and data-handling policy before installing.
 
 Related: [[personalization-install-router]] (copilot-configuration/, routes this artifact to its layer), [[stakeholder-and-contact-map]], [[team-roles-and-responsibilities]], [[workstream-inventory]].

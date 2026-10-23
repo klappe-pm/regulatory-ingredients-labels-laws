@@ -1,0 +1,71 @@
+{
+  "version": "0.1.0",
+  "company": "Example Beverage Company",
+  "disclaimer": "Illustrative portfolio only. Product, ingredient, and claim attributes are examples and MUST be confirmed against current specifications and labels before any compliance use. Not legal advice.",
+  "channels": ["national", "US-CA", "school-channel", "snap", "CA-Federal", "MX-Federal"],
+  "channel_notes": {
+    "national": "Distributed across US retail; treated as exposed to federal rules, every state patchwork bill, and SNAP retail restrictions.",
+    "US-CA": "Sold in California; exposed to California statutes and Proposition 65.",
+    "school-channel": "Sold through school channels; exposed to school-food ingredient laws.",
+    "snap": "Eligible for SNAP purchase; exposed to sweetened-beverage waiver restrictions.",
+    "CA-Federal": "Distributed in Canada; exposed to Health Canada rules.",
+    "MX-Federal": "Distributed in Mexico; exposed to NOM-051."
+  },
+  "products": [
+    {
+      "product_id": "sample-sparkling-classic",
+      "name": "Sample sparkling beverage (classic)",
+      "category": "flavored sparkling water",
+      "ingredient_functions": ["sweetener", "color", "flavor"],
+      "ingredients": ["Sucralose"],
+      "claims": ["zero-sugar", "naturally-flavored", "no-artificial-colors"],
+      "channels": ["national", "US-CA"],
+      "confidence": "illustrative",
+      "notes": "Example zero-sugar beverage with a non-nutritive sweetener, color, and natural flavors. Confirm every attribute against current specifications."
+    },
+    {
+      "product_id": "sample-sparkling-caffeinated",
+      "name": "Sample sparkling beverage (caffeinated)",
+      "category": "flavored sparkling water with caffeine",
+      "ingredient_functions": ["sweetener", "color", "flavor", "stimulant"],
+      "ingredients": ["Sucralose", "Caffeine"],
+      "claims": ["zero-sugar", "naturally-flavored"],
+      "channels": ["national", "US-CA"],
+      "confidence": "illustrative",
+      "notes": "Example caffeinated beverage. Confirm caffeine source and serving amount against current specifications."
+    },
+    {
+      "product_id": "sample-sparkling-colored",
+      "name": "Sample sparkling beverage (colored)",
+      "category": "flavored sparkling water",
+      "ingredient_functions": ["sweetener", "color", "flavor"],
+      "ingredients": ["Sucralose"],
+      "claims": ["zero-sugar"],
+      "channels": ["national", "US-CA"],
+      "confidence": "illustrative",
+      "notes": "Example beverage with color. Confirm whether any certified colors are used."
+    },
+    {
+      "product_id": "sample-sparkling-unsweetened",
+      "name": "Sample sparkling water (unsweetened)",
+      "category": "unsweetened sparkling water",
+      "ingredient_functions": ["flavor"],
+      "ingredients": [],
+      "claims": ["zero-sugar", "no-sweeteners", "naturally-flavored"],
+      "channels": ["national", "US-CA"],
+      "confidence": "illustrative",
+      "notes": "Example unsweetened product with lower exposure to sweetener-specific rules."
+    },
+    {
+      "product_id": "sample-bottled-water",
+      "name": "Sample bottled water",
+      "category": "bottled water",
+      "ingredient_functions": [],
+      "ingredients": [],
+      "claims": ["no-sweeteners"],
+      "channels": ["national"],
+      "confidence": "illustrative",
+      "notes": "Example plain bottled water. Verify applicable source-water testing and labeling requirements."
+    }
+  ]
+}
