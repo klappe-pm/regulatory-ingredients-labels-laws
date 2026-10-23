@@ -56,7 +56,7 @@
     "ingredients": {"required": false, "list": true},
     "claims": {"required": false, "list": true},
     "channels": {"required": true, "list": true, "ref": "channels"},
-    "confidence": {"required": true, "enum": ["internal-model", "confirmed", "secondary-digest"]},
+    "confidence": {"required": true, "enum": ["illustrative", "confirmed", "secondary-digest"]},
     "notes": {"required": false}
   }
 }

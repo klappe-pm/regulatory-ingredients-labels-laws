@@ -1,8 +1,6 @@
 # regwatch
 
-Operational data for the regulatory watch-list register and change-detection
-engine (Deliverable 3). The engine is `scripts/regwatch.py`. The design is
-`docs/plans/deliverable-3-regulatory-monitoring-design.md`.
+Operational data for the regulatory watch-list register and change-detection engine. The engine is `scripts/regwatch.py`.
 
 ## Files
 
@@ -12,7 +10,7 @@ engine (Deliverable 3). The engine is `scripts/regwatch.py`. The design is
 | `regwatch-sources.json` | Authoritative source feeds, one per jurisdiction surface. |
 | `regwatch-ingredient-functions.json` | Maps ingredient function to definition and examples. |
 | `regwatch-jurisdictions.json` | Every jurisdiction the register accounts for: US federal, all 50 states plus DC, an aggregate marker, Canada, Mexico. |
-| `regwatch-talking-rain.json` | Talking Rain product portfolio model that impact analysis maps obligations onto. |
+| `regwatch-sample-portfolio.json` | Generic beverage portfolio sample that impact analysis maps obligations onto. |
 | `regwatch-obligation-detail.json` | Human-readable detail per obligation: context, implications, action, CFR, and backlinks. |
 | `regwatch-changelog.json` | Dated regulatory developments feeding the briefing's "what happened" section. |
 | `regwatch-warning-letters.json` | FDA warning-letter enforcement themes for beverages, with governing CFR. |
@@ -32,7 +30,7 @@ python3 scripts/regwatch.py scan                           # NEW / CHANGED / UNC
 python3 scripts/regwatch.py scan --live --update           # fetch live, accept the result as baseline
 python3 scripts/regwatch.py digest --out digest.md         # analyst-facing register digest
 python3 scripts/regwatch.py report --out r.md --json r.json  # change-and-due alert
-python3 scripts/regwatch.py portfolio                      # list the Talking Rain portfolio
+python3 scripts/regwatch.py portfolio                      # list the generic sample portfolio
 python3 scripts/regwatch.py impact --severity act-now      # CPG impact analysis on the portfolio
 python3 scripts/regwatch.py beverage                       # beverage-category lens over the impacts
 python3 scripts/regwatch.py brief --cadence weekly --out-dir out   # synthesized brief in every format
@@ -51,8 +49,7 @@ topic list, the governing CFR, an action, and a source link. The briefing render
 those (v1 as indented Summary / Impacts / Implications / Source per item), the
 `newsletter` command regenerates a single running index that links each record to
 its source, and `export` flattens the records to CSV and JSON for downstream
-analysis. The team one-pager and the data-model and visualization sketches live
-in `docs/reports/regwatch-rollout/` and `docs/plans/`.
+analysis.
 
 ## Live Ingestion
 
@@ -74,21 +71,15 @@ is written as What Happened / What It Means (with the governing CFR and the
 context for what the rule is) / What We Need To Do, with backlinks to primary
 sources. It draws on `regwatch-obligation-detail.json` for the prose and CFR,
 `regwatch-changelog.json` for dated recent developments, and
-`regwatch-warning-letters.json` for FDA enforcement themes. The committed sample
-is `docs/reports/regwatch-samples/regwatch-fda-beverage-briefing.md`.
+`regwatch-warning-letters.json` for FDA enforcement themes.
 
-The briefing renders at three complexity tiers for a phased team rollout, set by
-`--tier v1|v2|v3` (v1 is the simplest headlines, v3 the full detail), and the
-recent section can be windowed with `--since-days N`. The committed rollout set
-(three reports plus a per-version changelog) lives in
-`docs/reports/regwatch-rollout/`.
+The briefing renders at three complexity tiers, set by `--tier v1|v2|v3` (v1 is the simplest headlines, v3 the full detail), and the recent section can be windowed with `--since-days N`.
 
 ```bash
 python3 scripts/regwatch.py briefing --tier v1 --since-days 90 --out report.md
 ```
 
-`make regwatch-validate` runs validation in CI and in `make test`;
-`make regwatch-brief` regenerates the weekly sample outputs.
+`make regwatch-validate` runs validation in CI and in `make test`.
 
 ## Feedback And Update Loops
 
@@ -99,12 +90,11 @@ Three scheduled workflows close the loop. `.github/workflows/regwatch-daily.yml`
 `brief` renders one synthesized document model into every requested format:
 `.docx` (built directly as a WordprocessingML zip), an email newsletter
 (`-newsletter.html` plus a `-newsletter.txt` alternative), a web posting
-(`-webpost.md` with front matter), and plain markdown. Committed samples live in
-`docs/reports/regwatch-samples/`.
+(`-webpost.md` with front matter), and plain markdown.
 
 ## Impact And Synthesis
 
-`impact` joins each obligation to the Talking Rain portfolio on three gates —
+`impact` joins each obligation to the sample portfolio on three gates:
 jurisdiction or channel reach, school/SNAP scope, and an attribute match on
 ingredient function, named ingredient, or claim — and scores severity (act-now,
 high, watch, info). `beverage` adds a category lens. `brief` synthesizes the
