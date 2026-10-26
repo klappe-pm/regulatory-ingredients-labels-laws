@@ -1,71 +1,60 @@
 # regulatory-ingredients-labels-laws
 
-Automate regulatory updates for product ingredients, labels, and labeling laws.
+An open, local-first toolkit for tracking food-ingredient and labeling developments. It provides a validated regulatory register, source-change detection, generic beverage impact examples, and a human-review-first Microsoft 365 Copilot prompt library.
 
-`Regulatory Ingredients Labels Laws` is scaffolded from the shared
-`/Users/kevinlappe/.claude` project template.
+This project is reference tooling, not legal advice or label approval. Confirm every regulatory claim against current primary source text with qualified counsel or compliance reviewers.
 
-## Quick Start
+## quick-start
 
-```bash
-make doctor
-make audit-strict
-make test          # also runs regwatch-validate and regwatch-smoke
-```
-
-## regwatch — Regulatory Monitoring
-
-`regwatch` is the regulatory monitoring engine: a validated obligation register,
-a change-detection scanner, a live Federal Register ingest, a CPG impact suite
-over a Talking Rain portfolio model, and rendered outputs (a human-readable FDA
-beverage briefing, a Word document, an email newsletter, and a web post). It is
-standard library only.
+Requires Python 3.11 or later. The monitoring engine uses only the standard library. Rebuilding the optional Word prompt-library export also requires `python-docx`.
 
 ```bash
-python3 scripts/regwatch.py --help        # all commands
-python3 scripts/regwatch.py validate      # data model
-python3 scripts/regwatch.py briefing      # human-readable FDA beverage briefing
-python3 scripts/regwatch.py ingest --live # pull the Federal Register feed
+cd /path/to/regulatory-ingredients-labels-laws
+make test
+python3 scripts/regwatch.py --help
+python3 scripts/regwatch.py validate
 ```
 
-- Engine and data: `public/regwatch/regwatch-README.md`.
-- Design: `docs/plans/deliverable-3-regulatory-monitoring-design.md`.
-- Troubleshooting runbook for agents: `public/regwatch/regwatch-troubleshooting.md`.
+## what-is-included
 
-Nothing the engine emits is legal advice; confirm against primary source text.
+- `public/regwatch/`: validated seed register, jurisdiction and source catalogs, generic portfolio sample, and operational guidance.
+- `scripts/regwatch.py`: command-line engine for validation, scanning, reports, ingestion candidates, impact analysis, and rendered briefs.
+- `public/prompts/`: reviewed prompt source files for a regulatory-labeling workflow. Markdown files are the source of truth.
+- `scripts/`: small, dependency-light maintenance tools.
 
-## Copilot Prompt Library
+The repository deliberately excludes client materials, source-document bundles, personal data, session handoffs, machine paths, editor settings, and generated runtime configuration.
 
-`public/prompts/` is an Obsidian-navigable library of Microsoft 365 Copilot prompts for the regulatory labeling specialist workflow (US FDA / CFR 21). It spans onboarding setup, label intake, content derivation, claims compliance, review and verification, version reconciliation, market and reporting, email, durable knowledge, Copilot configuration, app-specific skills, and reflection.
-
-- Start here: `public/prompts/prompt-library-user-guide.md`, then the master index `public/prompts/regulatory-labeling.md`.
-- Every compliance prompt is human-sign-off gated, marks its citations unverified until confirmed against the current eCFR, and never approves a label. Nothing in the library is legal advice.
-- The `.md` prompt files are the single source of truth. The per-category `.manifest.json` sidecars and the Word export are generated from them:
+## regwatch
 
 ```bash
-make prompts-sync   # regenerate .manifest.json from the .md prompts
-make prompts-check  # fail if any manifest is stale (part of make test)
-make prompts-docx   # rebuild the hyperlinked Word export
+cd /path/to/regulatory-ingredients-labels-laws
+python3 scripts/regwatch.py validate
+python3 scripts/regwatch.py coverage
+python3 scripts/regwatch.py scan
+python3 scripts/regwatch.py impact --severity act-now
+python3 scripts/regwatch.py report --out report.md --json report.json
 ```
 
-## Project Structure
+`scan` identifies candidates only. It never edits the curated register. Human reviewers confirm candidates against primary source text before changing regulatory records.
 
-```text
-.
-├── .claude/          Project-local commands, agents, and hooks
-├── .github/          CI workflow templates
-├── agents/           Shared and generated agent definitions
-├── docs/             Plans, passoffs, and reference material
-├── regwatch/         Regulatory watch-list register, source catalog, and state
-├── scripts/          Project maintenance scripts and the regwatch engine
-├── CLAUDE.md         Claude Code project instructions
-├── Makefile          Validation and strip targets
-└── project.yml       Project identity manifest
+See [the Regwatch guide](public/regwatch/regwatch-README.md) for the data model, output formats, and operating rules.
+
+## prompt-library
+
+Start with [the prompt-library guide](public/prompts/prompt-library-user-guide.md). The Markdown prompts are canonical. After editing one, regenerate and verify derived artifacts:
+
+```bash
+cd /path/to/regulatory-ingredients-labels-laws
+make prompts-normalize
+make prompts-sync
+make prompts-check
 ```
 
-Session handoffs belong in `docs/passoffs/`. Local secrets and machine state
-belong outside the repo or in ignored files.
+## development
 
-## Agent adapters
+```bash
+cd /path/to/regulatory-ingredients-labels-laws
+make test
+```
 
-Behavioral policy lives only in [AGENTS.md](AGENTS.md). The root adapter files are bootstrapping-only: [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), [GEMINI.md](GEMINI.md), [WARP.md](WARP.md), [KIRO.md](KIRO.md), [KIMI.md](KIMI.md), [LLAMA.md](LLAMA.md), [GROK.md](GROK.md), [DEVIN.md](DEVIN.md), [OPENCLAW.md](OPENCLAW.md), and [CURSOR-AGENT.md](CURSOR-AGENT.md).
+`make test` validates Markdown contracts, the Regwatch data model, end-to-end command behavior, and prompt manifests. See [CONTRIBUTING.md](CONTRIBUTING.md) for change requirements and [SECURITY.md](SECURITY.md) for responsible disclosure.

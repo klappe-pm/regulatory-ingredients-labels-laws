@@ -46,7 +46,7 @@ OBLIGATIONS_PATH = DATA_DIR / "regwatch-obligations.csv"
 SOURCES_PATH = DATA_DIR / "regwatch-sources.json"
 FUNCTIONS_PATH = DATA_DIR / "regwatch-ingredient-functions.json"
 JURISDICTIONS_PATH = DATA_DIR / "regwatch-jurisdictions.json"
-PORTFOLIO_PATH = DATA_DIR / "regwatch-talking-rain.json"
+PORTFOLIO_PATH = DATA_DIR / "regwatch-sample-portfolio.json"
 DETAIL_PATH = DATA_DIR / "regwatch-obligation-detail.json"
 CHANGELOG_PATH = DATA_DIR / "regwatch-changelog.json"
 WARNING_LETTERS_PATH = DATA_DIR / "regwatch-warning-letters.json"
@@ -839,7 +839,7 @@ def brief_cmd(args: argparse.Namespace) -> int:
             company, obligations, impacts, findings, products, len(jurisdictions), confirmed, today
         )
         stem = "regwatch-weekly-brief"
-        tags = ["regulatory", "weekly", "beverage", "talking-rain"]
+        tags = ["regulatory", "weekly", "beverage", "sample-portfolio"]
 
     formats = {f.strip() for f in args.formats.split(",")} if args.formats else {"docx", "newsletter", "web", "md"}
     out_dir = pathlib.Path(args.out_dir)
@@ -906,7 +906,7 @@ def main(argv: list[str]) -> int:
     p_report.add_argument("--out", help="write markdown to this path instead of stdout")
     p_report.add_argument("--json", help="also write the machine-readable report to this path")
 
-    sub.add_parser("portfolio", help="list the Talking Rain product portfolio")
+    sub.add_parser("portfolio", help="list the sample product portfolio")
 
     p_impact = sub.add_parser("impact", help="assess obligation impact on the product portfolio (CPG suite)")
     p_impact.add_argument("--product", help="filter to one product_id")

@@ -168,7 +168,7 @@ def main():
     title_p = document.add_paragraph()
     title_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     add_bookmark(title_p, "TOC_TOP", 0)
-    run = title_p.add_run("Talking Rain, Regulatory Labeling")
+    run = title_p.add_run("Regulatory Labeling Prompt Library")
     run.bold = True
     run.font.size = Pt(22)
 

@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
-  "company": "Talking Rain Beverage Company",
-  "disclaimer": "Internal research model of the Talking Rain portfolio. Product, ingredient, and claim attributes are approximate and MUST be confirmed against current specifications and labels before any compliance use. Not legal advice.",
+  "company": "Example Beverage Company",
+  "disclaimer": "Illustrative portfolio only. Product, ingredient, and claim attributes are examples and MUST be confirmed against current specifications and labels before any compliance use. Not legal advice.",
   "channels": ["national", "US-CA", "school-channel", "snap", "CA-Federal", "MX-Federal"],
   "channel_notes": {
     "national": "Distributed across US retail; treated as exposed to federal rules, every state patchwork bill, and SNAP retail restrictions.",
@@ -13,59 +13,59 @@
   },
   "products": [
     {
-      "product_id": "sparkling-ice-classic",
-      "name": "Sparkling Ice (classic flavors)",
+      "product_id": "sample-sparkling-classic",
+      "name": "Sample sparkling beverage (classic)",
       "category": "flavored sparkling water",
       "ingredient_functions": ["sweetener", "color", "flavor"],
       "ingredients": ["Sucralose"],
       "claims": ["zero-sugar", "naturally-flavored", "no-artificial-colors"],
       "channels": ["national", "US-CA"],
-      "confidence": "internal-model",
-      "notes": "Core line is zero-sugar, sweetened with a non-nutritive sweetener, with added color and natural flavors. Confirm color source and claim language against current specs."
+      "confidence": "illustrative",
+      "notes": "Example zero-sugar beverage with a non-nutritive sweetener, color, and natural flavors. Confirm every attribute against current specifications."
     },
     {
-      "product_id": "sparkling-ice-caffeine",
-      "name": "Sparkling Ice +Caffeine",
+      "product_id": "sample-sparkling-caffeinated",
+      "name": "Sample sparkling beverage (caffeinated)",
       "category": "flavored sparkling water with caffeine",
       "ingredient_functions": ["sweetener", "color", "flavor", "stimulant"],
       "ingredients": ["Sucralose", "Caffeine"],
       "claims": ["zero-sugar", "naturally-flavored"],
       "channels": ["national", "US-CA"],
-      "confidence": "internal-model",
-      "notes": "Adds caffeine to the classic base. Confirm caffeine source and per-serving amount against current specs."
+      "confidence": "illustrative",
+      "notes": "Example caffeinated beverage. Confirm caffeine source and serving amount against current specifications."
     },
     {
-      "product_id": "sparkling-ice-starburst",
-      "name": "Sparkling Ice Starburst",
-      "category": "licensed-flavor sparkling water",
+      "product_id": "sample-sparkling-colored",
+      "name": "Sample sparkling beverage (colored)",
+      "category": "flavored sparkling water",
       "ingredient_functions": ["sweetener", "color", "flavor"],
       "ingredients": ["Sucralose"],
       "claims": ["zero-sugar"],
       "channels": ["national", "US-CA"],
-      "confidence": "internal-model",
-      "notes": "Licensed candy flavors more likely to carry certified colors; confirm whether any FD&C dyes are used."
+      "confidence": "illustrative",
+      "notes": "Example beverage with color. Confirm whether any certified colors are used."
     },
     {
-      "product_id": "sparkling-water-unsweetened",
-      "name": "Sparkling Ice Sparkling Water (unsweetened)",
+      "product_id": "sample-sparkling-unsweetened",
+      "name": "Sample sparkling water (unsweetened)",
       "category": "unsweetened sparkling water",
       "ingredient_functions": ["flavor"],
       "ingredients": [],
       "claims": ["zero-sugar", "no-sweeteners", "naturally-flavored"],
       "channels": ["national", "US-CA"],
-      "confidence": "internal-model",
-      "notes": "Unsweetened line; lowest exposure to sweetener-driven rules."
+      "confidence": "illustrative",
+      "notes": "Example unsweetened product with lower exposure to sweetener-specific rules."
     },
     {
-      "product_id": "talking-rain-water",
-      "name": "Talking Rain bottled water",
+      "product_id": "sample-bottled-water",
+      "name": "Sample bottled water",
       "category": "bottled water",
       "ingredient_functions": [],
       "ingredients": [],
       "claims": ["no-sweeteners"],
       "channels": ["national"],
-      "confidence": "internal-model",
-      "notes": "Plain bottled water; minimal ingredient-rule exposure. Proposition 65 heavy-metal testing still applies to water sources."
+      "confidence": "illustrative",
+      "notes": "Example plain bottled water. Verify applicable source-water testing and labeling requirements."
     }
   ]
 }

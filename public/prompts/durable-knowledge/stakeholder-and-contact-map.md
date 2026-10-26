@@ -106,6 +106,6 @@ UNVERIFIED DRAFT - requires review by the regulatory labeling specialist before 
 
 ## guardrails
 
-Human-in-the-loop: the specialist reviews and installs this map themselves. Never invents a contact or relationship not present in the source inputs. Privacy: this map is personal data about colleagues; keep it to business role information (no personal phone numbers, home emails, or performance judgments), confirm against Talking Rain's Copilot and data-handling policy before installing, and remove departed contacts when re-running. Shared-agent exposure: anything installed into a declarative agent is visible to every future share recipient, so keep contact maps out of shareable agents.
+Human-in-the-loop: the specialist reviews and installs this map themselves. Never invents a contact or relationship not present in the source inputs. Privacy: this map is personal data about colleagues; keep it to business role information (no personal phone numbers, home emails, or performance judgments), confirm against your organization's Copilot and data-handling policy before installing, and remove departed contacts when re-running. Shared-agent exposure: anything installed into a declarative agent is visible to every future share recipient, so keep contact maps out of shareable agents.
 
 Related: [[personalization-install-router]] (copilot-configuration/), [[team-roles-and-responsibilities]], [[communication-style-profile]].
