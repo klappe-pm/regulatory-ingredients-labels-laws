@@ -53,3 +53,10 @@ public/regwatch/state/snapshots/*
 
 # regwatch: live-ingest candidates are generated each run, not tracked
 public/regwatch/state/regwatch-ingest-candidates.json
+
+# Visibility model: local work, machine secrets and the local ticket index never ship.
+# Instruction files are generated from agent-runtime-config/projects/roots/regulatory-ingredients-labels-laws/.
+/local/
+*.local.*
+settings.local.json
+.tickets.sqlite*
